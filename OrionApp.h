@@ -21,11 +21,15 @@
 #define __INET_ORIONAPP_H
 
 #include <vector>
+#include <string>
+#include <map>
+#include <algorithm>
 
 #include "INETDefs.h"
-
 #include "ApplicationBase.h"
 #include "UDPSocket.h"
+#include "FileTableData.h"
+#include "OrionPackets_m.h"
 
 
 /**
@@ -34,15 +38,31 @@
 class INET_API OrionApp : public ApplicationBase
 {
   protected:
-    enum SelfMsgKinds { START = 1, SEND, STOP };
+    enum SelfMsgKinds { START = 1, SEND, STOP};
 
     UDPSocket socket;
+    bool debugEnabled;
     int localPort, destPort;
+    int numberNodes;
+    int fileNum;
+    int myId;
+
+    unsigned int querySeqNum;
+
+    std::vector<int> outputInterfaceMulticastBroadcast;
     std::vector<IPvXAddress> destAddresses;
+    std::string nodeID;
     simtime_t startTime;
     simtime_t stopTime;
-    cMessage *selfMsg;
+    simtime_t avgQueryTime;
+    simtime_t fileQueryRate;
+    simtime_t fileGenRate;
 
+    cMessage *selfMsg;
+    cMessage *fileGenMsg;
+    cMessage *fileRequestMsg;
+    std::vector<std::string> fileList;  //!< files system abstraction (just a list of file names)
+    std::map<std::string, FileTableData> queryResults;
     // statistics
     int numSent;
     int numReceived;
@@ -51,11 +71,26 @@ class INET_API OrionApp : public ApplicationBase
     static simsignal_t sentPkSignal;
     static simsignal_t rcvdPkSignal;
 
+
     // chooses random destination address
     virtual IPvXAddress chooseDestAddr();
+
+
     virtual void sendPacket();
     virtual void processPacket(cPacket *msg);
     virtual void setSocketOptions();
+
+    void sendQuery(std::string fileToRequest);
+    void generateFile();
+    void requestFile();
+    std::string selectFile();
+    bool hasFile(std::string reqFile);
+    void deleteFileTable();
+
+    void debug(std::string msg);
+
+    //
+    bool sendBroadcast(const IPvXAddress &dest, cPacket *pkt);
 
   public:
     OrionApp();

@@ -33,11 +33,17 @@ simsignal_t OrionApp::rcvdPkSignal = registerSignal("rcvdPk");
 OrionApp::OrionApp()
 {
     selfMsg = NULL;
+    fileGenMsg = NULL;
+    fileRequestMsg = NULL;
+    fileNum = 0;
+    querySeqNum = 0;
 }
 
 OrionApp::~OrionApp()
 {
     cancelAndDelete(selfMsg);
+    cancelAndDelete(fileGenMsg);
+    cancelAndDelete(fileRequestMsg);
 }
 
 void OrionApp::initialize(int stage)
@@ -52,13 +58,28 @@ void OrionApp::initialize(int stage)
         WATCH(numReceived);
 
         localPort = par("localPort");
-        destPort = par("destPort");
+
         master = par("master");
+        destPort = par("destPort");
+        fileQueryRate = par("fileQueryRate").doubleValue();
+        fileGenRate = par("fileGenRate");
+        numberNodes = par("numberNodes");
+        debugEnabled = par("enableDebug");
+
+
         startTime = par("startTime").doubleValue();
         stopTime = par("stopTime").doubleValue();
+
+
         if (stopTime >= SIMTIME_ZERO && stopTime < startTime)
             error("Invalid startTime/stopTime parameters");
+
+        //self Msg
         selfMsg = new cMessage("sendTimer");
+        fileGenMsg = new cMessage("fileGenTimer");
+        fileRequestMsg = new cMessage("fileRequestTimer");
+
+
     }
 }
 
@@ -145,8 +166,8 @@ void OrionApp::processStart()
         else
             destAddresses.push_back(result);
     }
-    std::cout << "size of k:  = " << destAddresses.size() << std::endl;
-    std::cout << "size of k:  = " << destAddresses.size() << std::endl;
+
+    //starts sending packets (not part of orion... )
     if (!destAddresses.empty())
     {
         selfMsg->setKind(SEND);
@@ -160,6 +181,73 @@ void OrionApp::processStart()
             scheduleAt(stopTime, selfMsg);
         }
     }
+
+
+    //orion processes to start
+    if(master){ // schedules first file request from system
+        simtime_t d = simTime() + par("fileQueryRate").doubleValue() + 1;
+        if (stopTime < SIMTIME_ZERO || d < stopTime){
+            debug("In processstart()");
+            scheduleAt(d, fileRequestMsg);
+        }
+        else
+        {
+            selfMsg->setKind(STOP);
+            scheduleAt(stopTime, selfMsg);
+        }
+    }
+    else{
+
+        simtime_t d = simTime() + par("fileGenRate").doubleValue();
+        if (stopTime < SIMTIME_ZERO || d < stopTime){
+            debug("In processstart()");
+            scheduleAt(d, fileGenMsg);
+        }
+        else
+        {
+            selfMsg->setKind(STOP);
+            scheduleAt(stopTime, selfMsg);
+        }
+    }
+
+    //-------------------Broadcast options test--------------------------
+
+    outputInterfaceMulticastBroadcast.clear();
+    if (strcmp(par("outputInterfaceMulticastBroadcast").stringValue(),"") != 0)
+    {
+        IInterfaceTable* ift = InterfaceTableAccess().get();
+        const char *ports = par("outputInterfaceMulticastBroadcast");
+        cStringTokenizer tokenizer(ports);
+        const char *token;
+        while ((token = tokenizer.nextToken()) != NULL)
+        {
+            if (strstr(token, "ALL") != NULL)
+            {
+                for (int i = 0; i < ift->getNumInterfaces(); i++)
+                {
+                    InterfaceEntry *ie = ift->getInterface(i);
+                    if (ie->isLoopback())
+                        continue;
+                    if (ie == NULL)
+                        throw cRuntimeError(this, "Invalid output interface name : %s", token);
+                    outputInterfaceMulticastBroadcast.push_back(ie->getInterfaceId());
+                }
+            }
+            else
+            {
+                InterfaceEntry *ie = ift->getInterfaceByName(token);
+                if (ie == NULL)
+                    throw cRuntimeError(this, "Invalid output interface name : %s", token);
+                outputInterfaceMulticastBroadcast.push_back(ie->getInterfaceId());
+            }
+        }
+    }
+    IPvXAddress myAddr = IPvXAddressResolver().resolve(this->getParentModule()->getFullPath().c_str());
+    myId = this->getParentModule()->getId();
+
+    //----------------------end broadcast options test
+
+
 }
 
 void OrionApp::processSend()
@@ -185,7 +273,14 @@ void OrionApp::processStop()
 
 void OrionApp::handleMessageWhenUp(cMessage *msg)
 {
-    if (msg->isSelfMessage())
+    if(msg==fileGenMsg)  {
+        debug("handling fileGen");
+        generateFile();
+
+    }else if(msg == fileRequestMsg){
+        debug("handling requestFile");
+        requestFile();
+    }else if (msg->isSelfMessage())
     {
         ASSERT(msg == selfMsg);
         switch (selfMsg->getKind()) {
@@ -221,7 +316,7 @@ void OrionApp::handleMessageWhenUp(cMessage *msg)
 void OrionApp::processPacket(cPacket *pk)
 {
     emit(rcvdPkSignal, pk);
-    std::cout << "Packet Arrived" << std::endl;
+    std::cout<< "Received packet: " << UDPSocket::getReceivedPacketInfo(pk) << endl;
     EV << "Received packet: " << UDPSocket::getReceivedPacketInfo(pk) << endl;
     delete pk;
     numReceived++;
@@ -243,6 +338,7 @@ bool OrionApp::handleNodeShutdown(IDoneCallback *doneCallback)
     if (selfMsg)
         cancelEvent(selfMsg);
     //TODO if(socket.isOpened()) socket.close();
+    fileList.clear();
     return true;
 }
 
@@ -251,4 +347,143 @@ void OrionApp::handleNodeCrash()
     if (selfMsg)
         cancelEvent(selfMsg);
 }
+
+//----------------------------Functions added by Capt Willinger--------------------
+bool OrionApp::hasFile(std::string reqFile){
+  if(std::count(fileList.begin(),fileList.end(),reqFile)>0)
+    return true;
+  return false;
+
+}
+
+
+void OrionApp::generateFile(){
+
+    std::string tempTime;
+    std::ostringstream convertFileNum;
+    convertFileNum << fileNum++;
+    tempTime = convertFileNum.str();
+    std::string fileName(this->getOwner()->getFullName());
+    fileName.append ("-");
+    fileName.append (tempTime);
+    fileList.push_back (fileName);
+    std::cout << this->getOwner()->getFullName() << " GENERATED FILE: " << fileName << std::endl;
+    simtime_t d = simTime() + par("fileGenRate").doubleValue();
+    if (stopTime < SIMTIME_ZERO || d < stopTime)
+    {
+        scheduleAt(d, fileGenMsg);
+    }
+    else
+    {
+        selfMsg->setKind(STOP);
+        scheduleAt(stopTime, selfMsg);
+    }
+
+}
+
+
+void OrionApp::requestFile(){
+    std::string fileToRequest(selectFile());
+    if(debugEnabled){
+    std::ostringstream debugMessage;
+        debugMessage << "Requesting file: " << fileToRequest << std::endl;
+    debug(debugMessage.str());
+    }
+    debug("Initiating Query");
+    sendQuery(fileToRequest);
+
+    simtime_t d = simTime() + fileQueryRate;
+    if (stopTime < SIMTIME_ZERO || d < stopTime)
+    {
+        scheduleAt(d, fileRequestMsg);
+//        fileRequestMsg->setKind(SCHFILEREQUEST);
+//        scheduleAt(d, fileRequestMsg);
+    }
+    else
+    {
+        fileRequestMsg->setKind(STOP);
+        scheduleAt(stopTime, fileRequestMsg);
+    }
+}
+
+void OrionApp::sendQuery(std::string _fileToRequest){
+    char msgName[32];
+    sprintf(msgName, "testAppData-%d", numSent);
+   // OrionPacket *testPacket = new OrionPacket(msgName);
+   cPacket *testPacket = new cPacket(msgName);
+    testPacket->setByteLength(par("messageLength").longValue());
+  //  IPvXAddress destAddr = chooseDestAddr();
+ //   IPvXAddress destAddr;
+//    dest.set("255.255.255.255");
+ //  IPvXAddress destAddr = "255.255.255.255";
+    emit(sentPkSignal, testPacket);
+
+    //disabled to test broadcast
+   // socket.sendTo(testPacket, destAddr, destPort);
+
+    //test of sending broadcast;
+    IPvXAddress destAddr(IPv4Address::ALLONES_ADDRESS);
+    sendBroadcast(destAddr, testPacket);
+
+    debug("Sent Query");
+    numSent++;
+}
+
+
+std::string OrionApp::selectFile(){
+    std::ostringstream convert;
+    std::ostringstream convert2;
+    std::string fileToRequest("host[");
+    int randomNode = 2+ intrand(numberNodes);
+    int randomFile = (int) (fileGenRate.dbl() + simTime().dbl()/fileGenRate.dbl());
+    convert << randomNode;
+    convert2 << randomFile;
+    fileToRequest.append(convert.str());
+    fileToRequest.append("]-");
+    fileToRequest.append(convert2.str());
+  return fileToRequest;
+}
+
+
+void OrionApp::debug(std::string msg){
+    if(debugEnabled){
+    std::string output(this->getOwner()->getFullName());
+    output.append(" --> ");
+    output.append(msg);
+    std::cout << output << std::endl;
+    }
+}
+
+bool OrionApp::sendBroadcast(const IPvXAddress &dest, cPacket *pkt)
+{
+    if (!outputInterfaceMulticastBroadcast.empty() && (dest.isMulticast() || (!dest.isIPv6() && dest.get4() == IPv4Address::ALLONES_ADDRESS)))
+    {
+        for (unsigned int i = 0; i < outputInterfaceMulticastBroadcast.size(); i++)
+        {
+            UDPSocket::SendOptions options;
+            options.outInterfaceId = outputInterfaceMulticastBroadcast[i];
+            if (outputInterfaceMulticastBroadcast.size() - i > 1)
+                socket.sendTo(pkt->dup(), dest, destPort, &options);
+            else
+                socket.sendTo(pkt, dest, destPort, &options);
+        }
+        return true;
+    }
+    return false;
+}
+
+
+
+
+//void
+//OrionServer::DeleteFileTable(void){
+//
+//     Ptr<UniformRandomVariable> var = CreateObject<UniformRandomVariable> ();
+//     uint32_t ranVal = var->GetValue(uint32_t(0),uint32_t(100));
+//     NS_LOG_INFO(Simulator::GetContext() << " " << ranVal);
+//     if(ranVal <= m_churnPercent){
+//         fileList.clear();
+//     NS_LOG_INFO("Cleared File Table" << "Node " << Simulator::GetContext());
+//       }
+//}
 
