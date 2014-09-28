@@ -1,0 +1,180 @@
+*I  0  0  7  lo0 <unspec>
++I  0  0  7  lo0 <unspec>
+*I  0  0  7  wlan0 <unspec>
+*I  0  0  7  wlan0 <unspec>
++I  0  0  7  wlan0 <unspec>
+*I  0  0  8  lo0 <unspec>
++I  0  0  8  lo0 <unspec>
+*I  0  0  8  wlan0 <unspec>
+*I  0  0  8  wlan0 <unspec>
++I  0  0  8  wlan0 <unspec>
+*I  0  0  9  lo0 <unspec>
++I  0  0  9  lo0 <unspec>
+*I  0  0  9  wlan0 <unspec>
+*I  0  0  9  wlan0 <unspec>
++I  0  0  9  wlan0 <unspec>
+*I  0  0  10  lo0 <unspec>
++I  0  0  10  lo0 <unspec>
+*I  0  0  10  wlan0 <unspec>
+*I  0  0  10  wlan0 <unspec>
++I  0  0  10  wlan0 <unspec>
+*I  0  0  11  lo0 <unspec>
++I  0  0  11  lo0 <unspec>
+*I  0  0  11  wlan0 <unspec>
+*I  0  0  11  wlan0 <unspec>
++I  0  0  11  wlan0 <unspec>
+*I  0  0  12  lo0 <unspec>
++I  0  0  12  lo0 <unspec>
+*I  0  0  12  wlan0 <unspec>
+*I  0  0  12  wlan0 <unspec>
++I  0  0  12  wlan0 <unspec>
+*I  0  0  13  lo0 <unspec>
++I  0  0  13  lo0 <unspec>
+*I  0  0  13  wlan0 <unspec>
+*I  0  0  13  wlan0 <unspec>
++I  0  0  13  wlan0 <unspec>
+*I  0  0  14  lo0 <unspec>
++I  0  0  14  lo0 <unspec>
+*I  0  0  14  wlan0 <unspec>
+*I  0  0  14  wlan0 <unspec>
++I  0  0  14  wlan0 <unspec>
+*I  0  0  15  lo0 <unspec>
++I  0  0  15  lo0 <unspec>
+*I  0  0  15  wlan0 <unspec>
+*I  0  0  15  wlan0 <unspec>
++I  0  0  15  wlan0 <unspec>
+*I  0  0  16  lo0 <unspec>
++I  0  0  16  lo0 <unspec>
+*I  0  0  16  wlan0 <unspec>
+*I  0  0  16  wlan0 <unspec>
++I  0  0  16  wlan0 <unspec>
+*I  0  0  7  lo0 <unspec>
+*I  0  0  7  lo0 127.0.0.1
+*I  0  0  7  lo0 127.0.0.1
+*I  0  0  7  lo0 127.0.0.1
+*I  0  0  7  wlan0 <unspec>
+*I  0  0  7  wlan0 <unspec>
+*I  0  0  7  wlan0 <unspec>
+*I  0  0  7  wlan0 <unspec>
+*I  0  0  8  lo0 <unspec>
+*I  0  0  8  lo0 127.0.0.1
+*I  0  0  8  lo0 127.0.0.1
+*I  0  0  8  lo0 127.0.0.1
+*I  0  0  8  wlan0 <unspec>
+*I  0  0  8  wlan0 <unspec>
+*I  0  0  8  wlan0 <unspec>
+*I  0  0  8  wlan0 <unspec>
+*I  0  0  9  lo0 <unspec>
+*I  0  0  9  lo0 127.0.0.1
+*I  0  0  9  lo0 127.0.0.1
+*I  0  0  9  lo0 127.0.0.1
+*I  0  0  9  wlan0 <unspec>
+*I  0  0  9  wlan0 <unspec>
+*I  0  0  9  wlan0 <unspec>
+*I  0  0  9  wlan0 <unspec>
+*I  0  0  10  lo0 <unspec>
+*I  0  0  10  lo0 127.0.0.1
+*I  0  0  10  lo0 127.0.0.1
+*I  0  0  10  lo0 127.0.0.1
+*I  0  0  10  wlan0 <unspec>
+*I  0  0  10  wlan0 <unspec>
+*I  0  0  10  wlan0 <unspec>
+*I  0  0  10  wlan0 <unspec>
+*I  0  0  11  lo0 <unspec>
+*I  0  0  11  lo0 127.0.0.1
+*I  0  0  11  lo0 127.0.0.1
+*I  0  0  11  lo0 127.0.0.1
+*I  0  0  11  wlan0 <unspec>
+*I  0  0  11  wlan0 <unspec>
+*I  0  0  11  wlan0 <unspec>
+*I  0  0  11  wlan0 <unspec>
+*I  0  0  12  lo0 <unspec>
+*I  0  0  12  lo0 127.0.0.1
+*I  0  0  12  lo0 127.0.0.1
+*I  0  0  12  lo0 127.0.0.1
+*I  0  0  12  wlan0 <unspec>
+*I  0  0  12  wlan0 <unspec>
+*I  0  0  12  wlan0 <unspec>
+*I  0  0  12  wlan0 <unspec>
+*I  0  0  13  lo0 <unspec>
+*I  0  0  13  lo0 127.0.0.1
+*I  0  0  13  lo0 127.0.0.1
+*I  0  0  13  lo0 127.0.0.1
+*I  0  0  13  wlan0 <unspec>
+*I  0  0  13  wlan0 <unspec>
+*I  0  0  13  wlan0 <unspec>
+*I  0  0  13  wlan0 <unspec>
+*I  0  0  14  lo0 <unspec>
+*I  0  0  14  lo0 127.0.0.1
+*I  0  0  14  lo0 127.0.0.1
+*I  0  0  14  lo0 127.0.0.1
+*I  0  0  14  wlan0 <unspec>
+*I  0  0  14  wlan0 <unspec>
+*I  0  0  14  wlan0 <unspec>
+*I  0  0  14  wlan0 <unspec>
+*I  0  0  15  lo0 <unspec>
+*I  0  0  15  lo0 127.0.0.1
+*I  0  0  15  lo0 127.0.0.1
+*I  0  0  15  lo0 127.0.0.1
+*I  0  0  15  wlan0 <unspec>
+*I  0  0  15  wlan0 <unspec>
+*I  0  0  15  wlan0 <unspec>
+*I  0  0  15  wlan0 <unspec>
+*I  0  0  16  lo0 <unspec>
+*I  0  0  16  lo0 127.0.0.1
+*I  0  0  16  lo0 127.0.0.1
+*I  0  0  16  lo0 127.0.0.1
+*I  0  0  16  wlan0 <unspec>
+*I  0  0  16  wlan0 <unspec>
+*I  0  0  16  wlan0 <unspec>
+*I  0  0  16  wlan0 <unspec>
+*I  0  0  7  wlan0 10.0.0.1
+*I  0  0  7  wlan0 10.0.0.1
++R 0  0  7  <unspec>  10.0.0.0  255.255.255.240  <unspec>
+*I  0  0  8  wlan0 10.0.0.2
+*I  0  0  8  wlan0 10.0.0.2
++R 0  0  8  <unspec>  10.0.0.0  255.255.255.240  <unspec>
+*I  0  0  9  wlan0 10.0.0.3
+*I  0  0  9  wlan0 10.0.0.3
++R 0  0  9  <unspec>  10.0.0.0  255.255.255.240  <unspec>
+*I  0  0  10  wlan0 10.0.0.4
+*I  0  0  10  wlan0 10.0.0.4
++R 0  0  10  <unspec>  10.0.0.0  255.255.255.240  <unspec>
+*I  0  0  11  wlan0 10.0.0.5
+*I  0  0  11  wlan0 10.0.0.5
++R 0  0  11  <unspec>  10.0.0.0  255.255.255.240  <unspec>
+*I  0  0  12  wlan0 10.0.0.6
+*I  0  0  12  wlan0 10.0.0.6
++R 0  0  12  <unspec>  10.0.0.0  255.255.255.240  <unspec>
+*I  0  0  13  wlan0 10.0.0.7
+*I  0  0  13  wlan0 10.0.0.7
++R 0  0  13  <unspec>  10.0.0.0  255.255.255.240  <unspec>
+*I  0  0  14  wlan0 10.0.0.8
+*I  0  0  14  wlan0 10.0.0.8
++R 0  0  14  <unspec>  10.0.0.0  255.255.255.240  <unspec>
+*I  0  0  15  wlan0 10.0.0.9
+*I  0  0  15  wlan0 10.0.0.9
++R 0  0  15  <unspec>  10.0.0.0  255.255.255.240  <unspec>
+*I  0  0  16  wlan0 10.0.0.10
+*I  0  0  16  wlan0 10.0.0.10
++R 0  0  16  <unspec>  10.0.0.0  255.255.255.240  <unspec>
++R 0  0  7  10.0.0.1  127.0.0.0  255.0.0.0  <unspec>
++R 0  0  7  10.0.0.1  10.0.0.0  255.255.0.0  <unspec>
++R 0  0  8  10.0.0.2  127.0.0.0  255.0.0.0  <unspec>
++R 0  0  8  10.0.0.2  10.0.0.0  255.255.0.0  <unspec>
++R 0  0  9  10.0.0.3  127.0.0.0  255.0.0.0  <unspec>
++R 0  0  9  10.0.0.3  10.0.0.0  255.255.0.0  <unspec>
++R 0  0  10  10.0.0.4  127.0.0.0  255.0.0.0  <unspec>
++R 0  0  10  10.0.0.4  10.0.0.0  255.255.0.0  <unspec>
++R 0  0  11  10.0.0.5  127.0.0.0  255.0.0.0  <unspec>
++R 0  0  11  10.0.0.5  10.0.0.0  255.255.0.0  <unspec>
++R 0  0  12  10.0.0.6  127.0.0.0  255.0.0.0  <unspec>
++R 0  0  12  10.0.0.6  10.0.0.0  255.255.0.0  <unspec>
++R 0  0  13  10.0.0.7  127.0.0.0  255.0.0.0  <unspec>
++R 0  0  13  10.0.0.7  10.0.0.0  255.255.0.0  <unspec>
++R 0  0  14  10.0.0.8  127.0.0.0  255.0.0.0  <unspec>
++R 0  0  14  10.0.0.8  10.0.0.0  255.255.0.0  <unspec>
++R 0  0  15  10.0.0.9  127.0.0.0  255.0.0.0  <unspec>
++R 0  0  15  10.0.0.9  10.0.0.0  255.255.0.0  <unspec>
++R 0  0  16  10.0.0.10  127.0.0.0  255.0.0.0  <unspec>
++R 0  0  16  10.0.0.10  10.0.0.0  255.255.0.0  <unspec>
