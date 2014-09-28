@@ -30,7 +30,7 @@
 #include "UDPSocket.h"
 #include "FileTableData.h"
 #include "OrionPackets_m.h"
-
+#include "UDPPacket.h"
 
 /**
  * UDP application. See NED for more info.
@@ -62,6 +62,7 @@ class INET_API OrionApp : public ApplicationBase
     cMessage *fileGenMsg;
     cMessage *fileRequestMsg;
     std::vector<std::string> fileList;  //!< files system abstraction (just a list of file names)
+    std::vector<unsigned int> queryList;
     std::map<std::string, FileTableData> queryResults;
     // statistics
     int numSent;
@@ -80,18 +81,20 @@ class INET_API OrionApp : public ApplicationBase
     virtual void processPacket(cPacket *msg);
     virtual void setSocketOptions();
 
-    void sendQuery(std::string fileToRequest);
+    void sendQuery(std::string fileToRequest, unsigned int seq);
     void generateFile();
     void requestFile();
     std::string selectFile();
     bool hasFile(std::string reqFile);
     void deleteFileTable();
 
-    void debug(std::string msg);
 
-    //
     bool sendBroadcast(const IPvXAddress &dest, cPacket *pkt);
 
+    /*
+     *
+     */
+    void debug(std::string msg);
   public:
     OrionApp();
     ~OrionApp();

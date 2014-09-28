@@ -21,7 +21,9 @@
 
 #include "InterfaceTableAccess.h"
 #include "IPvXAddressResolver.h"
+#include "IPv4ControlInfo.h"
 #include "NodeOperations.h"
+#include "UDPControlInfo.h"
 #include "UDPControlInfo_m.h"
 
 
@@ -252,12 +254,12 @@ void OrionApp::processStart()
 
 void OrionApp::processSend()
 {
-    sendPacket();
+  //  sendPacket();
     simtime_t d = simTime() + par("sendInterval").doubleValue();
     if (stopTime < SIMTIME_ZERO || d < stopTime)
     {
         selfMsg->setKind(SEND);
-        scheduleAt(d, selfMsg);
+   //     scheduleAt(d, selfMsg);
     }
     else
     {
@@ -273,6 +275,8 @@ void OrionApp::processStop()
 
 void OrionApp::handleMessageWhenUp(cMessage *msg)
 {
+ if (msg->isSelfMessage())
+    {
     if(msg==fileGenMsg)  {
         debug("handling fileGen");
         generateFile();
@@ -280,19 +284,57 @@ void OrionApp::handleMessageWhenUp(cMessage *msg)
     }else if(msg == fileRequestMsg){
         debug("handling requestFile");
         requestFile();
-    }else if (msg->isSelfMessage())
-    {
+    }else if(msg == selfMsg)
         ASSERT(msg == selfMsg);
         switch (selfMsg->getKind()) {
             case START: processStart(); break;
-            case SEND:  processSend(); break;
+            case SEND:
+              //  processSend();
+                break; debug("Sent Query");
             case STOP:  processStop(); break;
             default: throw cRuntimeError("Invalid kind %d in self message", (int)selfMsg->getKind());
         }
     }
     else if (msg->getKind() == UDP_I_DATA)
     {
-        // process incoming packet
+        OrionPacket *oPacket = dynamic_cast<OrionPacket *>(PK(msg));
+            //handle different type of packets
+            switch (oPacket->getPacketType()) {
+                case QUERY:
+                   if(std::count(queryList.begin(),queryList.end(),oPacket->getSEQ())==0){
+                    std::string debugMsg("Handling Query: ");
+                    debugMsg.append(check_and_cast<OrionQueryPacket *>(oPacket)->getFilename());
+                    debugMsg.append(" - ");
+                    std::ostringstream convertSeqNum;
+                    convertSeqNum <<  check_and_cast<OrionQueryPacket *>(oPacket)->getSEQ();
+                    debugMsg.append(convertSeqNum.str());
+                    debug(debugMsg);
+                    sendQuery(check_and_cast<OrionQueryPacket *>(oPacket)->getFilename(), oPacket->getSEQ());
+             //       handleRREQ(check_and_cast<AODVRREQ *>(ctrlPacket), sourceAddr, arrivalPacketTTL);
+                    }
+                    break;
+
+                case RESPONSE:
+              //      handleRREP(check_and_cast<AODVRREP *>(ctrlPacket), sourceAddr);
+                    break;
+
+                case DATA_REQUEST:
+               //     handleRERR(check_and_cast<AODVRERR *>(ctrlPacket), sourceAddr);
+                    break;
+
+                case DATA_REPLY:
+                //    handleRREPACK(check_and_cast<AODVRREPACK *>(ctrlPacket), sourceAddr);
+                    break;
+
+                case DATA_REQUEST_ACK:
+               //     handleRREPACK(check_and_cast<AODVRREPACK *>(ctrlPacket), sourceAddr);
+                    break;
+
+                default:
+                    throw cRuntimeError("AODV Control Packet arrived with undefined packet type: %d", oPacket->getPacketType());
+            }
+
+
         processPacket(PK(msg));
     }
     else if (msg->getKind() == UDP_I_ERROR)
@@ -313,9 +355,12 @@ void OrionApp::handleMessageWhenUp(cMessage *msg)
     }
 }
 
+//handle application level packes
 void OrionApp::processPacket(cPacket *pk)
 {
+    debug("here");
     emit(rcvdPkSignal, pk);
+
     std::cout<< "Received packet: " << UDPSocket::getReceivedPacketInfo(pk) << endl;
     EV << "Received packet: " << UDPSocket::getReceivedPacketInfo(pk) << endl;
     delete pk;
@@ -349,6 +394,13 @@ void OrionApp::handleNodeCrash()
 }
 
 //----------------------------Functions added by Capt Willinger--------------------
+
+/*
+ * Function: hasFile
+ * Description: checks "file table" for passed file name
+ *  - Param: reqfile - string value
+ * Returns: bool
+ */
 bool OrionApp::hasFile(std::string reqFile){
   if(std::count(fileList.begin(),fileList.end(),reqFile)>0)
     return true;
@@ -356,7 +408,13 @@ bool OrionApp::hasFile(std::string reqFile){
 
 }
 
-
+/*
+ * Function: generateFile()
+ * Description: constructs a string value to represent new files and adds it to
+ *              the apps file table.
+ *  - Param: void
+ * Returns: void
+ */
 void OrionApp::generateFile(){
 
     std::string tempTime;
@@ -381,7 +439,16 @@ void OrionApp::generateFile(){
 
 }
 
-
+/*
+ * Function: requestFile()
+ * Description: Initiates request for file transfer.
+ *              Implements Orion file transfer algorithm by performing a round robin
+ *              request of each file block (each block size is less than 1 MTU - I use
+ *              1024 as a convenience factor). The function loops through all the blocks
+ *              are successfully transferred or function exceeds file-transfer timeout.
+ *  - Param: void
+ * Returns: void
+ */
 void OrionApp::requestFile(){
     std::string fileToRequest(selectFile());
     if(debugEnabled){
@@ -390,8 +457,9 @@ void OrionApp::requestFile(){
     debug(debugMessage.str());
     }
     debug("Initiating Query");
-    sendQuery(fileToRequest);
 
+    sendQuery(fileToRequest, querySeqNum);
+    querySeqNum++;
     simtime_t d = simTime() + fileQueryRate;
     if (stopTime < SIMTIME_ZERO || d < stopTime)
     {
@@ -406,12 +474,30 @@ void OrionApp::requestFile(){
     }
 }
 
-void OrionApp::sendQuery(std::string _fileToRequest){
+/*
+ * Function: requestFile()
+ * Description: Initiates request for file transfer.
+ *              Implements Orion file query algorithm by performing a broadcast send of
+ *              file query packet.
+ *  - Param: _fileToRequest: string value of requested file name
+ * Returns: void
+ */
+//TODO add packet Param and logic to create new packet if null
+void OrionApp::sendQuery(std::string _fileToRequest, unsigned int seq){
     char msgName[32];
     sprintf(msgName, "testAppData-%d", numSent);
-   // OrionPacket *testPacket = new OrionPacket(msgName);
-   cPacket *testPacket = new cPacket(msgName);
-    testPacket->setByteLength(par("messageLength").longValue());
+
+
+    //  cPacket *testPacket = new cPacket(msgName);
+ //  OrionPacket *testPacket = new OrionPacket(msgName);
+     OrionQueryPacket *testPacket = new OrionQueryPacket("Orion-Query");
+
+   //test of setting packet type...
+     testPacket->setPacketType(QUERY);
+     testPacket->setSEQ(seq);
+     queryList.push_back (seq);
+     testPacket->setFilename(msgName);
+     testPacket->setByteLength(par("messageLength").longValue());
   //  IPvXAddress destAddr = chooseDestAddr();
  //   IPvXAddress destAddr;
 //    dest.set("255.255.255.255");
@@ -424,12 +510,15 @@ void OrionApp::sendQuery(std::string _fileToRequest){
     //test of sending broadcast;
     IPvXAddress destAddr(IPv4Address::ALLONES_ADDRESS);
     sendBroadcast(destAddr, testPacket);
-
-    debug("Sent Query");
     numSent++;
 }
 
-
+/*
+ * Function: selectFile()
+ * Description: generates file name string to be requested.
+ *  - Param: _fileToRequest: string value of requested file name
+ * Returns: string value of file name
+ */
 std::string OrionApp::selectFile(){
     std::ostringstream convert;
     std::ostringstream convert2;
@@ -444,7 +533,12 @@ std::string OrionApp::selectFile(){
   return fileToRequest;
 }
 
-
+/*
+ * Function: debug()
+ * Description: prints out string messages to the console
+ *  - Param: msg: string value of msg to output
+ * Returns: void
+ */
 void OrionApp::debug(std::string msg){
     if(debugEnabled){
     std::string output(this->getOwner()->getFullName());
@@ -454,10 +548,19 @@ void OrionApp::debug(std::string msg){
     }
 }
 
+/*
+ * Function: sendBroadcast()
+ * Description: prints out string messages to the console
+ *  - Param:    *pkt:
+ *              &dest:
+ * Returns: void
+ */
+
 bool OrionApp::sendBroadcast(const IPvXAddress &dest, cPacket *pkt)
 {
     if (!outputInterfaceMulticastBroadcast.empty() && (dest.isMulticast() || (!dest.isIPv6() && dest.get4() == IPv4Address::ALLONES_ADDRESS)))
     {
+
         for (unsigned int i = 0; i < outputInterfaceMulticastBroadcast.size(); i++)
         {
             UDPSocket::SendOptions options;
@@ -466,6 +569,7 @@ bool OrionApp::sendBroadcast(const IPvXAddress &dest, cPacket *pkt)
                 socket.sendTo(pkt->dup(), dest, destPort, &options);
             else
                 socket.sendTo(pkt, dest, destPort, &options);
+
         }
         return true;
     }
