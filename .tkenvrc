@@ -1,0 +1,4 @@
+# Partial OMNeT++/Tkenv config file -- see $HOME/.tkenvrc as well
+config default-configname	{IPv4SlowMobility}
+config default-runnumber	{0}
+

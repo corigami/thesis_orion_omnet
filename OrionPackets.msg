@@ -16,12 +16,11 @@
 //
 
 cplusplus {{
-#include <vector>
-#include "IPv4Address.h"
+#include "IPvXAddress.h"
 #include "simtime_t.h"
 }}
 
-class noncobject IPv4Address;
+class noncobject IPvXAddress;
 
 enum OrionPacketType
 {
@@ -38,7 +37,7 @@ enum OrionPacketType
 packet OrionPacket extends cPacket
 {
     unsigned int packetType;
-    IPv4Address SRC;
+    IPvXAddress SRC;
     unsigned int SEQ;
 }
 
@@ -55,7 +54,8 @@ class OrionQueryPacket extends OrionPacket
 {
     unsigned int packetType = RESPONSE;
     string filename;
-    IPv4Address hosts[];
+    IPvXAddress host;
+    int hopcount =0;
  }
 
 //
@@ -63,7 +63,7 @@ class OrionQueryPacket extends OrionPacket
 //
 class OrionDataReqPacket extends OrionPacket
 {
-    IPv4Address DST;
+    IPvXAddress DST;
     unsigned int packetType = DATA_REQUEST;
     string filename;
     unsigned int blockNum;
@@ -76,7 +76,7 @@ class OrionDataReqPacket extends OrionPacket
 //
 class OrionDataRepPacket extends OrionPacket
 {
-    IPv4Address DST;
+    IPvXAddress DST;
     unsigned int packetType = DATA_REPLY;
     string filename;
     unsigned int blockNum;

@@ -25,8 +25,7 @@
 #endif
 
 // cplusplus {{
-#include <vector>
-#include "IPv4Address.h"
+#include "IPvXAddress.h"
 #include "simtime_t.h"
 // }}
 
@@ -59,7 +58,7 @@ enum OrionPacketType {
  * packet OrionPacket extends cPacket
  * {
  *     unsigned int packetType;
- *     IPv4Address SRC;
+ *     IPvXAddress SRC;
  *     unsigned int SEQ;
  * }
  * </pre>
@@ -68,7 +67,7 @@ class INET_API OrionPacket : public ::cPacket
 {
   protected:
     unsigned int packetType_var;
-    IPv4Address SRC_var;
+    IPvXAddress SRC_var;
     unsigned int SEQ_var;
 
   private:
@@ -90,9 +89,9 @@ class INET_API OrionPacket : public ::cPacket
     // field getter/setter methods
     virtual unsigned int getPacketType() const;
     virtual void setPacketType(unsigned int packetType);
-    virtual IPv4Address& getSRC();
-    virtual const IPv4Address& getSRC() const {return const_cast<OrionPacket*>(this)->getSRC();}
-    virtual void setSRC(const IPv4Address& SRC);
+    virtual IPvXAddress& getSRC();
+    virtual const IPvXAddress& getSRC() const {return const_cast<OrionPacket*>(this)->getSRC();}
+    virtual void setSRC(const IPvXAddress& SRC);
     virtual unsigned int getSEQ() const;
     virtual void setSEQ(unsigned int SEQ);
 };
@@ -149,7 +148,8 @@ inline void doUnpacking(cCommBuffer *b, OrionQueryPacket& obj) {obj.parsimUnpack
  * {
  *     unsigned int packetType = RESPONSE;
  *     string filename;
- *     IPv4Address hosts[];
+ *     IPvXAddress host;
+ *     int hopcount =0;
  *  }
  * </pre>
  */
@@ -158,8 +158,8 @@ class INET_API OrionResponsePacket : public ::OrionPacket
   protected:
     unsigned int packetType_var;
     opp_string filename_var;
-    IPv4Address *hosts_var; // array ptr
-    unsigned int hosts_arraysize;
+    IPvXAddress host_var;
+    int hopcount_var;
 
   private:
     void copy(const OrionResponsePacket& other);
@@ -182,11 +182,11 @@ class INET_API OrionResponsePacket : public ::OrionPacket
     virtual void setPacketType(unsigned int packetType);
     virtual const char * getFilename() const;
     virtual void setFilename(const char * filename);
-    virtual void setHostsArraySize(unsigned int size);
-    virtual unsigned int getHostsArraySize() const;
-    virtual IPv4Address& getHosts(unsigned int k);
-    virtual const IPv4Address& getHosts(unsigned int k) const {return const_cast<OrionResponsePacket*>(this)->getHosts(k);}
-    virtual void setHosts(unsigned int k, const IPv4Address& hosts);
+    virtual IPvXAddress& getHost();
+    virtual const IPvXAddress& getHost() const {return const_cast<OrionResponsePacket*>(this)->getHost();}
+    virtual void setHost(const IPvXAddress& host);
+    virtual int getHopcount() const;
+    virtual void setHopcount(int hopcount);
 };
 
 inline void doPacking(cCommBuffer *b, OrionResponsePacket& obj) {obj.parsimPack(b);}
@@ -197,7 +197,7 @@ inline void doUnpacking(cCommBuffer *b, OrionResponsePacket& obj) {obj.parsimUnp
  * <pre>
  * class OrionDataReqPacket extends OrionPacket
  * {
- *     IPv4Address DST;
+ *     IPvXAddress DST;
  *     unsigned int packetType = DATA_REQUEST;
  *     string filename;
  *     unsigned int blockNum;
@@ -209,7 +209,7 @@ inline void doUnpacking(cCommBuffer *b, OrionResponsePacket& obj) {obj.parsimUnp
 class INET_API OrionDataReqPacket : public ::OrionPacket
 {
   protected:
-    IPv4Address DST_var;
+    IPvXAddress DST_var;
     unsigned int packetType_var;
     opp_string filename_var;
     unsigned int blockNum_var;
@@ -231,9 +231,9 @@ class INET_API OrionDataReqPacket : public ::OrionPacket
     virtual void parsimUnpack(cCommBuffer *b);
 
     // field getter/setter methods
-    virtual IPv4Address& getDST();
-    virtual const IPv4Address& getDST() const {return const_cast<OrionDataReqPacket*>(this)->getDST();}
-    virtual void setDST(const IPv4Address& DST);
+    virtual IPvXAddress& getDST();
+    virtual const IPvXAddress& getDST() const {return const_cast<OrionDataReqPacket*>(this)->getDST();}
+    virtual void setDST(const IPvXAddress& DST);
     virtual unsigned int getPacketType() const;
     virtual void setPacketType(unsigned int packetType);
     virtual const char * getFilename() const;
@@ -250,7 +250,7 @@ inline void doUnpacking(cCommBuffer *b, OrionDataReqPacket& obj) {obj.parsimUnpa
  * <pre>
  * class OrionDataRepPacket extends OrionPacket
  * {
- *     IPv4Address DST;
+ *     IPvXAddress DST;
  *     unsigned int packetType = DATA_REPLY;
  *     string filename;
  *     unsigned int blockNum;
@@ -260,7 +260,7 @@ inline void doUnpacking(cCommBuffer *b, OrionDataReqPacket& obj) {obj.parsimUnpa
 class INET_API OrionDataRepPacket : public ::OrionPacket
 {
   protected:
-    IPv4Address DST_var;
+    IPvXAddress DST_var;
     unsigned int packetType_var;
     opp_string filename_var;
     unsigned int blockNum_var;
@@ -282,9 +282,9 @@ class INET_API OrionDataRepPacket : public ::OrionPacket
     virtual void parsimUnpack(cCommBuffer *b);
 
     // field getter/setter methods
-    virtual IPv4Address& getDST();
-    virtual const IPv4Address& getDST() const {return const_cast<OrionDataRepPacket*>(this)->getDST();}
-    virtual void setDST(const IPv4Address& DST);
+    virtual IPvXAddress& getDST();
+    virtual const IPvXAddress& getDST() const {return const_cast<OrionDataRepPacket*>(this)->getDST();}
+    virtual void setDST(const IPvXAddress& DST);
     virtual unsigned int getPacketType() const;
     virtual void setPacketType(unsigned int packetType);
     virtual const char * getFilename() const;

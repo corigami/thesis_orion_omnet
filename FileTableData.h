@@ -21,8 +21,8 @@
 
 class FileTableData {
 public:
-    FileTableData(){
-        fileName = "";
+    FileTableData(std::string _fileName){
+        fileName = _fileName;
         priority = 0;
     }
     virtual ~FileTableData(){

@@ -37,7 +37,7 @@ OrionApp::OrionApp()
     selfMsg = NULL;
     fileGenMsg = NULL;
     fileRequestMsg = NULL;
-    fileNum = 0;
+    fileNum = 1;
     querySeqNum = 0;
 }
 
@@ -56,21 +56,22 @@ void OrionApp::initialize(int stage)
     {
         numSent = 0;
         numReceived = 0;
+
+        //variables to watch in GUI environment
         WATCH(numSent);
         WATCH(numReceived);
 
+        //load parameters from .ned file
         localPort = par("localPort");
-
         master = par("master");
         destPort = par("destPort");
         fileQueryRate = par("fileQueryRate").doubleValue();
         fileGenRate = par("fileGenRate");
         numberNodes = par("numberNodes");
         debugEnabled = par("enableDebug");
-
-
         startTime = par("startTime").doubleValue();
         stopTime = par("stopTime").doubleValue();
+        myAddress = IPvXAddressResolver().routerIdOf(getContainingNode(this));
 
 
         if (stopTime >= SIMTIME_ZERO && stopTime < startTime)
@@ -140,7 +141,7 @@ IPvXAddress OrionApp::chooseDestAddr()
 void OrionApp::sendPacket()
 {
     char msgName[32];
-    sprintf(msgName, "UDPBasicAppData-%d", numSent);
+    sprintf(msgName, "Packet-%d", numSent);
     cPacket *payload = new cPacket(msgName);
     payload->setByteLength(par("messageLength").longValue());
     IPvXAddress destAddr = chooseDestAddr();
@@ -278,11 +279,11 @@ void OrionApp::handleMessageWhenUp(cMessage *msg)
  if (msg->isSelfMessage())
     {
     if(msg==fileGenMsg)  {
-        debug("handling fileGen");
+     //   debug("handling fileGen");
         generateFile();
 
     }else if(msg == fileRequestMsg){
-        debug("handling requestFile");
+    //    debug("handling requestFile");
         requestFile();
     }else if(msg == selfMsg)
         ASSERT(msg == selfMsg);
@@ -290,7 +291,7 @@ void OrionApp::handleMessageWhenUp(cMessage *msg)
             case START: processStart(); break;
             case SEND:
               //  processSend();
-                break; debug("Sent Query");
+               break; //debug("Sent Query");
             case STOP:  processStop(); break;
             default: throw cRuntimeError("Invalid kind %d in self message", (int)selfMsg->getKind());
         }
@@ -301,17 +302,7 @@ void OrionApp::handleMessageWhenUp(cMessage *msg)
             //handle different type of packets
             switch (oPacket->getPacketType()) {
                 case QUERY:
-                   if(std::count(queryList.begin(),queryList.end(),oPacket->getSEQ())==0){
-                    std::string debugMsg("Handling Query: ");
-                    debugMsg.append(check_and_cast<OrionQueryPacket *>(oPacket)->getFilename());
-                    debugMsg.append(" - ");
-                    std::ostringstream convertSeqNum;
-                    convertSeqNum <<  check_and_cast<OrionQueryPacket *>(oPacket)->getSEQ();
-                    debugMsg.append(convertSeqNum.str());
-                    debug(debugMsg);
-                    sendQuery(check_and_cast<OrionQueryPacket *>(oPacket)->getFilename(), oPacket->getSEQ());
-             //       handleRREQ(check_and_cast<AODVRREQ *>(ctrlPacket), sourceAddr, arrivalPacketTTL);
-                    }
+                    handleQuery(dynamic_cast<OrionQueryPacket *>(oPacket));
                     break;
 
                 case RESPONSE:
@@ -335,7 +326,7 @@ void OrionApp::handleMessageWhenUp(cMessage *msg)
             }
 
 
-        processPacket(PK(msg));
+       processPacket(PK(msg));
     }
     else if (msg->getKind() == UDP_I_ERROR)
     {
@@ -355,17 +346,62 @@ void OrionApp::handleMessageWhenUp(cMessage *msg)
     }
 }
 
-//handle application level packes
+//Handles query packet.  Since only the master node is sending query requests, we don't have to worry about tracking
+//source nodes, just the sequence number.  If the node has already seen the sequence number, it drops the packet.
+//If this node hasn't seen this query, and it has the file, it replies with a query response, otherwise
+//broadcasts the request to it's neighbors.
+//
+void OrionApp::handleQuery(OrionQueryPacket *qPacket){
+
+    //check queryList to see if we've seen this request yet
+    if(queryList.count(qPacket->getSEQ())==0){
+
+        //create new query list entry and add it
+        std::pair<int, IPvXAddress> tempPair(qPacket->getSEQ(),qPacket->getSRC());
+        queryList.insert(tempPair);
+
+
+        //if we have the file, reply to the source with a RESPONSE PACKET
+         if(hasFile(qPacket->getFilename())){
+         debug("I have the file");
+         sendResponse(qPacket);
+         //TODO add code to call send response
+         }else{
+         debug("I don't have the file");
+         }
+         sendQuery(qPacket->getFilename(), qPacket->getSEQ());
+//       handleRREQ(check_and_cast<AODVRREQ *>(ctrlPacket), sourceAddr, arrivalPacketTTL);
+     }
+    else{
+     //   delete qPacket;
+        //do something to drop packet
+    }
+}
+
+
+
+//handle application level packets
 void OrionApp::processPacket(cPacket *pk)
 {
-    debug("here");
     emit(rcvdPkSignal, pk);
-
     std::cout<< "Received packet: " << UDPSocket::getReceivedPacketInfo(pk) << endl;
     EV << "Received packet: " << UDPSocket::getReceivedPacketInfo(pk) << endl;
     delete pk;
     numReceived++;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+//----------------------node operations------------------------------------
 
 bool OrionApp::handleNodeStart(IDoneCallback *doneCallback)
 {
@@ -402,6 +438,9 @@ void OrionApp::handleNodeCrash()
  * Returns: bool
  */
 bool OrionApp::hasFile(std::string reqFile){
+    std::string debugMsg("Searching for file: ");
+    debugMsg.append(reqFile);
+    debug(debugMsg);
   if(std::count(fileList.begin(),fileList.end(),reqFile)>0)
     return true;
   return false;
@@ -457,7 +496,8 @@ void OrionApp::requestFile(){
     debug(debugMessage.str());
     }
     debug("Initiating Query");
-
+    std::pair<int, IPvXAddress> tempPair(querySeqNum,myAddress);
+    queryList.insert(tempPair);
     sendQuery(fileToRequest, querySeqNum);
     querySeqNum++;
     simtime_t d = simTime() + fileQueryRate;
@@ -484,20 +524,22 @@ void OrionApp::requestFile(){
  */
 //TODO add packet Param and logic to create new packet if null
 void OrionApp::sendQuery(std::string _fileToRequest, unsigned int seq){
-    char msgName[32];
-    sprintf(msgName, "testAppData-%d", numSent);
 
+    //convert to char array to keep packets happy
+    char fileName[64];
+    strncpy(fileName, _fileToRequest.c_str(), sizeof(fileName));
+    fileName[sizeof(fileName)-1]=0;
 
-    //  cPacket *testPacket = new cPacket(msgName);
- //  OrionPacket *testPacket = new OrionPacket(msgName);
-     OrionQueryPacket *testPacket = new OrionQueryPacket("Orion-Query");
+    OrionQueryPacket *testPacket = new OrionQueryPacket("QUERY");
 
    //test of setting packet type...
      testPacket->setPacketType(QUERY);
      testPacket->setSEQ(seq);
-     queryList.push_back (seq);
-     testPacket->setFilename(msgName);
+     testPacket->setSRC (myAddress);
+
+     testPacket->setFilename(fileName);
      testPacket->setByteLength(par("messageLength").longValue());
+
   //  IPvXAddress destAddr = chooseDestAddr();
  //   IPvXAddress destAddr;
 //    dest.set("255.255.255.255");
@@ -513,6 +555,20 @@ void OrionApp::sendQuery(std::string _fileToRequest, unsigned int seq){
     numSent++;
 }
 
+void OrionApp::sendResponse(OrionPacket *oPacket){
+    OrionResponsePacket *rPacket = new OrionResponsePacket("RESPONSE");
+    rPacket->setFilename(dynamic_cast<OrionQueryPacket *>(oPacket)->getFilename());
+    rPacket->setHost(myAddress);
+    rPacket->setHopcount(rPacket->getHopcount()+1);
+    IPvXAddress dest = queryList[oPacket->getSEQ()];
+    debug(dest.str());
+    socket.sendTo(rPacket, dest, destPort);
+   // delete oPacket;
+
+}
+
+
+
 /*
  * Function: selectFile()
  * Description: generates file name string to be requested.
@@ -524,7 +580,7 @@ std::string OrionApp::selectFile(){
     std::ostringstream convert2;
     std::string fileToRequest("host[");
     int randomNode = 2+ intrand(numberNodes);
-    int randomFile = (int) (fileGenRate.dbl() + simTime().dbl()/fileGenRate.dbl());
+    int randomFile = (int) (simTime().dbl()/fileGenRate.dbl());
     convert << randomNode;
     convert2 << randomFile;
     fileToRequest.append(convert.str());

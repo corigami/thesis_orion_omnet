@@ -46,6 +46,7 @@ class INET_API OrionApp : public ApplicationBase
     int numberNodes;
     int fileNum;
     int myId;
+    IPvXAddress myAddress ;
 
     unsigned int querySeqNum;
 
@@ -62,7 +63,7 @@ class INET_API OrionApp : public ApplicationBase
     cMessage *fileGenMsg;
     cMessage *fileRequestMsg;
     std::vector<std::string> fileList;  //!< files system abstraction (just a list of file names)
-    std::vector<unsigned int> queryList;
+    std::map<unsigned int, IPvXAddress> queryList;
     std::map<std::string, FileTableData> queryResults;
     // statistics
     int numSent;
@@ -81,7 +82,19 @@ class INET_API OrionApp : public ApplicationBase
     virtual void processPacket(cPacket *msg);
     virtual void setSocketOptions();
 
+
+    //-----------Orion Operations-----------------
+
+    //- send functions
     void sendQuery(std::string fileToRequest, unsigned int seq);
+    void sendResponse(OrionPacket *oPacket);
+
+    bool sendBroadcast(const IPvXAddress &dest, cPacket *pkt);
+
+    //receive functions
+    void handleQuery(OrionQueryPacket *qPacket);
+
+    //utility functions
     void generateFile();
     void requestFile();
     std::string selectFile();
@@ -89,7 +102,6 @@ class INET_API OrionApp : public ApplicationBase
     void deleteFileTable();
 
 
-    bool sendBroadcast(const IPvXAddress &dest, cPacket *pkt);
 
     /*
      *

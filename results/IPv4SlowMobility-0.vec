@@ -1,0 +1,266 @@
+version 2
+run IPv4SlowMobility-0-20140929-16:05:36-168964
+attr configname IPv4SlowMobility
+attr datetime 20140929-16:05:36
+attr experiment IPv4SlowMobility
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvars2 $repetition=0
+attr measurement ""
+attr network OrionNetwork
+attr processid 168964
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+
+vector 16  OrionNetwork.host[0].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 38  OrionNetwork.host[1].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 60  OrionNetwork.host[2].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 82  OrionNetwork.host[3].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 104  OrionNetwork.host[4].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 126  OrionNetwork.host[5].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 148  OrionNetwork.host[6].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 170  OrionNetwork.host[7].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 192  OrionNetwork.host[8].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 214  OrionNetwork.host[9].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 1  OrionNetwork.host[0].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 3  OrionNetwork.host[0].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 13  OrionNetwork.host[0].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 15  OrionNetwork.host[0].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 19  OrionNetwork.host[0].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 18  OrionNetwork.host[0].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 108  OrionNetwork.host[4].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 105  OrionNetwork.host[4].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 92  OrionNetwork.host[4].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 93  OrionNetwork.host[4].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 89  OrionNetwork.host[4].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 88  OrionNetwork.host[4].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 90  OrionNetwork.host[4].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 91  OrionNetwork.host[4].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 101  OrionNetwork.host[4].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 103  OrionNetwork.host[4].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 107  OrionNetwork.host[4].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 106  OrionNetwork.host[4].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 130  OrionNetwork.host[5].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 127  OrionNetwork.host[5].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 114  OrionNetwork.host[5].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 115  OrionNetwork.host[5].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 111  OrionNetwork.host[5].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 110  OrionNetwork.host[5].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 112  OrionNetwork.host[5].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 113  OrionNetwork.host[5].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 123  OrionNetwork.host[5].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 125  OrionNetwork.host[5].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 129  OrionNetwork.host[5].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 128  OrionNetwork.host[5].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 20  OrionNetwork.host[0].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 17  OrionNetwork.host[0].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 4  OrionNetwork.host[0].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 5  OrionNetwork.host[0].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 0  OrionNetwork.host[0].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 2  OrionNetwork.host[0].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 174  OrionNetwork.host[7].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 171  OrionNetwork.host[7].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 158  OrionNetwork.host[7].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 159  OrionNetwork.host[7].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 155  OrionNetwork.host[7].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 154  OrionNetwork.host[7].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 156  OrionNetwork.host[7].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+0	666	6.000465238376	20
+1	610	6	20
+2	666	6.000465238376	0.000232619188
+3	630	6	28
+4	665	6.000465238376	28
+5	665	6.000465238376	1
+13	632	6	48
+15	632	6	0
+16	0	0	0
+17	663	6.000465238376	48
+18	633	6	58
+19	633	6	48
+20	663	6.000465238376	58
+38	0	0	0
+60	0	0	0
+82	0	0	0
+88	641	6.000232619188	20
+89	641	6.000232619188	20
+90	641	6.000232619188	0.000232619188
+91	642	6.000232619188	28
+92	640	6.000232619188	28
+93	640	6.000232619188	1
+101	644	6.000232619188	48
+103	644	6.000232619188	0
+104	0	0	0
+105	638	6.000232619188	48
+106	645	6.000232619188	58
+107	645	6.000232619188	48
+108	638	6.000232619188	58
+110	656	6.000465183677	20
+111	656	6.000465183677	20
+112	656	6.000465183677	0.000232564489
+113	657	6.000465183677	28
+114	655	6.000465183677	28
+115	655	6.000465183677	1
+123	659	6.000465183677	48
+125	659	6.000465183677	0
+126	0	0	0
+127	653	6.000465183677	48
+128	660	6.000465183677	58
+129	660	6.000465183677	48
+130	653	6.000465183677	58
+148	0	0	0
+154	671	6.000465401946	20
+155	671	6.000465401946	20
+156	671	6.000465401946	0.000232782758
+158	670	6.000465401946	28
+159	670	6.000465401946	1
+170	0	0	0
+171	668	6.000465401946	48
+174	668	6.000465401946	58
+192	0	0	0
+214	0	0	0

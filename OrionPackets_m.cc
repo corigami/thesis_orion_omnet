@@ -121,12 +121,12 @@ void OrionPacket::setPacketType(unsigned int packetType)
     this->packetType_var = packetType;
 }
 
-IPv4Address& OrionPacket::getSRC()
+IPvXAddress& OrionPacket::getSRC()
 {
     return SRC_var;
 }
 
-void OrionPacket::setSRC(const IPv4Address& SRC)
+void OrionPacket::setSRC(const IPvXAddress& SRC)
 {
     this->SRC_var = SRC;
 }
@@ -243,7 +243,7 @@ const char *OrionPacketDescriptor::getFieldTypeString(void *object, int field) c
     }
     static const char *fieldTypeStrings[] = {
         "unsigned int",
-        "IPv4Address",
+        "IPvXAddress",
         "unsigned int",
     };
     return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
@@ -318,7 +318,7 @@ const char *OrionPacketDescriptor::getFieldStructName(void *object, int field) c
         field -= basedesc->getFieldCount(object);
     }
     switch (field) {
-        case 1: return opp_typename(typeid(IPv4Address));
+        case 1: return opp_typename(typeid(IPvXAddress));
         default: return NULL;
     };
 }
@@ -599,20 +599,16 @@ OrionResponsePacket::OrionResponsePacket(const char *name) : ::OrionPacket(name)
 {
     this->packetType_var = RESPONSE;
     this->filename_var = 0;
-    hosts_arraysize = 0;
-    this->hosts_var = 0;
+    this->hopcount_var = 0;
 }
 
 OrionResponsePacket::OrionResponsePacket(const OrionResponsePacket& other) : ::OrionPacket(other)
 {
-    hosts_arraysize = 0;
-    this->hosts_var = 0;
     copy(other);
 }
 
 OrionResponsePacket::~OrionResponsePacket()
 {
-    delete [] hosts_var;
 }
 
 OrionResponsePacket& OrionResponsePacket::operator=(const OrionResponsePacket& other)
@@ -627,11 +623,8 @@ void OrionResponsePacket::copy(const OrionResponsePacket& other)
 {
     this->packetType_var = other.packetType_var;
     this->filename_var = other.filename_var;
-    delete [] this->hosts_var;
-    this->hosts_var = (other.hosts_arraysize==0) ? NULL : new IPv4Address[other.hosts_arraysize];
-    hosts_arraysize = other.hosts_arraysize;
-    for (unsigned int i=0; i<hosts_arraysize; i++)
-        this->hosts_var[i] = other.hosts_var[i];
+    this->host_var = other.host_var;
+    this->hopcount_var = other.hopcount_var;
 }
 
 void OrionResponsePacket::parsimPack(cCommBuffer *b)
@@ -639,8 +632,8 @@ void OrionResponsePacket::parsimPack(cCommBuffer *b)
     ::OrionPacket::parsimPack(b);
     doPacking(b,this->packetType_var);
     doPacking(b,this->filename_var);
-    b->pack(hosts_arraysize);
-    doPacking(b,this->hosts_var,hosts_arraysize);
+    doPacking(b,this->host_var);
+    doPacking(b,this->hopcount_var);
 }
 
 void OrionResponsePacket::parsimUnpack(cCommBuffer *b)
@@ -648,14 +641,8 @@ void OrionResponsePacket::parsimUnpack(cCommBuffer *b)
     ::OrionPacket::parsimUnpack(b);
     doUnpacking(b,this->packetType_var);
     doUnpacking(b,this->filename_var);
-    delete [] this->hosts_var;
-    b->unpack(hosts_arraysize);
-    if (hosts_arraysize==0) {
-        this->hosts_var = 0;
-    } else {
-        this->hosts_var = new IPv4Address[hosts_arraysize];
-        doUnpacking(b,this->hosts_var,hosts_arraysize);
-    }
+    doUnpacking(b,this->host_var);
+    doUnpacking(b,this->hopcount_var);
 }
 
 unsigned int OrionResponsePacket::getPacketType() const
@@ -678,32 +665,24 @@ void OrionResponsePacket::setFilename(const char * filename)
     this->filename_var = filename;
 }
 
-void OrionResponsePacket::setHostsArraySize(unsigned int size)
+IPvXAddress& OrionResponsePacket::getHost()
 {
-    IPv4Address *hosts_var2 = (size==0) ? NULL : new IPv4Address[size];
-    unsigned int sz = hosts_arraysize < size ? hosts_arraysize : size;
-    for (unsigned int i=0; i<sz; i++)
-        hosts_var2[i] = this->hosts_var[i];
-    hosts_arraysize = size;
-    delete [] this->hosts_var;
-    this->hosts_var = hosts_var2;
+    return host_var;
 }
 
-unsigned int OrionResponsePacket::getHostsArraySize() const
+void OrionResponsePacket::setHost(const IPvXAddress& host)
 {
-    return hosts_arraysize;
+    this->host_var = host;
 }
 
-IPv4Address& OrionResponsePacket::getHosts(unsigned int k)
+int OrionResponsePacket::getHopcount() const
 {
-    if (k>=hosts_arraysize) throw cRuntimeError("Array of size %d indexed by %d", hosts_arraysize, k);
-    return hosts_var[k];
+    return hopcount_var;
 }
 
-void OrionResponsePacket::setHosts(unsigned int k, const IPv4Address& hosts)
+void OrionResponsePacket::setHopcount(int hopcount)
 {
-    if (k>=hosts_arraysize) throw cRuntimeError("Array of size %d indexed by %d", hosts_arraysize, k);
-    this->hosts_var[k] = hosts;
+    this->hopcount_var = hopcount;
 }
 
 class OrionResponsePacketDescriptor : public cClassDescriptor
@@ -753,7 +732,7 @@ const char *OrionResponsePacketDescriptor::getProperty(const char *propertyname)
 int OrionResponsePacketDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
+    return basedesc ? 4+basedesc->getFieldCount(object) : 4;
 }
 
 unsigned int OrionResponsePacketDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -767,9 +746,10 @@ unsigned int OrionResponsePacketDescriptor::getFieldTypeFlags(void *object, int 
     static unsigned int fieldTypeFlags[] = {
         FD_ISEDITABLE,
         FD_ISEDITABLE,
-        FD_ISARRAY | FD_ISCOMPOUND,
+        FD_ISCOMPOUND,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<4) ? fieldTypeFlags[field] : 0;
 }
 
 const char *OrionResponsePacketDescriptor::getFieldName(void *object, int field) const
@@ -783,9 +763,10 @@ const char *OrionResponsePacketDescriptor::getFieldName(void *object, int field)
     static const char *fieldNames[] = {
         "packetType",
         "filename",
-        "hosts",
+        "host",
+        "hopcount",
     };
-    return (field>=0 && field<3) ? fieldNames[field] : NULL;
+    return (field>=0 && field<4) ? fieldNames[field] : NULL;
 }
 
 int OrionResponsePacketDescriptor::findField(void *object, const char *fieldName) const
@@ -794,7 +775,8 @@ int OrionResponsePacketDescriptor::findField(void *object, const char *fieldName
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
     if (fieldName[0]=='p' && strcmp(fieldName, "packetType")==0) return base+0;
     if (fieldName[0]=='f' && strcmp(fieldName, "filename")==0) return base+1;
-    if (fieldName[0]=='h' && strcmp(fieldName, "hosts")==0) return base+2;
+    if (fieldName[0]=='h' && strcmp(fieldName, "host")==0) return base+2;
+    if (fieldName[0]=='h' && strcmp(fieldName, "hopcount")==0) return base+3;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -809,9 +791,10 @@ const char *OrionResponsePacketDescriptor::getFieldTypeString(void *object, int 
     static const char *fieldTypeStrings[] = {
         "unsigned int",
         "string",
-        "IPv4Address",
+        "IPvXAddress",
+        "int",
     };
-    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<4) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *OrionResponsePacketDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -837,7 +820,6 @@ int OrionResponsePacketDescriptor::getArraySize(void *object, int field) const
     }
     OrionResponsePacket *pp = (OrionResponsePacket *)object; (void)pp;
     switch (field) {
-        case 2: return pp->getHostsArraySize();
         default: return 0;
     }
 }
@@ -854,7 +836,8 @@ std::string OrionResponsePacketDescriptor::getFieldAsString(void *object, int fi
     switch (field) {
         case 0: return ulong2string(pp->getPacketType());
         case 1: return oppstring2string(pp->getFilename());
-        case 2: {std::stringstream out; out << pp->getHosts(i); return out.str();}
+        case 2: {std::stringstream out; out << pp->getHost(); return out.str();}
+        case 3: return long2string(pp->getHopcount());
         default: return "";
     }
 }
@@ -871,6 +854,7 @@ bool OrionResponsePacketDescriptor::setFieldAsString(void *object, int field, in
     switch (field) {
         case 0: pp->setPacketType(string2ulong(value)); return true;
         case 1: pp->setFilename((value)); return true;
+        case 3: pp->setHopcount(string2long(value)); return true;
         default: return false;
     }
 }
@@ -884,7 +868,7 @@ const char *OrionResponsePacketDescriptor::getFieldStructName(void *object, int 
         field -= basedesc->getFieldCount(object);
     }
     switch (field) {
-        case 2: return opp_typename(typeid(IPv4Address));
+        case 2: return opp_typename(typeid(IPvXAddress));
         default: return NULL;
     };
 }
@@ -899,7 +883,7 @@ void *OrionResponsePacketDescriptor::getFieldStructPointer(void *object, int fie
     }
     OrionResponsePacket *pp = (OrionResponsePacket *)object; (void)pp;
     switch (field) {
-        case 2: return (void *)(&pp->getHosts(i)); break;
+        case 2: return (void *)(&pp->getHost()); break;
         default: return NULL;
     }
 }
@@ -956,12 +940,12 @@ void OrionDataReqPacket::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->blockNum_var);
 }
 
-IPv4Address& OrionDataReqPacket::getDST()
+IPvXAddress& OrionDataReqPacket::getDST()
 {
     return DST_var;
 }
 
-void OrionDataReqPacket::setDST(const IPv4Address& DST)
+void OrionDataReqPacket::setDST(const IPvXAddress& DST)
 {
     this->DST_var = DST;
 }
@@ -1100,7 +1084,7 @@ const char *OrionDataReqPacketDescriptor::getFieldTypeString(void *object, int f
         field -= basedesc->getFieldCount(object);
     }
     static const char *fieldTypeStrings[] = {
-        "IPv4Address",
+        "IPvXAddress",
         "unsigned int",
         "string",
         "unsigned int",
@@ -1179,7 +1163,7 @@ const char *OrionDataReqPacketDescriptor::getFieldStructName(void *object, int f
         field -= basedesc->getFieldCount(object);
     }
     switch (field) {
-        case 0: return opp_typename(typeid(IPv4Address));
+        case 0: return opp_typename(typeid(IPvXAddress));
         default: return NULL;
     };
 }
@@ -1251,12 +1235,12 @@ void OrionDataRepPacket::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->blockNum_var);
 }
 
-IPv4Address& OrionDataRepPacket::getDST()
+IPvXAddress& OrionDataRepPacket::getDST()
 {
     return DST_var;
 }
 
-void OrionDataRepPacket::setDST(const IPv4Address& DST)
+void OrionDataRepPacket::setDST(const IPvXAddress& DST)
 {
     this->DST_var = DST;
 }
@@ -1395,7 +1379,7 @@ const char *OrionDataRepPacketDescriptor::getFieldTypeString(void *object, int f
         field -= basedesc->getFieldCount(object);
     }
     static const char *fieldTypeStrings[] = {
-        "IPv4Address",
+        "IPvXAddress",
         "unsigned int",
         "string",
         "unsigned int",
@@ -1474,7 +1458,7 @@ const char *OrionDataRepPacketDescriptor::getFieldStructName(void *object, int f
         field -= basedesc->getFieldCount(object);
     }
     switch (field) {
-        case 0: return opp_typename(typeid(IPv4Address));
+        case 0: return opp_typename(typeid(IPvXAddress));
         default: return NULL;
     };
 }
