@@ -59,6 +59,7 @@ enum OrionPacketType {
  * {
  *     unsigned int packetType;
  *     IPvXAddress SRC;
+ *     IPvXAddress LastNode;
  *     unsigned int SEQ;
  * }
  * </pre>
@@ -68,6 +69,7 @@ class INET_API OrionPacket : public ::cPacket
   protected:
     unsigned int packetType_var;
     IPvXAddress SRC_var;
+    IPvXAddress LastNode_var;
     unsigned int SEQ_var;
 
   private:
@@ -92,6 +94,9 @@ class INET_API OrionPacket : public ::cPacket
     virtual IPvXAddress& getSRC();
     virtual const IPvXAddress& getSRC() const {return const_cast<OrionPacket*>(this)->getSRC();}
     virtual void setSRC(const IPvXAddress& SRC);
+    virtual IPvXAddress& getLastNode();
+    virtual const IPvXAddress& getLastNode() const {return const_cast<OrionPacket*>(this)->getLastNode();}
+    virtual void setLastNode(const IPvXAddress& LastNode);
     virtual unsigned int getSEQ() const;
     virtual void setSEQ(unsigned int SEQ);
 };
@@ -148,8 +153,7 @@ inline void doUnpacking(cCommBuffer *b, OrionQueryPacket& obj) {obj.parsimUnpack
  * {
  *     unsigned int packetType = RESPONSE;
  *     string filename;
- *     IPvXAddress host;
- *     int hopcount =0;
+ *     unsigned int hopcount;
  *  }
  * </pre>
  */
@@ -158,8 +162,7 @@ class INET_API OrionResponsePacket : public ::OrionPacket
   protected:
     unsigned int packetType_var;
     opp_string filename_var;
-    IPvXAddress host_var;
-    int hopcount_var;
+    unsigned int hopcount_var;
 
   private:
     void copy(const OrionResponsePacket& other);
@@ -182,11 +185,8 @@ class INET_API OrionResponsePacket : public ::OrionPacket
     virtual void setPacketType(unsigned int packetType);
     virtual const char * getFilename() const;
     virtual void setFilename(const char * filename);
-    virtual IPvXAddress& getHost();
-    virtual const IPvXAddress& getHost() const {return const_cast<OrionResponsePacket*>(this)->getHost();}
-    virtual void setHost(const IPvXAddress& host);
-    virtual int getHopcount() const;
-    virtual void setHopcount(int hopcount);
+    virtual unsigned int getHopcount() const;
+    virtual void setHopcount(unsigned int hopcount);
 };
 
 inline void doPacking(cCommBuffer *b, OrionResponsePacket& obj) {obj.parsimPack(b);}

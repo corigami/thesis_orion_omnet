@@ -46,7 +46,7 @@ class INET_API OrionApp : public ApplicationBase
     int numberNodes;
     int fileNum;
     int myId;
-    IPvXAddress myAddress ;
+    IPvXAddress myAddr ;
 
     unsigned int querySeqNum;
 
@@ -55,6 +55,7 @@ class INET_API OrionApp : public ApplicationBase
     std::string nodeID;
     simtime_t startTime;
     simtime_t stopTime;
+    simtime_t endBuffer;
     simtime_t avgQueryTime;
     simtime_t fileQueryRate;
     simtime_t fileGenRate;
@@ -86,13 +87,14 @@ class INET_API OrionApp : public ApplicationBase
     //-----------Orion Operations-----------------
 
     //- send functions
-    void sendQuery(std::string fileToRequest, unsigned int seq);
+    void sendQuery(std::string fileToRequest, unsigned int seq, IPvXAddress src);
     void sendResponse(OrionPacket *oPacket);
 
     bool sendBroadcast(const IPvXAddress &dest, cPacket *pkt);
 
     //receive functions
     void handleQuery(OrionQueryPacket *qPacket);
+    void handleResponse(OrionResponsePacket *rPacket);
 
     //utility functions
     void generateFile();
