@@ -42,6 +42,7 @@ class INET_API OrionApp : public ApplicationBase
 
     UDPSocket socket;
     bool debugEnabled;
+    bool socketOpen;
     int localPort, destPort;
     int numberNodes;
     int fileNum;
@@ -69,6 +70,7 @@ class INET_API OrionApp : public ApplicationBase
     // statistics
     int numSent;
     int numReceived;
+    int fileSize;
     bool master;
 
     static simsignal_t sentPkSignal;
@@ -89,16 +91,24 @@ class INET_API OrionApp : public ApplicationBase
     //- send functions
     void sendQuery(std::string fileToRequest, unsigned int seq, IPvXAddress src);
     void sendResponse(OrionPacket *oPacket);
+    void sendRequest(std::string fileToRequest, unsigned int block, IPvXAddress dest);
+    void sendRequestAck(std::string fileToRequest, unsigned int block, IPvXAddress dest);
+    void sendReply(std::string fileToRequest, unsigned int block, IPvXAddress dest);
+
 
     bool sendBroadcast(const IPvXAddress &dest, cPacket *pkt);
 
     //receive functions
     void handleQuery(OrionQueryPacket *qPacket);
     void handleResponse(OrionResponsePacket *rPacket);
+    void handleRequest(OrionResponsePacket *reqPacket);
+    void handleRequestAck(OrionResponsePacket *rackPacket);
+    void handleReply(OrionResponsePacket *repPacket);
+
 
     //utility functions
     void generateFile();
-    void requestFile();
+    void queryFile();
     std::string selectFile();
     bool hasFile(std::string reqFile);
     void deleteFileTable();

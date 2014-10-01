@@ -60,7 +60,8 @@ simple OrionApp like IUDPApp
       	//Parameters added for Orion Experiment
       	double fileQueryRate @unit(s) = default(5s);
       	int fileGenRate @unit(s) = default (3s);
-      	int numberNodes;
+      	int fileSize = default(100);
+      	int numHosts= default(25);
         int destPort = default(5000); // port used by remote Orion Application
         bool master = default(false); // is this application running as the master?
       	bool enableDebug = default(true);
