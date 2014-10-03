@@ -426,6 +426,12 @@ void OrionApp::handleResponse(OrionResponsePacket *rPacket){
        // delete oPacket;
 
     }
+
+}
+
+void OrionApp::transferFile(std::string file){
+
+
 }
 
 //handle application level packets

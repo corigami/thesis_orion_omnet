@@ -97,6 +97,7 @@ class INET_API OrionApp : public ApplicationBase
 
 
     bool sendBroadcast(const IPvXAddress &dest, cPacket *pkt);
+    void transferFile(std::string file);
 
     //receive functions
     void handleQuery(OrionQueryPacket *qPacket);

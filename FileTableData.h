@@ -30,6 +30,7 @@ public:
         fileName = _fileName;
         fileList.push_back(source);
         blocks = fileSize;
+        remainBlocks = fileSize;
     }
     virtual ~FileTableData(){
 
@@ -60,6 +61,8 @@ protected:
     std::deque<IPvXAddress> fileList;
     std::string fileName;
     int blocks;
+    int remainBlocks;
+
 
 };
 
