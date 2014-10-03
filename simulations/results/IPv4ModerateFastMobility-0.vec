@@ -1,0 +1,4340 @@
+version 2
+run IPv4ModerateFastMobility-0-20141003-11:51:07-303308
+attr configname IPv4ModerateFastMobility
+attr datetime 20141003-11:51:07
+attr experiment IPv4ModerateFastMobility
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvars2 $repetition=0
+attr measurement ""
+attr network OrionNetwork
+attr processid 303308
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+
+vector 346  OrionNetwork.host[0].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 368  OrionNetwork.host[1].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 390  OrionNetwork.host[2].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 412  OrionNetwork.host[3].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 434  OrionNetwork.host[4].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 456  OrionNetwork.host[5].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 478  OrionNetwork.host[6].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 500  OrionNetwork.host[7].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 522  OrionNetwork.host[8].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 544  OrionNetwork.host[9].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 566  OrionNetwork.host[10].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 588  OrionNetwork.host[11].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 610  OrionNetwork.host[12].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 632  OrionNetwork.host[13].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 654  OrionNetwork.host[14].wlan[0].queue  queueLength:vector  ETV
+attr interpolationmode  sample-hold
+attr title  "queue length, vector"
+vector 331  OrionNetwork.host[0].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 333  OrionNetwork.host[0].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 343  OrionNetwork.host[0].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 345  OrionNetwork.host[0].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 349  OrionNetwork.host[0].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 348  OrionNetwork.host[0].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 614  OrionNetwork.host[12].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 611  OrionNetwork.host[12].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 598  OrionNetwork.host[12].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 599  OrionNetwork.host[12].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 595  OrionNetwork.host[12].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 594  OrionNetwork.host[12].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 596  OrionNetwork.host[12].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 597  OrionNetwork.host[12].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 607  OrionNetwork.host[12].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 609  OrionNetwork.host[12].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 613  OrionNetwork.host[12].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 612  OrionNetwork.host[12].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 504  OrionNetwork.host[7].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 501  OrionNetwork.host[7].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 488  OrionNetwork.host[7].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 489  OrionNetwork.host[7].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 485  OrionNetwork.host[7].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 484  OrionNetwork.host[7].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 486  OrionNetwork.host[7].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 487  OrionNetwork.host[7].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 497  OrionNetwork.host[7].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 499  OrionNetwork.host[7].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 503  OrionNetwork.host[7].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 502  OrionNetwork.host[7].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 592  OrionNetwork.host[11].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 589  OrionNetwork.host[11].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 576  OrionNetwork.host[11].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 577  OrionNetwork.host[11].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 573  OrionNetwork.host[11].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 572  OrionNetwork.host[11].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 574  OrionNetwork.host[11].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 575  OrionNetwork.host[11].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 585  OrionNetwork.host[11].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 587  OrionNetwork.host[11].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 591  OrionNetwork.host[11].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 590  OrionNetwork.host[11].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 372  OrionNetwork.host[1].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 369  OrionNetwork.host[1].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 356  OrionNetwork.host[1].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 357  OrionNetwork.host[1].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 353  OrionNetwork.host[1].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 352  OrionNetwork.host[1].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 354  OrionNetwork.host[1].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 355  OrionNetwork.host[1].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 365  OrionNetwork.host[1].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 367  OrionNetwork.host[1].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 371  OrionNetwork.host[1].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 370  OrionNetwork.host[1].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 350  OrionNetwork.host[0].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 347  OrionNetwork.host[0].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 334  OrionNetwork.host[0].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 335  OrionNetwork.host[0].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 330  OrionNetwork.host[0].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 332  OrionNetwork.host[0].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 394  OrionNetwork.host[2].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 391  OrionNetwork.host[2].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 378  OrionNetwork.host[2].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 379  OrionNetwork.host[2].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 375  OrionNetwork.host[2].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 374  OrionNetwork.host[2].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 376  OrionNetwork.host[2].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 377  OrionNetwork.host[2].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 387  OrionNetwork.host[2].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 389  OrionNetwork.host[2].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 393  OrionNetwork.host[2].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 392  OrionNetwork.host[2].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 636  OrionNetwork.host[13].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 633  OrionNetwork.host[13].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 620  OrionNetwork.host[13].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 621  OrionNetwork.host[13].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 617  OrionNetwork.host[13].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 616  OrionNetwork.host[13].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 618  OrionNetwork.host[13].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 619  OrionNetwork.host[13].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 624  OrionNetwork.host[13].networkLayer.arp  sentReq:vector  ETV
+attr title  "ARP request sent, vector"
+vector 629  OrionNetwork.host[13].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 631  OrionNetwork.host[13].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 635  OrionNetwork.host[13].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 634  OrionNetwork.host[13].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 438  OrionNetwork.host[4].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 435  OrionNetwork.host[4].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 422  OrionNetwork.host[4].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 423  OrionNetwork.host[4].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 419  OrionNetwork.host[4].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 418  OrionNetwork.host[4].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 420  OrionNetwork.host[4].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 421  OrionNetwork.host[4].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 431  OrionNetwork.host[4].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 433  OrionNetwork.host[4].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 437  OrionNetwork.host[4].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 436  OrionNetwork.host[4].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 460  OrionNetwork.host[5].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 457  OrionNetwork.host[5].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 444  OrionNetwork.host[5].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 445  OrionNetwork.host[5].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 441  OrionNetwork.host[5].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 440  OrionNetwork.host[5].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 442  OrionNetwork.host[5].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 443  OrionNetwork.host[5].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 453  OrionNetwork.host[5].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 455  OrionNetwork.host[5].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 459  OrionNetwork.host[5].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 458  OrionNetwork.host[5].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 548  OrionNetwork.host[9].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 545  OrionNetwork.host[9].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 532  OrionNetwork.host[9].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 533  OrionNetwork.host[9].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 529  OrionNetwork.host[9].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 528  OrionNetwork.host[9].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 530  OrionNetwork.host[9].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 531  OrionNetwork.host[9].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 541  OrionNetwork.host[9].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 543  OrionNetwork.host[9].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 547  OrionNetwork.host[9].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 546  OrionNetwork.host[9].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 570  OrionNetwork.host[10].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 567  OrionNetwork.host[10].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 554  OrionNetwork.host[10].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 555  OrionNetwork.host[10].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 551  OrionNetwork.host[10].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 550  OrionNetwork.host[10].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 552  OrionNetwork.host[10].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 553  OrionNetwork.host[10].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 563  OrionNetwork.host[10].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 565  OrionNetwork.host[10].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 569  OrionNetwork.host[10].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 568  OrionNetwork.host[10].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 361  OrionNetwork.host[1].networkLayer.arp  sentReply:vector  ETV
+attr title  "ARP replies sent, vector"
+vector 482  OrionNetwork.host[6].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 479  OrionNetwork.host[6].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 466  OrionNetwork.host[6].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 467  OrionNetwork.host[6].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 463  OrionNetwork.host[6].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 462  OrionNetwork.host[6].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 464  OrionNetwork.host[6].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 465  OrionNetwork.host[6].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 475  OrionNetwork.host[6].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 477  OrionNetwork.host[6].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 481  OrionNetwork.host[6].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 480  OrionNetwork.host[6].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 593  OrionNetwork.host[11].wlan[0].mac  droppedPkNotForUs:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  dropPkNotForUs
+attr title  "packets dropped/not for us, vector(packetBytes)"
+vector 615  OrionNetwork.host[12].wlan[0].mac  droppedPkNotForUs:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  dropPkNotForUs
+attr title  "packets dropped/not for us, vector(packetBytes)"
+vector 351  OrionNetwork.host[0].wlan[0].mac  droppedPkNotForUs:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  dropPkNotForUs
+attr title  "packets dropped/not for us, vector(packetBytes)"
+vector 395  OrionNetwork.host[2].wlan[0].mac  droppedPkNotForUs:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  dropPkNotForUs
+attr title  "packets dropped/not for us, vector(packetBytes)"
+vector 505  OrionNetwork.host[7].wlan[0].mac  droppedPkNotForUs:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  dropPkNotForUs
+attr title  "packets dropped/not for us, vector(packetBytes)"
+vector 439  OrionNetwork.host[4].wlan[0].mac  droppedPkNotForUs:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  dropPkNotForUs
+attr title  "packets dropped/not for us, vector(packetBytes)"
+vector 461  OrionNetwork.host[5].wlan[0].mac  droppedPkNotForUs:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  dropPkNotForUs
+attr title  "packets dropped/not for us, vector(packetBytes)"
+vector 360  OrionNetwork.host[1].networkLayer.arp  sentReq:vector  ETV
+attr title  "ARP request sent, vector"
+vector 549  OrionNetwork.host[9].wlan[0].mac  droppedPkNotForUs:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  dropPkNotForUs
+attr title  "packets dropped/not for us, vector(packetBytes)"
+vector 571  OrionNetwork.host[10].wlan[0].mac  droppedPkNotForUs:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  dropPkNotForUs
+attr title  "packets dropped/not for us, vector(packetBytes)"
+vector 339  OrionNetwork.host[0].networkLayer.arp  sentReply:vector  ETV
+attr title  "ARP replies sent, vector"
+vector 637  OrionNetwork.host[13].wlan[0].mac  droppedPkNotForUs:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  dropPkNotForUs
+attr title  "packets dropped/not for us, vector(packetBytes)"
+vector 470  OrionNetwork.host[6].networkLayer.arp  sentReq:vector  ETV
+attr title  "ARP request sent, vector"
+vector 537  OrionNetwork.host[9].networkLayer.arp  sentReply:vector  ETV
+attr title  "ARP replies sent, vector"
+vector 536  OrionNetwork.host[9].networkLayer.arp  sentReq:vector  ETV
+attr title  "ARP request sent, vector"
+vector 625  OrionNetwork.host[13].networkLayer.arp  sentReply:vector  ETV
+attr title  "ARP replies sent, vector"
+vector 483  OrionNetwork.host[6].wlan[0].mac  droppedPkNotForUs:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  dropPkNotForUs
+attr title  "packets dropped/not for us, vector(packetBytes)"
+vector 658  OrionNetwork.host[14].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 659  OrionNetwork.host[14].wlan[0].mac  droppedPkNotForUs:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  dropPkNotForUs
+attr title  "packets dropped/not for us, vector(packetBytes)"
+vector 655  OrionNetwork.host[14].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 642  OrionNetwork.host[14].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 643  OrionNetwork.host[14].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 639  OrionNetwork.host[14].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 638  OrionNetwork.host[14].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 640  OrionNetwork.host[14].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 641  OrionNetwork.host[14].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 651  OrionNetwork.host[14].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 653  OrionNetwork.host[14].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 657  OrionNetwork.host[14].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 656  OrionNetwork.host[14].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 416  OrionNetwork.host[3].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 413  OrionNetwork.host[3].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 400  OrionNetwork.host[3].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 401  OrionNetwork.host[3].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 397  OrionNetwork.host[3].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 396  OrionNetwork.host[3].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 398  OrionNetwork.host[3].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 399  OrionNetwork.host[3].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 409  OrionNetwork.host[3].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 411  OrionNetwork.host[3].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 415  OrionNetwork.host[3].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 414  OrionNetwork.host[3].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 526  OrionNetwork.host[8].wlan[0].mac  rcvdPkFromLL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromLower
+attr title  "packets received from lower layer, vector(packetBytes)"
+vector 523  OrionNetwork.host[8].wlan[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 510  OrionNetwork.host[8].udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 511  OrionNetwork.host[8].udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 507  OrionNetwork.host[8].udpApp[0]  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 506  OrionNetwork.host[8].udpApp[0]  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 508  OrionNetwork.host[8].udpApp[0]  rcvdPkLifetime:vector  ETV
+attr interpolationmode  none
+attr source  messageAge(rcvdPk)
+attr title  "received packet lifetime, vector"
+attr unit  s
+vector 509  OrionNetwork.host[8].udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 519  OrionNetwork.host[8].wlan[0].queue  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr title  "received packets, vector(packetBytes)"
+vector 521  OrionNetwork.host[8].wlan[0].queue  queueingTime:vector  ETV
+attr interpolationmode  none
+attr title  "queueing time, vector"
+vector 525  OrionNetwork.host[8].wlan[0].mac  rcvdPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetReceivedFromUpper
+attr title  "packets received from higher layer, vector(packetBytes)"
+vector 524  OrionNetwork.host[8].wlan[0].mac  sentDownPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToLower
+attr title  "packets sent to lower layer, vector(packetBytes)"
+vector 602  OrionNetwork.host[12].networkLayer.arp  sentReq:vector  ETV
+attr title  "ARP request sent, vector"
+vector 373  OrionNetwork.host[1].wlan[0].mac  droppedPkNotForUs:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  dropPkNotForUs
+attr title  "packets dropped/not for us, vector(packetBytes)"
+vector 426  OrionNetwork.host[4].networkLayer.arp  sentReq:vector  ETV
+attr title  "ARP request sent, vector"
+vector 383  OrionNetwork.host[2].networkLayer.arp  sentReply:vector  ETV
+attr title  "ARP replies sent, vector"
+vector 382  OrionNetwork.host[2].networkLayer.arp  sentReq:vector  ETV
+attr title  "ARP request sent, vector"
+vector 336  OrionNetwork.host[0].udp  droppedPkWrongPort:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets dropped (wrong port), vector(count)"
+330	1055	6.000464517172	20
+330	1091	6.000464823864	20
+330	1096	6.000464880654	20
+330	1121	6.00046520282	20
+330	1474	6.00161365642	0
+330	2295	11.000464703998	20
+330	2300	11.000464774876	20
+330	2330	11.000465085682	20
+330	2345	11.000465200296	20
+330	3437	16.000385208618	0
+330	3454	16.000464581172	20
+330	3480	16.000465021124	20
+330	3520	16.00046527567	20
+330	3565	16.000617812927	20
+330	4567	21.000464563376	20
+330	4640	21.000465190132	20
+330	4650	21.000465199232	20
+330	4666	21.000465309	20
+330	5667	26.000464664776	20
+330	5766	26.000465336804	20
+330	5776	26.000465348744	20
+330	5789	26.000465377072	20
+330	5821	26.000465634918	20
+330	5921	26.000922754144	0
+330	6790	31.000464904388	20
+330	6840	31.000465211348	20
+330	6902	31.000465520838	20
+330	6907	31.000465539318	20
+330	6931	31.000465636256	20
+330	7166	31.001766887235	0
+330	8005	36.00046504942	20
+330	8030	36.00046514425	20
+330	8068	36.00046551385	20
+330	8074	36.00046563121	20
+330	8922	41.00046503871	20
+330	8957	41.000465131998	20
+330	8992	41.000465425572	20
+330	9002	41.000465499086	20
+330	9979	46.000465168272	20
+330	9994	46.00046522508	20
+330	10009	46.000465266762	20
+330	10039	46.00046554107	20
+330	10943	51.000465074254	20
+330	10978	51.000465341872	20
+330	11003	51.000465433526	20
+330	11008	51.000465461212	20
+331	960	6	20
+331	2199	11	20
+331	3349	16	20
+331	4476	21	20
+331	5568	26	20
+331	6681	31	20
+331	7890	36	20
+331	8836	41	20
+331	9885	46	20
+331	10845	51	20
+331	11822	56	20
+332	1055	6.000464517172	0.000232258586
+332	1091	6.000464823864	0.000232411932
+332	1096	6.000464880654	0.000232440327
+332	1121	6.00046520282	0.00023260141
+332	1474	6.00161365642	0.001148242315
+332	2295	11.000464703998	0.000232351999
+332	2300	11.000464774876	0.000232387438
+332	2330	11.000465085682	0.000232542841
+332	2345	11.000465200296	0.000232600148
+332	3437	16.000385208618	0.000152604309
+332	3454	16.000464581172	0.000232290586
+332	3480	16.000465021124	0.000232510562
+332	3520	16.00046527567	0.000232637835
+332	3565	16.000617812927	0.000385208618
+332	4567	21.000464563376	0.000232281688
+332	4640	21.000465190132	0.000232595066
+332	4650	21.000465199232	0.000232599616
+332	4666	21.000465309	0.0002326545
+332	5667	26.000464664776	0.000232332388
+332	5766	26.000465336804	0.000232668402
+332	5776	26.000465348744	0.000232674372
+332	5789	26.000465377072	0.000232688536
+332	5821	26.000465634918	0.000232817459
+332	5921	26.000922754144	0.000690065608
+332	6790	31.000464904388	0.000232452194
+332	6840	31.000465211348	0.000232605674
+332	6902	31.000465520838	0.000232760419
+332	6907	31.000465539318	0.000232769659
+332	6931	31.000465636256	0.000232818128
+332	7166	31.001766887235	0.001301299938
+332	8005	36.00046504942	0.00023252471
+332	8030	36.00046514425	0.000232572125
+332	8068	36.00046551385	0.000232756925
+332	8074	36.00046563121	0.000232815605
+332	8922	41.00046503871	0.000232519355
+332	8957	41.000465131998	0.000232565999
+332	8992	41.000465425572	0.000232712786
+332	9002	41.000465499086	0.000232749543
+332	9979	46.000465168272	0.000232584136
+332	9994	46.00046522508	0.00023261254
+332	10009	46.000465266762	0.000232633381
+332	10039	46.00046554107	0.000232770535
+332	10943	51.000465074254	0.000232537127
+332	10978	51.000465341872	0.000232670936
+332	11003	51.000465433526	0.000232716763
+332	11008	51.000465461212	0.000232730606
+333	975	6	28
+333	2200	11	28
+333	3350	16	28
+333	4491	21	28
+333	5569	26	28
+333	6682	31	28
+333	7905	36	28
+333	8837	41	28
+333	9886	46	28
+333	10860	51	28
+333	11823	56	28
+334	1054	6.000464517172	28
+334	1090	6.000464823864	28
+334	1095	6.000464880654	28
+334	1120	6.00046520282	28
+334	1473	6.00161365642	8
+334	2294	11.000464703998	28
+334	2299	11.000464774876	28
+334	2329	11.000465085682	28
+334	2344	11.000465200296	28
+334	3436	16.000385208618	8
+334	3453	16.000464581172	28
+334	3479	16.000465021124	28
+334	3519	16.00046527567	28
+334	3564	16.000617812927	28
+334	4566	21.000464563376	28
+334	4639	21.000465190132	28
+334	4649	21.000465199232	28
+334	4665	21.000465309	28
+334	5666	26.000464664776	28
+334	5765	26.000465336804	28
+334	5775	26.000465348744	28
+334	5788	26.000465377072	28
+334	5820	26.000465634918	28
+334	5920	26.000922754144	8
+334	6789	31.000464904388	28
+334	6839	31.000465211348	28
+334	6901	31.000465520838	28
+334	6906	31.000465539318	28
+334	6930	31.000465636256	28
+334	7165	31.001766887235	8
+334	8004	36.00046504942	28
+334	8029	36.00046514425	28
+334	8067	36.00046551385	28
+334	8073	36.00046563121	28
+334	8921	41.00046503871	28
+334	8956	41.000465131998	28
+334	8991	41.000465425572	28
+334	9001	41.000465499086	28
+334	9978	46.000465168272	28
+334	9993	46.00046522508	28
+334	10008	46.000465266762	28
+334	10038	46.00046554107	28
+334	10942	51.000465074254	28
+334	10977	51.000465341872	28
+334	11002	51.000465433526	28
+334	11007	51.000465461212	28
+334	11887	56.000465033442	28
+334	11891	56.000465263304	28
+334	11915	56.000465408718	28
+335	1054	6.000464517172	1
+335	1090	6.000464823864	2
+335	1095	6.000464880654	3
+335	1120	6.00046520282	4
+335	1473	6.00161365642	5
+335	2294	11.000464703998	6
+335	2299	11.000464774876	7
+335	2329	11.000465085682	8
+335	2344	11.000465200296	9
+335	3436	16.000385208618	10
+335	3453	16.000464581172	11
+335	3479	16.000465021124	12
+335	3519	16.00046527567	13
+335	3564	16.000617812927	14
+335	4566	21.000464563376	15
+335	4639	21.000465190132	16
+335	4649	21.000465199232	17
+335	4665	21.000465309	18
+335	5666	26.000464664776	19
+335	5765	26.000465336804	20
+335	5775	26.000465348744	21
+335	5788	26.000465377072	22
+335	5820	26.000465634918	23
+335	5920	26.000922754144	24
+335	6789	31.000464904388	25
+335	6839	31.000465211348	26
+335	6901	31.000465520838	27
+335	6906	31.000465539318	28
+335	6930	31.000465636256	29
+335	7165	31.001766887235	30
+335	8004	36.00046504942	31
+335	8029	36.00046514425	32
+335	8067	36.00046551385	33
+335	8073	36.00046563121	34
+335	8921	41.00046503871	35
+335	8956	41.000465131998	36
+335	8991	41.000465425572	37
+335	9001	41.000465499086	38
+335	9978	46.000465168272	39
+335	9993	46.00046522508	40
+335	10008	46.000465266762	41
+335	10038	46.00046554107	42
+335	10942	51.000465074254	43
+335	10977	51.000465341872	44
+335	11002	51.000465433526	45
+335	11007	51.000465461212	46
+336	11887	56.000465033442	1
+336	11891	56.000465263304	2
+336	11915	56.000465408718	3
+339	1423	6.0013084536	1
+339	5844	26.000617377072	1
+343	977	6	48
+343	1425	6.0013084536	28
+343	2202	11	48
+343	3352	16	48
+343	4493	21	48
+343	5571	26	48
+343	5846	26.000617377072	28
+343	6684	31	48
+343	7907	36	48
+343	8839	41	48
+343	9888	46	48
+343	10862	51	48
+343	11826	56	48
+345	977	6	0
+345	1425	6.0013084536	0
+345	2202	11	0
+345	3352	16	0
+345	4493	21	0
+345	5571	26	0
+345	5846	26.000617377072	0
+345	6684	31	0
+345	7907	36	0
+345	8839	41	0
+345	9888	46	0
+345	10862	51	0
+345	11826	56	0
+346	0	0	0
+347	1052	6.000464517172	48
+347	1088	6.000464823864	48
+347	1093	6.000464880654	48
+347	1118	6.00046520282	48
+347	1421	6.0013084536	28
+347	1471	6.00161365642	28
+347	2292	11.000464703998	48
+347	2297	11.000464774876	48
+347	2327	11.000465085682	48
+347	2342	11.000465200296	48
+347	3432	16.000385208618	28
+347	3451	16.000464581172	48
+347	3477	16.000465021124	48
+347	3517	16.00046527567	48
+347	3562	16.000617812927	48
+347	4564	21.000464563376	48
+347	4637	21.000465190132	48
+347	4647	21.000465199232	48
+347	4663	21.000465309	48
+347	5664	26.000464664776	48
+347	5763	26.000465336804	48
+347	5773	26.000465348744	48
+347	5786	26.000465377072	48
+347	5818	26.000465634918	48
+347	5842	26.000617377072	28
+347	5918	26.000922754144	28
+347	6787	31.000464904388	48
+347	6837	31.000465211348	48
+347	6899	31.000465520838	48
+347	6904	31.000465539318	48
+347	6928	31.000465636256	48
+347	7089	31.00130880987	28
+347	7163	31.001766887235	28
+347	8002	36.00046504942	48
+347	8027	36.00046514425	48
+347	8065	36.00046551385	48
+347	8071	36.00046563121	48
+347	8919	41.00046503871	48
+347	8954	41.000465131998	48
+347	8989	41.000465425572	48
+347	8999	41.000465499086	48
+347	9976	46.000465168272	48
+347	9991	46.00046522508	48
+347	10006	46.000465266762	48
+347	10036	46.00046554107	48
+347	10940	51.000465074254	48
+347	10975	51.000465341872	48
+347	11000	51.000465433526	48
+347	11005	51.000465461212	48
+347	11885	56.000465033442	48
+347	11889	56.000465263304	48
+347	11913	56.000465408718	48
+348	978	6	58
+348	1426	6.0013084536	38
+348	2203	11	58
+348	3353	16	58
+348	4494	21	58
+348	5572	26	58
+348	5847	26.000617377072	38
+348	6685	31	58
+348	7908	36	58
+348	8840	41	58
+348	9889	46	58
+348	10863	51	58
+348	11827	56	58
+349	978	6	48
+349	1426	6.0013084536	28
+349	2203	11	48
+349	3353	16	48
+349	4494	21	48
+349	5572	26	48
+349	5847	26.000617377072	28
+349	6685	31	48
+349	7908	36	48
+349	8840	41	48
+349	9889	46	48
+349	10863	51	48
+349	11827	56	48
+350	1052	6.000464517172	58
+350	1088	6.000464823864	58
+350	1093	6.000464880654	58
+350	1118	6.00046520282	58
+350	1359	6.00100282821	38
+350	1421	6.0013084536	38
+350	1471	6.00161365642	38
+350	2292	11.000464703998	58
+350	2297	11.000464774876	58
+350	2327	11.000465085682	58
+350	2342	11.000465200296	58
+350	3432	16.000385208618	38
+350	3451	16.000464581172	58
+350	3477	16.000465021124	58
+350	3517	16.00046527567	58
+350	3562	16.000617812927	58
+350	4564	21.000464563376	58
+350	4637	21.000465190132	58
+350	4647	21.000465199232	58
+350	4663	21.000465309	58
+350	5664	26.000464664776	58
+350	5763	26.000465336804	58
+350	5773	26.000465348744	58
+350	5786	26.000465377072	58
+350	5818	26.000465634918	58
+350	5842	26.000617377072	38
+350	5918	26.000922754144	38
+350	6787	31.000464904388	58
+350	6837	31.000465211348	58
+350	6899	31.000465520838	58
+350	6904	31.000465539318	58
+350	6928	31.000465636256	58
+350	7031	31.001003174594	38
+350	7089	31.00130880987	38
+350	7117	31.001461496165	38
+350	7144	31.00161420094	38
+350	7163	31.001766887235	38
+350	8002	36.00046504942	58
+350	8027	36.00046514425	58
+350	8065	36.00046551385	58
+350	8071	36.00046563121	58
+350	8919	41.00046503871	58
+350	8954	41.000465131998	58
+350	8989	41.000465425572	58
+350	8999	41.000465499086	58
+350	9976	46.000465168272	58
+350	9991	46.00046522508	58
+350	10006	46.000465266762	58
+350	10036	46.00046554107	58
+350	10940	51.000465074254	58
+350	10975	51.000465341872	58
+350	11000	51.000465433526	58
+350	11005	51.000465461212	58
+350	11885	56.000465033442	58
+350	11889	56.000465263304	58
+350	11913	56.000465408718	58
+351	1359	6.00100282821	38
+351	7031	31.001003174594	38
+351	7117	31.001461496165	38
+351	7144	31.00161420094	38
+352	1021	6.00023260141	20
+352	1066	6.000464615919	20
+352	1071	6.000464689708	20
+352	1116	6.000465186634	20
+352	1214	6.000698035692	20
+352	1221	6.0006982268	20
+352	1388	6.00115585219	0
+352	2244	11.000232600148	20
+352	2280	11.00046464511	20
+352	2290	11.000464666924	20
+352	2355	11.000465311314	20
+352	2380	11.000697778594	20
+352	3385	16.000232604309	20
+352	3459	16.000464621883	20
+352	3470	16.000464780391	20
+352	3525	16.000465350847	20
+352	3592	16.000697621538	20
+352	3622	16.000697981085	20
+352	4517	21.000232595066	20
+352	4580	21.000464766947	20
+352	4590	21.000464907929	20
+352	4625	21.000465164319	20
+352	4695	21.000697418171	20
+352	4720	21.000697783362	20
+352	5605	26.000232674372	20
+352	5699	26.000464986748	20
+352	5704	26.00046499227	20
+352	5730	26.000465072573	20
+352	5756	26.000465310126	20
+352	5868	26.000697459815	20
+352	6717	31.000232760419	20
+352	6779	31.000464792604	20
+352	6850	31.000465277008	20
+352	6867	31.000465346143	20
+352	6892	31.000465465194	20
+352	6940	31.000697314862	20
+352	7135	31.001614126816	0
+352	7985	36.000464894172	20
+352	8020	36.000465143352	20
+352	8109	36.000697743594	20
+352	8932	41.000465077911	20
+352	8972	41.000465216838	20
+352	9052	41.000697823324	20
+352	9075	41.000930547157	20
+352	10014	46.000465302661	20
+352	10029	46.000465340292	20
+352	10067	46.000697993296	20
+352	10090	46.000930542981	20
+352	10968	51.000465334594	20
+352	11013	51.000465505516	20
+352	11053	51.0009304338	20
+353	1021	6.00023260141	20
+353	2244	11.000232600148	20
+353	3385	16.000232604309	20
+353	4517	21.000232595066	20
+353	5605	26.000232674372	20
+353	6717	31.000232760419	20
+353	7985	36.000464894172	20
+353	8932	41.000465077911	20
+353	10014	46.000465302661	20
+353	10968	51.000465334594	20
+354	1021	6.00023260141	0.00023260141
+354	1066	6.000464615919	0.000232175592
+354	1071	6.000464689708	0.000232431122
+354	1116	6.000465186634	0.000232774702
+354	1214	6.000698035692	0.000232717141
+354	1221	6.0006982268	0.000232812695
+354	1388	6.00115585219	0.000690438085
+354	2244	11.000232600148	0.000232600148
+354	2280	11.00046464511	0.000232293111
+354	2290	11.000464666924	0.000232279486
+354	2355	11.000465311314	0.000232768473
+354	2380	11.000697778594	0.000232589223
+354	3385	16.000232604309	0.000232604309
+354	3459	16.000464621883	0.000232111321
+354	3470	16.000464780391	0.000232489805
+354	3525	16.000465350847	0.000232713012
+354	3592	16.000697621538	0.000232499845
+354	3622	16.000697981085	0.000232729244
+354	4517	21.000232595066	0.000232595066
+354	4580	21.000464766947	0.000232167331
+354	4590	21.000464907929	0.000232626241
+354	4625	21.000465164319	0.000232509819
+354	4695	21.000697418171	0.000232466407
+354	4720	21.000697783362	0.000232596242
+354	5605	26.000232674372	0.000232674372
+354	5699	26.000464986748	0.000232318346
+354	5704	26.00046499227	0.000232659882
+354	5730	26.000465072573	0.000232384037
+354	5756	26.000465310126	0.000232492667
+354	5868	26.000697459815	0.000232450116
+354	6717	31.000232760419	0.000232760419
+354	6779	31.000464792604	0.00023218693
+354	6850	31.000465277008	0.000232824814
+354	6867	31.000465346143	0.000232528015
+354	6892	31.000465465194	0.000232695535
+354	6940	31.000697314862	0.000232347118
+354	7135	31.001614126816	0.001148539519
+354	7985	36.000464894172	0.000232322047
+354	8020	36.000465143352	0.000232327747
+354	8109	36.000697743594	0.000232615979
+354	8932	41.000465077911	0.000232558556
+354	8972	41.000465216838	0.000232504052
+354	9052	41.000697823324	0.000232696796
+354	9075	41.000930547157	0.000232734623
+354	10014	46.000465302661	0.000232718525
+354	10029	46.000465340292	0.000232706911
+354	10067	46.000697993296	0.000232784651
+354	10090	46.000930542981	0.00023262016
+354	10968	51.000465334594	0.000232797467
+354	11013	51.000465505516	0.000232788753
+354	11053	51.0009304338	0.000232549603
+355	1022	6.00023260141	28
+355	1389	6.00115585219	8
+355	2245	11.000232600148	28
+355	3386	16.000232604309	8
+355	3387	16.000232604309	28
+355	4518	21.000232595066	28
+355	5606	26.000232674372	28
+355	6718	31.000232760419	28
+355	7136	31.001614126816	8
+355	7986	36.000464894172	28
+355	8933	41.000465077911	28
+355	10015	46.000465302661	28
+355	10969	51.000465334594	28
+356	1020	6.00023260141	28
+356	1065	6.000464615919	28
+356	1070	6.000464689708	28
+356	1115	6.000465186634	28
+356	1213	6.000698035692	28
+356	1220	6.0006982268	28
+356	1387	6.00115585219	8
+356	2243	11.000232600148	28
+356	2279	11.00046464511	28
+356	2289	11.000464666924	28
+356	2354	11.000465311314	28
+356	2379	11.000697778594	28
+356	3384	16.000232604309	28
+356	3458	16.000464621883	28
+356	3469	16.000464780391	28
+356	3524	16.000465350847	28
+356	3591	16.000697621538	28
+356	3621	16.000697981085	28
+356	4516	21.000232595066	28
+356	4579	21.000464766947	28
+356	4589	21.000464907929	28
+356	4624	21.000465164319	28
+356	4694	21.000697418171	28
+356	4719	21.000697783362	28
+356	5604	26.000232674372	28
+356	5698	26.000464986748	28
+356	5703	26.00046499227	28
+356	5729	26.000465072573	28
+356	5755	26.000465310126	28
+356	5867	26.000697459815	28
+356	6716	31.000232760419	28
+356	6778	31.000464792604	28
+356	6849	31.000465277008	28
+356	6866	31.000465346143	28
+356	6891	31.000465465194	28
+356	6939	31.000697314862	28
+356	7134	31.001614126816	8
+356	7984	36.000464894172	28
+356	8019	36.000465143352	28
+356	8108	36.000697743594	28
+356	8931	41.000465077911	28
+356	8971	41.000465216838	28
+356	9051	41.000697823324	28
+356	9074	41.000930547157	28
+356	10013	46.000465302661	28
+356	10028	46.000465340292	28
+356	10066	46.000697993296	28
+356	10089	46.000930542981	28
+356	10967	51.000465334594	28
+356	11012	51.000465505516	28
+356	11052	51.0009304338	28
+357	1020	6.00023260141	1
+357	1065	6.000464615919	2
+357	1070	6.000464689708	3
+357	1115	6.000465186634	4
+357	1213	6.000698035692	5
+357	1220	6.0006982268	6
+357	1387	6.00115585219	7
+357	2243	11.000232600148	8
+357	2279	11.00046464511	9
+357	2289	11.000464666924	10
+357	2354	11.000465311314	11
+357	2379	11.000697778594	12
+357	3384	16.000232604309	13
+357	3458	16.000464621883	14
+357	3469	16.000464780391	15
+357	3524	16.000465350847	16
+357	3591	16.000697621538	17
+357	3621	16.000697981085	18
+357	4516	21.000232595066	19
+357	4579	21.000464766947	20
+357	4589	21.000464907929	21
+357	4624	21.000465164319	22
+357	4694	21.000697418171	23
+357	4719	21.000697783362	24
+357	5604	26.000232674372	25
+357	5698	26.000464986748	26
+357	5703	26.00046499227	27
+357	5729	26.000465072573	28
+357	5755	26.000465310126	29
+357	5867	26.000697459815	30
+357	6716	31.000232760419	31
+357	6778	31.000464792604	32
+357	6849	31.000465277008	33
+357	6866	31.000465346143	34
+357	6891	31.000465465194	35
+357	6939	31.000697314862	36
+357	7134	31.001614126816	37
+357	7984	36.000464894172	38
+357	8019	36.000465143352	39
+357	8108	36.000697743594	40
+357	8931	41.000465077911	41
+357	8971	41.000465216838	42
+357	9051	41.000697823324	43
+357	9074	41.000930547157	44
+357	10013	46.000465302661	45
+357	10028	46.000465340292	46
+357	10066	46.000697993296	47
+357	10089	46.000930542981	48
+357	10967	51.000465334594	49
+357	11012	51.000465505516	50
+357	11052	51.0009304338	51
+360	1390	6.00115585219	1
+361	1269	6.0008502268	1
+361	7079	31.001308735746	1
+365	1024	6.00023260141	48
+365	1271	6.0008502268	28
+365	1392	6.00115585219	28
+365	1456	6.00146105501	28
+365	2247	11.000232600148	48
+365	3390	16.000232604309	28
+365	3391	16.000232604309	48
+365	4520	21.000232595066	48
+365	5608	26.000232674372	48
+365	6720	31.000232760419	48
+365	7081	31.001308735746	28
+365	7138	31.001614126816	28
+365	7988	36.000464894172	48
+365	8935	41.000465077911	48
+365	10017	46.000465302661	48
+365	10971	51.000465334594	48
+367	1024	6.00023260141	0
+367	1271	6.0008502268	0
+367	1392	6.00115585219	0
+367	1456	6.00146105501	0
+367	2247	11.000232600148	0
+367	3390	16.000232604309	0
+367	3432	16.000385208618	0.000152604309
+367	4520	21.000232595066	0
+367	5608	26.000232674372	0
+367	6720	31.000232760419	0
+367	7081	31.001308735746	0
+367	7138	31.001614126816	0
+367	7988	36.000464894172	0
+367	8935	41.000465077911	0
+367	10017	46.000465302661	0
+367	10971	51.000465334594	0
+368	0	0	0
+368	3391	16.000232604309	1
+368	3432	16.000385208618	0
+369	1018	6.00023260141	48
+369	1063	6.000464615919	48
+369	1068	6.000464689708	48
+369	1113	6.000465186634	48
+369	1211	6.000698035692	48
+369	1218	6.0006982268	48
+369	1267	6.0008502268	28
+369	1385	6.00115585219	28
+369	1453	6.00146105501	28
+369	2241	11.000232600148	48
+369	2277	11.00046464511	48
+369	2287	11.000464666924	48
+369	2352	11.000465311314	48
+369	2377	11.000697778594	48
+369	3382	16.000232604309	48
+369	3456	16.000464621883	48
+369	3467	16.000464780391	48
+369	3522	16.000465350847	48
+369	3589	16.000697621538	48
+369	3619	16.000697981085	48
+369	4514	21.000232595066	48
+369	4577	21.000464766947	48
+369	4587	21.000464907929	48
+369	4622	21.000465164319	48
+369	4692	21.000697418171	48
+369	4717	21.000697783362	48
+369	5602	26.000232674372	48
+369	5696	26.000464986748	48
+369	5701	26.00046499227	48
+369	5727	26.000465072573	48
+369	5753	26.000465310126	48
+369	5830	26.000617072573	28
+369	5865	26.000697459815	48
+369	6714	31.000232760419	48
+369	6776	31.000464792604	48
+369	6847	31.000465277008	48
+369	6864	31.000465346143	48
+369	6889	31.000465465194	48
+369	6937	31.000697314862	48
+369	7077	31.001308735746	28
+369	7132	31.001614126816	28
+369	7982	36.000464894172	48
+369	8017	36.000465143352	48
+369	8106	36.000697743594	48
+369	8929	41.000465077911	48
+369	8969	41.000465216838	48
+369	9049	41.000697823324	48
+369	9072	41.000930547157	48
+369	10011	46.000465302661	48
+369	10026	46.000465340292	48
+369	10064	46.000697993296	48
+369	10087	46.000930542981	48
+369	10965	51.000465334594	48
+369	11010	51.000465505516	48
+369	11050	51.0009304338	48
+370	1025	6.00023260141	58
+370	1272	6.0008502268	38
+370	1393	6.00115585219	38
+370	1457	6.00146105501	38
+370	2248	11.000232600148	58
+370	3392	16.000232604309	38
+370	3433	16.000385208618	58
+370	4521	21.000232595066	58
+370	5609	26.000232674372	58
+370	6721	31.000232760419	58
+370	7082	31.001308735746	38
+370	7139	31.001614126816	38
+370	7989	36.000464894172	58
+370	8936	41.000465077911	58
+370	10018	46.000465302661	58
+370	10972	51.000465334594	58
+371	1025	6.00023260141	48
+371	1272	6.0008502268	28
+371	1393	6.00115585219	28
+371	1457	6.00146105501	28
+371	2248	11.000232600148	48
+371	3392	16.000232604309	28
+371	3433	16.000385208618	48
+371	4521	21.000232595066	48
+371	5609	26.000232674372	48
+371	6721	31.000232760419	48
+371	7082	31.001308735746	28
+371	7139	31.001614126816	28
+371	7989	36.000464894172	48
+371	8936	41.000465077911	48
+371	10018	46.000465302661	48
+371	10972	51.000465334594	48
+372	1018	6.00023260141	58
+372	1063	6.000464615919	58
+372	1068	6.000464689708	58
+372	1113	6.000465186634	58
+372	1211	6.000698035692	58
+372	1218	6.0006982268	58
+372	1267	6.0008502268	38
+372	1385	6.00115585219	38
+372	1453	6.00146105501	38
+372	2241	11.000232600148	58
+372	2277	11.00046464511	58
+372	2287	11.000464666924	58
+372	2352	11.000465311314	58
+372	2377	11.000697778594	58
+372	3382	16.000232604309	58
+372	3456	16.000464621883	58
+372	3467	16.000464780391	58
+372	3522	16.000465350847	58
+372	3589	16.000697621538	58
+372	3619	16.000697981085	58
+372	4514	21.000232595066	58
+372	4577	21.000464766947	58
+372	4587	21.000464907929	58
+372	4622	21.000465164319	58
+372	4692	21.000697418171	58
+372	4717	21.000697783362	58
+372	5602	26.000232674372	58
+372	5696	26.000464986748	58
+372	5701	26.00046499227	58
+372	5727	26.000465072573	58
+372	5753	26.000465310126	58
+372	5830	26.000617072573	38
+372	5865	26.000697459815	58
+372	5892	26.000770051444	38
+372	5912	26.000922449645	38
+372	6714	31.000232760419	58
+372	6776	31.000464792604	58
+372	6847	31.000465277008	58
+372	6864	31.000465346143	58
+372	6889	31.000465465194	58
+372	6937	31.000697314862	58
+372	7027	31.00100310047	38
+372	7077	31.001308735746	38
+372	7132	31.001614126816	38
+372	7982	36.000464894172	58
+372	8017	36.000465143352	58
+372	8106	36.000697743594	58
+372	8929	41.000465077911	58
+372	8969	41.000465216838	58
+372	9049	41.000697823324	58
+372	9072	41.000930547157	58
+372	10011	46.000465302661	58
+372	10026	46.000465340292	58
+372	10064	46.000697993296	58
+372	10087	46.000930542981	58
+372	10965	51.000465334594	58
+372	11010	51.000465505516	58
+372	11050	51.0009304338	58
+373	5892	26.000770051444	38
+373	5912	26.000922449645	38
+373	7027	31.00100310047	38
+374	1126	6.000465318551	20
+374	1176	6.000697509664	20
+374	1311	6.000930461841	20
+374	1331	6.000930634571	20
+374	2335	11.000465189371	20
+374	2402	11.000929763297	20
+374	2439	11.000930539537	20
+374	3485	16.000465121693	20
+374	3560	16.000617708463	20
+374	3659	16.000930099045	20
+374	3700	16.000930683773	20
+374	4595	21.000464951764	20
+374	4605	21.000465061473	20
+374	4610	21.00046509978	20
+374	4767	21.000930440066	20
+374	5629	26.000232817459	20
+374	5684	26.000464829258	20
+374	5689	26.000464915401	20
+374	5745	26.000465167039	20
+374	5805	26.00046547064	20
+374	6727	31.000232769659	20
+374	6785	31.000464874901	20
+374	6820	31.000465033602	20
+374	6862	31.000465337098	20
+374	6887	31.000465455954	20
+374	6976	31.000698404935	20
+374	7048	31.001156040211	0
+374	7939	36.000232756925	20
+374	7979	36.000464781862	20
+374	8057	36.000465259283	20
+374	8099	36.000697573946	20
+374	8881	41.000232749543	20
+374	8912	41.000464771685	20
+374	8967	41.000465167099	20
+374	9037	41.000697811069	20
+374	9930	46.000232770535	20
+374	9959	46.000464805492	20
+374	9999	46.000465250023	20
+374	10904	51.000232730606	20
+374	10933	51.000464732044	20
+374	10988	51.000465389387	20
+374	11847	56.000232631652	20
+374	11883	56.000464845472	20
+374	11940	56.000698060563	20
+375	1126	6.000465318551	20
+375	2335	11.000465189371	20
+375	3485	16.000465121693	20
+375	4595	21.000464951764	20
+375	5629	26.000232817459	20
+375	6727	31.000232769659	20
+375	7939	36.000232756925	20
+375	8881	41.000232749543	20
+375	9930	46.000232770535	20
+375	10904	51.000232730606	20
+375	11847	56.000232631652	20
+376	1126	6.000465318551	0.000232717141
+376	1176	6.000697509664	0.000232095559
+376	1311	6.000930461841	0.000232571645
+376	1331	6.000930634571	0.00023265801
+376	2335	11.000465189371	0.000232589223
+376	2402	11.000929763297	0.000232286963
+376	2439	11.000930539537	0.000232675083
+376	3485	16.000465121693	0.000232611131
+376	3560	16.000617708463	0.000385104154
+376	3659	16.000930099045	0.000232488676
+376	3700	16.000930683773	0.00023278104
+376	4595	21.000464951764	0.000232352148
+376	4605	21.000465061473	0.000232466407
+376	4610	21.00046509978	0.000232818092
+376	4767	21.000930440066	0.000232744151
+376	5629	26.000232817459	0.000232817459
+376	5684	26.000464829258	0.000232140722
+376	5689	26.000464915401	0.000232583013
+376	5745	26.000465167039	0.000232492667
+376	5805	26.00046547064	0.000232802238
+376	6727	31.000232769659	0.000232769659
+376	6785	31.000464874901	0.000232422707
+376	6820	31.000465033602	0.000232215474
+376	6862	31.000465337098	0.000232731424
+376	6887	31.000465455954	0.000232695535
+376	6976	31.000698404935	0.000232817638
+376	7048	31.001156040211	0.000690452914
+376	7939	36.000232756925	0.000232756925
+376	7979	36.000464781862	0.000232257152
+376	8057	36.000465259283	0.000232687158
+376	8099	36.000697573946	0.000232446331
+376	8881	41.000232749543	0.000232749543
+376	8912	41.000464771685	0.000232205686
+376	8967	41.000465167099	0.000232647744
+376	9037	41.000697811069	0.000232684541
+376	9930	46.000232770535	0.000232770535
+376	9959	46.000464805492	0.000232192952
+376	9999	46.000465250023	0.000232665887
+376	10904	51.000232730606	0.000232730606
+376	10933	51.000464732044	0.000232061108
+376	10988	51.000465389387	0.000232672624
+376	11847	56.000232631652	0.000232631652
+376	11883	56.000464845472	0.000232141113
+376	11940	56.000698060563	0.000232759266
+377	1127	6.000465318551	28
+377	2336	11.000465189371	28
+377	3486	16.000465121693	28
+377	4596	21.000464951764	28
+377	5630	26.000232817459	28
+377	6728	31.000232769659	28
+377	7049	31.001156040211	8
+377	7940	36.000232756925	28
+377	8882	41.000232749543	28
+377	9931	46.000232770535	28
+377	10905	51.000232730606	28
+377	11848	56.000232631652	28
+378	1125	6.000465318551	28
+378	1175	6.000697509664	28
+378	1310	6.000930461841	28
+378	1330	6.000930634571	28
+378	2334	11.000465189371	28
+378	2401	11.000929763297	28
+378	2438	11.000930539537	28
+378	3484	16.000465121693	28
+378	3559	16.000617708463	28
+378	3658	16.000930099045	28
+378	3699	16.000930683773	28
+378	4594	21.000464951764	28
+378	4604	21.000465061473	28
+378	4609	21.00046509978	28
+378	4766	21.000930440066	28
+378	5628	26.000232817459	28
+378	5683	26.000464829258	28
+378	5688	26.000464915401	28
+378	5744	26.000465167039	28
+378	5804	26.00046547064	28
+378	6726	31.000232769659	28
+378	6784	31.000464874901	28
+378	6819	31.000465033602	28
+378	6861	31.000465337098	28
+378	6886	31.000465455954	28
+378	6975	31.000698404935	28
+378	7047	31.001156040211	8
+378	7938	36.000232756925	28
+378	7978	36.000464781862	28
+378	8056	36.000465259283	28
+378	8098	36.000697573946	28
+378	8880	41.000232749543	28
+378	8911	41.000464771685	28
+378	8966	41.000465167099	28
+378	9036	41.000697811069	28
+378	9929	46.000232770535	28
+378	9958	46.000464805492	28
+378	9998	46.000465250023	28
+378	10903	51.000232730606	28
+378	10932	51.000464732044	28
+378	10987	51.000465389387	28
+378	11846	56.000232631652	28
+378	11882	56.000464845472	28
+378	11939	56.000698060563	28
+379	1125	6.000465318551	1
+379	1175	6.000697509664	2
+379	1310	6.000930461841	3
+379	1330	6.000930634571	4
+379	2334	11.000465189371	5
+379	2401	11.000929763297	6
+379	2438	11.000930539537	7
+379	3484	16.000465121693	8
+379	3559	16.000617708463	9
+379	3658	16.000930099045	10
+379	3699	16.000930683773	11
+379	4594	21.000464951764	12
+379	4604	21.000465061473	13
+379	4609	21.00046509978	14
+379	4766	21.000930440066	15
+379	5628	26.000232817459	16
+379	5683	26.000464829258	17
+379	5688	26.000464915401	18
+379	5744	26.000465167039	19
+379	5804	26.00046547064	20
+379	6726	31.000232769659	21
+379	6784	31.000464874901	22
+379	6819	31.000465033602	23
+379	6861	31.000465337098	24
+379	6886	31.000465455954	25
+379	6975	31.000698404935	26
+379	7047	31.001156040211	27
+379	7938	36.000232756925	28
+379	7978	36.000464781862	29
+379	8056	36.000465259283	30
+379	8098	36.000697573946	31
+379	8880	41.000232749543	32
+379	8911	41.000464771685	33
+379	8966	41.000465167099	34
+379	9036	41.000697811069	35
+379	9929	46.000232770535	36
+379	9958	46.000464805492	37
+379	9998	46.000465250023	38
+379	10903	51.000232730606	39
+379	10932	51.000464732044	40
+379	10987	51.000465389387	41
+379	11846	56.000232631652	42
+379	11882	56.000464845472	43
+379	11939	56.000698060563	44
+382	7050	31.001156040211	1
+383	6987	31.000850404935	1
+387	1129	6.000465318551	48
+387	2338	11.000465189371	48
+387	3488	16.000465121693	48
+387	4598	21.000464951764	48
+387	5632	26.000232817459	48
+387	6730	31.000232769659	48
+387	6989	31.000850404935	28
+387	7052	31.001156040211	28
+387	7113	31.001461431281	28
+387	7942	36.000232756925	48
+387	8884	41.000232749543	48
+387	9933	46.000232770535	48
+387	10907	51.000232730606	48
+387	11850	56.000232631652	48
+389	1129	6.000465318551	0
+389	2338	11.000465189371	0
+389	3488	16.000465121693	0
+389	4598	21.000464951764	0
+389	5632	26.000232817459	0
+389	6730	31.000232769659	0
+389	6989	31.000850404935	0
+389	7052	31.001156040211	0
+389	7113	31.001461431281	0
+389	7942	36.000232756925	0
+389	8884	41.000232749543	0
+389	9933	46.000232770535	0
+389	10907	51.000232730606	0
+389	11850	56.000232631652	0
+390	0	0	0
+391	1123	6.000465318551	48
+391	1173	6.000697509664	48
+391	1255	6.000849509664	28
+391	1308	6.000930461841	48
+391	1328	6.000930634571	48
+391	1429	6.001308569331	28
+391	2332	11.000465189371	48
+391	2399	11.000929763297	48
+391	2436	11.000930539537	48
+391	3482	16.000465121693	48
+391	3557	16.000617708463	48
+391	3656	16.000930099045	48
+391	3697	16.000930683773	48
+391	4592	21.000464951764	48
+391	4602	21.000465061473	48
+391	4607	21.00046509978	48
+391	4764	21.000930440066	48
+391	5626	26.000232817459	48
+391	5681	26.000464829258	48
+391	5686	26.000464915401	48
+391	5742	26.000465167039	48
+391	5802	26.00046547064	48
+391	5826	26.000616829258	28
+391	6724	31.000232769659	48
+391	6782	31.000464874901	48
+391	6817	31.000465033602	48
+391	6859	31.000465337098	48
+391	6884	31.000465455954	48
+391	6973	31.000698404935	48
+391	6985	31.000850404935	28
+391	7045	31.001156040211	28
+391	7110	31.001461431281	28
+391	7936	36.000232756925	48
+391	7976	36.000464781862	48
+391	8054	36.000465259283	48
+391	8096	36.000697573946	48
+391	8878	41.000232749543	48
+391	8909	41.000464771685	48
+391	8964	41.000465167099	48
+391	9034	41.000697811069	48
+391	9927	46.000232770535	48
+391	9956	46.000464805492	48
+391	9996	46.000465250023	48
+391	10901	51.000232730606	48
+391	10930	51.000464732044	48
+391	10985	51.000465389387	48
+391	11844	56.000232631652	48
+391	11880	56.000464845472	48
+391	11937	56.000698060563	48
+392	1130	6.000465318551	58
+392	2339	11.000465189371	58
+392	3489	16.000465121693	58
+392	4599	21.000464951764	58
+392	5633	26.000232817459	58
+392	6731	31.000232769659	58
+392	6990	31.000850404935	38
+392	7053	31.001156040211	38
+392	7114	31.001461431281	38
+392	7943	36.000232756925	58
+392	8885	41.000232749543	58
+392	9934	46.000232770535	58
+392	10908	51.000232730606	58
+392	11851	56.000232631652	58
+393	1130	6.000465318551	48
+393	2339	11.000465189371	48
+393	3489	16.000465121693	48
+393	4599	21.000464951764	48
+393	5633	26.000232817459	48
+393	6731	31.000232769659	48
+393	6990	31.000850404935	28
+393	7053	31.001156040211	28
+393	7114	31.001461431281	28
+393	7943	36.000232756925	48
+393	8885	41.000232749543	48
+393	9934	46.000232770535	48
+393	10908	51.000232730606	48
+393	11851	56.000232631652	48
+394	1123	6.000465318551	58
+394	1173	6.000697509664	58
+394	1255	6.000849509664	38
+394	1308	6.000930461841	58
+394	1328	6.000930634571	58
+394	1361	6.001002943941	38
+394	1379	6.001155135054	38
+394	1429	6.001308569331	38
+394	1476	6.001613772151	38
+394	2332	11.000465189371	58
+394	2399	11.000929763297	58
+394	2436	11.000930539537	58
+394	2570	11.002158129731	38
+394	2606	11.002463582849	38
+394	3430	16.000385104154	38
+394	3482	16.000465121693	58
+394	3557	16.000617708463	58
+394	3656	16.000930099045	58
+394	3697	16.000930683773	58
+394	4592	21.000464951764	58
+394	4602	21.000465061473	58
+394	4607	21.00046509978	58
+394	4764	21.000930440066	58
+394	5626	26.000232817459	58
+394	5681	26.000464829258	58
+394	5686	26.000464915401	58
+394	5742	26.000465167039	58
+394	5802	26.00046547064	58
+394	5826	26.000616829258	38
+394	5901	26.000770194531	38
+394	5910	26.00092220633	38
+394	6724	31.000232769659	58
+394	6782	31.000464874901	58
+394	6817	31.000465033602	58
+394	6859	31.000465337098	58
+394	6884	31.000465455954	58
+394	6973	31.000698404935	58
+394	6985	31.000850404935	38
+394	7045	31.001156040211	38
+394	7110	31.001461431281	38
+394	7161	31.001766822351	38
+394	7936	36.000232756925	58
+394	7976	36.000464781862	58
+394	8054	36.000465259283	58
+394	8096	36.000697573946	58
+394	8878	41.000232749543	58
+394	8909	41.000464771685	58
+394	8964	41.000465167099	58
+394	9034	41.000697811069	58
+394	9927	46.000232770535	58
+394	9956	46.000464805492	58
+394	9996	46.000465250023	58
+394	10901	51.000232730606	58
+394	10930	51.000464732044	58
+394	10985	51.000465389387	58
+394	11844	56.000232631652	58
+394	11880	56.000464845472	58
+394	11937	56.000698060563	58
+395	1361	6.001002943941	38
+395	1379	6.001155135054	38
+395	1476	6.001613772151	38
+395	2570	11.002158129731	38
+395	2606	11.002463582849	38
+395	3430	16.000385104154	38
+395	5901	26.000770194531	38
+395	5910	26.00092220633	38
+395	7161	31.001766822351	38
+396	3612	16.000697929104	20
+396	3669	16.000930238521	20
+396	4747	21.000930270721	20
+396	5929	26.000930229018	20
+396	7004	31.000930393502	20
+396	9065	41.000930534317	20
+396	9102	41.001395602577	20
+396	10095	46.000930626322	20
+396	10125	46.001395218872	20
+396	11058	51.000930578725	20
+396	11089	51.001162693621	20
+397	3612	16.000697929104	20
+397	4747	21.000930270721	20
+397	5929	26.000930229018	20
+397	7004	31.000930393502	20
+397	9065	41.000930534317	20
+397	10095	46.000930626322	20
+397	11058	51.000930578725	20
+398	3612	16.000697929104	0.000232677263
+398	3669	16.000930238521	0.000232204733
+398	4747	21.000930270721	0.000232298008
+398	5929	26.000930229018	0.000232472437
+398	7004	31.000930393502	0.000232658117
+398	9065	41.000930534317	0.000232721783
+398	9102	41.001395602577	0.00023253413
+398	10095	46.000930626322	0.000232703501
+398	10125	46.001395218872	0.000232296275
+398	11058	51.000930578725	0.000232694528
+398	11089	51.001162693621	0.000232079105
+399	3613	16.000697929104	28
+399	4748	21.000930270721	28
+399	5930	26.000930229018	28
+399	7005	31.000930393502	28
+399	9066	41.000930534317	28
+399	10096	46.000930626322	28
+399	11059	51.000930578725	28
+400	3611	16.000697929104	28
+400	3668	16.000930238521	28
+400	4746	21.000930270721	28
+400	5928	26.000930229018	28
+400	7003	31.000930393502	28
+400	9064	41.000930534317	28
+400	9101	41.001395602577	28
+400	10094	46.000930626322	28
+400	10124	46.001395218872	28
+400	11057	51.000930578725	28
+400	11088	51.001162693621	28
+401	3611	16.000697929104	1
+401	3668	16.000930238521	2
+401	4746	21.000930270721	3
+401	5928	26.000930229018	4
+401	7003	31.000930393502	5
+401	9064	41.000930534317	6
+401	9101	41.001395602577	7
+401	10094	46.000930626322	8
+401	10124	46.001395218872	9
+401	11057	51.000930578725	10
+401	11088	51.001162693621	11
+409	3615	16.000697929104	48
+409	4750	21.000930270721	48
+409	5932	26.000930229018	48
+409	7007	31.000930393502	48
+409	9068	41.000930534317	48
+409	10098	46.000930626322	48
+409	11061	51.000930578725	48
+411	3615	16.000697929104	0
+411	4750	21.000930270721	0
+411	5932	26.000930229018	0
+411	7007	31.000930393502	0
+411	9068	41.000930534317	0
+411	10098	46.000930626322	0
+411	11061	51.000930578725	0
+412	0	0	0
+413	3609	16.000697929104	48
+413	3666	16.000930238521	48
+413	4744	21.000930270721	48
+413	5926	26.000930229018	48
+413	7001	31.000930393502	48
+413	9062	41.000930534317	48
+413	9099	41.001395602577	48
+413	10092	46.000930626322	48
+413	10122	46.001395218872	48
+413	11055	51.000930578725	48
+413	11086	51.001162693621	48
+414	3616	16.000697929104	58
+414	4751	21.000930270721	58
+414	5933	26.000930229018	58
+414	7008	31.000930393502	58
+414	9069	41.000930534317	58
+414	10099	46.000930626322	58
+414	11062	51.000930578725	58
+415	3616	16.000697929104	48
+415	4751	21.000930270721	48
+415	5933	26.000930229018	48
+415	7008	31.000930393502	48
+415	9069	41.000930534317	48
+415	10099	46.000930626322	48
+415	11062	51.000930578725	48
+416	3609	16.000697929104	58
+416	3666	16.000930238521	58
+416	4744	21.000930270721	58
+416	5926	26.000930229018	58
+416	7001	31.000930393502	58
+416	9062	41.000930534317	58
+416	9099	41.001395602577	58
+416	10092	46.000930626322	58
+416	10122	46.001395218872	58
+416	11055	51.000930578725	58
+416	11086	51.001162693621	58
+418	1181	6.000697890196	20
+418	1192	6.000697947608	20
+418	1299	6.000930113819	20
+418	2385	11.000697864454	20
+418	2418	11.000930158987	20
+418	2455	11.001162319436	20
+418	3602	16.000697902733	20
+418	3715	16.001162677219	20
+418	6917	31.000465587297	20
+418	7019	31.000930693213	20
+419	1181	6.000697890196	20
+419	2385	11.000697864454	20
+419	3602	16.000697902733	20
+419	6917	31.000465587297	20
+420	1181	6.000697890196	0.000232571645
+420	1192	6.000697947608	0.000232533503
+420	1299	6.000930113819	0.000232137258
+420	2385	11.000697864454	0.000232675083
+420	2418	11.000930158987	0.000232682653
+420	2455	11.001162319436	0.000232227491
+420	3602	16.000697902733	0.00023278104
+420	3715	16.001162677219	0.000232387243
+420	6917	31.000465587297	0.000232817638
+420	7019	31.000930693213	0.000232552958
+421	1182	6.000697890196	28
+421	2386	11.000697864454	28
+421	3603	16.000697902733	28
+421	6918	31.000465587297	8
+421	6919	31.000465587297	28
+422	1180	6.000697890196	28
+422	1191	6.000697947608	28
+422	1298	6.000930113819	28
+422	2384	11.000697864454	28
+422	2417	11.000930158987	28
+422	2454	11.001162319436	28
+422	3601	16.000697902733	28
+422	3714	16.001162677219	28
+422	6916	31.000465587297	28
+422	7018	31.000930693213	28
+423	1180	6.000697890196	1
+423	1191	6.000697947608	2
+423	1298	6.000930113819	3
+423	2384	11.000697864454	4
+423	2417	11.000930158987	5
+423	2454	11.001162319436	6
+423	3601	16.000697902733	7
+423	3714	16.001162677219	8
+423	6916	31.000465587297	9
+423	7018	31.000930693213	10
+426	6920	31.000465587297	1
+431	1184	6.000697890196	48
+431	2388	11.000697864454	48
+431	3605	16.000697902733	48
+431	6923	31.000465587297	48
+431	6924	31.000465587297	28
+431	7036	31.001003222573	28
+433	1184	6.000697890196	0
+433	2388	11.000697864454	0
+433	3605	16.000697902733	0
+433	6923	31.000465587297	0
+433	6946	31.000697587297	0.000232
+433	7036	31.001003222573	0
+434	0	0	0
+434	6924	31.000465587297	1
+434	6946	31.000697587297	0
+435	1178	6.000697890196	48
+435	1189	6.000697947608	48
+435	1259	6.000849947608	28
+435	1296	6.000930113819	48
+435	2382	11.000697864454	48
+435	2415	11.000930158987	48
+435	2452	11.001162319436	48
+435	3599	16.000697902733	48
+435	3712	16.001162677219	48
+435	6914	31.000465587297	48
+435	7016	31.000930693213	48
+435	7033	31.001003222573	28
+435	7093	31.001308857849	28
+436	1185	6.000697890196	58
+436	2389	11.000697864454	58
+436	3606	16.000697902733	58
+436	6925	31.000465587297	58
+436	6947	31.000697587297	38
+436	7037	31.001003222573	38
+437	1185	6.000697890196	48
+437	2389	11.000697864454	48
+437	3606	16.000697902733	48
+437	6925	31.000465587297	48
+437	6947	31.000697587297	28
+437	7037	31.001003222573	28
+438	1178	6.000697890196	58
+438	1189	6.000697947608	58
+438	1259	6.000849947608	38
+438	1296	6.000930113819	58
+438	1381	6.001155572998	38
+438	2382	11.000697864454	58
+438	2415	11.000930158987	58
+438	2452	11.001162319436	58
+438	2572	11.002158525421	38
+438	2608	11.002463978539	38
+438	3599	16.000697902733	58
+438	3712	16.001162677219	58
+438	6914	31.000465587297	58
+438	7016	31.000930693213	58
+438	7033	31.001003222573	38
+438	7093	31.001308857849	38
+438	7146	31.001614248919	38
+439	1381	6.001155572998	38
+439	2572	11.002158525421	38
+439	2608	11.002463978539	38
+439	7146	31.001614248919	38
+440	1197	6.000697976561	20
+440	1208	6.000698018032	20
+440	1294	6.000930027454	20
+440	2408	11.000930091945	20
+440	2433	11.000930263122	20
+440	3684	16.000930289976	20
+440	6964	31.000698140255	20
+441	1197	6.000697976561	20
+441	2408	11.000930091945	20
+441	3684	16.000930289976	20
+441	6964	31.000698140255	20
+442	1197	6.000697976561	0.00023265801
+442	1208	6.000698018032	0.000232603927
+442	1294	6.000930027454	0.000232137258
+442	2408	11.000930091945	0.000232227491
+442	2433	11.000930263122	0.000232786788
+442	3684	16.000930289976	0.000232387243
+442	6964	31.000698140255	0.000232552958
+443	1198	6.000697976561	28
+443	2409	11.000930091945	28
+443	3685	16.000930289976	28
+443	6965	31.000698140255	28
+444	1196	6.000697976561	28
+444	1207	6.000698018032	28
+444	1293	6.000930027454	28
+444	2407	11.000930091945	28
+444	2432	11.000930263122	28
+444	3683	16.000930289976	28
+444	6963	31.000698140255	28
+445	1196	6.000697976561	1
+445	1207	6.000698018032	2
+445	1293	6.000930027454	3
+445	2407	11.000930091945	4
+445	2432	11.000930263122	5
+445	3683	16.000930289976	6
+445	6963	31.000698140255	7
+453	1200	6.000697976561	48
+453	2411	11.000930091945	48
+453	3687	16.000930289976	48
+453	6967	31.000698140255	48
+455	1200	6.000697976561	0
+455	2411	11.000930091945	0
+455	3687	16.000930289976	0
+455	6967	31.000698140255	0
+456	0	0	0
+457	1194	6.000697976561	48
+457	1205	6.000698018032	48
+457	1263	6.000850018032	28
+457	1291	6.000930027454	48
+457	2405	11.000930091945	48
+457	2430	11.000930263122	48
+457	3681	16.000930289976	48
+457	6961	31.000698140255	48
+457	6981	31.000850140255	28
+458	1201	6.000697976561	58
+458	2412	11.000930091945	58
+458	3688	16.000930289976	58
+458	6968	31.000698140255	58
+459	1201	6.000697976561	48
+459	2412	11.000930091945	48
+459	3688	16.000930289976	48
+459	6968	31.000698140255	48
+460	1194	6.000697976561	58
+460	1205	6.000698018032	58
+460	1263	6.000850018032	38
+460	1291	6.000930027454	58
+460	1383	6.001155643422	38
+460	2405	11.000930091945	58
+460	2430	11.000930263122	58
+460	2581	11.002158629556	38
+460	2612	11.002464082674	38
+460	3681	16.000930289976	58
+460	6961	31.000698140255	58
+460	6981	31.000850140255	38
+460	7043	31.001155775531	38
+461	1383	6.001155643422	38
+461	2581	11.002158629556	38
+461	2612	11.002464082674	38
+461	7043	31.001155775531	38
+462	1336	6.00093098137	20
+462	2480	11.001162931222	20
+462	3720	16.001162777144	20
+462	4802	21.001162680906	20
+462	4823	21.001163126693	20
+462	9117	41.001395866695	20
+462	9133	41.001627867559	20
+463	1336	6.00093098137	20
+463	2480	11.001162931222	20
+463	3720	16.001162777144	20
+463	4802	21.001162680906	20
+463	9117	41.001395866695	20
+464	1336	6.00093098137	0.00023274563
+464	2480	11.001162931222	0.000232728329
+464	3720	16.001162777144	0.000232538346
+464	4802	21.001162680906	0.000232400353
+464	4823	21.001163126693	0.000232621412
+464	9117	41.001395866695	0.000232798248
+464	9133	41.001627867559	0.000232102262
+465	1337	6.00093098137	28
+465	2481	11.001162931222	8
+465	2482	11.001162931222	28
+465	3721	16.001162777144	28
+465	4803	21.001162680906	28
+465	9118	41.001395866695	28
+466	1335	6.00093098137	28
+466	2479	11.001162931222	28
+466	3719	16.001162777144	28
+466	4801	21.001162680906	28
+466	4822	21.001163126693	28
+466	9116	41.001395866695	28
+466	9132	41.001627867559	28
+467	1335	6.00093098137	1
+467	2479	11.001162931222	2
+467	3719	16.001162777144	3
+467	4801	21.001162680906	4
+467	4822	21.001163126693	5
+467	9116	41.001395866695	6
+467	9132	41.001627867559	7
+470	2483	11.001162931222	1
+475	1339	6.00093098137	48
+475	2486	11.001162931222	48
+475	2487	11.001162931222	28
+475	2528	11.00170038788	28
+475	3723	16.001162777144	48
+475	4805	21.001162680906	48
+475	9120	41.001395866695	48
+477	1339	6.00093098137	0
+477	2486	11.001162931222	0
+477	2493	11.001394931222	0.000232
+477	2528	11.00170038788	0
+477	3723	16.001162777144	0
+477	4805	21.001162680906	0
+477	9120	41.001395866695	0
+478	0	0	0
+478	2487	11.001162931222	1
+478	2493	11.001394931222	0
+479	1333	6.00093098137	48
+479	2477	11.001162931222	48
+479	2525	11.00170038788	28
+479	2561	11.002005844538	28
+479	3717	16.001162777144	48
+479	4799	21.001162680906	48
+479	4820	21.001163126693	48
+479	9114	41.001395866695	48
+479	9130	41.001627867559	48
+480	1340	6.00093098137	58
+480	2488	11.001162931222	58
+480	2494	11.001394931222	38
+480	2529	11.00170038788	38
+480	3724	16.001162777144	58
+480	4806	21.001162680906	58
+480	9121	41.001395866695	58
+481	1340	6.00093098137	48
+481	2488	11.001162931222	48
+481	2494	11.001394931222	28
+481	2529	11.00170038788	28
+481	3724	16.001162777144	48
+481	4806	21.001162680906	48
+481	9121	41.001395866695	48
+482	1333	6.00093098137	58
+482	2477	11.001162931222	58
+482	2525	11.00170038788	38
+482	2561	11.002005844538	38
+482	2599	11.002311297656	38
+482	3717	16.001162777144	58
+482	4799	21.001162680906	58
+482	4820	21.001163126693	58
+482	9114	41.001395866695	58
+482	9130	41.001627867559	58
+483	2599	11.002311297656	38
+484	999	6.000232411932	20
+484	1061	6.00046461591	20
+484	1111	6.000465044304	20
+484	1136	6.000465376112	20
+484	2234	11.000232542841	20
+484	2310	11.000464889074	20
+484	2325	11.00046506631	20
+484	2360	11.000465368621	20
+484	3399	16.000232637835	20
+484	3495	16.000465124247	20
+484	3500	16.000465127019	20
+484	3570	16.00061792163	20
+484	3632	16.000698019794	20
+484	4537	21.0002326545	20
+484	4615	21.000465104885	20
+484	4660	21.000465265491	20
+484	4710	21.00069771974	20
+484	5595	26.000232668402	20
+484	5709	26.000464992718	20
+484	5740	26.000465131712	20
+484	5783	26.000465368618	20
+484	5816	26.000465619697	20
+484	5863	26.000697350996	20
+484	6707	31.000232605674	20
+484	6795	31.000464947349	20
+484	6835	31.00046520994	20
+484	6882	31.000465426048	20
+484	6897	31.000465501083	20
+484	6945	31.000697329814	20
+484	7929	36.000232572125	20
+484	8035	36.000465158426	20
+484	8052	36.000465229506	20
+484	8062	36.000465444083	20
+484	8084	36.000697216219	20
+484	8104	36.000697683105	20
+484	8851	41.000232519355	20
+484	8962	41.000465160202	20
+484	8977	41.000465236481	20
+484	8987	41.000465397287	20
+484	9022	41.000697636467	20
+484	9027	41.000697733701	20
+484	9900	46.000232584136	20
+484	9974	46.0004650967	20
+484	10024	46.000465308577	20
+484	10034	46.000465436422	20
+484	10052	46.000697833154	20
+484	10077	46.000698021186	20
+484	10894	51.000232716763	20
+484	10948	51.00046523481	20
+484	10953	51.000465305436	20
+484	10993	51.00046540323	20
+484	11034	51.000697899605	20
+484	11039	51.000698123347	20
+484	11896	56.000465301297	20
+484	11906	56.000465363786	20
+484	11911	56.000465390918	20
+484	11952	56.000930368165	20
+485	999	6.000232411932	20
+485	2234	11.000232542841	20
+485	3399	16.000232637835	20
+485	4537	21.0002326545	20
+485	5595	26.000232668402	20
+485	6707	31.000232605674	20
+485	7929	36.000232572125	20
+485	8851	41.000232519355	20
+485	9900	46.000232584136	20
+485	10894	51.000232716763	20
+485	11896	56.000465301297	20
+486	999	6.000232411932	0.000232411932
+486	1061	6.00046461591	0.000232357324
+486	1111	6.000465044304	0.000232603977
+486	1136	6.000465376112	0.000232774702
+486	2234	11.000232542841	0.000232542841
+486	2310	11.000464889074	0.000232501636
+486	2325	11.00046506631	0.000232714311
+486	2360	11.000465368621	0.000232768473
+486	3399	16.000232637835	0.000232637835
+486	3495	16.000465124247	0.000232833661
+486	3500	16.000465127019	0.000232616457
+486	3570	16.00061792163	0.000385317321
+486	3632	16.000698019794	0.000232767953
+486	4537	21.0002326545	0.0002326545
+486	4615	21.000465104885	0.000232509819
+486	4660	21.000465265491	0.000232665875
+486	4710	21.00069771974	0.00023253262
+486	5595	26.000232668402	0.000232668402
+486	5709	26.000464992718	0.000232318346
+486	5740	26.000465131712	0.000232799324
+486	5783	26.000465368618	0.000232680082
+486	5816	26.000465619697	0.000232802238
+486	5863	26.000697350996	0.000232341297
+486	6707	31.000232605674	0.000232605674
+486	6795	31.000464947349	0.00023218693
+486	6835	31.00046520994	0.000232757746
+486	6882	31.000465426048	0.00023260792
+486	6897	31.000465501083	0.000232731424
+486	6945	31.000697329814	0.00023236207
+486	7929	36.000232572125	0.000232572125
+486	8035	36.000465158426	0.000232633716
+486	8052	36.000465229506	0.000232413901
+486	8062	36.000465444083	0.000232687158
+486	8084	36.000697216219	0.000232322047
+486	8104	36.000697683105	0.00023255549
+486	8851	41.000232519355	0.000232519355
+486	8962	41.000465160202	0.000232594203
+486	8977	41.000465236481	0.000232523695
+486	8987	41.000465397287	0.000232647744
+486	9022	41.000697636467	0.000232558556
+486	9027	41.000697733701	0.000232607173
+486	9900	46.000232584136	0.000232584136
+486	9974	46.0004650967	0.00023248416
+486	10024	46.000465308577	0.000232675196
+486	10034	46.000465436422	0.000232665887
+486	10052	46.000697833154	0.000232624509
+486	10077	46.000698021186	0.000232718525
+486	10894	51.000232716763	0.000232716763
+486	10948	51.00046523481	0.000232697683
+486	10953	51.000465305436	0.0002326345
+486	10993	51.00046540323	0.000232672624
+486	11034	51.000697899605	0.000232591421
+486	11039	51.000698123347	0.000232788753
+486	11896	56.000465301297	0.000232784576
+486	11906	56.000465363786	0.000232659427
+486	11911	56.000465390918	0.000232759266
+486	11952	56.000930368165	0.000232533434
+487	1000	6.000232411932	28
+487	2235	11.000232542841	28
+487	3400	16.000232637835	28
+487	4538	21.0002326545	28
+487	5596	26.000232668402	28
+487	6708	31.000232605674	28
+487	7930	36.000232572125	28
+487	8852	41.000232519355	28
+487	9901	46.000232584136	28
+487	10895	51.000232716763	28
+487	11897	56.000465301297	28
+488	998	6.000232411932	28
+488	1060	6.00046461591	28
+488	1110	6.000465044304	28
+488	1135	6.000465376112	28
+488	2233	11.000232542841	28
+488	2309	11.000464889074	28
+488	2324	11.00046506631	28
+488	2359	11.000465368621	28
+488	3398	16.000232637835	28
+488	3494	16.000465124247	28
+488	3499	16.000465127019	28
+488	3569	16.00061792163	28
+488	3631	16.000698019794	28
+488	4536	21.0002326545	28
+488	4614	21.000465104885	28
+488	4659	21.000465265491	28
+488	4709	21.00069771974	28
+488	5594	26.000232668402	28
+488	5708	26.000464992718	28
+488	5739	26.000465131712	28
+488	5782	26.000465368618	28
+488	5815	26.000465619697	28
+488	5862	26.000697350996	28
+488	6706	31.000232605674	28
+488	6794	31.000464947349	28
+488	6834	31.00046520994	28
+488	6881	31.000465426048	28
+488	6896	31.000465501083	28
+488	6944	31.000697329814	28
+488	7928	36.000232572125	28
+488	8034	36.000465158426	28
+488	8051	36.000465229506	28
+488	8061	36.000465444083	28
+488	8083	36.000697216219	28
+488	8103	36.000697683105	28
+488	8850	41.000232519355	28
+488	8961	41.000465160202	28
+488	8976	41.000465236481	28
+488	8986	41.000465397287	28
+488	9021	41.000697636467	28
+488	9026	41.000697733701	28
+488	9899	46.000232584136	28
+488	9973	46.0004650967	28
+488	10023	46.000465308577	28
+488	10033	46.000465436422	28
+488	10051	46.000697833154	28
+488	10076	46.000698021186	28
+488	10893	51.000232716763	28
+488	10947	51.00046523481	28
+488	10952	51.000465305436	28
+488	10992	51.00046540323	28
+488	11033	51.000697899605	28
+488	11038	51.000698123347	28
+488	11895	56.000465301297	28
+488	11905	56.000465363786	28
+488	11910	56.000465390918	28
+488	11951	56.000930368165	28
+489	998	6.000232411932	1
+489	1060	6.00046461591	2
+489	1110	6.000465044304	3
+489	1135	6.000465376112	4
+489	2233	11.000232542841	5
+489	2309	11.000464889074	6
+489	2324	11.00046506631	7
+489	2359	11.000465368621	8
+489	3398	16.000232637835	9
+489	3494	16.000465124247	10
+489	3499	16.000465127019	11
+489	3569	16.00061792163	12
+489	3631	16.000698019794	13
+489	4536	21.0002326545	14
+489	4614	21.000465104885	15
+489	4659	21.000465265491	16
+489	4709	21.00069771974	17
+489	5594	26.000232668402	18
+489	5708	26.000464992718	19
+489	5739	26.000465131712	20
+489	5782	26.000465368618	21
+489	5815	26.000465619697	22
+489	5862	26.000697350996	23
+489	6706	31.000232605674	24
+489	6794	31.000464947349	25
+489	6834	31.00046520994	26
+489	6881	31.000465426048	27
+489	6896	31.000465501083	28
+489	6944	31.000697329814	29
+489	7928	36.000232572125	30
+489	8034	36.000465158426	31
+489	8051	36.000465229506	32
+489	8061	36.000465444083	33
+489	8083	36.000697216219	34
+489	8103	36.000697683105	35
+489	8850	41.000232519355	36
+489	8961	41.000465160202	37
+489	8976	41.000465236481	38
+489	8986	41.000465397287	39
+489	9021	41.000697636467	40
+489	9026	41.000697733701	41
+489	9899	46.000232584136	42
+489	9973	46.0004650967	43
+489	10023	46.000465308577	44
+489	10033	46.000465436422	45
+489	10051	46.000697833154	46
+489	10076	46.000698021186	47
+489	10893	51.000232716763	48
+489	10947	51.00046523481	49
+489	10952	51.000465305436	50
+489	10992	51.00046540323	51
+489	11033	51.000697899605	52
+489	11038	51.000698123347	53
+489	11895	56.000465301297	54
+489	11905	56.000465363786	55
+489	11910	56.000465390918	56
+489	11951	56.000930368165	57
+497	1002	6.000232411932	48
+497	2237	11.000232542841	48
+497	3402	16.000232637835	48
+497	4540	21.0002326545	48
+497	5598	26.000232668402	48
+497	6710	31.000232605674	48
+497	7932	36.000232572125	48
+497	8854	41.000232519355	48
+497	9903	46.000232584136	48
+497	10897	51.000232716763	48
+497	11899	56.000465301297	48
+499	1002	6.000232411932	0
+499	2237	11.000232542841	0
+499	3402	16.000232637835	0
+499	4540	21.0002326545	0
+499	5598	26.000232668402	0
+499	6710	31.000232605674	0
+499	7932	36.000232572125	0
+499	8854	41.000232519355	0
+499	9903	46.000232584136	0
+499	10897	51.000232716763	0
+499	11899	56.000465301297	0
+500	0	0	0
+501	996	6.000232411932	48
+501	1058	6.00046461591	48
+501	1108	6.000465044304	48
+501	1133	6.000465376112	48
+501	1433	6.001308626892	28
+501	2231	11.000232542841	48
+501	2307	11.000464889074	48
+501	2322	11.00046506631	48
+501	2357	11.000465368621	48
+501	3396	16.000232637835	48
+501	3492	16.000465124247	48
+501	3497	16.000465127019	48
+501	3567	16.00061792163	48
+501	3629	16.000698019794	48
+501	4534	21.0002326545	48
+501	4612	21.000465104885	48
+501	4657	21.000465265491	48
+501	4707	21.00069771974	48
+501	5592	26.000232668402	48
+501	5706	26.000464992718	48
+501	5737	26.000465131712	48
+501	5780	26.000465368618	48
+501	5813	26.000465619697	48
+501	5838	26.000617368618	28
+501	5860	26.000697350996	48
+501	6704	31.000232605674	48
+501	6792	31.000464947349	48
+501	6832	31.00046520994	48
+501	6879	31.000465426048	48
+501	6894	31.000465501083	48
+501	6942	31.000697329814	48
+501	7085	31.001308771635	28
+501	7926	36.000232572125	48
+501	8032	36.000465158426	48
+501	8049	36.000465229506	48
+501	8059	36.000465444083	48
+501	8081	36.000697216219	48
+501	8101	36.000697683105	48
+501	8848	41.000232519355	48
+501	8959	41.000465160202	48
+501	8974	41.000465236481	48
+501	8984	41.000465397287	48
+501	9019	41.000697636467	48
+501	9024	41.000697733701	48
+501	9897	46.000232584136	48
+501	9971	46.0004650967	48
+501	10021	46.000465308577	48
+501	10031	46.000465436422	48
+501	10049	46.000697833154	48
+501	10074	46.000698021186	48
+501	10891	51.000232716763	48
+501	10945	51.00046523481	48
+501	10950	51.000465305436	48
+501	10990	51.00046540323	48
+501	11031	51.000697899605	48
+501	11036	51.000698123347	48
+501	11893	56.000465301297	48
+501	11903	56.000465363786	48
+501	11908	56.000465390918	48
+501	11949	56.000930368165	48
+502	1003	6.000232411932	58
+502	2238	11.000232542841	58
+502	3403	16.000232637835	58
+502	4541	21.0002326545	58
+502	5599	26.000232668402	58
+502	6711	31.000232605674	58
+502	7933	36.000232572125	58
+502	8855	41.000232519355	58
+502	9904	46.000232584136	58
+502	10898	51.000232716763	58
+502	11900	56.000465301297	58
+503	1003	6.000232411932	48
+503	2238	11.000232542841	48
+503	3403	16.000232637835	48
+503	4541	21.0002326545	48
+503	5599	26.000232668402	48
+503	6711	31.000232605674	48
+503	7933	36.000232572125	48
+503	8855	41.000232519355	48
+503	9904	46.000232584136	48
+503	10898	51.000232716763	48
+503	11900	56.000465301297	48
+504	996	6.000232411932	58
+504	1058	6.00046461591	58
+504	1108	6.000465044304	58
+504	1133	6.000465376112	58
+504	1363	6.001003001502	38
+504	1433	6.001308626892	38
+504	1449	6.001460865532	38
+504	1478	6.001613829712	38
+504	2231	11.000232542841	58
+504	2307	11.000464889074	58
+504	2322	11.00046506631	58
+504	2357	11.000465368621	58
+504	3396	16.000232637835	58
+504	3439	16.000385317321	38
+504	3492	16.000465124247	58
+504	3497	16.000465127019	58
+504	3567	16.00061792163	58
+504	3629	16.000698019794	58
+504	4534	21.0002326545	58
+504	4612	21.000465104885	58
+504	4657	21.000465265491	58
+504	4707	21.00069771974	58
+504	5592	26.000232668402	58
+504	5706	26.000464992718	58
+504	5737	26.000465131712	58
+504	5780	26.000465368618	58
+504	5813	26.000465619697	58
+504	5838	26.000617368618	38
+504	5860	26.000697350996	58
+504	5890	26.000770045474	38
+504	5916	26.00092274569	38
+504	6704	31.000232605674	58
+504	6792	31.000464947349	58
+504	6832	31.00046520994	58
+504	6879	31.000465426048	58
+504	6894	31.000465501083	58
+504	6942	31.000697329814	58
+504	7029	31.001003136359	38
+504	7085	31.001308771635	38
+504	7104	31.001460922676	38
+504	7142	31.001614162705	38
+504	7155	31.001766313746	38
+504	7926	36.000232572125	58
+504	8032	36.000465158426	58
+504	8049	36.000465229506	58
+504	8059	36.000465444083	58
+504	8081	36.000697216219	58
+504	8101	36.000697683105	58
+504	8848	41.000232519355	58
+504	8959	41.000465160202	58
+504	8974	41.000465236481	58
+504	8984	41.000465397287	58
+504	9019	41.000697636467	58
+504	9024	41.000697733701	58
+504	9897	46.000232584136	58
+504	9971	46.0004650967	58
+504	10021	46.000465308577	58
+504	10031	46.000465436422	58
+504	10049	46.000697833154	58
+504	10074	46.000698021186	58
+504	10891	51.000232716763	58
+504	10945	51.00046523481	58
+504	10950	51.000465305436	58
+504	10990	51.00046540323	58
+504	11031	51.000697899605	58
+504	11036	51.000698123347	58
+504	11893	56.000465301297	58
+504	11903	56.000465363786	58
+504	11908	56.000465390918	58
+504	11949	56.000930368165	58
+505	1363	6.001003001502	38
+505	1449	6.001460865532	38
+505	1478	6.001613829712	38
+505	3439	16.000385317321	38
+505	5890	26.000770045474	38
+505	5916	26.00092274569	38
+505	7029	31.001003136359	38
+505	7104	31.001460922676	38
+505	7142	31.001614162705	38
+505	7155	31.001766313746	38
+506	3637	16.000698033788	20
+506	3664	16.000930133837	20
+506	4730	21.000697972713	20
+506	4797	21.001162568729	20
+506	5873	26.000697756581	20
+506	5946	26.001162701455	20
+506	6953	31.000697735385	20
+506	7066	31.001163051619	20
+506	9042	41.000697812534	20
+506	9093	41.0011632561	20
+506	10057	46.000697922821	20
+506	10119	46.001163329823	20
+506	11024	51.000697884197	20
+506	11094	51.001163273253	20
+506	11099	51.001163344835	20
+507	3637	16.000698033788	20
+507	4730	21.000697972713	20
+507	5873	26.000697756581	20
+507	6953	31.000697735385	20
+507	9042	41.000697812534	20
+507	10057	46.000697922821	20
+507	11024	51.000697884197	20
+508	3637	16.000698033788	0.000232781947
+508	3664	16.000930133837	0.000232204733
+508	4730	21.000697972713	0.000232785593
+508	4797	21.001162568729	0.000232298008
+508	5873	26.000697756581	0.000232746882
+508	5946	26.001162701455	0.000232472437
+508	6953	31.000697735385	0.000232767641
+508	7066	31.001163051619	0.000232658117
+508	9042	41.000697812534	0.000232734623
+508	9093	41.0011632561	0.000232721783
+508	10057	46.000697922821	0.00023262016
+508	10119	46.001163329823	0.000232703501
+508	11024	51.000697884197	0.000232549603
+508	11094	51.001163273253	0.000232694528
+508	11099	51.001163344835	0.000232730319
+509	3638	16.000698033788	28
+509	4731	21.000697972713	28
+509	5874	26.000697756581	28
+509	6954	31.000697735385	28
+509	9043	41.000697812534	28
+509	10058	46.000697922821	28
+509	11025	51.000697884197	28
+510	3636	16.000698033788	28
+510	3663	16.000930133837	28
+510	4729	21.000697972713	28
+510	4796	21.001162568729	28
+510	5872	26.000697756581	28
+510	5945	26.001162701455	28
+510	6952	31.000697735385	28
+510	7065	31.001163051619	28
+510	9041	41.000697812534	28
+510	9092	41.0011632561	28
+510	10056	46.000697922821	28
+510	10118	46.001163329823	28
+510	11023	51.000697884197	28
+510	11093	51.001163273253	28
+510	11098	51.001163344835	28
+511	3636	16.000698033788	1
+511	3663	16.000930133837	2
+511	4729	21.000697972713	3
+511	4796	21.001162568729	4
+511	5872	26.000697756581	5
+511	5945	26.001162701455	6
+511	6952	31.000697735385	7
+511	7065	31.001163051619	8
+511	9041	41.000697812534	9
+511	9092	41.0011632561	10
+511	10056	46.000697922821	11
+511	10118	46.001163329823	12
+511	11023	51.000697884197	13
+511	11093	51.001163273253	14
+511	11098	51.001163344835	15
+519	3640	16.000698033788	48
+519	4733	21.000697972713	48
+519	5876	26.000697756581	48
+519	6956	31.000697735385	48
+519	9045	41.000697812534	48
+519	10060	46.000697922821	48
+519	11027	51.000697884197	48
+521	3640	16.000698033788	0
+521	4733	21.000697972713	0
+521	5876	26.000697756581	0
+521	6956	31.000697735385	0
+521	9045	41.000697812534	0
+521	10060	46.000697922821	0
+521	11027	51.000697884197	0
+522	0	0	0
+523	3634	16.000698033788	48
+523	3661	16.000930133837	48
+523	4727	21.000697972713	48
+523	4794	21.001162568729	48
+523	5870	26.000697756581	48
+523	5943	26.001162701455	48
+523	6950	31.000697735385	48
+523	7063	31.001163051619	48
+523	9039	41.000697812534	48
+523	9090	41.0011632561	48
+523	10054	46.000697922821	48
+523	10116	46.001163329823	48
+523	11021	51.000697884197	48
+523	11091	51.001163273253	48
+523	11096	51.001163344835	48
+524	3641	16.000698033788	58
+524	4734	21.000697972713	58
+524	5877	26.000697756581	58
+524	6957	31.000697735385	58
+524	9046	41.000697812534	58
+524	10061	46.000697922821	58
+524	11028	51.000697884197	58
+525	3641	16.000698033788	48
+525	4734	21.000697972713	48
+525	5877	26.000697756581	48
+525	6957	31.000697735385	48
+525	9046	41.000697812534	48
+525	10061	46.000697922821	48
+525	11028	51.000697884197	48
+526	3634	16.000698033788	58
+526	3661	16.000930133837	58
+526	4727	21.000697972713	58
+526	4794	21.001162568729	58
+526	5870	26.000697756581	58
+526	5943	26.001162701455	58
+526	6950	31.000697735385	58
+526	7063	31.001163051619	58
+526	9039	41.000697812534	58
+526	9090	41.0011632561	58
+526	10054	46.000697922821	58
+526	10116	46.001163329823	58
+526	11021	51.000697884197	58
+526	11091	51.001163273253	58
+526	11096	51.001163344835	58
+528	1227	6.00069823574	20
+528	1326	6.000930597405	20
+528	1410	6.001163727	20
+528	2423	11.000930202893	20
+528	2500	11.001395232759	20
+528	2506	11.001395659551	20
+528	2537	11.001853116209	0
+528	3674	16.000930238798	20
+528	3749	16.00139531549	20
+528	3754	16.001395462804	20
+528	4757	21.000930280553	20
+528	4828	21.00116319691	20
+528	4840	21.001395081259	20
+528	9083	41.001163068447	20
+528	9143	41.001628462147	20
+528	9148	41.001628664943	20
+528	10108	46.001162922597	20
+528	11068	51.000930614516	20
+528	11084	51.00116265783	20
+529	1227	6.00069823574	20
+529	2423	11.000930202893	20
+529	3674	16.000930238798	20
+529	4757	21.000930280553	20
+529	9083	41.001163068447	20
+529	10108	46.001162922597	20
+529	11068	51.000930614516	20
+530	1227	6.00069823574	0.000232821635
+530	1326	6.000930597405	0.0002323499
+530	1410	6.001163727	0.00023274563
+530	2423	11.000930202893	0.000232726559
+530	2500	11.001395232759	0.000232514933
+530	2506	11.001395659551	0.000232728329
+530	2537	11.001853116209	0.000690184987
+530	3674	16.000930238798	0.000232628429
+530	3749	16.00139531549	0.000232538346
+530	3754	16.001395462804	0.000232612003
+530	4757	21.000930280553	0.000232584638
+530	4828	21.00116319691	0.000232691629
+530	4840	21.001395081259	0.000232400353
+530	9083	41.001163068447	0.00023253413
+530	9143	41.001628462147	0.00023269685
+530	9148	41.001628664943	0.000232798248
+530	10108	46.001162922597	0.000232296275
+530	11068	51.000930614516	0.000232730319
+530	11084	51.00116265783	0.000232079105
+531	1228	6.00069823574	28
+531	2424	11.000930202893	28
+531	2538	11.001853116209	8
+531	3675	16.000930238798	28
+531	4758	21.000930280553	28
+531	9084	41.001163068447	28
+531	10109	46.001162922597	28
+531	11069	51.000930614516	28
+532	1226	6.00069823574	28
+532	1325	6.000930597405	28
+532	1409	6.001163727	28
+532	2422	11.000930202893	28
+532	2499	11.001395232759	28
+532	2505	11.001395659551	28
+532	2536	11.001853116209	8
+532	3673	16.000930238798	28
+532	3748	16.00139531549	28
+532	3753	16.001395462804	28
+532	4756	21.000930280553	28
+532	4827	21.00116319691	28
+532	4839	21.001395081259	28
+532	9082	41.001163068447	28
+532	9142	41.001628462147	28
+532	9147	41.001628664943	28
+532	10107	46.001162922597	28
+532	11067	51.000930614516	28
+532	11083	51.00116265783	28
+533	1226	6.00069823574	1
+533	1325	6.000930597405	2
+533	1409	6.001163727	3
+533	2422	11.000930202893	4
+533	2499	11.001395232759	5
+533	2505	11.001395659551	6
+533	2536	11.001853116209	7
+533	3673	16.000930238798	8
+533	3748	16.00139531549	9
+533	3753	16.001395462804	10
+533	4756	21.000930280553	11
+533	4827	21.00116319691	12
+533	4839	21.001395081259	13
+533	9082	41.001163068447	14
+533	9142	41.001628462147	15
+533	9147	41.001628664943	16
+533	10107	46.001162922597	17
+533	11067	51.000930614516	18
+533	11083	51.00116265783	19
+536	2539	11.001853116209	1
+537	2511	11.001547659551	1
+541	1230	6.00069823574	48
+541	2426	11.000930202893	48
+541	2513	11.001547659551	28
+541	2541	11.001853116209	28
+541	2577	11.002158569327	28
+541	3677	16.000930238798	48
+541	4760	21.000930280553	48
+541	9086	41.001163068447	48
+541	10111	46.001162922597	48
+541	11071	51.000930614516	48
+543	1230	6.00069823574	0
+543	2426	11.000930202893	0
+543	2513	11.001547659551	0
+543	2541	11.001853116209	0
+543	2577	11.002158569327	0
+543	3677	16.000930238798	0
+543	4760	21.000930280553	0
+543	9086	41.001163068447	0
+543	10111	46.001162922597	0
+543	11071	51.000930614516	0
+544	0	0	0
+545	1224	6.00069823574	48
+545	1275	6.00085023574	28
+545	1323	6.000930597405	48
+545	1407	6.001163727	48
+545	2420	11.000930202893	48
+545	2497	11.001395232759	48
+545	2503	11.001395659551	48
+545	2509	11.001547659551	28
+545	2534	11.001853116209	28
+545	2574	11.002158569327	28
+545	3671	16.000930238798	48
+545	3746	16.00139531549	48
+545	3751	16.001395462804	48
+545	4754	21.000930280553	48
+545	4825	21.00116319691	48
+545	4837	21.001395081259	48
+545	9080	41.001163068447	48
+545	9140	41.001628462147	48
+545	9145	41.001628664943	48
+545	10105	46.001162922597	48
+545	11065	51.000930614516	48
+545	11081	51.00116265783	48
+546	1231	6.00069823574	58
+546	2427	11.000930202893	58
+546	2514	11.001547659551	38
+546	2542	11.001853116209	38
+546	2578	11.002158569327	38
+546	3678	16.000930238798	58
+546	4761	21.000930280553	58
+546	9087	41.001163068447	58
+546	10112	46.001162922597	58
+546	11072	51.000930614516	58
+547	1231	6.00069823574	48
+547	2427	11.000930202893	48
+547	2514	11.001547659551	28
+547	2542	11.001853116209	28
+547	2578	11.002158569327	28
+547	3678	16.000930238798	48
+547	4761	21.000930280553	48
+547	9087	41.001163068447	48
+547	10112	46.001162922597	48
+547	11072	51.000930614516	48
+548	1224	6.00069823574	58
+548	1275	6.00085023574	38
+548	1323	6.000930597405	58
+548	1396	6.00115586113	38
+548	1407	6.001163727	58
+548	2420	11.000930202893	58
+548	2497	11.001395232759	58
+548	2503	11.001395659551	58
+548	2509	11.001547659551	38
+548	2534	11.001853116209	38
+548	2574	11.002158569327	38
+548	2610	11.002464022445	38
+548	3671	16.000930238798	58
+548	3746	16.00139531549	58
+548	3751	16.001395462804	58
+548	4754	21.000930280553	58
+548	4825	21.00116319691	58
+548	4837	21.001395081259	58
+548	9080	41.001163068447	58
+548	9140	41.001628462147	58
+548	9145	41.001628664943	58
+548	10105	46.001162922597	58
+548	11065	51.000930614516	58
+548	11081	51.00116265783	58
+549	1396	6.00115586113	38
+549	2610	11.002464022445	38
+550	1238	6.000698247505	20
+550	1321	6.00093058564	20
+550	2460	11.001162717826	20
+550	3730	16.001162850801	20
+550	4772	21.000930505281	20
+550	4817	21.001162972182	20
+550	4845	21.001395302318	20
+551	1238	6.000698247505	20
+551	2460	11.001162717826	20
+551	3730	16.001162850801	20
+551	4772	21.000930505281	20
+552	1238	6.000698247505	0.0002328334
+552	1321	6.00093058564	0.0002323499
+552	2460	11.001162717826	0.000232514933
+552	3730	16.001162850801	0.000232612003
+552	4772	21.000930505281	0.000232809366
+552	4817	21.001162972182	0.000232691629
+552	4845	21.001395302318	0.000232621412
+553	1239	6.000698247505	28
+553	2461	11.001162717826	28
+553	3731	16.001162850801	28
+553	4773	21.000930505281	28
+554	1237	6.000698247505	28
+554	1320	6.00093058564	28
+554	2459	11.001162717826	28
+554	3729	16.001162850801	28
+554	4771	21.000930505281	28
+554	4816	21.001162972182	28
+554	4844	21.001395302318	28
+555	1237	6.000698247505	1
+555	1320	6.00093058564	2
+555	2459	11.001162717826	3
+555	3729	16.001162850801	4
+555	4771	21.000930505281	5
+555	4816	21.001162972182	6
+555	4844	21.001395302318	7
+563	1241	6.000698247505	48
+563	2463	11.001162717826	48
+563	3733	16.001162850801	48
+563	4775	21.000930505281	48
+565	1241	6.000698247505	0
+565	2463	11.001162717826	0
+565	3733	16.001162850801	0
+565	4775	21.000930505281	0
+566	0	0	0
+567	1235	6.000698247505	48
+567	1279	6.000850247505	28
+567	1318	6.00093058564	48
+567	2457	11.001162717826	48
+567	2549	11.002005631142	28
+567	3727	16.001162850801	48
+567	4769	21.000930505281	48
+567	4814	21.001162972182	48
+567	4842	21.001395302318	48
+568	1242	6.000698247505	58
+568	2464	11.001162717826	58
+568	3734	16.001162850801	58
+568	4776	21.000930505281	58
+569	1242	6.000698247505	48
+569	2464	11.001162717826	48
+569	3734	16.001162850801	48
+569	4776	21.000930505281	48
+570	1235	6.000698247505	58
+570	1279	6.000850247505	38
+570	1318	6.00093058564	58
+570	1398	6.001155872895	38
+570	2457	11.001162717826	58
+570	2521	11.001700174484	38
+570	2549	11.002005631142	38
+570	2587	11.00231108426	38
+570	3727	16.001162850801	58
+570	4769	21.000930505281	58
+570	4814	21.001162972182	58
+570	4842	21.001395302318	58
+571	1398	6.001155872895	38
+571	2521	11.001700174484	38
+571	2587	11.00231108426	38
+572	1009	6.000232440327	20
+572	1050	6.000464514328	20
+572	1086	6.000464777002	20
+572	1101	6.000465015909	20
+572	2214	11.000232351999	20
+572	2285	11.000464649779	20
+572	2315	11.000464893259	20
+572	2350	11.000465257152	20
+572	3364	16.000232290586	20
+572	3475	16.000464951752	20
+572	3535	16.000465471496	20
+572	3555	16.000617698423	20
+572	4506	21.000232281688	20
+572	4620	21.000465152769	20
+572	4655	21.000465221307	20
+572	4715	21.000697769856	20
+572	5584	26.000232332388	20
+572	5751	26.000465174625	20
+572	5761	26.000465334254	20
+572	5794	26.000465400472	20
+572	5800	26.000465467726	20
+572	6697	31.000232452194	20
+572	6830	31.000465192366	20
+572	6872	31.00046536342	20
+572	6877	31.000465391633	20
+572	6912	31.000465585233	20
+572	7919	36.00023252471	20
+572	8000	36.000465014077	20
+572	8045	36.000465205841	20
+572	8114	36.000697746879	20
+572	8861	41.000232565999	20
+572	8917	41.000464955229	20
+572	8942	41.000465113558	20
+572	9057	41.000697933917	20
+572	9910	46.00023261254	20
+572	9964	46.000464963487	20
+572	9969	46.000465068296	20
+572	10884	51.000232670936	20
+572	10938	51.000464791714	20
+572	10983	51.000465351263	20
+572	11857	56.000232704359	20
+572	11878	56.000464772765	20
+572	11935	56.000697960724	20
+573	1009	6.000232440327	20
+573	2214	11.000232351999	20
+573	3364	16.000232290586	20
+573	4506	21.000232281688	20
+573	5584	26.000232332388	20
+573	6697	31.000232452194	20
+573	7919	36.00023252471	20
+573	8861	41.000232565999	20
+573	9910	46.00023261254	20
+573	10884	51.000232670936	20
+573	11857	56.000232704359	20
+574	1009	6.000232440327	0.000232440327
+574	1050	6.000464514328	0.000232255742
+574	1086	6.000464777002	0.000232175592
+574	1101	6.000465015909	0.000232603977
+574	2214	11.000232351999	0.000232351999
+574	2285	11.000464649779	0.000232262341
+574	2315	11.000464893259	0.000232293111
+574	2350	11.000465257152	0.000232714311
+574	3364	16.000232290586	0.000232290586
+574	3475	16.000464951752	0.00023244119
+574	3535	16.000465471496	0.000232833661
+574	3555	16.000617698423	0.000385094114
+574	4506	21.000232281688	0.000232281688
+574	4620	21.000465152769	0.000232553153
+574	4655	21.000465221307	0.000232626241
+574	4715	21.000697769856	0.000232818092
+574	5584	26.000232332388	0.000232332388
+574	5751	26.000465174625	0.000232486089
+574	5761	26.000465334254	0.000232659882
+574	5794	26.000465400472	0.000232583013
+574	5800	26.000465467726	0.000232799324
+574	6697	31.000232452194	0.000232452194
+574	6830	31.000465192366	0.000232422707
+574	6872	31.00046536342	0.000232757746
+574	6877	31.000465391633	0.000232573505
+574	6912	31.000465585233	0.000232824814
+574	7919	36.00023252471	0.00023252471
+574	8000	36.000465014077	0.000232257152
+574	8045	36.000465205841	0.000232633716
+574	8114	36.000697746879	0.000232619264
+574	8861	41.000232565999	0.000232565999
+574	8917	41.000464955229	0.000232205686
+574	8942	41.000465113558	0.000232594203
+574	9057	41.000697933917	0.000232807389
+574	9910	46.00023261254	0.00023261254
+574	9964	46.000464963487	0.000232192952
+574	9969	46.000465068296	0.00023248416
+574	10884	51.000232670936	0.000232670936
+574	10938	51.000464791714	0.000232061108
+574	10983	51.000465351263	0.0002326345
+574	11857	56.000232704359	0.000232704359
+574	11878	56.000464772765	0.000232141113
+574	11935	56.000697960724	0.000232659427
+575	1010	6.000232440327	28
+575	2215	11.000232351999	28
+575	3365	16.000232290586	28
+575	4507	21.000232281688	28
+575	5585	26.000232332388	28
+575	6698	31.000232452194	28
+575	7920	36.00023252471	28
+575	8862	41.000232565999	28
+575	9911	46.00023261254	28
+575	10885	51.000232670936	28
+575	11858	56.000232704359	28
+576	1008	6.000232440327	28
+576	1049	6.000464514328	28
+576	1085	6.000464777002	28
+576	1100	6.000465015909	28
+576	2213	11.000232351999	28
+576	2284	11.000464649779	28
+576	2314	11.000464893259	28
+576	2349	11.000465257152	28
+576	3363	16.000232290586	28
+576	3474	16.000464951752	28
+576	3534	16.000465471496	28
+576	3554	16.000617698423	28
+576	4505	21.000232281688	28
+576	4619	21.000465152769	28
+576	4654	21.000465221307	28
+576	4714	21.000697769856	28
+576	5583	26.000232332388	28
+576	5750	26.000465174625	28
+576	5760	26.000465334254	28
+576	5793	26.000465400472	28
+576	5799	26.000465467726	28
+576	6696	31.000232452194	28
+576	6829	31.000465192366	28
+576	6871	31.00046536342	28
+576	6876	31.000465391633	28
+576	6911	31.000465585233	28
+576	7918	36.00023252471	28
+576	7999	36.000465014077	28
+576	8044	36.000465205841	28
+576	8113	36.000697746879	28
+576	8860	41.000232565999	28
+576	8916	41.000464955229	28
+576	8941	41.000465113558	28
+576	9056	41.000697933917	28
+576	9909	46.00023261254	28
+576	9963	46.000464963487	28
+576	9968	46.000465068296	28
+576	10883	51.000232670936	28
+576	10937	51.000464791714	28
+576	10982	51.000465351263	28
+576	11856	56.000232704359	28
+576	11877	56.000464772765	28
+576	11934	56.000697960724	28
+577	1008	6.000232440327	1
+577	1049	6.000464514328	2
+577	1085	6.000464777002	3
+577	1100	6.000465015909	4
+577	2213	11.000232351999	5
+577	2284	11.000464649779	6
+577	2314	11.000464893259	7
+577	2349	11.000465257152	8
+577	3363	16.000232290586	9
+577	3474	16.000464951752	10
+577	3534	16.000465471496	11
+577	3554	16.000617698423	12
+577	4505	21.000232281688	13
+577	4619	21.000465152769	14
+577	4654	21.000465221307	15
+577	4714	21.000697769856	16
+577	5583	26.000232332388	17
+577	5750	26.000465174625	18
+577	5760	26.000465334254	19
+577	5793	26.000465400472	20
+577	5799	26.000465467726	21
+577	6696	31.000232452194	22
+577	6829	31.000465192366	23
+577	6871	31.00046536342	24
+577	6876	31.000465391633	25
+577	6911	31.000465585233	26
+577	7918	36.00023252471	27
+577	7999	36.000465014077	28
+577	8044	36.000465205841	29
+577	8113	36.000697746879	30
+577	8860	41.000232565999	31
+577	8916	41.000464955229	32
+577	8941	41.000465113558	33
+577	9056	41.000697933917	34
+577	9909	46.00023261254	35
+577	9963	46.000464963487	36
+577	9968	46.000465068296	37
+577	10883	51.000232670936	38
+577	10937	51.000464791714	39
+577	10982	51.000465351263	40
+577	11856	56.000232704359	41
+577	11877	56.000464772765	42
+577	11934	56.000697960724	43
+585	1012	6.000232440327	48
+585	2217	11.000232351999	48
+585	3367	16.000232290586	48
+585	4509	21.000232281688	48
+585	5587	26.000232332388	48
+585	6700	31.000232452194	48
+585	7922	36.00023252471	48
+585	8864	41.000232565999	48
+585	9913	46.00023261254	48
+585	10887	51.000232670936	48
+585	11860	56.000232704359	48
+587	1012	6.000232440327	0
+587	2217	11.000232351999	0
+587	3367	16.000232290586	0
+587	4509	21.000232281688	0
+587	5587	26.000232332388	0
+587	6700	31.000232452194	0
+587	7922	36.00023252471	0
+587	8864	41.000232565999	0
+587	9913	46.00023261254	0
+587	10887	51.000232670936	0
+587	11860	56.000232704359	0
+588	0	0	0
+589	1006	6.000232440327	48
+589	1047	6.000464514328	48
+589	1083	6.000464777002	48
+589	1098	6.000465015909	48
+589	1413	6.001308028698	28
+589	2211	11.000232351999	48
+589	2282	11.000464649779	48
+589	2312	11.000464893259	48
+589	2347	11.000465257152	48
+589	3361	16.000232290586	48
+589	3472	16.000464951752	48
+589	3532	16.000465471496	48
+589	3552	16.000617698423	48
+589	4503	21.000232281688	48
+589	4617	21.000465152769	48
+589	4652	21.000465221307	48
+589	4712	21.000697769856	48
+589	5581	26.000232332388	48
+589	5748	26.000465174625	48
+589	5758	26.000465334254	48
+589	5791	26.000465400472	48
+589	5797	26.000465467726	48
+589	5834	26.000617174625	28
+589	6694	31.000232452194	48
+589	6827	31.000465192366	48
+589	6869	31.00046536342	48
+589	6874	31.000465391633	48
+589	6909	31.000465585233	48
+589	7073	31.001308462918	28
+589	7916	36.00023252471	48
+589	7997	36.000465014077	48
+589	8042	36.000465205841	48
+589	8111	36.000697746879	48
+589	8858	41.000232565999	48
+589	8914	41.000464955229	48
+589	8939	41.000465113558	48
+589	9054	41.000697933917	48
+589	9907	46.00023261254	48
+589	9961	46.000464963487	48
+589	9966	46.000465068296	48
+589	10881	51.000232670936	48
+589	10935	51.000464791714	48
+589	10980	51.000465351263	48
+589	11854	56.000232704359	48
+589	11875	56.000464772765	48
+589	11932	56.000697960724	48
+590	1013	6.000232440327	58
+590	2218	11.000232351999	58
+590	3368	16.000232290586	58
+590	4510	21.000232281688	58
+590	5588	26.000232332388	58
+590	6701	31.000232452194	58
+590	7923	36.00023252471	58
+590	8865	41.000232565999	58
+590	9914	46.00023261254	58
+590	10888	51.000232670936	58
+590	11861	56.000232704359	58
+591	1013	6.000232440327	48
+591	2218	11.000232351999	48
+591	3368	16.000232290586	48
+591	4510	21.000232281688	48
+591	5588	26.000232332388	48
+591	6701	31.000232452194	48
+591	7923	36.00023252471	48
+591	8865	41.000232565999	48
+591	9914	46.00023261254	48
+591	10888	51.000232670936	48
+591	11861	56.000232704359	48
+592	1006	6.000232440327	58
+592	1047	6.000464514328	58
+592	1083	6.000464777002	58
+592	1098	6.000465015909	58
+592	1355	6.001002403308	38
+592	1413	6.001308028698	38
+592	1451	6.001460891969	38
+592	1467	6.001613231518	38
+592	2211	11.000232351999	58
+592	2282	11.000464649779	58
+592	2312	11.000464893259	58
+592	2347	11.000465257152	58
+592	3361	16.000232290586	58
+592	3428	16.000385094114	38
+592	3472	16.000464951752	58
+592	3532	16.000465471496	58
+592	3552	16.000617698423	58
+592	4503	21.000232281688	58
+592	4617	21.000465152769	58
+592	4652	21.000465221307	58
+592	4712	21.000697769856	58
+592	5581	26.000232332388	58
+592	5748	26.000465174625	58
+592	5758	26.000465334254	58
+592	5791	26.000465400472	58
+592	5797	26.000465467726	58
+592	5834	26.000617174625	38
+592	5888	26.00076970946	38
+592	5914	26.000922551697	38
+592	6694	31.000232452194	58
+592	6827	31.000465192366	58
+592	6869	31.00046536342	58
+592	6874	31.000465391633	58
+592	6909	31.000465585233	58
+592	7025	31.001002827642	38
+592	7073	31.001308462918	38
+592	7119	31.00146156056	38
+592	7130	31.001613853988	38
+592	7168	31.00176695163	38
+592	7916	36.00023252471	58
+592	7997	36.000465014077	58
+592	8042	36.000465205841	58
+592	8111	36.000697746879	58
+592	8858	41.000232565999	58
+592	8914	41.000464955229	58
+592	8939	41.000465113558	58
+592	9054	41.000697933917	58
+592	9907	46.00023261254	58
+592	9961	46.000464963487	58
+592	9966	46.000465068296	58
+592	10881	51.000232670936	58
+592	10935	51.000464791714	58
+592	10980	51.000465351263	58
+592	11854	56.000232704359	58
+592	11875	56.000464772765	58
+592	11932	56.000697960724	58
+593	1355	6.001002403308	38
+593	1451	6.001460891969	38
+593	1467	6.001613231518	38
+593	3428	16.000385094114	38
+593	5888	26.00076970946	38
+593	5914	26.000922551697	38
+593	7025	31.001002827642	38
+593	7119	31.00146156056	38
+593	7130	31.001613853988	38
+593	7168	31.00176695163	38
+594	989	6.000232258586	20
+594	1076	6.000464696069	20
+594	1081	6.000464769256	20
+594	1106	6.000465032532	20
+594	2224	11.000232387438	20
+594	2275	11.00046461434	20
+594	2305	11.000464879634	20
+594	2320	11.000465044477	20
+594	3374	16.000232510562	20
+594	3465	16.000464731776	20
+594	3515	16.000465254292	20
+594	3550	16.000617319939	20
+594	3597	16.000697732824	20
+594	3627	16.00069799312	20
+594	4527	21.000232599616	20
+594	4575	21.000464762397	20
+594	4585	21.000464834841	20
+594	4671	21.000465320375	20
+594	4690	21.000697303912	20
+594	4725	21.000697929813	20
+594	5615	26.000232688536	20
+594	5678	26.000464818477	20
+594	5694	26.000464958181	20
+594	5724	26.000465058409	20
+594	5771	26.000465348484	20
+594	5883	26.000697831181	20
+594	6738	31.000232818128	20
+594	6810	31.000464985133	20
+594	6815	31.000465025699	20
+594	6845	31.000465213594	20
+594	6855	31.000465288434	20
+594	8010	36.000465127615	20
+594	8025	36.000465143974	20
+594	8040	36.000465203256	20
+594	8094	36.000697510151	20
+594	8947	41.000465126528	20
+594	8982	41.000465373388	20
+594	8997	41.000465434084	20
+594	9032	41.000697774707	20
+594	9984	46.000465208645	20
+594	10082	46.000698087312	20
+594	10958	51.000465308184	20
+594	11925	56.000697834731	20
+595	989	6.000232258586	20
+595	2224	11.000232387438	20
+595	3374	16.000232510562	20
+595	4527	21.000232599616	20
+595	5615	26.000232688536	20
+595	6738	31.000232818128	20
+595	8010	36.000465127615	20
+595	8947	41.000465126528	20
+595	9984	46.000465208645	20
+595	10958	51.000465308184	20
+595	11925	56.000697834731	20
+596	989	6.000232258586	0.000232258586
+596	1076	6.000464696069	0.000232255742
+596	1081	6.000464769256	0.000232357324
+596	1106	6.000465032532	0.000232431122
+596	2224	11.000232387438	0.000232387438
+596	2275	11.00046461434	0.000232262341
+596	2305	11.000464879634	0.000232279486
+596	2320	11.000465044477	0.000232501636
+596	3374	16.000232510562	0.000232510562
+596	3465	16.000464731776	0.00023244119
+596	3515	16.000465254292	0.000232616457
+596	3550	16.000617319939	0.00038471563
+596	3597	16.000697732824	0.000232611131
+596	3627	16.00069799312	0.000232741279
+596	4527	21.000232599616	0.000232599616
+596	4575	21.000464762397	0.000232167331
+596	4585	21.000464834841	0.000232553153
+596	4671	21.000465320375	0.000232665875
+596	4690	21.000697303912	0.000232352148
+596	4725	21.000697929813	0.000232742693
+596	5615	26.000232688536	0.000232688536
+596	5678	26.000464818477	0.000232486089
+596	5694	26.000464958181	0.000232140722
+596	5724	26.000465058409	0.000232384037
+596	5771	26.000465348484	0.000232680082
+596	5883	26.000697831181	0.000232821482
+596	6738	31.000232818128	0.000232818128
+596	6810	31.000464985133	0.000232215474
+596	6815	31.000465025699	0.000232573505
+596	6845	31.000465213594	0.00023260792
+596	6855	31.000465288434	0.000232528015
+596	8010	36.000465127615	0.00023255549
+596	8025	36.000465143974	0.000232619264
+596	8040	36.000465203256	0.000232446331
+596	8094	36.000697510151	0.000232615979
+596	8947	41.000465126528	0.000232607173
+596	8982	41.000465373388	0.000232807389
+596	8997	41.000465434084	0.000232684541
+596	9032	41.000697774707	0.000232696796
+596	9984	46.000465208645	0.000232624509
+596	10082	46.000698087312	0.000232784651
+596	10958	51.000465308184	0.000232591421
+596	11925	56.000697834731	0.000232533434
+597	990	6.000232258586	28
+597	2225	11.000232387438	28
+597	3375	16.000232510562	28
+597	4528	21.000232599616	28
+597	5616	26.000232688536	8
+597	5617	26.000232688536	28
+597	6739	31.000232818128	28
+597	8011	36.000465127615	28
+597	8948	41.000465126528	28
+597	9985	46.000465208645	28
+597	10959	51.000465308184	28
+597	11926	56.000697834731	28
+598	988	6.000232258586	28
+598	1075	6.000464696069	28
+598	1080	6.000464769256	28
+598	1105	6.000465032532	28
+598	2223	11.000232387438	28
+598	2274	11.00046461434	28
+598	2304	11.000464879634	28
+598	2319	11.000465044477	28
+598	3373	16.000232510562	28
+598	3464	16.000464731776	28
+598	3514	16.000465254292	28
+598	3549	16.000617319939	28
+598	3596	16.000697732824	28
+598	3626	16.00069799312	28
+598	4526	21.000232599616	28
+598	4574	21.000464762397	28
+598	4584	21.000464834841	28
+598	4670	21.000465320375	28
+598	4689	21.000697303912	28
+598	4724	21.000697929813	28
+598	5614	26.000232688536	28
+598	5677	26.000464818477	28
+598	5693	26.000464958181	28
+598	5723	26.000465058409	28
+598	5770	26.000465348484	28
+598	5882	26.000697831181	28
+598	6737	31.000232818128	28
+598	6809	31.000464985133	28
+598	6814	31.000465025699	28
+598	6844	31.000465213594	28
+598	6854	31.000465288434	28
+598	8009	36.000465127615	28
+598	8024	36.000465143974	28
+598	8039	36.000465203256	28
+598	8093	36.000697510151	28
+598	8946	41.000465126528	28
+598	8981	41.000465373388	28
+598	8996	41.000465434084	28
+598	9031	41.000697774707	28
+598	9983	46.000465208645	28
+598	10081	46.000698087312	28
+598	10957	51.000465308184	28
+598	11924	56.000697834731	28
+599	988	6.000232258586	1
+599	1075	6.000464696069	2
+599	1080	6.000464769256	3
+599	1105	6.000465032532	4
+599	2223	11.000232387438	5
+599	2274	11.00046461434	6
+599	2304	11.000464879634	7
+599	2319	11.000465044477	8
+599	3373	16.000232510562	9
+599	3464	16.000464731776	10
+599	3514	16.000465254292	11
+599	3549	16.000617319939	12
+599	3596	16.000697732824	13
+599	3626	16.00069799312	14
+599	4526	21.000232599616	15
+599	4574	21.000464762397	16
+599	4584	21.000464834841	17
+599	4670	21.000465320375	18
+599	4689	21.000697303912	19
+599	4724	21.000697929813	20
+599	5614	26.000232688536	21
+599	5677	26.000464818477	22
+599	5693	26.000464958181	23
+599	5723	26.000465058409	24
+599	5770	26.000465348484	25
+599	5882	26.000697831181	26
+599	6737	31.000232818128	27
+599	6809	31.000464985133	28
+599	6814	31.000465025699	29
+599	6844	31.000465213594	30
+599	6854	31.000465288434	31
+599	8009	36.000465127615	32
+599	8024	36.000465143974	33
+599	8039	36.000465203256	34
+599	8093	36.000697510151	35
+599	8946	41.000465126528	36
+599	8981	41.000465373388	37
+599	8996	41.000465434084	38
+599	9031	41.000697774707	39
+599	9983	46.000465208645	40
+599	10081	46.000698087312	41
+599	10957	51.000465308184	42
+599	11924	56.000697834731	43
+602	5618	26.000232688536	1
+607	992	6.000232258586	48
+607	2227	11.000232387438	48
+607	3377	16.000232510562	48
+607	4530	21.000232599616	48
+607	5621	26.000232688536	48
+607	5622	26.000232688536	28
+607	5897	26.000770065608	28
+607	6741	31.000232818128	48
+607	8013	36.000465127615	48
+607	8950	41.000465126528	48
+607	9987	46.000465208645	48
+607	10961	51.000465308184	48
+607	11928	56.000697834731	48
+609	992	6.000232258586	0
+609	2227	11.000232387438	0
+609	3377	16.000232510562	0
+609	4530	21.000232599616	0
+609	5621	26.000232688536	0
+609	5670	26.000464688536	0.000232
+609	5897	26.000770065608	0
+609	6741	31.000232818128	0
+609	8013	36.000465127615	0
+609	8950	41.000465126528	0
+609	9987	46.000465208645	0
+609	10961	51.000465308184	0
+609	11928	56.000697834731	0
+610	0	0	0
+610	5622	26.000232688536	1
+610	5670	26.000464688536	0
+611	986	6.000232258586	48
+611	1073	6.000464696069	48
+611	1078	6.000464769256	48
+611	1103	6.000465032532	48
+611	1417	6.001308283312	28
+611	2221	11.000232387438	48
+611	2272	11.00046461434	48
+611	2302	11.000464879634	48
+611	2317	11.000465044477	48
+611	3371	16.000232510562	48
+611	3462	16.000464731776	48
+611	3512	16.000465254292	48
+611	3547	16.000617319939	48
+611	3594	16.000697732824	48
+611	3624	16.00069799312	48
+611	4524	21.000232599616	48
+611	4572	21.000464762397	48
+611	4582	21.000464834841	48
+611	4668	21.000465320375	48
+611	4687	21.000697303912	48
+611	4722	21.000697929813	48
+611	5612	26.000232688536	48
+611	5675	26.000464818477	48
+611	5691	26.000464958181	48
+611	5721	26.000465058409	48
+611	5768	26.000465348484	48
+611	5880	26.000697831181	48
+611	5894	26.000770065608	28
+611	6735	31.000232818128	48
+611	6807	31.000464985133	48
+611	6812	31.000465025699	48
+611	6842	31.000465213594	48
+611	6852	31.000465288434	48
+611	7069	31.001308255685	28
+611	8007	36.000465127615	48
+611	8022	36.000465143974	48
+611	8037	36.000465203256	48
+611	8091	36.000697510151	48
+611	8944	41.000465126528	48
+611	8979	41.000465373388	48
+611	8994	41.000465434084	48
+611	9029	41.000697774707	48
+611	9981	46.000465208645	48
+611	10079	46.000698087312	48
+611	10955	51.000465308184	48
+611	11922	56.000697834731	48
+612	993	6.000232258586	58
+612	2228	11.000232387438	58
+612	3378	16.000232510562	58
+612	4531	21.000232599616	58
+612	5623	26.000232688536	58
+612	5671	26.000464688536	38
+612	5898	26.000770065608	38
+612	6742	31.000232818128	58
+612	8014	36.000465127615	58
+612	8951	41.000465126528	58
+612	9988	46.000465208645	58
+612	10962	51.000465308184	58
+612	11929	56.000697834731	58
+613	993	6.000232258586	48
+613	2228	11.000232387438	48
+613	3378	16.000232510562	48
+613	4531	21.000232599616	48
+613	5623	26.000232688536	48
+613	5671	26.000464688536	28
+613	5898	26.000770065608	28
+613	6742	31.000232818128	48
+613	8014	36.000465127615	48
+613	8951	41.000465126528	48
+613	9988	46.000465208645	48
+613	10962	51.000465308184	48
+613	11929	56.000697834731	48
+614	986	6.000232258586	58
+614	1073	6.000464696069	58
+614	1078	6.000464769256	58
+614	1103	6.000465032532	58
+614	1357	6.001002657922	38
+614	1417	6.001308283312	38
+614	1447	6.001460712186	38
+614	1469	6.001613486132	38
+614	2221	11.000232387438	58
+614	2272	11.00046461434	58
+614	2302	11.000464879634	58
+614	2317	11.000465044477	58
+614	3371	16.000232510562	58
+614	3426	16.00038471563	38
+614	3462	16.000464731776	58
+614	3512	16.000465254292	58
+614	3547	16.000617319939	58
+614	3594	16.000697732824	58
+614	3624	16.00069799312	58
+614	4524	21.000232599616	58
+614	4572	21.000464762397	58
+614	4582	21.000464834841	58
+614	4668	21.000465320375	58
+614	4687	21.000697303912	58
+614	4722	21.000697929813	58
+614	5612	26.000232688536	58
+614	5675	26.000464818477	58
+614	5691	26.000464958181	58
+614	5721	26.000465058409	58
+614	5768	26.000465348484	58
+614	5880	26.000697831181	58
+614	5894	26.000770065608	38
+614	6735	31.000232818128	58
+614	6807	31.000464985133	58
+614	6812	31.000465025699	58
+614	6842	31.000465213594	58
+614	6852	31.000465288434	58
+614	7023	31.001002620409	38
+614	7069	31.001308255685	38
+614	7108	31.001461263761	38
+614	7128	31.001613646755	38
+614	7159	31.001766654831	38
+614	8007	36.000465127615	58
+614	8022	36.000465143974	58
+614	8037	36.000465203256	58
+614	8091	36.000697510151	58
+614	8944	41.000465126528	58
+614	8979	41.000465373388	58
+614	8994	41.000465434084	58
+614	9029	41.000697774707	58
+614	9981	46.000465208645	58
+614	10079	46.000698087312	58
+614	10955	51.000465308184	58
+614	11922	56.000697834731	58
+615	1357	6.001002657922	38
+615	1447	6.001460712186	38
+615	1469	6.001613486132	38
+615	3426	16.00038471563	38
+615	7023	31.001002620409	38
+615	7108	31.001461263761	38
+615	7128	31.001613646755	38
+615	7159	31.001766654831	38
+616	1141	6.000465414105	20
+616	1170	6.00069741411	20
+616	1306	6.000930423699	20
+616	1316	6.000930580488	20
+616	1346	6.000931057375	20
+616	1351	6.000931080905	20
+616	2369	11.000697476334	20
+616	2444	11.000930547107	20
+616	2470	11.001162878733	20
+616	2475	11.001162929452	20
+616	2592	11.002311295886	0
+616	3582	16.000697610369	20
+616	3740	16.001162867227	20
+616	4700	21.000697695915	20
+616	4812	21.001162865191	20
+616	4834	21.001163314647	20
+616	9107	41.001395765297	20
+616	9138	41.001627968957	20
+617	1141	6.000465414105	20
+617	2369	11.000697476334	20
+617	3582	16.000697610369	20
+617	4700	21.000697695915	20
+617	9107	41.001395765297	20
+618	1141	6.000465414105	0.000232812695
+618	1170	6.00069741411	0.000232095559
+618	1306	6.000930423699	0.000232533503
+618	1316	6.000930580488	0.000232603927
+618	1346	6.000931057375	0.000232821635
+618	1351	6.000931080905	0.0002328334
+618	2369	11.000697476334	0.000232286963
+618	2444	11.000930547107	0.000232682653
+618	2470	11.001162878733	0.000232786788
+618	2475	11.001162929452	0.000232726559
+618	2592	11.002311295886	0.001148364664
+618	3582	16.000697610369	0.000232488676
+618	3740	16.001162867227	0.000232628429
+618	4700	21.000697695915	0.000232744151
+618	4812	21.001162865191	0.000232584638
+618	4834	21.001163314647	0.000232809366
+618	9107	41.001395765297	0.00023269685
+618	9138	41.001627968957	0.000232102262
+619	1142	6.000465414105	8
+619	1143	6.000465414105	28
+619	2370	11.000697476334	28
+619	2593	11.002311295886	8
+619	3583	16.000697610369	28
+619	4701	21.000697695915	28
+619	9108	41.001395765297	28
+620	1140	6.000465414105	28
+620	1169	6.00069741411	28
+620	1305	6.000930423699	28
+620	1315	6.000930580488	28
+620	1345	6.000931057375	28
+620	1350	6.000931080905	28
+620	2368	11.000697476334	28
+620	2443	11.000930547107	28
+620	2469	11.001162878733	28
+620	2474	11.001162929452	28
+620	2591	11.002311295886	8
+620	3581	16.000697610369	28
+620	3739	16.001162867227	28
+620	4699	21.000697695915	28
+620	4811	21.001162865191	28
+620	4833	21.001163314647	28
+620	9106	41.001395765297	28
+620	9137	41.001627968957	28
+621	1140	6.000465414105	1
+621	1169	6.00069741411	2
+621	1305	6.000930423699	3
+621	1315	6.000930580488	4
+621	1345	6.000931057375	5
+621	1350	6.000931080905	6
+621	2368	11.000697476334	7
+621	2443	11.000930547107	8
+621	2469	11.001162878733	9
+621	2474	11.001162929452	10
+621	2591	11.002311295886	11
+621	3581	16.000697610369	12
+621	3739	16.001162867227	13
+621	4699	21.000697695915	14
+621	4811	21.001162865191	15
+621	4833	21.001163314647	16
+621	9106	41.001395765297	17
+621	9137	41.001627968957	18
+624	1144	6.000465414105	1
+625	2555	11.002005842768	1
+629	1147	6.000465414105	48
+629	1148	6.000465414105	28
+629	1368	6.001003039495	28
+629	2372	11.000697476334	48
+629	2557	11.002005842768	28
+629	2595	11.002311295886	28
+629	3585	16.000697610369	48
+629	4703	21.000697695915	48
+629	9110	41.001395765297	48
+631	1147	6.000465414105	0
+631	1163	6.000697414105	0.000232
+631	1368	6.001003039495	0
+631	2372	11.000697476334	0
+631	2557	11.002005842768	0
+631	2595	11.002311295886	0
+631	3585	16.000697610369	0
+631	4703	21.000697695915	0
+631	9110	41.001395765297	0
+632	0	0	0
+632	1148	6.000465414105	1
+632	1163	6.000697414105	0
+633	1138	6.000465414105	48
+633	1167	6.00069741411	48
+633	1303	6.000930423699	48
+633	1313	6.000930580488	48
+633	1343	6.000931057375	48
+633	1348	6.000931080905	48
+633	1365	6.001003039495	28
+633	1437	6.001308664885	28
+633	2366	11.000697476334	48
+633	2441	11.000930547107	48
+633	2467	11.001162878733	48
+633	2472	11.001162929452	48
+633	2553	11.002005842768	28
+633	2589	11.002311295886	28
+633	3579	16.000697610369	48
+633	3737	16.001162867227	48
+633	4697	21.000697695915	48
+633	4809	21.001162865191	48
+633	4831	21.001163314647	48
+633	9104	41.001395765297	48
+633	9135	41.001627968957	48
+634	1149	6.000465414105	58
+634	1164	6.000697414105	38
+634	1369	6.001003039495	38
+634	2373	11.000697476334	58
+634	2558	11.002005842768	38
+634	2596	11.002311295886	38
+634	3586	16.000697610369	58
+634	4704	21.000697695915	58
+634	9111	41.001395765297	58
+635	1149	6.000465414105	48
+635	1164	6.000697414105	28
+635	1369	6.001003039495	28
+635	2373	11.000697476334	48
+635	2558	11.002005842768	28
+635	2596	11.002311295886	28
+635	3586	16.000697610369	48
+635	4704	21.000697695915	48
+635	9111	41.001395765297	48
+636	1138	6.000465414105	58
+636	1167	6.00069741411	58
+636	1303	6.000930423699	58
+636	1313	6.000930580488	58
+636	1343	6.000931057375	58
+636	1348	6.000931080905	58
+636	1365	6.001003039495	38
+636	1437	6.001308664885	38
+636	1480	6.001613868887	38
+636	2366	11.000697476334	58
+636	2441	11.000930547107	58
+636	2467	11.001162878733	58
+636	2472	11.001162929452	58
+636	2523	11.00170038611	38
+636	2553	11.002005842768	38
+636	2589	11.002311295886	38
+636	3579	16.000697610369	58
+636	3737	16.001162867227	58
+636	4697	21.000697695915	58
+636	4809	21.001162865191	58
+636	4831	21.001163314647	58
+636	9104	41.001395765297	58
+636	9135	41.001627968957	58
+637	1480	6.001613868887	38
+637	2523	11.00170038611	38
+638	3505	16.000465251841	20
+638	3530	16.000465405788	20
+638	3575	16.000617937862	20
+638	3694	16.000930606367	20
+638	3706	16.000930815735	20
+638	4630	21.00046518712	20
+638	4645	21.000465191308	20
+638	4676	21.000465342309	20
+638	4784	21.000930758306	20
+638	5714	26.000465009699	20
+638	5735	26.000465124488	20
+638	5811	26.000465510018	20
+638	5939	26.000930503463	20
+638	6800	31.000464967744	20
+638	6825	31.000465107537	20
+638	7014	31.000930503026	20
+638	7950	36.000232815605	20
+638	7995	36.000464986026	20
+638	8089	36.000697221919	20
+638	8871	41.000232712786	20
+638	8927	41.00046504305	20
+638	9017	41.000697581963	20
+638	9920	46.000232633381	20
+638	10004	46.000465259332	20
+638	10072	46.000698009572	20
+638	10874	51.000232537127	20
+638	10998	51.000465414446	20
+638	11044	51.000698132061	20
+638	11837	56.000232516721	20
+638	11945	56.000698085873	20
+639	3505	16.000465251841	20
+639	4630	21.00046518712	20
+639	5714	26.000465009699	20
+639	6800	31.000464967744	20
+639	7950	36.000232815605	20
+639	8871	41.000232712786	20
+639	9920	46.000232633381	20
+639	10874	51.000232537127	20
+639	11837	56.000232516721	20
+640	3505	16.000465251841	0.000232741279
+640	3530	16.000465405788	0.000232767953
+640	3575	16.000617937862	0.000385333553
+640	3694	16.000930606367	0.000232677263
+640	3706	16.000930815735	0.000232781947
+640	4630	21.00046518712	0.00023253262
+640	4645	21.000465191308	0.000232596242
+640	4676	21.000465342309	0.000232742693
+640	4784	21.000930758306	0.000232785593
+640	5714	26.000465009699	0.000232341297
+640	5735	26.000465124488	0.000232450116
+640	5811	26.000465510018	0.000232821482
+640	5939	26.000930503463	0.000232746882
+640	6800	31.000464967744	0.00023236207
+640	6825	31.000465107537	0.000232347118
+640	7014	31.000930503026	0.000232767641
+640	7950	36.000232815605	0.000232815605
+640	7995	36.000464986026	0.000232413901
+640	8089	36.000697221919	0.000232327747
+640	8871	41.000232712786	0.000232712786
+640	8927	41.00046504305	0.000232523695
+640	9017	41.000697581963	0.000232504052
+640	9920	46.000232633381	0.000232633381
+640	10004	46.000465259332	0.000232675196
+640	10072	46.000698009572	0.000232706911
+640	10874	51.000232537127	0.000232537127
+640	10998	51.000465414446	0.000232697683
+640	11044	51.000698132061	0.000232797467
+640	11837	56.000232516721	0.000232516721
+640	11945	56.000698085873	0.000232784576
+641	3506	16.000465251841	28
+641	4631	21.00046518712	28
+641	5715	26.000465009699	28
+641	6801	31.000464967744	28
+641	7951	36.000232815605	28
+641	8872	41.000232712786	28
+641	9921	46.000232633381	28
+641	10875	51.000232537127	28
+641	11838	56.000232516721	28
+642	3504	16.000465251841	28
+642	3529	16.000465405788	28
+642	3574	16.000617937862	28
+642	3693	16.000930606367	28
+642	3705	16.000930815735	28
+642	4629	21.00046518712	28
+642	4644	21.000465191308	28
+642	4675	21.000465342309	28
+642	4783	21.000930758306	28
+642	5713	26.000465009699	28
+642	5734	26.000465124488	28
+642	5810	26.000465510018	28
+642	5938	26.000930503463	28
+642	6799	31.000464967744	28
+642	6824	31.000465107537	28
+642	7013	31.000930503026	28
+642	7949	36.000232815605	28
+642	7994	36.000464986026	28
+642	8088	36.000697221919	28
+642	8870	41.000232712786	28
+642	8926	41.00046504305	28
+642	9016	41.000697581963	28
+642	9919	46.000232633381	28
+642	10003	46.000465259332	28
+642	10071	46.000698009572	28
+642	10873	51.000232537127	28
+642	10997	51.000465414446	28
+642	11043	51.000698132061	28
+642	11836	56.000232516721	28
+642	11944	56.000698085873	28
+643	3504	16.000465251841	1
+643	3529	16.000465405788	2
+643	3574	16.000617937862	3
+643	3693	16.000930606367	4
+643	3705	16.000930815735	5
+643	4629	21.00046518712	6
+643	4644	21.000465191308	7
+643	4675	21.000465342309	8
+643	4783	21.000930758306	9
+643	5713	26.000465009699	10
+643	5734	26.000465124488	11
+643	5810	26.000465510018	12
+643	5938	26.000930503463	13
+643	6799	31.000464967744	14
+643	6824	31.000465107537	15
+643	7013	31.000930503026	16
+643	7949	36.000232815605	17
+643	7994	36.000464986026	18
+643	8088	36.000697221919	19
+643	8870	41.000232712786	20
+643	8926	41.00046504305	21
+643	9016	41.000697581963	22
+643	9919	46.000232633381	23
+643	10003	46.000465259332	24
+643	10071	46.000698009572	25
+643	10873	51.000232537127	26
+643	10997	51.000465414446	27
+643	11043	51.000698132061	28
+643	11836	56.000232516721	29
+643	11944	56.000698085873	30
+651	3508	16.000465251841	48
+651	4633	21.00046518712	48
+651	5717	26.000465009699	48
+651	6803	31.000464967744	48
+651	7953	36.000232815605	48
+651	8874	41.000232712786	48
+651	9923	46.000232633381	48
+651	10877	51.000232537127	48
+651	11840	56.000232516721	48
+653	3508	16.000465251841	0
+653	4633	21.00046518712	0
+653	5717	26.000465009699	0
+653	6803	31.000464967744	0
+653	7953	36.000232815605	0
+653	8874	41.000232712786	0
+653	9923	46.000232633381	0
+653	10877	51.000232537127	0
+653	11840	56.000232516721	0
+654	0	0	0
+655	3502	16.000465251841	48
+655	3527	16.000465405788	48
+655	3572	16.000617937862	48
+655	3691	16.000930606367	48
+655	3703	16.000930815735	48
+655	4627	21.00046518712	48
+655	4642	21.000465191308	48
+655	4673	21.000465342309	48
+655	4781	21.000930758306	48
+655	5711	26.000465009699	48
+655	5732	26.000465124488	48
+655	5808	26.000465510018	48
+655	5850	26.000617510018	28
+655	5936	26.000930503463	48
+655	6797	31.000464967744	48
+655	6822	31.000465107537	48
+655	7011	31.000930503026	48
+655	7947	36.000232815605	48
+655	7992	36.000464986026	48
+655	8086	36.000697221919	48
+655	8868	41.000232712786	48
+655	8924	41.00046504305	48
+655	9014	41.000697581963	48
+655	9917	46.000232633381	48
+655	10001	46.000465259332	48
+655	10069	46.000698009572	48
+655	10871	51.000232537127	48
+655	10995	51.000465414446	48
+655	11041	51.000698132061	48
+655	11834	56.000232516721	48
+655	11942	56.000698085873	48
+656	3509	16.000465251841	58
+656	4634	21.00046518712	58
+656	5718	26.000465009699	58
+656	6804	31.000464967744	58
+656	7954	36.000232815605	58
+656	8875	41.000232712786	58
+656	9924	46.000232633381	58
+656	10878	51.000232537127	58
+656	11841	56.000232516721	58
+657	3509	16.000465251841	48
+657	4634	21.00046518712	48
+657	5718	26.000465009699	48
+657	6804	31.000464967744	48
+657	7954	36.000232815605	48
+657	8875	41.000232712786	48
+657	9924	46.000232633381	48
+657	10878	51.000232537127	48
+657	11841	56.000232516721	48
+658	3442	16.000385333553	38
+658	3502	16.000465251841	58
+658	3527	16.000465405788	58
+658	3572	16.000617937862	58
+658	3691	16.000930606367	58
+658	3703	16.000930815735	58
+658	4627	21.00046518712	58
+658	4642	21.000465191308	58
+658	4673	21.000465342309	58
+658	4781	21.000930758306	58
+658	5711	26.000465009699	58
+658	5732	26.000465124488	58
+658	5808	26.000465510018	58
+658	5850	26.000617510018	38
+658	5923	26.00092288709	38
+658	5936	26.000930503463	58
+658	6797	31.000464967744	58
+658	6822	31.000465107537	58
+658	7011	31.000930503026	58
+658	7106	31.001461082864	38
+658	7157	31.001766473934	38
+658	7947	36.000232815605	58
+658	7992	36.000464986026	58
+658	8086	36.000697221919	58
+658	8868	41.000232712786	58
+658	8924	41.00046504305	58
+658	9014	41.000697581963	58
+658	9917	46.000232633381	58
+658	10001	46.000465259332	58
+658	10069	46.000698009572	58
+658	10871	51.000232537127	58
+658	10995	51.000465414446	58
+658	11041	51.000698132061	58
+658	11834	56.000232516721	58
+658	11942	56.000698085873	58
+659	3442	16.000385333553	38
+659	5923	26.00092288709	38
+659	7106	31.001461082864	38
+659	7157	31.001766473934	38
