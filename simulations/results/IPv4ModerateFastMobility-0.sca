@@ -1,14 +1,14 @@
 version 2
-run IPv4ModerateFastMobility-0-20141003-11:51:07-303308
+run IPv4ModerateFastMobility-0-20141006-17:43:26-44744
 attr configname IPv4ModerateFastMobility
-attr datetime 20141003-11:51:07
+attr datetime 20141006-17:43:26
 attr experiment IPv4ModerateFastMobility
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvars2 $repetition=0
 attr measurement ""
 attr network OrionNetwork
-attr processid 303308
+attr processid 44744
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -51,7 +51,7 @@ attr interpolationmode  none
 attr source  dropPkBitError
 attr title  "packets dropped/bit error, sum(packetBytes)"
 statistic OrionNetwork.host[0].wlan[0].queue 	queueingTime:histogram
-field count 13
+field count 17
 field mean 0
 field stddev 0
 field sum 0
@@ -76,7 +76,7 @@ bin	-0.13333333333333	0
 bin	-0.1	0
 bin	-0.066666666666667	0
 bin	-0.033333333333333	0
-bin	-6.9388939039072e-018	13
+bin	-6.9388939039072e-018	17
 bin	0.033333333333333	0
 bin	0.066666666666667	0
 bin	0.1	0
@@ -106,76 +106,76 @@ attr title  "queue length, max"
 scalar OrionNetwork.host[0].wlan[0].queue 	queueLength:timeavg 	0
 attr interpolationmode  sample-hold
 attr title  "queue length, timeavg"
-scalar OrionNetwork.host[0].wlan[0].queue 	rcvdPk:count 	13
+scalar OrionNetwork.host[0].wlan[0].queue 	rcvdPk:count 	17
 attr interpolationmode  none
 attr title  "received packets, count"
-scalar OrionNetwork.host[0].wlan[0].queue 	rcvdPk:sum(packetBytes) 	584
+scalar OrionNetwork.host[0].wlan[0].queue 	rcvdPk:sum(packetBytes) 	776
 attr interpolationmode  none
 attr title  "received packets, sum(packetBytes)"
-scalar OrionNetwork.host[0].wlan[0].mac 	droppedPkNotForUs:count 	4
+scalar OrionNetwork.host[0].wlan[0].mac 	droppedPkNotForUs:count 	8
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, count"
-scalar OrionNetwork.host[0].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	152
+scalar OrionNetwork.host[0].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	384
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, sum(packetBytes)"
-scalar OrionNetwork.host[0].wlan[0].mac 	rcvdPkFromHL:count 	13
+scalar OrionNetwork.host[0].wlan[0].mac 	rcvdPkFromHL:count 	17
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar OrionNetwork.host[0].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	584
+scalar OrionNetwork.host[0].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	776
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[0].wlan[0].mac 	passedUpPk:count 	52
+scalar OrionNetwork.host[0].wlan[0].mac 	passedUpPk:count 	56
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar OrionNetwork.host[0].wlan[0].mac 	passedUpPk:sum(packetBytes) 	2356
+scalar OrionNetwork.host[0].wlan[0].mac 	passedUpPk:sum(packetBytes) 	2548
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[0].wlan[0].mac 	rcvdPkFromLL:count 	56
+scalar OrionNetwork.host[0].wlan[0].mac 	rcvdPkFromLL:count 	64
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar OrionNetwork.host[0].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	3028
+scalar OrionNetwork.host[0].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	3492
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
-scalar OrionNetwork.host[0].wlan[0].mac 	sentDownPk:count 	13
+scalar OrionNetwork.host[0].wlan[0].mac 	sentDownPk:count 	17
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, count"
-scalar OrionNetwork.host[0].wlan[0].mac 	sentDownPk:sum(packetBytes) 	714
+scalar OrionNetwork.host[0].wlan[0].mac 	sentDownPk:sum(packetBytes) 	946
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
-scalar OrionNetwork.host[0].udpApp[0] 	"packets sent" 	11
-scalar OrionNetwork.host[0].udpApp[0] 	"packets received" 	46
-scalar OrionNetwork.host[0].udpApp[0] 	sentPk:count 	11
+scalar OrionNetwork.host[0].udpApp[0] 	"packets sent" 	15
+scalar OrionNetwork.host[0].udpApp[0] 	"packets received" 	50
+scalar OrionNetwork.host[0].udpApp[0] 	sentPk:count 	15
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, count"
-scalar OrionNetwork.host[0].udpApp[0] 	sentPk:sum(packetBytes) 	220
+scalar OrionNetwork.host[0].udpApp[0] 	sentPk:sum(packetBytes) 	300
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, sum(packetBytes)"
-scalar OrionNetwork.host[0].udpApp[0] 	rcvdPk:count 	46
+scalar OrionNetwork.host[0].udpApp[0] 	rcvdPk:count 	50
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, count"
-scalar OrionNetwork.host[0].udpApp[0] 	rcvdPk:sum(packetBytes) 	840
+scalar OrionNetwork.host[0].udpApp[0] 	rcvdPk:sum(packetBytes) 	920
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, sum(packetBytes)"
 statistic OrionNetwork.host[0].udpApp[0] 	rcvdPkLifetime:stats
-field count 46
-field mean 0.00028725316576087
-field stddev 0.00021510123125726
-field sum 0.013213645625
-field sqrsum 5.877745823001e-006
+field count 50
+field mean 0.00028288600598
+field stddev 0.000206676852765
+field sum 0.014144300299
+field sqrsum 6.0942753709392e-006
 field min 0.000152604309
 field max 0.001301299938
 attr interpolationmode  none
@@ -188,22 +188,22 @@ attr title  "packets dropped (checksum error), count"
 scalar OrionNetwork.host[0].udp 	droppedPkWrongPort:count 	3
 attr interpolationmode  none
 attr title  "packets dropped (wrong port), count"
-scalar OrionNetwork.host[0].udp 	passedUpPk:count 	46
+scalar OrionNetwork.host[0].udp 	passedUpPk:count 	50
 attr interpolationmode  none
 attr title  "packets passed up, count"
-scalar OrionNetwork.host[0].udp 	sentPk:count 	11
+scalar OrionNetwork.host[0].udp 	sentPk:count 	15
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, count"
-scalar OrionNetwork.host[0].udp 	sentPk:sum(packetBytes) 	308
+scalar OrionNetwork.host[0].udp 	sentPk:sum(packetBytes) 	420
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, sum(packetBytes)"
-scalar OrionNetwork.host[0].udp 	rcvdPk:count 	49
+scalar OrionNetwork.host[0].udp 	rcvdPk:count 	53
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, count"
-scalar OrionNetwork.host[0].udp 	rcvdPk:sum(packetBytes) 	1292
+scalar OrionNetwork.host[0].udp 	rcvdPk:sum(packetBytes) 	1404
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, sum(packetBytes)"
@@ -242,47 +242,47 @@ attr interpolationmode  none
 attr source  dropPkBitError
 attr title  "packets dropped/bit error, sum(packetBytes)"
 statistic OrionNetwork.host[1].wlan[0].queue 	queueingTime:histogram
-field count 16
-field mean 9.5377693125e-006
-field stddev 3.815107725e-005
-field sum 0.000152604309
-field sqrsum 2.3288075125367e-008
+field count 21
+field mean 2.9426958952381e-005
+field stddev 7.5294103200557e-005
+field sum 0.000617966138
+field sqrsum 1.3156890371241e-007
 field min 0
-field max 0.000152604309
+field max 0.000232760419
 attr interpolationmode  none
 attr title  "queueing time, histogram"
 bin	-INF	0
-bin	-7.63021545e-005	0
-bin	-6.61285339e-005	0
-bin	-5.59549133e-005	0
-bin	-4.57812927e-005	0
-bin	-3.56076721e-005	0
-bin	-2.54340515e-005	0
-bin	-1.52604309e-005	0
-bin	-5.0868103e-006	15
-bin	5.0868103e-006	0
-bin	1.52604309e-005	0
-bin	2.54340515e-005	0
-bin	3.56076721e-005	0
-bin	4.57812927e-005	0
-bin	5.59549133e-005	0
-bin	6.61285339e-005	0
-bin	7.63021545e-005	0
-bin	8.64757751e-005	0
-bin	9.66493957e-005	0
-bin	0.0001068230163	0
-bin	0.0001169966369	0
-bin	0.0001271702575	0
-bin	0.0001373438781	0
-bin	0.0001475174987	1
-bin	0.0001576911193	0
-bin	0.0001678647399	0
-bin	0.0001780383605	0
-bin	0.0001882119811	0
-bin	0.0001983856017	0
-bin	0.0002085592223	0
-bin	0.0002187328429	0
-bin	0.0002289064635	0
+bin	-0.0001163802095	0
+bin	-0.00010086284823333	0
+bin	-8.5345486966667e-005	0
+bin	-6.98281257e-005	0
+bin	-5.4310764433333e-005	0
+bin	-3.8793403166667e-005	0
+bin	-2.32760419e-005	0
+bin	-7.7586806333333e-006	18
+bin	7.7586806333333e-006	0
+bin	2.32760419e-005	0
+bin	3.8793403166667e-005	0
+bin	5.4310764433333e-005	0
+bin	6.98281257e-005	0
+bin	8.5345486966667e-005	0
+bin	0.00010086284823333	0
+bin	0.0001163802095	0
+bin	0.00013189757076667	0
+bin	0.00014741493203333	1
+bin	0.0001629322933	0
+bin	0.00017844965456667	0
+bin	0.00019396701583333	0
+bin	0.0002094843771	0
+bin	0.00022500173836667	2
+bin	0.00024051909963333	0
+bin	0.0002560364609	0
+bin	0.00027155382216667	0
+bin	0.00028707118343333	0
+bin	0.0003025885447	0
+bin	0.00031810590596667	0
+bin	0.00033362326723333	0
+bin	0.0003491406285	0
 scalar OrionNetwork.host[1].wlan[0].queue 	dropPk:count 	0
 attr interpolationmode  none
 attr source  dropPkByQueue
@@ -294,79 +294,79 @@ attr title  "dropped packets, sum(packetBytes)"
 scalar OrionNetwork.host[1].wlan[0].queue 	queueLength:max 	1
 attr interpolationmode  sample-hold
 attr title  "queue length, max"
-scalar OrionNetwork.host[1].wlan[0].queue 	queueLength:timeavg 	2.54340515e-006
+scalar OrionNetwork.host[1].wlan[0].queue 	queueLength:timeavg 	1.0299435633333e-005
 attr interpolationmode  sample-hold
 attr title  "queue length, timeavg"
-scalar OrionNetwork.host[1].wlan[0].queue 	rcvdPk:count 	16
+scalar OrionNetwork.host[1].wlan[0].queue 	rcvdPk:count 	21
 attr interpolationmode  none
 attr title  "received packets, count"
-scalar OrionNetwork.host[1].wlan[0].queue 	rcvdPk:sum(packetBytes) 	648
+scalar OrionNetwork.host[1].wlan[0].queue 	rcvdPk:sum(packetBytes) 	888
 attr interpolationmode  none
 attr title  "received packets, sum(packetBytes)"
-scalar OrionNetwork.host[1].wlan[0].mac 	droppedPkNotForUs:count 	3
+scalar OrionNetwork.host[1].wlan[0].mac 	droppedPkNotForUs:count 	6
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, count"
-scalar OrionNetwork.host[1].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	114
+scalar OrionNetwork.host[1].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	288
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, sum(packetBytes)"
-scalar OrionNetwork.host[1].wlan[0].mac 	rcvdPkFromHL:count 	16
+scalar OrionNetwork.host[1].wlan[0].mac 	rcvdPkFromHL:count 	21
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar OrionNetwork.host[1].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	648
+scalar OrionNetwork.host[1].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	888
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[1].wlan[0].mac 	passedUpPk:count 	55
+scalar OrionNetwork.host[1].wlan[0].mac 	passedUpPk:count 	60
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar OrionNetwork.host[1].wlan[0].mac 	passedUpPk:sum(packetBytes) 	2520
+scalar OrionNetwork.host[1].wlan[0].mac 	passedUpPk:sum(packetBytes) 	2760
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[1].wlan[0].mac 	rcvdPkFromLL:count 	58
+scalar OrionNetwork.host[1].wlan[0].mac 	rcvdPkFromLL:count 	66
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar OrionNetwork.host[1].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	3184
+scalar OrionNetwork.host[1].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	3648
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
-scalar OrionNetwork.host[1].wlan[0].mac 	sentDownPk:count 	16
+scalar OrionNetwork.host[1].wlan[0].mac 	sentDownPk:count 	21
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, count"
-scalar OrionNetwork.host[1].wlan[0].mac 	sentDownPk:sum(packetBytes) 	808
+scalar OrionNetwork.host[1].wlan[0].mac 	sentDownPk:sum(packetBytes) 	1098
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
 scalar OrionNetwork.host[1].udpApp[0] 	"packets sent" 	10
-scalar OrionNetwork.host[1].udpApp[0] 	"packets received" 	51
-scalar OrionNetwork.host[1].udpApp[0] 	sentPk:count 	10
+scalar OrionNetwork.host[1].udpApp[0] 	"packets received" 	56
+scalar OrionNetwork.host[1].udpApp[0] 	sentPk:count 	14
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, count"
-scalar OrionNetwork.host[1].udpApp[0] 	sentPk:sum(packetBytes) 	200
+scalar OrionNetwork.host[1].udpApp[0] 	sentPk:sum(packetBytes) 	260
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, sum(packetBytes)"
-scalar OrionNetwork.host[1].udpApp[0] 	rcvdPk:count 	51
+scalar OrionNetwork.host[1].udpApp[0] 	rcvdPk:count 	56
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, count"
-scalar OrionNetwork.host[1].udpApp[0] 	rcvdPk:sum(packetBytes) 	980
+scalar OrionNetwork.host[1].udpApp[0] 	rcvdPk:sum(packetBytes) 	1080
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, sum(packetBytes)"
 statistic OrionNetwork.host[1].udpApp[0] 	rcvdPkLifetime:stats
-field count 51
-field mean 0.00025949367588235
-field stddev 0.00014224457838255
-field sum 0.01323417747
-field sqrsum 4.4458613629311e-006
+field count 56
+field mean 0.00025710094678571
+field stddev 0.00013584391086043
+field sum 0.01439765302
+field sqrsum 4.7165964694162e-006
 field min 0.000232111321
 field max 0.001148539519
 attr interpolationmode  none
@@ -379,22 +379,22 @@ attr title  "packets dropped (checksum error), count"
 scalar OrionNetwork.host[1].udp 	droppedPkWrongPort:count 	0
 attr interpolationmode  none
 attr title  "packets dropped (wrong port), count"
-scalar OrionNetwork.host[1].udp 	passedUpPk:count 	51
+scalar OrionNetwork.host[1].udp 	passedUpPk:count 	56
 attr interpolationmode  none
 attr title  "packets passed up, count"
-scalar OrionNetwork.host[1].udp 	sentPk:count 	13
+scalar OrionNetwork.host[1].udp 	sentPk:count 	18
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, count"
-scalar OrionNetwork.host[1].udp 	sentPk:sum(packetBytes) 	304
+scalar OrionNetwork.host[1].udp 	sentPk:sum(packetBytes) 	444
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, sum(packetBytes)"
-scalar OrionNetwork.host[1].udp 	rcvdPk:count 	51
+scalar OrionNetwork.host[1].udp 	rcvdPk:count 	56
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, count"
-scalar OrionNetwork.host[1].udp 	rcvdPk:sum(packetBytes) 	1388
+scalar OrionNetwork.host[1].udp 	rcvdPk:sum(packetBytes) 	1528
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, sum(packetBytes)"
@@ -433,47 +433,47 @@ attr interpolationmode  none
 attr source  dropPkBitError
 attr title  "packets dropped/bit error, sum(packetBytes)"
 statistic OrionNetwork.host[2].wlan[0].queue 	queueingTime:histogram
-field count 14
-field mean 0
-field stddev 0
-field sum 0
-field sqrsum 0
+field count 16
+field mean 1.45434709375e-005
+field stddev 5.817388375e-005
+field sum 0.000232695535
+field sqrsum 5.4147212008936e-008
 field min 0
-field max 0
+field max 0.000232695535
 attr interpolationmode  none
 attr title  "queueing time, histogram"
 bin	-INF	0
-bin	-0.5	0
-bin	-0.46666666666667	0
-bin	-0.43333333333333	0
-bin	-0.4	0
-bin	-0.36666666666667	0
-bin	-0.33333333333333	0
-bin	-0.3	0
-bin	-0.26666666666667	0
-bin	-0.23333333333333	0
-bin	-0.2	0
-bin	-0.16666666666667	0
-bin	-0.13333333333333	0
-bin	-0.1	0
-bin	-0.066666666666667	0
-bin	-0.033333333333333	0
-bin	-6.9388939039072e-018	14
-bin	0.033333333333333	0
-bin	0.066666666666667	0
-bin	0.1	0
-bin	0.13333333333333	0
-bin	0.16666666666667	0
-bin	0.2	0
-bin	0.23333333333333	0
-bin	0.26666666666667	0
-bin	0.3	0
-bin	0.33333333333333	0
-bin	0.36666666666667	0
-bin	0.4	0
-bin	0.43333333333333	0
-bin	0.46666666666667	0
-bin	0.5	0
+bin	-0.0001163477675	0
+bin	-0.00010083473183333	0
+bin	-8.5321696166667e-005	0
+bin	-6.98086605e-005	0
+bin	-5.4295624833333e-005	0
+bin	-3.8782589166667e-005	0
+bin	-2.32695535e-005	0
+bin	-7.7565178333333e-006	15
+bin	7.7565178333333e-006	0
+bin	2.32695535e-005	0
+bin	3.8782589166667e-005	0
+bin	5.4295624833333e-005	0
+bin	6.98086605e-005	0
+bin	8.5321696166667e-005	0
+bin	0.00010083473183333	0
+bin	0.0001163477675	0
+bin	0.00013186080316667	0
+bin	0.00014737383883333	0
+bin	0.0001628868745	0
+bin	0.00017839991016667	0
+bin	0.00019391294583333	0
+bin	0.0002094259815	0
+bin	0.00022493901716667	1
+bin	0.00024045205283333	0
+bin	0.0002559650885	0
+bin	0.00027147812416667	0
+bin	0.00028699115983333	0
+bin	0.0003025041955	0
+bin	0.00031801723116667	0
+bin	0.00033353026683333	0
+bin	0.0003490433025	0
 scalar OrionNetwork.host[2].wlan[0].queue 	dropPk:count 	0
 attr interpolationmode  none
 attr source  dropPkByQueue
@@ -482,84 +482,84 @@ scalar OrionNetwork.host[2].wlan[0].queue 	dropPk:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  dropPkByQueue
 attr title  "dropped packets, sum(packetBytes)"
-scalar OrionNetwork.host[2].wlan[0].queue 	queueLength:max 	0
+scalar OrionNetwork.host[2].wlan[0].queue 	queueLength:max 	1
 attr interpolationmode  sample-hold
 attr title  "queue length, max"
-scalar OrionNetwork.host[2].wlan[0].queue 	queueLength:timeavg 	0
+scalar OrionNetwork.host[2].wlan[0].queue 	queueLength:timeavg 	3.8782589166667e-006
 attr interpolationmode  sample-hold
 attr title  "queue length, timeavg"
-scalar OrionNetwork.host[2].wlan[0].queue 	rcvdPk:count 	14
+scalar OrionNetwork.host[2].wlan[0].queue 	rcvdPk:count 	16
 attr interpolationmode  none
 attr title  "received packets, count"
-scalar OrionNetwork.host[2].wlan[0].queue 	rcvdPk:sum(packetBytes) 	612
+scalar OrionNetwork.host[2].wlan[0].queue 	rcvdPk:sum(packetBytes) 	708
 attr interpolationmode  none
 attr title  "received packets, sum(packetBytes)"
-scalar OrionNetwork.host[2].wlan[0].mac 	droppedPkNotForUs:count 	9
+scalar OrionNetwork.host[2].wlan[0].mac 	droppedPkNotForUs:count 	17
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, count"
-scalar OrionNetwork.host[2].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	342
+scalar OrionNetwork.host[2].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	806
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, sum(packetBytes)"
-scalar OrionNetwork.host[2].wlan[0].mac 	rcvdPkFromHL:count 	14
+scalar OrionNetwork.host[2].wlan[0].mac 	rcvdPkFromHL:count 	16
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar OrionNetwork.host[2].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	612
+scalar OrionNetwork.host[2].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	708
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[2].wlan[0].mac 	passedUpPk:count 	49
+scalar OrionNetwork.host[2].wlan[0].mac 	passedUpPk:count 	51
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar OrionNetwork.host[2].wlan[0].mac 	passedUpPk:sum(packetBytes) 	2232
+scalar OrionNetwork.host[2].wlan[0].mac 	passedUpPk:sum(packetBytes) 	2328
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[2].wlan[0].mac 	rcvdPkFromLL:count 	58
+scalar OrionNetwork.host[2].wlan[0].mac 	rcvdPkFromLL:count 	68
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar OrionNetwork.host[2].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	3064
+scalar OrionNetwork.host[2].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	3644
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
-scalar OrionNetwork.host[2].wlan[0].mac 	sentDownPk:count 	14
+scalar OrionNetwork.host[2].wlan[0].mac 	sentDownPk:count 	16
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, count"
-scalar OrionNetwork.host[2].wlan[0].mac 	sentDownPk:sum(packetBytes) 	752
+scalar OrionNetwork.host[2].wlan[0].mac 	sentDownPk:sum(packetBytes) 	868
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
 scalar OrionNetwork.host[2].udpApp[0] 	"packets sent" 	11
-scalar OrionNetwork.host[2].udpApp[0] 	"packets received" 	44
-scalar OrionNetwork.host[2].udpApp[0] 	sentPk:count 	11
+scalar OrionNetwork.host[2].udpApp[0] 	"packets received" 	46
+scalar OrionNetwork.host[2].udpApp[0] 	sentPk:count 	12
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, count"
-scalar OrionNetwork.host[2].udpApp[0] 	sentPk:sum(packetBytes) 	220
+scalar OrionNetwork.host[2].udpApp[0] 	sentPk:sum(packetBytes) 	240
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, sum(packetBytes)"
-scalar OrionNetwork.host[2].udpApp[0] 	rcvdPk:count 	44
+scalar OrionNetwork.host[2].udpApp[0] 	rcvdPk:count 	46
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, count"
-scalar OrionNetwork.host[2].udpApp[0] 	rcvdPk:sum(packetBytes) 	860
+scalar OrionNetwork.host[2].udpApp[0] 	rcvdPk:sum(packetBytes) 	900
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, sum(packetBytes)"
 statistic OrionNetwork.host[2].udpApp[0] 	rcvdPkLifetime:stats
-field count 44
-field mean 0.00024643094763636
-field stddev 7.2251513886088e-005
-field sum 0.010842961696
-field sqrsum 2.8965134200598e-006
+field count 46
+field mean 0.00025595642841304
+field stddev 9.7136065717091e-005
+field sum 0.011773995707
+field sqrsum 3.438223576149e-006
 field min 0.000232061108
-field max 0.000690452914
+field max 0.000698216373
 attr interpolationmode  none
 attr source  messageAge(rcvdPk)
 attr title  "received packet lifetime, stats"
@@ -570,22 +570,22 @@ attr title  "packets dropped (checksum error), count"
 scalar OrionNetwork.host[2].udp 	droppedPkWrongPort:count 	0
 attr interpolationmode  none
 attr title  "packets dropped (wrong port), count"
-scalar OrionNetwork.host[2].udp 	passedUpPk:count 	44
+scalar OrionNetwork.host[2].udp 	passedUpPk:count 	46
 attr interpolationmode  none
 attr title  "packets passed up, count"
-scalar OrionNetwork.host[2].udp 	sentPk:count 	12
+scalar OrionNetwork.host[2].udp 	sentPk:count 	14
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, count"
-scalar OrionNetwork.host[2].udp 	sentPk:sum(packetBytes) 	316
+scalar OrionNetwork.host[2].udp 	sentPk:sum(packetBytes) 	372
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, sum(packetBytes)"
-scalar OrionNetwork.host[2].udp 	rcvdPk:count 	44
+scalar OrionNetwork.host[2].udp 	rcvdPk:count 	46
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, count"
-scalar OrionNetwork.host[2].udp 	rcvdPk:sum(packetBytes) 	1212
+scalar OrionNetwork.host[2].udp 	rcvdPk:sum(packetBytes) 	1268
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, sum(packetBytes)"
@@ -815,9 +815,9 @@ attr interpolationmode  none
 attr source  dropPkBitError
 attr title  "packets dropped/bit error, sum(packetBytes)"
 statistic OrionNetwork.host[4].wlan[0].queue 	queueingTime:histogram
-field count 6
-field mean 3.8666666666667e-005
-field stddev 9.4713603387616e-005
+field count 7
+field mean 3.3142857142857e-005
+field stddev 8.7687757738141e-005
 field sum 0.000232
 field sqrsum 5.3824e-008
 field min 0
@@ -832,7 +832,7 @@ bin	-6.96e-005	0
 bin	-5.4133333333333e-005	0
 bin	-3.8666666666667e-005	0
 bin	-2.32e-005	0
-bin	-7.7333333333333e-006	5
+bin	-7.7333333333333e-006	6
 bin	7.7333333333333e-006	0
 bin	2.32e-005	0
 bin	3.8666666666667e-005	0
@@ -870,78 +870,78 @@ attr title  "queue length, max"
 scalar OrionNetwork.host[4].wlan[0].queue 	queueLength:timeavg 	3.8666666666667e-006
 attr interpolationmode  sample-hold
 attr title  "queue length, timeavg"
-scalar OrionNetwork.host[4].wlan[0].queue 	rcvdPk:count 	6
+scalar OrionNetwork.host[4].wlan[0].queue 	rcvdPk:count 	7
 attr interpolationmode  none
 attr title  "received packets, count"
-scalar OrionNetwork.host[4].wlan[0].queue 	rcvdPk:sum(packetBytes) 	248
+scalar OrionNetwork.host[4].wlan[0].queue 	rcvdPk:sum(packetBytes) 	296
 attr interpolationmode  none
 attr title  "received packets, sum(packetBytes)"
-scalar OrionNetwork.host[4].wlan[0].mac 	droppedPkNotForUs:count 	4
+scalar OrionNetwork.host[4].wlan[0].mac 	droppedPkNotForUs:count 	6
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, count"
-scalar OrionNetwork.host[4].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	152
+scalar OrionNetwork.host[4].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	268
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, sum(packetBytes)"
-scalar OrionNetwork.host[4].wlan[0].mac 	rcvdPkFromHL:count 	6
+scalar OrionNetwork.host[4].wlan[0].mac 	rcvdPkFromHL:count 	7
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar OrionNetwork.host[4].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	248
+scalar OrionNetwork.host[4].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	296
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[4].wlan[0].mac 	passedUpPk:count 	13
+scalar OrionNetwork.host[4].wlan[0].mac 	passedUpPk:count 	14
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar OrionNetwork.host[4].wlan[0].mac 	passedUpPk:sum(packetBytes) 	564
+scalar OrionNetwork.host[4].wlan[0].mac 	passedUpPk:sum(packetBytes) 	612
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[4].wlan[0].mac 	rcvdPkFromLL:count 	17
+scalar OrionNetwork.host[4].wlan[0].mac 	rcvdPkFromLL:count 	20
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar OrionNetwork.host[4].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	846
+scalar OrionNetwork.host[4].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	1020
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
-scalar OrionNetwork.host[4].wlan[0].mac 	sentDownPk:count 	6
+scalar OrionNetwork.host[4].wlan[0].mac 	sentDownPk:count 	7
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, count"
-scalar OrionNetwork.host[4].wlan[0].mac 	sentDownPk:sum(packetBytes) 	308
+scalar OrionNetwork.host[4].wlan[0].mac 	sentDownPk:sum(packetBytes) 	366
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
 scalar OrionNetwork.host[4].udpApp[0] 	"packets sent" 	4
-scalar OrionNetwork.host[4].udpApp[0] 	"packets received" 	10
-scalar OrionNetwork.host[4].udpApp[0] 	sentPk:count 	4
+scalar OrionNetwork.host[4].udpApp[0] 	"packets received" 	11
+scalar OrionNetwork.host[4].udpApp[0] 	sentPk:count 	6
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, count"
-scalar OrionNetwork.host[4].udpApp[0] 	sentPk:sum(packetBytes) 	80
+scalar OrionNetwork.host[4].udpApp[0] 	sentPk:sum(packetBytes) 	100
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, sum(packetBytes)"
-scalar OrionNetwork.host[4].udpApp[0] 	rcvdPk:count 	10
+scalar OrionNetwork.host[4].udpApp[0] 	rcvdPk:count 	11
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, count"
-scalar OrionNetwork.host[4].udpApp[0] 	rcvdPk:sum(packetBytes) 	200
+scalar OrionNetwork.host[4].udpApp[0] 	rcvdPk:sum(packetBytes) 	220
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, sum(packetBytes)"
 statistic OrionNetwork.host[4].udpApp[0] 	rcvdPkLifetime:stats
-field count 10
-field mean 0.0002325366512
-field stddev 2.256047460328e-007
-field sum 0.002325366512
-field sqrsum 5.4073339959062e-007
+field count 11
+field mean 0.00031719055072727
+field stddev 0.00028076530334901
+field sum 0.003489096058
+field sqrsum 1.894999855824e-006
 field min 0.000232137258
-field max 0.000232817638
+field max 0.001163729546
 attr interpolationmode  none
 attr source  messageAge(rcvdPk)
 attr title  "received packet lifetime, stats"
@@ -952,22 +952,22 @@ attr title  "packets dropped (checksum error), count"
 scalar OrionNetwork.host[4].udp 	droppedPkWrongPort:count 	0
 attr interpolationmode  none
 attr title  "packets dropped (wrong port), count"
-scalar OrionNetwork.host[4].udp 	passedUpPk:count 	10
+scalar OrionNetwork.host[4].udp 	passedUpPk:count 	11
 attr interpolationmode  none
 attr title  "packets passed up, count"
-scalar OrionNetwork.host[4].udp 	sentPk:count 	5
+scalar OrionNetwork.host[4].udp 	sentPk:count 	6
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, count"
-scalar OrionNetwork.host[4].udp 	sentPk:sum(packetBytes) 	120
+scalar OrionNetwork.host[4].udp 	sentPk:sum(packetBytes) 	148
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, sum(packetBytes)"
-scalar OrionNetwork.host[4].udp 	rcvdPk:count 	10
+scalar OrionNetwork.host[4].udp 	rcvdPk:count 	11
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, count"
-scalar OrionNetwork.host[4].udp 	rcvdPk:sum(packetBytes) 	280
+scalar OrionNetwork.host[4].udp 	rcvdPk:sum(packetBytes) 	308
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, sum(packetBytes)"
@@ -1067,11 +1067,11 @@ attr title  "received packets, count"
 scalar OrionNetwork.host[5].wlan[0].queue 	rcvdPk:sum(packetBytes) 	192
 attr interpolationmode  none
 attr title  "received packets, sum(packetBytes)"
-scalar OrionNetwork.host[5].wlan[0].mac 	droppedPkNotForUs:count 	4
+scalar OrionNetwork.host[5].wlan[0].mac 	droppedPkNotForUs:count 	6
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, count"
-scalar OrionNetwork.host[5].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	152
+scalar OrionNetwork.host[5].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	268
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, sum(packetBytes)"
@@ -1091,11 +1091,11 @@ scalar OrionNetwork.host[5].wlan[0].mac 	passedUpPk:sum(packetBytes) 	392
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[5].wlan[0].mac 	rcvdPkFromLL:count 	13
+scalar OrionNetwork.host[5].wlan[0].mac 	rcvdPkFromLL:count 	15
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar OrionNetwork.host[5].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	634
+scalar OrionNetwork.host[5].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	750
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -1300,7 +1300,7 @@ attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
 scalar OrionNetwork.host[6].udpApp[0] 	"packets sent" 	5
 scalar OrionNetwork.host[6].udpApp[0] 	"packets received" 	7
-scalar OrionNetwork.host[6].udpApp[0] 	sentPk:count 	5
+scalar OrionNetwork.host[6].udpApp[0] 	sentPk:count 	6
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, count"
@@ -1449,11 +1449,11 @@ attr title  "received packets, count"
 scalar OrionNetwork.host[7].wlan[0].queue 	rcvdPk:sum(packetBytes) 	528
 attr interpolationmode  none
 attr title  "received packets, sum(packetBytes)"
-scalar OrionNetwork.host[7].wlan[0].mac 	droppedPkNotForUs:count 	10
+scalar OrionNetwork.host[7].wlan[0].mac 	droppedPkNotForUs:count 	22
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, count"
-scalar OrionNetwork.host[7].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	380
+scalar OrionNetwork.host[7].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	1076
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, sum(packetBytes)"
@@ -1473,11 +1473,11 @@ scalar OrionNetwork.host[7].wlan[0].mac 	passedUpPk:sum(packetBytes) 	2820
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[7].wlan[0].mac 	rcvdPkFromLL:count 	70
+scalar OrionNetwork.host[7].wlan[0].mac 	rcvdPkFromLL:count 	82
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar OrionNetwork.host[7].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	3800
+scalar OrionNetwork.host[7].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	4496
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -1831,11 +1831,11 @@ attr title  "received packets, count"
 scalar OrionNetwork.host[9].wlan[0].queue 	rcvdPk:sum(packetBytes) 	420
 attr interpolationmode  none
 attr title  "received packets, sum(packetBytes)"
-scalar OrionNetwork.host[9].wlan[0].mac 	droppedPkNotForUs:count 	2
+scalar OrionNetwork.host[9].wlan[0].mac 	droppedPkNotForUs:count 	3
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, count"
-scalar OrionNetwork.host[9].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	76
+scalar OrionNetwork.host[9].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	134
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, sum(packetBytes)"
@@ -1855,11 +1855,11 @@ scalar OrionNetwork.host[9].wlan[0].mac 	passedUpPk:sum(packetBytes) 	976
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[9].wlan[0].mac 	rcvdPkFromLL:count 	24
+scalar OrionNetwork.host[9].wlan[0].mac 	rcvdPkFromLL:count 	25
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar OrionNetwork.host[9].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	1272
+scalar OrionNetwork.host[9].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	1330
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -2022,11 +2022,11 @@ attr title  "received packets, count"
 scalar OrionNetwork.host[10].wlan[0].queue 	rcvdPk:sum(packetBytes) 	192
 attr interpolationmode  none
 attr title  "received packets, sum(packetBytes)"
-scalar OrionNetwork.host[10].wlan[0].mac 	droppedPkNotForUs:count 	3
+scalar OrionNetwork.host[10].wlan[0].mac 	droppedPkNotForUs:count 	4
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, count"
-scalar OrionNetwork.host[10].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	114
+scalar OrionNetwork.host[10].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	172
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, sum(packetBytes)"
@@ -2046,11 +2046,11 @@ scalar OrionNetwork.host[10].wlan[0].mac 	passedUpPk:sum(packetBytes) 	392
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[10].wlan[0].mac 	rcvdPkFromLL:count 	12
+scalar OrionNetwork.host[10].wlan[0].mac 	rcvdPkFromLL:count 	13
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar OrionNetwork.host[10].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	596
+scalar OrionNetwork.host[10].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	654
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -2213,11 +2213,11 @@ attr title  "received packets, count"
 scalar OrionNetwork.host[11].wlan[0].queue 	rcvdPk:sum(packetBytes) 	528
 attr interpolationmode  none
 attr title  "received packets, sum(packetBytes)"
-scalar OrionNetwork.host[11].wlan[0].mac 	droppedPkNotForUs:count 	10
+scalar OrionNetwork.host[11].wlan[0].mac 	droppedPkNotForUs:count 	22
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, count"
-scalar OrionNetwork.host[11].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	380
+scalar OrionNetwork.host[11].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	1076
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, sum(packetBytes)"
@@ -2237,11 +2237,11 @@ scalar OrionNetwork.host[11].wlan[0].mac 	passedUpPk:sum(packetBytes) 	2148
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[11].wlan[0].mac 	rcvdPkFromLL:count 	56
+scalar OrionNetwork.host[11].wlan[0].mac 	rcvdPkFromLL:count 	68
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar OrionNetwork.host[11].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	2988
+scalar OrionNetwork.host[11].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	3684
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
@@ -2343,9 +2343,9 @@ attr interpolationmode  none
 attr source  dropPkBitError
 attr title  "packets dropped/bit error, sum(packetBytes)"
 statistic OrionNetwork.host[12].wlan[0].queue 	queueingTime:histogram
-field count 13
-field mean 1.7846153846154e-005
-field stddev 6.4345222762127e-005
+field count 14
+field mean 1.6571428571429e-005
+field stddev 6.2004608123682e-005
 field sum 0.000232
 field sqrsum 5.3824e-008
 field min 0
@@ -2360,7 +2360,7 @@ bin	-6.96e-005	0
 bin	-5.4133333333333e-005	0
 bin	-3.8666666666667e-005	0
 bin	-2.32e-005	0
-bin	-7.7333333333333e-006	12
+bin	-7.7333333333333e-006	13
 bin	7.7333333333333e-006	0
 bin	2.32e-005	0
 bin	3.8666666666667e-005	0
@@ -2398,76 +2398,76 @@ attr title  "queue length, max"
 scalar OrionNetwork.host[12].wlan[0].queue 	queueLength:timeavg 	3.8666666666667e-006
 attr interpolationmode  sample-hold
 attr title  "queue length, timeavg"
-scalar OrionNetwork.host[12].wlan[0].queue 	rcvdPk:count 	13
+scalar OrionNetwork.host[12].wlan[0].queue 	rcvdPk:count 	14
 attr interpolationmode  none
 attr title  "received packets, count"
-scalar OrionNetwork.host[12].wlan[0].queue 	rcvdPk:sum(packetBytes) 	584
+scalar OrionNetwork.host[12].wlan[0].queue 	rcvdPk:sum(packetBytes) 	632
 attr interpolationmode  none
 attr title  "received packets, sum(packetBytes)"
-scalar OrionNetwork.host[12].wlan[0].mac 	droppedPkNotForUs:count 	8
+scalar OrionNetwork.host[12].wlan[0].mac 	droppedPkNotForUs:count 	18
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, count"
-scalar OrionNetwork.host[12].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	304
+scalar OrionNetwork.host[12].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	884
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, sum(packetBytes)"
-scalar OrionNetwork.host[12].wlan[0].mac 	rcvdPkFromHL:count 	13
+scalar OrionNetwork.host[12].wlan[0].mac 	rcvdPkFromHL:count 	14
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar OrionNetwork.host[12].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	584
+scalar OrionNetwork.host[12].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	632
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[12].wlan[0].mac 	passedUpPk:count 	46
+scalar OrionNetwork.host[12].wlan[0].mac 	passedUpPk:count 	47
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar OrionNetwork.host[12].wlan[0].mac 	passedUpPk:sum(packetBytes) 	2148
+scalar OrionNetwork.host[12].wlan[0].mac 	passedUpPk:sum(packetBytes) 	2196
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[12].wlan[0].mac 	rcvdPkFromLL:count 	54
+scalar OrionNetwork.host[12].wlan[0].mac 	rcvdPkFromLL:count 	65
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar OrionNetwork.host[12].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	2912
+scalar OrionNetwork.host[12].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	3550
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
-scalar OrionNetwork.host[12].wlan[0].mac 	sentDownPk:count 	13
+scalar OrionNetwork.host[12].wlan[0].mac 	sentDownPk:count 	14
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, count"
-scalar OrionNetwork.host[12].wlan[0].mac 	sentDownPk:sum(packetBytes) 	714
+scalar OrionNetwork.host[12].wlan[0].mac 	sentDownPk:sum(packetBytes) 	772
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
 scalar OrionNetwork.host[12].udpApp[0] 	"packets sent" 	11
-scalar OrionNetwork.host[12].udpApp[0] 	"packets received" 	43
-scalar OrionNetwork.host[12].udpApp[0] 	sentPk:count 	11
+scalar OrionNetwork.host[12].udpApp[0] 	"packets received" 	44
+scalar OrionNetwork.host[12].udpApp[0] 	sentPk:count 	13
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, count"
-scalar OrionNetwork.host[12].udpApp[0] 	sentPk:sum(packetBytes) 	220
+scalar OrionNetwork.host[12].udpApp[0] 	sentPk:sum(packetBytes) 	240
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, sum(packetBytes)"
-scalar OrionNetwork.host[12].udpApp[0] 	rcvdPk:count 	43
+scalar OrionNetwork.host[12].udpApp[0] 	rcvdPk:count 	44
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, count"
-scalar OrionNetwork.host[12].udpApp[0] 	rcvdPk:sum(packetBytes) 	860
+scalar OrionNetwork.host[12].udpApp[0] 	rcvdPk:sum(packetBytes) 	880
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, sum(packetBytes)"
 statistic OrionNetwork.host[12].udpApp[0] 	rcvdPkLifetime:stats
-field count 43
-field mean 0.00023606887693023
-field stddev 2.3208847205166e-005
-field sum 0.010150961708
-field sqrsum 2.4189494548902e-006
+field count 44
+field mean 0.000235992051
+field stddev 2.2943049678605e-005
+field sum 0.010383650244
+field sqrsum 2.4730934096761e-006
 field min 0.000232140722
 field max 0.00038471563
 attr interpolationmode  none
@@ -2480,22 +2480,22 @@ attr title  "packets dropped (checksum error), count"
 scalar OrionNetwork.host[12].udp 	droppedPkWrongPort:count 	0
 attr interpolationmode  none
 attr title  "packets dropped (wrong port), count"
-scalar OrionNetwork.host[12].udp 	passedUpPk:count 	43
+scalar OrionNetwork.host[12].udp 	passedUpPk:count 	44
 attr interpolationmode  none
 attr title  "packets passed up, count"
-scalar OrionNetwork.host[12].udp 	sentPk:count 	12
+scalar OrionNetwork.host[12].udp 	sentPk:count 	13
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, count"
-scalar OrionNetwork.host[12].udp 	sentPk:sum(packetBytes) 	316
+scalar OrionNetwork.host[12].udp 	sentPk:sum(packetBytes) 	344
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, sum(packetBytes)"
-scalar OrionNetwork.host[12].udp 	rcvdPk:count 	43
+scalar OrionNetwork.host[12].udp 	rcvdPk:count 	44
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, count"
-scalar OrionNetwork.host[12].udp 	rcvdPk:sum(packetBytes) 	1204
+scalar OrionNetwork.host[12].udp 	rcvdPk:sum(packetBytes) 	1232
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, sum(packetBytes)"
@@ -2534,9 +2534,9 @@ attr interpolationmode  none
 attr source  dropPkBitError
 attr title  "packets dropped/bit error, sum(packetBytes)"
 statistic OrionNetwork.host[13].wlan[0].queue 	queueingTime:histogram
-field count 9
-field mean 2.5777777777778e-005
-field stddev 7.7333333333333e-005
+field count 10
+field mean 2.32e-005
+field stddev 7.3364841715906e-005
 field sum 0.000232
 field sqrsum 5.3824e-008
 field min 0
@@ -2551,7 +2551,7 @@ bin	-6.96e-005	0
 bin	-5.4133333333333e-005	0
 bin	-3.8666666666667e-005	0
 bin	-2.32e-005	0
-bin	-7.7333333333333e-006	8
+bin	-7.7333333333333e-006	9
 bin	7.7333333333333e-006	0
 bin	2.32e-005	0
 bin	3.8666666666667e-005	0
@@ -2589,76 +2589,76 @@ attr title  "queue length, max"
 scalar OrionNetwork.host[13].wlan[0].queue 	queueLength:timeavg 	3.8666666666667e-006
 attr interpolationmode  sample-hold
 attr title  "queue length, timeavg"
-scalar OrionNetwork.host[13].wlan[0].queue 	rcvdPk:count 	9
+scalar OrionNetwork.host[13].wlan[0].queue 	rcvdPk:count 	10
 attr interpolationmode  none
 attr title  "received packets, count"
-scalar OrionNetwork.host[13].wlan[0].queue 	rcvdPk:sum(packetBytes) 	352
+scalar OrionNetwork.host[13].wlan[0].queue 	rcvdPk:sum(packetBytes) 	400
 attr interpolationmode  none
 attr title  "received packets, sum(packetBytes)"
-scalar OrionNetwork.host[13].wlan[0].mac 	droppedPkNotForUs:count 	2
+scalar OrionNetwork.host[13].wlan[0].mac 	droppedPkNotForUs:count 	3
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, count"
-scalar OrionNetwork.host[13].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	76
+scalar OrionNetwork.host[13].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	134
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, sum(packetBytes)"
-scalar OrionNetwork.host[13].wlan[0].mac 	rcvdPkFromHL:count 	9
+scalar OrionNetwork.host[13].wlan[0].mac 	rcvdPkFromHL:count 	10
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, count"
-scalar OrionNetwork.host[13].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	352
+scalar OrionNetwork.host[13].wlan[0].mac 	rcvdPkFromHL:sum(packetBytes) 	400
 attr interpolationmode  none
 attr source  packetReceivedFromUpper
 attr title  "packets received from higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[13].wlan[0].mac 	passedUpPk:count 	21
+scalar OrionNetwork.host[13].wlan[0].mac 	passedUpPk:count 	22
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar OrionNetwork.host[13].wlan[0].mac 	passedUpPk:sum(packetBytes) 	928
+scalar OrionNetwork.host[13].wlan[0].mac 	passedUpPk:sum(packetBytes) 	976
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[13].wlan[0].mac 	rcvdPkFromLL:count 	23
+scalar OrionNetwork.host[13].wlan[0].mac 	rcvdPkFromLL:count 	25
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar OrionNetwork.host[13].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	1214
+scalar OrionNetwork.host[13].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	1330
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"
-scalar OrionNetwork.host[13].wlan[0].mac 	sentDownPk:count 	9
+scalar OrionNetwork.host[13].wlan[0].mac 	sentDownPk:count 	10
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, count"
-scalar OrionNetwork.host[13].wlan[0].mac 	sentDownPk:sum(packetBytes) 	442
+scalar OrionNetwork.host[13].wlan[0].mac 	sentDownPk:sum(packetBytes) 	500
 attr interpolationmode  none
 attr source  packetSentToLower
 attr title  "packets sent to lower layer, sum(packetBytes)"
 scalar OrionNetwork.host[13].udpApp[0] 	"packets sent" 	5
-scalar OrionNetwork.host[13].udpApp[0] 	"packets received" 	18
-scalar OrionNetwork.host[13].udpApp[0] 	sentPk:count 	5
+scalar OrionNetwork.host[13].udpApp[0] 	"packets received" 	19
+scalar OrionNetwork.host[13].udpApp[0] 	sentPk:count 	7
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, count"
-scalar OrionNetwork.host[13].udpApp[0] 	sentPk:sum(packetBytes) 	100
+scalar OrionNetwork.host[13].udpApp[0] 	sentPk:sum(packetBytes) 	120
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, sum(packetBytes)"
-scalar OrionNetwork.host[13].udpApp[0] 	rcvdPk:count 	18
+scalar OrionNetwork.host[13].udpApp[0] 	rcvdPk:count 	19
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, count"
-scalar OrionNetwork.host[13].udpApp[0] 	rcvdPk:sum(packetBytes) 	340
+scalar OrionNetwork.host[13].udpApp[0] 	rcvdPk:sum(packetBytes) 	360
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, sum(packetBytes)"
 statistic OrionNetwork.host[13].udpApp[0] 	rcvdPkLifetime:stats
-field count 18
-field mean 0.00028347792877778
-field stddev 0.00021584739612124
-field sum 0.005102602718
-field sqrsum 2.2385069228839e-006
+field count 19
+field mean 0.00030529575868421
+field stddev 0.00023031738090368
+field sum 0.005800619415
+field sqrsum 2.7257342321747e-006
 field min 0.000232095559
 field max 0.001148364664
 attr interpolationmode  none
@@ -2671,22 +2671,22 @@ attr title  "packets dropped (checksum error), count"
 scalar OrionNetwork.host[13].udp 	droppedPkWrongPort:count 	0
 attr interpolationmode  none
 attr title  "packets dropped (wrong port), count"
-scalar OrionNetwork.host[13].udp 	passedUpPk:count 	18
+scalar OrionNetwork.host[13].udp 	passedUpPk:count 	19
 attr interpolationmode  none
 attr title  "packets passed up, count"
-scalar OrionNetwork.host[13].udp 	sentPk:count 	7
+scalar OrionNetwork.host[13].udp 	sentPk:count 	8
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, count"
-scalar OrionNetwork.host[13].udp 	sentPk:sum(packetBytes) 	156
+scalar OrionNetwork.host[13].udp 	sentPk:sum(packetBytes) 	184
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, sum(packetBytes)"
-scalar OrionNetwork.host[13].udp 	rcvdPk:count 	18
+scalar OrionNetwork.host[13].udp 	rcvdPk:count 	19
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, count"
-scalar OrionNetwork.host[13].udp 	rcvdPk:sum(packetBytes) 	484
+scalar OrionNetwork.host[13].udp 	rcvdPk:sum(packetBytes) 	512
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, sum(packetBytes)"
@@ -2786,11 +2786,11 @@ attr title  "received packets, count"
 scalar OrionNetwork.host[14].wlan[0].queue 	rcvdPk:sum(packetBytes) 	432
 attr interpolationmode  none
 attr title  "received packets, sum(packetBytes)"
-scalar OrionNetwork.host[14].wlan[0].mac 	droppedPkNotForUs:count 	4
+scalar OrionNetwork.host[14].wlan[0].mac 	droppedPkNotForUs:count 	8
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, count"
-scalar OrionNetwork.host[14].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	152
+scalar OrionNetwork.host[14].wlan[0].mac 	droppedPkNotForUs:sum(packetBytes) 	384
 attr interpolationmode  none
 attr source  dropPkNotForUs
 attr title  "packets dropped/not for us, sum(packetBytes)"
@@ -2810,11 +2810,11 @@ scalar OrionNetwork.host[14].wlan[0].mac 	passedUpPk:sum(packetBytes) 	1468
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar OrionNetwork.host[14].wlan[0].mac 	rcvdPkFromLL:count 	35
+scalar OrionNetwork.host[14].wlan[0].mac 	rcvdPkFromLL:count 	39
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, count"
-scalar OrionNetwork.host[14].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	1930
+scalar OrionNetwork.host[14].wlan[0].mac 	rcvdPkFromLL:sum(packetBytes) 	2162
 attr interpolationmode  none
 attr source  packetReceivedFromLower
 attr title  "packets received from lower layer, sum(packetBytes)"

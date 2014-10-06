@@ -22,6 +22,7 @@
 
 #include <vector>
 #include <string>
+#include <deque>
 #include <map>
 #include <algorithm>
 
@@ -39,7 +40,6 @@ class /*INET_API */OrionApp : public ApplicationBase
 {
   protected:
     enum SelfMsgKinds { START = 1, SEND, STOP};
-
     UDPSocket socket;
     bool debugEnabled;
     bool socketOpen;
@@ -51,11 +51,16 @@ class /*INET_API */OrionApp : public ApplicationBase
 
     unsigned int querySeqNum;
     unsigned int reqSeqNum;
+    unsigned int retries;
 
     std::vector<int> outputInterfaceMulticastBroadcast;
     std::vector<IPvXAddress> destAddresses;
+    std::map<std::string, OrionDataReqPacket*> pendingPackets;
+    std::map<std::string, WaitForReq*> pendingTimeouts;
+
     std::string nodeID;
     simtime_t startTime;
+    simtime_t retryDelay;
     simtime_t stopTime;
     simtime_t endBuffer;
     simtime_t avgQueryTime;
@@ -65,8 +70,10 @@ class /*INET_API */OrionApp : public ApplicationBase
     cMessage *selfMsg;
     cMessage *fileGenMsg;
     cMessage *fileRequestMsg;
+
     std::vector<std::string> fileList;  //!< files system abstraction (just a list of file names)
     std::map<unsigned int, IPvXAddress> queryList;
+    std::map<std::string, IPvXAddress> requestList;
     std::map<std::string, FileTableData> queryResults;
     // statistics
     int numSent;
@@ -94,7 +101,8 @@ class /*INET_API */OrionApp : public ApplicationBase
     void sendQuery(std::string fileToRequest, unsigned int seq, IPvXAddress src);
     void sendResponse(OrionPacket *oPacket);
     void sendRequest(std::string fileToRequest, unsigned int rSeq, IPvXAddress dest);
-    void sendRequestAck(std::string fileToRequest, unsigned int block, IPvXAddress dest);
+    void sendRequestAck(OrionDataReqPacket* reqPacket);
+    void resendRequest(OrionDataReqPacket* reqPacket);
     void sendReply(std::string fileToRequest, unsigned int block, IPvXAddress dest);
 
 
@@ -105,7 +113,8 @@ class /*INET_API */OrionApp : public ApplicationBase
     void handleQuery(OrionQueryPacket *qPacket);
     void handleResponse(OrionResponsePacket *rPacket);
     void handleRequest(OrionDataReqPacket *reqPacket);
-    void handleRequestAck(OrionResponsePacket *rackPacket);
+    void handleReqAckTimeout();
+    void handleRequestAck(OrionDataReqPacket *reqPacket);
     void handleReply(OrionResponsePacket *repPacket);
 
 

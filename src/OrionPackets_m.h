@@ -47,9 +47,11 @@ enum OrionPacketType {
  * packet OrionPacket extends cPacket
  * {
  *     unsigned int packetType;
+ *     IPvXAddress DST;
  *     IPvXAddress SRC;
  *     IPvXAddress LastNode;
  *     unsigned int SEQ;
+ *     string filename;
  * }
  * </pre>
  */
@@ -57,9 +59,11 @@ class OrionPacket : public ::cPacket
 {
   protected:
     unsigned int packetType_var;
+    IPvXAddress DST_var;
     IPvXAddress SRC_var;
     IPvXAddress LastNode_var;
     unsigned int SEQ_var;
+    opp_string filename_var;
 
   private:
     void copy(const OrionPacket& other);
@@ -80,6 +84,9 @@ class OrionPacket : public ::cPacket
     // field getter/setter methods
     virtual unsigned int getPacketType() const;
     virtual void setPacketType(unsigned int packetType);
+    virtual IPvXAddress& getDST();
+    virtual const IPvXAddress& getDST() const {return const_cast<OrionPacket*>(this)->getDST();}
+    virtual void setDST(const IPvXAddress& DST);
     virtual IPvXAddress& getSRC();
     virtual const IPvXAddress& getSRC() const {return const_cast<OrionPacket*>(this)->getSRC();}
     virtual void setSRC(const IPvXAddress& SRC);
@@ -88,6 +95,8 @@ class OrionPacket : public ::cPacket
     virtual void setLastNode(const IPvXAddress& LastNode);
     virtual unsigned int getSEQ() const;
     virtual void setSEQ(unsigned int SEQ);
+    virtual const char * getFilename() const;
+    virtual void setFilename(const char * filename);
 };
 
 inline void doPacking(cCommBuffer *b, OrionPacket& obj) {obj.parsimPack(b);}
@@ -99,7 +108,7 @@ inline void doUnpacking(cCommBuffer *b, OrionPacket& obj) {obj.parsimUnpack(b);}
  * class OrionQueryPacket extends OrionPacket
  * {
  *     unsigned int packetType = QUERY;
- *     string filename;
+ * 
  *  }
  * </pre>
  */
@@ -107,7 +116,6 @@ class OrionQueryPacket : public ::OrionPacket
 {
   protected:
     unsigned int packetType_var;
-    opp_string filename_var;
 
   private:
     void copy(const OrionQueryPacket& other);
@@ -128,8 +136,6 @@ class OrionQueryPacket : public ::OrionPacket
     // field getter/setter methods
     virtual unsigned int getPacketType() const;
     virtual void setPacketType(unsigned int packetType);
-    virtual const char * getFilename() const;
-    virtual void setFilename(const char * filename);
 };
 
 inline void doPacking(cCommBuffer *b, OrionQueryPacket& obj) {obj.parsimPack(b);}
@@ -141,7 +147,6 @@ inline void doUnpacking(cCommBuffer *b, OrionQueryPacket& obj) {obj.parsimUnpack
  * class OrionResponsePacket extends OrionPacket
  * {
  *     unsigned int packetType = RESPONSE;
- *     string filename;
  *     unsigned int hopcount;
  *  }
  * </pre>
@@ -150,7 +155,6 @@ class OrionResponsePacket : public ::OrionPacket
 {
   protected:
     unsigned int packetType_var;
-    opp_string filename_var;
     unsigned int hopcount_var;
 
   private:
@@ -172,8 +176,6 @@ class OrionResponsePacket : public ::OrionPacket
     // field getter/setter methods
     virtual unsigned int getPacketType() const;
     virtual void setPacketType(unsigned int packetType);
-    virtual const char * getFilename() const;
-    virtual void setFilename(const char * filename);
     virtual unsigned int getHopcount() const;
     virtual void setHopcount(unsigned int hopcount);
 };
@@ -186,12 +188,9 @@ inline void doUnpacking(cCommBuffer *b, OrionResponsePacket& obj) {obj.parsimUnp
  * <pre>
  * class OrionDataReqPacket extends OrionPacket
  * {
- *    
  *     unsigned int packetType = DATA_REQUEST;
- *     string filename;
- *    
- *     
- * 
+ *     unsigned int retries;
+ *    	unsigned int blockNum;
  * }
  * </pre>
  */
@@ -199,7 +198,8 @@ class OrionDataReqPacket : public ::OrionPacket
 {
   protected:
     unsigned int packetType_var;
-    opp_string filename_var;
+    unsigned int retries_var;
+    unsigned int blockNum_var;
 
   private:
     void copy(const OrionDataReqPacket& other);
@@ -220,8 +220,10 @@ class OrionDataReqPacket : public ::OrionPacket
     // field getter/setter methods
     virtual unsigned int getPacketType() const;
     virtual void setPacketType(unsigned int packetType);
-    virtual const char * getFilename() const;
-    virtual void setFilename(const char * filename);
+    virtual unsigned int getRetries() const;
+    virtual void setRetries(unsigned int retries);
+    virtual unsigned int getBlockNum() const;
+    virtual void setBlockNum(unsigned int blockNum);
 };
 
 inline void doPacking(cCommBuffer *b, OrionDataReqPacket& obj) {obj.parsimPack(b);}
@@ -232,9 +234,8 @@ inline void doUnpacking(cCommBuffer *b, OrionDataReqPacket& obj) {obj.parsimUnpa
  * <pre>
  * class OrionDataRepPacket extends OrionPacket
  * {
- *     IPvXAddress DST;
+ *    
  *     unsigned int packetType = DATA_REPLY;
- *     string filename;
  *     unsigned int blockNum;
  * }
  * </pre>
@@ -242,9 +243,7 @@ inline void doUnpacking(cCommBuffer *b, OrionDataReqPacket& obj) {obj.parsimUnpa
 class OrionDataRepPacket : public ::OrionPacket
 {
   protected:
-    IPvXAddress DST_var;
     unsigned int packetType_var;
-    opp_string filename_var;
     unsigned int blockNum_var;
 
   private:
@@ -264,13 +263,8 @@ class OrionDataRepPacket : public ::OrionPacket
     virtual void parsimUnpack(cCommBuffer *b);
 
     // field getter/setter methods
-    virtual IPvXAddress& getDST();
-    virtual const IPvXAddress& getDST() const {return const_cast<OrionDataRepPacket*>(this)->getDST();}
-    virtual void setDST(const IPvXAddress& DST);
     virtual unsigned int getPacketType() const;
     virtual void setPacketType(unsigned int packetType);
-    virtual const char * getFilename() const;
-    virtual void setFilename(const char * filename);
     virtual unsigned int getBlockNum() const;
     virtual void setBlockNum(unsigned int blockNum);
 };
@@ -281,40 +275,40 @@ inline void doUnpacking(cCommBuffer *b, OrionDataRepPacket& obj) {obj.parsimUnpa
 /**
  * Class generated from <tt>OrionPackets.msg</tt> by opp_msgc.
  * <pre>
- * class OrionDataReqPacketAck extends OrionPacket
+ * message WaitForReq extends cMessage
  * {
- * unsigned int packetType = DATA_REQUEST_ACK;
+ *     string filename;
  * }
  * </pre>
  */
-class OrionDataReqPacketAck : public ::OrionPacket
+class WaitForReq : public ::cMessage
 {
   protected:
-    unsigned int packetType_var;
+    opp_string filename_var;
 
   private:
-    void copy(const OrionDataReqPacketAck& other);
+    void copy(const WaitForReq& other);
 
   protected:
     // protected and unimplemented operator==(), to prevent accidental usage
-    bool operator==(const OrionDataReqPacketAck&);
+    bool operator==(const WaitForReq&);
 
   public:
-    OrionDataReqPacketAck(const char *name=NULL);
-    OrionDataReqPacketAck(const OrionDataReqPacketAck& other);
-    virtual ~OrionDataReqPacketAck();
-    OrionDataReqPacketAck& operator=(const OrionDataReqPacketAck& other);
-    virtual OrionDataReqPacketAck *dup() const {return new OrionDataReqPacketAck(*this);}
+    WaitForReq(const char *name=NULL, int kind=0);
+    WaitForReq(const WaitForReq& other);
+    virtual ~WaitForReq();
+    WaitForReq& operator=(const WaitForReq& other);
+    virtual WaitForReq *dup() const {return new WaitForReq(*this);}
     virtual void parsimPack(cCommBuffer *b);
     virtual void parsimUnpack(cCommBuffer *b);
 
     // field getter/setter methods
-    virtual unsigned int getPacketType() const;
-    virtual void setPacketType(unsigned int packetType);
+    virtual const char * getFilename() const;
+    virtual void setFilename(const char * filename);
 };
 
-inline void doPacking(cCommBuffer *b, OrionDataReqPacketAck& obj) {obj.parsimPack(b);}
-inline void doUnpacking(cCommBuffer *b, OrionDataReqPacketAck& obj) {obj.parsimUnpack(b);}
+inline void doPacking(cCommBuffer *b, WaitForReq& obj) {obj.parsimPack(b);}
+inline void doUnpacking(cCommBuffer *b, WaitForReq& obj) {obj.parsimUnpack(b);}
 
 
 #endif // _ORIONPACKETS_M_H_

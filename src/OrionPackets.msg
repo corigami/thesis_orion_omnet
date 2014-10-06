@@ -37,9 +37,11 @@ enum OrionPacketType
 packet OrionPacket extends cPacket
 {
     unsigned int packetType;
+    IPvXAddress DST;
     IPvXAddress SRC;
     IPvXAddress LastNode;
     unsigned int SEQ;
+    string filename;
 }
 
 //
@@ -48,13 +50,12 @@ packet OrionPacket extends cPacket
 class OrionQueryPacket extends OrionPacket
 {
     unsigned int packetType = QUERY;
-    string filename;
+
  }
  
  class OrionResponsePacket extends OrionPacket
 {
     unsigned int packetType = RESPONSE;
-    string filename;
     unsigned int hopcount;
  }
 
@@ -63,12 +64,9 @@ class OrionQueryPacket extends OrionPacket
 //
 class OrionDataReqPacket extends OrionPacket
 {
-   // IPvXAddress DST;
     unsigned int packetType = DATA_REQUEST;
-    string filename;
-   // unsigned int blockNum;
-    
-
+    unsigned int retries;
+   	unsigned int blockNum;
 }
 
 //
@@ -76,14 +74,17 @@ class OrionDataReqPacket extends OrionPacket
 //
 class OrionDataRepPacket extends OrionPacket
 {
-    IPvXAddress DST;
+   
     unsigned int packetType = DATA_REPLY;
-    string filename;
     unsigned int blockNum;
 }
 
 
-class OrionDataReqPacketAck extends OrionPacket
+
+//
+// Represents a timer for a Route Reply packet
+//
+message WaitForReq extends cMessage
 {
-unsigned int packetType = DATA_REQUEST_ACK;
+    string filename;
 }

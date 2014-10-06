@@ -61,10 +61,12 @@ simple OrionApp like IUDPApp
       	double fileQueryRate @unit(s) = default(5s);
       	int fileGenRate @unit(s) = default (3s);
       	int fileSize = default(100);
+      	int retries = default(5);
       	int numHosts= default(25);
         int destPort = default(5000); // port used by remote Orion Application
         bool master = default(false); // is this application running as the master?
       	bool enableDebug = default(true);
+      	double retryDelay @unit(s) = default(.3s);
       
         @display("i=block/app");
         @signal[sentPk](type=cPacket);
