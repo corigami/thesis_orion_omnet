@@ -57,6 +57,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     std::vector<IPvXAddress> destAddresses;
     std::map<std::string, OrionDataReqPacket*> pendingPackets;
     std::map<std::string, WaitForReq*> pendingTimeouts;
+    std::map<std::string, ReqBlockTimer*> blockTimers;
 
     std::string nodeID;
     simtime_t startTime;
@@ -70,9 +71,10 @@ class /*INET_API */OrionApp : public ApplicationBase
     cMessage *selfMsg;
     cMessage *fileGenMsg;
     cMessage *fileRequestMsg;
+    cMessage *nextBlockMsg;
 
     std::vector<std::string> fileList;  //!< files system abstraction (just a list of file names)
-    std::map<unsigned int, IPvXAddress> queryList;
+    std::map<int, IPvXAddress> queryList;
     std::map<std::string, IPvXAddress> requestList;
     std::map<std::string, FileTableData> queryResults;
     // statistics
@@ -103,6 +105,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     void sendRequest(std::string fileToRequest, unsigned int rSeq, IPvXAddress dest);
     void sendRequestAck(OrionDataReqPacket* reqPacket);
     void resendRequest(OrionDataReqPacket* reqPacket);
+    void requestNextBlock(std::string filename);
     void sendReply(std::string fileToRequest, unsigned int block, IPvXAddress dest);
 
 
@@ -114,8 +117,8 @@ class /*INET_API */OrionApp : public ApplicationBase
     void handleResponse(OrionResponsePacket *rPacket);
     void handleRequest(OrionDataReqPacket *reqPacket);
     void handleReqAckTimeout();
-    void handleRequestAck(OrionDataReqPacket *reqPacket);
-    void handleReply(OrionResponsePacket *repPacket);
+    void handleRequestAck(OrionDataAckPacket *ackPacket);
+    void handleReply(OrionDataRepPacket *repPacket);
 
 
     //utility functions

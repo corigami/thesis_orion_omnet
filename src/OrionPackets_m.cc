@@ -1163,6 +1163,281 @@ void *OrionDataReqPacketDescriptor::getFieldStructPointer(void *object, int fiel
     }
 }
 
+Register_Class(OrionDataAckPacket);
+
+OrionDataAckPacket::OrionDataAckPacket(const char *name) : ::OrionPacket(name)
+{
+    this->packetType_var = DATA_REQUEST_ACK;
+    this->retries_var = 0;
+    this->blockNum_var = 0;
+}
+
+OrionDataAckPacket::OrionDataAckPacket(const OrionDataAckPacket& other) : ::OrionPacket(other)
+{
+    copy(other);
+}
+
+OrionDataAckPacket::~OrionDataAckPacket()
+{
+}
+
+OrionDataAckPacket& OrionDataAckPacket::operator=(const OrionDataAckPacket& other)
+{
+    if (this==&other) return *this;
+    ::OrionPacket::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void OrionDataAckPacket::copy(const OrionDataAckPacket& other)
+{
+    this->packetType_var = other.packetType_var;
+    this->retries_var = other.retries_var;
+    this->blockNum_var = other.blockNum_var;
+}
+
+void OrionDataAckPacket::parsimPack(cCommBuffer *b)
+{
+    ::OrionPacket::parsimPack(b);
+    doPacking(b,this->packetType_var);
+    doPacking(b,this->retries_var);
+    doPacking(b,this->blockNum_var);
+}
+
+void OrionDataAckPacket::parsimUnpack(cCommBuffer *b)
+{
+    ::OrionPacket::parsimUnpack(b);
+    doUnpacking(b,this->packetType_var);
+    doUnpacking(b,this->retries_var);
+    doUnpacking(b,this->blockNum_var);
+}
+
+unsigned int OrionDataAckPacket::getPacketType() const
+{
+    return packetType_var;
+}
+
+void OrionDataAckPacket::setPacketType(unsigned int packetType)
+{
+    this->packetType_var = packetType;
+}
+
+unsigned int OrionDataAckPacket::getRetries() const
+{
+    return retries_var;
+}
+
+void OrionDataAckPacket::setRetries(unsigned int retries)
+{
+    this->retries_var = retries;
+}
+
+unsigned int OrionDataAckPacket::getBlockNum() const
+{
+    return blockNum_var;
+}
+
+void OrionDataAckPacket::setBlockNum(unsigned int blockNum)
+{
+    this->blockNum_var = blockNum;
+}
+
+class OrionDataAckPacketDescriptor : public cClassDescriptor
+{
+  public:
+    OrionDataAckPacketDescriptor();
+    virtual ~OrionDataAckPacketDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(OrionDataAckPacketDescriptor);
+
+OrionDataAckPacketDescriptor::OrionDataAckPacketDescriptor() : cClassDescriptor("OrionDataAckPacket", "OrionPacket")
+{
+}
+
+OrionDataAckPacketDescriptor::~OrionDataAckPacketDescriptor()
+{
+}
+
+bool OrionDataAckPacketDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<OrionDataAckPacket *>(obj)!=NULL;
+}
+
+const char *OrionDataAckPacketDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int OrionDataAckPacketDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
+}
+
+unsigned int OrionDataAckPacketDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
+}
+
+const char *OrionDataAckPacketDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "packetType",
+        "retries",
+        "blockNum",
+    };
+    return (field>=0 && field<3) ? fieldNames[field] : NULL;
+}
+
+int OrionDataAckPacketDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='p' && strcmp(fieldName, "packetType")==0) return base+0;
+    if (fieldName[0]=='r' && strcmp(fieldName, "retries")==0) return base+1;
+    if (fieldName[0]=='b' && strcmp(fieldName, "blockNum")==0) return base+2;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *OrionDataAckPacketDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "unsigned int",
+        "unsigned int",
+        "unsigned int",
+    };
+    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *OrionDataAckPacketDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int OrionDataAckPacketDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    OrionDataAckPacket *pp = (OrionDataAckPacket *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string OrionDataAckPacketDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    OrionDataAckPacket *pp = (OrionDataAckPacket *)object; (void)pp;
+    switch (field) {
+        case 0: return ulong2string(pp->getPacketType());
+        case 1: return ulong2string(pp->getRetries());
+        case 2: return ulong2string(pp->getBlockNum());
+        default: return "";
+    }
+}
+
+bool OrionDataAckPacketDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    OrionDataAckPacket *pp = (OrionDataAckPacket *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setPacketType(string2ulong(value)); return true;
+        case 1: pp->setRetries(string2ulong(value)); return true;
+        case 2: pp->setBlockNum(string2ulong(value)); return true;
+        default: return false;
+    }
+}
+
+const char *OrionDataAckPacketDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    };
+}
+
+void *OrionDataAckPacketDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    OrionDataAckPacket *pp = (OrionDataAckPacket *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
 Register_Class(OrionDataRepPacket);
 
 OrionDataRepPacket::OrionDataRepPacket(const char *name) : ::OrionPacket(name)
@@ -1648,6 +1923,241 @@ void *WaitForReqDescriptor::getFieldStructPointer(void *object, int field, int i
         field -= basedesc->getFieldCount(object);
     }
     WaitForReq *pp = (WaitForReq *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+Register_Class(ReqBlockTimer);
+
+ReqBlockTimer::ReqBlockTimer(const char *name, int kind) : ::cMessage(name,kind)
+{
+    this->filename_var = 0;
+}
+
+ReqBlockTimer::ReqBlockTimer(const ReqBlockTimer& other) : ::cMessage(other)
+{
+    copy(other);
+}
+
+ReqBlockTimer::~ReqBlockTimer()
+{
+}
+
+ReqBlockTimer& ReqBlockTimer::operator=(const ReqBlockTimer& other)
+{
+    if (this==&other) return *this;
+    ::cMessage::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void ReqBlockTimer::copy(const ReqBlockTimer& other)
+{
+    this->filename_var = other.filename_var;
+}
+
+void ReqBlockTimer::parsimPack(cCommBuffer *b)
+{
+    ::cMessage::parsimPack(b);
+    doPacking(b,this->filename_var);
+}
+
+void ReqBlockTimer::parsimUnpack(cCommBuffer *b)
+{
+    ::cMessage::parsimUnpack(b);
+    doUnpacking(b,this->filename_var);
+}
+
+const char * ReqBlockTimer::getFilename() const
+{
+    return filename_var.c_str();
+}
+
+void ReqBlockTimer::setFilename(const char * filename)
+{
+    this->filename_var = filename;
+}
+
+class ReqBlockTimerDescriptor : public cClassDescriptor
+{
+  public:
+    ReqBlockTimerDescriptor();
+    virtual ~ReqBlockTimerDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(ReqBlockTimerDescriptor);
+
+ReqBlockTimerDescriptor::ReqBlockTimerDescriptor() : cClassDescriptor("ReqBlockTimer", "cMessage")
+{
+}
+
+ReqBlockTimerDescriptor::~ReqBlockTimerDescriptor()
+{
+}
+
+bool ReqBlockTimerDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<ReqBlockTimer *>(obj)!=NULL;
+}
+
+const char *ReqBlockTimerDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int ReqBlockTimerDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
+}
+
+unsigned int ReqBlockTimerDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
+}
+
+const char *ReqBlockTimerDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "filename",
+    };
+    return (field>=0 && field<1) ? fieldNames[field] : NULL;
+}
+
+int ReqBlockTimerDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='f' && strcmp(fieldName, "filename")==0) return base+0;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *ReqBlockTimerDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "string",
+    };
+    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *ReqBlockTimerDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int ReqBlockTimerDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    ReqBlockTimer *pp = (ReqBlockTimer *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string ReqBlockTimerDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    ReqBlockTimer *pp = (ReqBlockTimer *)object; (void)pp;
+    switch (field) {
+        case 0: return oppstring2string(pp->getFilename());
+        default: return "";
+    }
+}
+
+bool ReqBlockTimerDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    ReqBlockTimer *pp = (ReqBlockTimer *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setFilename((value)); return true;
+        default: return false;
+    }
+}
+
+const char *ReqBlockTimerDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    };
+}
+
+void *ReqBlockTimerDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    ReqBlockTimer *pp = (ReqBlockTimer *)object; (void)pp;
     switch (field) {
         default: return NULL;
     }

@@ -21,7 +21,7 @@ package orion.simulations;
 import inet.base.LifecycleController;
 import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
 import inet.networklayer.ipv4.RoutingTableRecorder;
-//import inet.nodes.aodv.AODVRouter;
+import inet.nodes.aodv.AODVRouter;
 import inet.nodes.inet.AdhocHost;
 import inet.world.radio.IdealChannelModel;
 import inet.world.scenario.ScenarioManager;
@@ -53,8 +53,8 @@ network OrionNetwork
                 script = default(xml("<scenario/>"));
                 @display("p=50,250");
         }
-      // host[numHosts]: AODVRouter {
-        host[numHosts]: AdhocHost {
+    //  host[numHosts]: AODVRouter {
+       host[numHosts]: AdhocHost {
             parameters:
                 @display("i=device/pocketpc_s;r=,,#707070");
         }

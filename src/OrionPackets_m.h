@@ -232,6 +232,52 @@ inline void doUnpacking(cCommBuffer *b, OrionDataReqPacket& obj) {obj.parsimUnpa
 /**
  * Class generated from <tt>OrionPackets.msg</tt> by opp_msgc.
  * <pre>
+ * class OrionDataAckPacket extends OrionPacket
+ * {
+ *     unsigned int packetType = DATA_REQUEST_ACK;
+ *     unsigned int retries;
+ *    	unsigned int blockNum;
+ * }
+ * </pre>
+ */
+class OrionDataAckPacket : public ::OrionPacket
+{
+  protected:
+    unsigned int packetType_var;
+    unsigned int retries_var;
+    unsigned int blockNum_var;
+
+  private:
+    void copy(const OrionDataAckPacket& other);
+
+  protected:
+    // protected and unimplemented operator==(), to prevent accidental usage
+    bool operator==(const OrionDataAckPacket&);
+
+  public:
+    OrionDataAckPacket(const char *name=NULL);
+    OrionDataAckPacket(const OrionDataAckPacket& other);
+    virtual ~OrionDataAckPacket();
+    OrionDataAckPacket& operator=(const OrionDataAckPacket& other);
+    virtual OrionDataAckPacket *dup() const {return new OrionDataAckPacket(*this);}
+    virtual void parsimPack(cCommBuffer *b);
+    virtual void parsimUnpack(cCommBuffer *b);
+
+    // field getter/setter methods
+    virtual unsigned int getPacketType() const;
+    virtual void setPacketType(unsigned int packetType);
+    virtual unsigned int getRetries() const;
+    virtual void setRetries(unsigned int retries);
+    virtual unsigned int getBlockNum() const;
+    virtual void setBlockNum(unsigned int blockNum);
+};
+
+inline void doPacking(cCommBuffer *b, OrionDataAckPacket& obj) {obj.parsimPack(b);}
+inline void doUnpacking(cCommBuffer *b, OrionDataAckPacket& obj) {obj.parsimUnpack(b);}
+
+/**
+ * Class generated from <tt>OrionPackets.msg</tt> by opp_msgc.
+ * <pre>
  * class OrionDataRepPacket extends OrionPacket
  * {
  *    
@@ -309,6 +355,44 @@ class WaitForReq : public ::cMessage
 
 inline void doPacking(cCommBuffer *b, WaitForReq& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, WaitForReq& obj) {obj.parsimUnpack(b);}
+
+/**
+ * Class generated from <tt>OrionPackets.msg</tt> by opp_msgc.
+ * <pre>
+ * message ReqBlockTimer extends cMessage
+ * {
+ *     string filename;
+ * }
+ * </pre>
+ */
+class ReqBlockTimer : public ::cMessage
+{
+  protected:
+    opp_string filename_var;
+
+  private:
+    void copy(const ReqBlockTimer& other);
+
+  protected:
+    // protected and unimplemented operator==(), to prevent accidental usage
+    bool operator==(const ReqBlockTimer&);
+
+  public:
+    ReqBlockTimer(const char *name=NULL, int kind=0);
+    ReqBlockTimer(const ReqBlockTimer& other);
+    virtual ~ReqBlockTimer();
+    ReqBlockTimer& operator=(const ReqBlockTimer& other);
+    virtual ReqBlockTimer *dup() const {return new ReqBlockTimer(*this);}
+    virtual void parsimPack(cCommBuffer *b);
+    virtual void parsimUnpack(cCommBuffer *b);
+
+    // field getter/setter methods
+    virtual const char * getFilename() const;
+    virtual void setFilename(const char * filename);
+};
+
+inline void doPacking(cCommBuffer *b, ReqBlockTimer& obj) {obj.parsimPack(b);}
+inline void doUnpacking(cCommBuffer *b, ReqBlockTimer& obj) {obj.parsimUnpack(b);}
 
 
 #endif // _ORIONPACKETS_M_H_

@@ -69,6 +69,13 @@ class OrionDataReqPacket extends OrionPacket
    	unsigned int blockNum;
 }
 
+class OrionDataAckPacket extends OrionPacket
+{
+    unsigned int packetType = DATA_REQUEST_ACK;
+    unsigned int retries;
+   	unsigned int blockNum;
+}
+
 //
 // Represents an Orion Route Error
 //
@@ -85,6 +92,11 @@ class OrionDataRepPacket extends OrionPacket
 // Represents a timer for a Route Reply packet
 //
 message WaitForReq extends cMessage
+{
+    string filename;
+}
+
+message ReqBlockTimer extends cMessage
 {
     string filename;
 }
