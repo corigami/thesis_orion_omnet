@@ -65,7 +65,8 @@ simple OrionApp like IUDPApp
       	int numHosts= default(25);
         int destPort = default(5000); // port used by remote Orion Application
         bool master = default(false); // is this application running as the master?
-      	bool enableDebug = default(true);
+      	bool enableDebugLevel0 = default(false);
+      	bool enableDebugLevel1 = default(true);
       	double retryDelay @unit(s) = default(.3s);
       
         @display("i=block/app");

@@ -53,7 +53,7 @@ network OrionNetwork
                 script = default(xml("<scenario/>"));
                 @display("p=50,250");
         }
-    //  host[numHosts]: AODVRouter {
+   //  host[numHosts]: AODVRouter {
        host[numHosts]: AdhocHost {
             parameters:
                 @display("i=device/pocketpc_s;r=,,#707070");

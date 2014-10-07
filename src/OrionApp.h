@@ -41,7 +41,7 @@ class /*INET_API */OrionApp : public ApplicationBase
   protected:
     enum SelfMsgKinds { START = 1, SEND, STOP};
     UDPSocket socket;
-    bool debugEnabled;
+    bool debugEnabled[2];
     bool socketOpen;
     int localPort, destPort;
     int numberNodes;
@@ -92,7 +92,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     virtual IPvXAddress chooseDestAddr();
 
 
-    virtual void sendPacket();
+  //  virtual void sendPacket();
     virtual void processPacket(cPacket *msg);
     virtual void setSocketOptions();
 
@@ -134,7 +134,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     /*
      *
      */
-    void debug(std::string msg);
+    void debug(std::string msg, int level = 1);
   public:
     OrionApp();
     ~OrionApp();
