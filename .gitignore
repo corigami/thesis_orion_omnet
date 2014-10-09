@@ -33,3 +33,5 @@ xxx
 /tmp/
 /src/.tmp*
 /src/sta*
+.cproject
+simulations/.tkenvlog
