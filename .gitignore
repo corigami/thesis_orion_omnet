@@ -5,6 +5,7 @@ src/Makefile
 src/Makefile.vc
 /doc/doxy/
 /doc/neddoc/
+*/out
 */results/
 */*/results/
 */*/*/results/
