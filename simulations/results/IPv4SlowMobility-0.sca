@@ -1,14 +1,14 @@
 version 2
-run IPv4SlowMobility-0-20141008-16:13:09-89040
+run IPv4SlowMobility-0-20141009-18:11:16-141496
 attr configname IPv4SlowMobility
-attr datetime 20141008-16:13:09
+attr datetime 20141009-18:11:16
 attr experiment IPv4SlowMobility
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvars2 $repetition=0
 attr measurement ""
 attr network OrionNetwork
-attr processid 89040
+attr processid 141496
 attr repetition 0
 attr replication #0
 attr resultdir results
