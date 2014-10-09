@@ -55,6 +55,7 @@ class /*INET_API */OrionApp : public ApplicationBase
 
     std::vector<int> outputInterfaceMulticastBroadcast;
     std::vector<IPvXAddress> destAddresses;
+
     std::map<std::string, OrionDataReqPacket*> pendingPackets;
     std::map<std::string, WaitForReq*> pendingTimeouts;
     std::map<std::string, ReqBlockTimer*> blockTimers;
@@ -80,6 +81,8 @@ class /*INET_API */OrionApp : public ApplicationBase
     // statistics
     int numSent;
     int numReceived;
+    int xferFails;
+    int xferCompletes;
     int fileSize;
     bool master;
 
@@ -102,15 +105,13 @@ class /*INET_API */OrionApp : public ApplicationBase
     //- send functions
     void sendQuery(std::string fileToRequest, unsigned int seq, IPvXAddress src);
     void sendResponse(OrionPacket *oPacket);
-    void sendRequest(std::string fileToRequest, unsigned int rSeq, IPvXAddress dest);
+    void sendRequest(std::string fileToRequest);
     void sendRequestAck(OrionDataReqPacket* reqPacket);
     void resendRequest(OrionDataReqPacket* reqPacket);
     void requestNextBlock(std::string filename);
     void sendReply(std::string fileToRequest, unsigned int block, IPvXAddress dest);
 
-
     bool sendBroadcast(const IPvXAddress &dest, cPacket *pkt);
-    void transferFile(std::string file);
 
     //receive functions
     void handleQuery(OrionQueryPacket *qPacket);

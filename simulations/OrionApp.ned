@@ -67,7 +67,7 @@ simple OrionApp like IUDPApp
         bool master = default(false); // is this application running as the master?
       	bool enableDebugLevel0 = default(false);
       	bool enableDebugLevel1 = default(true);
-      	double retryDelay @unit(s) = default(.3s);
+      	double retryDelay @unit(s) = default(.05s);
       
         @display("i=block/app");
         @signal[sentPk](type=cPacket);

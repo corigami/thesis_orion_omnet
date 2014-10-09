@@ -66,14 +66,16 @@ class OrionDataReqPacket extends OrionPacket
 {
     unsigned int packetType = DATA_REQUEST;
     unsigned int retries;
-   	unsigned int blockNum;
+   	unsigned int block;
+   	 string bid;
 }
 
 class OrionDataAckPacket extends OrionPacket
 {
     unsigned int packetType = DATA_REQUEST_ACK;
     unsigned int retries;
-   	unsigned int blockNum;
+   	unsigned int block;
+   	string bid;
 }
 
 //
@@ -83,7 +85,8 @@ class OrionDataRepPacket extends OrionPacket
 {
    
     unsigned int packetType = DATA_REPLY;
-    unsigned int blockNum;
+    unsigned int block;
+    string bid;
 }
 
 
@@ -94,6 +97,8 @@ class OrionDataRepPacket extends OrionPacket
 message WaitForReq extends cMessage
 {
     string filename;
+    string bid;
+    unsigned int block;
 }
 
 message ReqBlockTimer extends cMessage

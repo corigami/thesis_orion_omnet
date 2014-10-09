@@ -190,7 +190,8 @@ inline void doUnpacking(cCommBuffer *b, OrionResponsePacket& obj) {obj.parsimUnp
  * {
  *     unsigned int packetType = DATA_REQUEST;
  *     unsigned int retries;
- *    	unsigned int blockNum;
+ *    	unsigned int block;
+ *    	 string bid;
  * }
  * </pre>
  */
@@ -199,7 +200,8 @@ class OrionDataReqPacket : public ::OrionPacket
   protected:
     unsigned int packetType_var;
     unsigned int retries_var;
-    unsigned int blockNum_var;
+    unsigned int block_var;
+    opp_string bid_var;
 
   private:
     void copy(const OrionDataReqPacket& other);
@@ -222,8 +224,10 @@ class OrionDataReqPacket : public ::OrionPacket
     virtual void setPacketType(unsigned int packetType);
     virtual unsigned int getRetries() const;
     virtual void setRetries(unsigned int retries);
-    virtual unsigned int getBlockNum() const;
-    virtual void setBlockNum(unsigned int blockNum);
+    virtual unsigned int getBlock() const;
+    virtual void setBlock(unsigned int block);
+    virtual const char * getBid() const;
+    virtual void setBid(const char * bid);
 };
 
 inline void doPacking(cCommBuffer *b, OrionDataReqPacket& obj) {obj.parsimPack(b);}
@@ -236,7 +240,8 @@ inline void doUnpacking(cCommBuffer *b, OrionDataReqPacket& obj) {obj.parsimUnpa
  * {
  *     unsigned int packetType = DATA_REQUEST_ACK;
  *     unsigned int retries;
- *    	unsigned int blockNum;
+ *    	unsigned int block;
+ *    	string bid;
  * }
  * </pre>
  */
@@ -245,7 +250,8 @@ class OrionDataAckPacket : public ::OrionPacket
   protected:
     unsigned int packetType_var;
     unsigned int retries_var;
-    unsigned int blockNum_var;
+    unsigned int block_var;
+    opp_string bid_var;
 
   private:
     void copy(const OrionDataAckPacket& other);
@@ -268,8 +274,10 @@ class OrionDataAckPacket : public ::OrionPacket
     virtual void setPacketType(unsigned int packetType);
     virtual unsigned int getRetries() const;
     virtual void setRetries(unsigned int retries);
-    virtual unsigned int getBlockNum() const;
-    virtual void setBlockNum(unsigned int blockNum);
+    virtual unsigned int getBlock() const;
+    virtual void setBlock(unsigned int block);
+    virtual const char * getBid() const;
+    virtual void setBid(const char * bid);
 };
 
 inline void doPacking(cCommBuffer *b, OrionDataAckPacket& obj) {obj.parsimPack(b);}
@@ -282,7 +290,8 @@ inline void doUnpacking(cCommBuffer *b, OrionDataAckPacket& obj) {obj.parsimUnpa
  * {
  *    
  *     unsigned int packetType = DATA_REPLY;
- *     unsigned int blockNum;
+ *     unsigned int block;
+ *     string bid;
  * }
  * </pre>
  */
@@ -290,7 +299,8 @@ class OrionDataRepPacket : public ::OrionPacket
 {
   protected:
     unsigned int packetType_var;
-    unsigned int blockNum_var;
+    unsigned int block_var;
+    opp_string bid_var;
 
   private:
     void copy(const OrionDataRepPacket& other);
@@ -311,8 +321,10 @@ class OrionDataRepPacket : public ::OrionPacket
     // field getter/setter methods
     virtual unsigned int getPacketType() const;
     virtual void setPacketType(unsigned int packetType);
-    virtual unsigned int getBlockNum() const;
-    virtual void setBlockNum(unsigned int blockNum);
+    virtual unsigned int getBlock() const;
+    virtual void setBlock(unsigned int block);
+    virtual const char * getBid() const;
+    virtual void setBid(const char * bid);
 };
 
 inline void doPacking(cCommBuffer *b, OrionDataRepPacket& obj) {obj.parsimPack(b);}
@@ -324,6 +336,8 @@ inline void doUnpacking(cCommBuffer *b, OrionDataRepPacket& obj) {obj.parsimUnpa
  * message WaitForReq extends cMessage
  * {
  *     string filename;
+ *     string bid;
+ *     unsigned int block;
  * }
  * </pre>
  */
@@ -331,6 +345,8 @@ class WaitForReq : public ::cMessage
 {
   protected:
     opp_string filename_var;
+    opp_string bid_var;
+    unsigned int block_var;
 
   private:
     void copy(const WaitForReq& other);
@@ -351,6 +367,10 @@ class WaitForReq : public ::cMessage
     // field getter/setter methods
     virtual const char * getFilename() const;
     virtual void setFilename(const char * filename);
+    virtual const char * getBid() const;
+    virtual void setBid(const char * bid);
+    virtual unsigned int getBlock() const;
+    virtual void setBlock(unsigned int block);
 };
 
 inline void doPacking(cCommBuffer *b, WaitForReq& obj) {obj.parsimPack(b);}

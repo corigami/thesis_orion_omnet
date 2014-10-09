@@ -18,6 +18,7 @@
 
 #include <string>
 #include <deque>
+#include <map>
 #include "IPv4Address.h"
 
 class FileTableData {
@@ -37,6 +38,12 @@ public:
         transferStop = -1;
         transferTime = -1;
         transferComplete = false;
+
+        for( int i(0); i < fileSize; i++){
+            blockStatus.insert(std::pair<int, bool>(i, false));
+        }
+        blockCounter = 0;
+        std::cout << "Size of BlockStatus = " << blockStatus.size() << std::endl;
     }
     virtual ~FileTableData(){
 
@@ -60,15 +67,40 @@ public:
         for (std::deque<IPvXAddress>::iterator it = fileList.begin(); it!=fileList.end(); ++it){
             if(*it==source)
                 return true;
-
         }
-        return false ;
+        return false;
     }
 
     bool hasSource(){
-        if(fileList.size() != 0)
+        if(fileList.size() > 0)
+            std::cout << "Size of fileList: " << fileList.size() << std::endl;
            return true;
         return false;
+    }
+
+    int getNextBlock(){
+        int tempCounter = blockCounter;
+        for(int i(blockCounter); i < blocks; i++){
+            std::cout << "Blockcounter: " << blockCounter <<std::endl;
+            if(blockStatus[i]){
+               i++;
+               if(i == blocks){
+                   i = 0;
+               } else if(i==(tempCounter-1))
+                return -1;
+            }else{
+                blockCounter=i+1;
+                return i;
+            }
+        }
+        return -2;
+        }
+    void setBlockComplete(int block){
+        blockStatus[block] = true;
+    }
+
+    bool getBlockStatus(int block){
+        return blockStatus[block];
     }
 
     int getBlocks() const {
@@ -162,9 +194,13 @@ protected:
     double transferStart;
     double transferStop;
     double transferTime;
+
     int blocks;
     int remainBlocks;
+    int blockCounter;
     bool transferComplete;
+
+    std::map<int, bool> blockStatus;
 
 
 };

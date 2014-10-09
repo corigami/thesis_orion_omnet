@@ -894,7 +894,8 @@ OrionDataReqPacket::OrionDataReqPacket(const char *name) : ::OrionPacket(name)
 {
     this->packetType_var = DATA_REQUEST;
     this->retries_var = 0;
-    this->blockNum_var = 0;
+    this->block_var = 0;
+    this->bid_var = 0;
 }
 
 OrionDataReqPacket::OrionDataReqPacket(const OrionDataReqPacket& other) : ::OrionPacket(other)
@@ -918,7 +919,8 @@ void OrionDataReqPacket::copy(const OrionDataReqPacket& other)
 {
     this->packetType_var = other.packetType_var;
     this->retries_var = other.retries_var;
-    this->blockNum_var = other.blockNum_var;
+    this->block_var = other.block_var;
+    this->bid_var = other.bid_var;
 }
 
 void OrionDataReqPacket::parsimPack(cCommBuffer *b)
@@ -926,7 +928,8 @@ void OrionDataReqPacket::parsimPack(cCommBuffer *b)
     ::OrionPacket::parsimPack(b);
     doPacking(b,this->packetType_var);
     doPacking(b,this->retries_var);
-    doPacking(b,this->blockNum_var);
+    doPacking(b,this->block_var);
+    doPacking(b,this->bid_var);
 }
 
 void OrionDataReqPacket::parsimUnpack(cCommBuffer *b)
@@ -934,7 +937,8 @@ void OrionDataReqPacket::parsimUnpack(cCommBuffer *b)
     ::OrionPacket::parsimUnpack(b);
     doUnpacking(b,this->packetType_var);
     doUnpacking(b,this->retries_var);
-    doUnpacking(b,this->blockNum_var);
+    doUnpacking(b,this->block_var);
+    doUnpacking(b,this->bid_var);
 }
 
 unsigned int OrionDataReqPacket::getPacketType() const
@@ -957,14 +961,24 @@ void OrionDataReqPacket::setRetries(unsigned int retries)
     this->retries_var = retries;
 }
 
-unsigned int OrionDataReqPacket::getBlockNum() const
+unsigned int OrionDataReqPacket::getBlock() const
 {
-    return blockNum_var;
+    return block_var;
 }
 
-void OrionDataReqPacket::setBlockNum(unsigned int blockNum)
+void OrionDataReqPacket::setBlock(unsigned int block)
 {
-    this->blockNum_var = blockNum;
+    this->block_var = block;
+}
+
+const char * OrionDataReqPacket::getBid() const
+{
+    return bid_var.c_str();
+}
+
+void OrionDataReqPacket::setBid(const char * bid)
+{
+    this->bid_var = bid;
 }
 
 class OrionDataReqPacketDescriptor : public cClassDescriptor
@@ -1014,7 +1028,7 @@ const char *OrionDataReqPacketDescriptor::getProperty(const char *propertyname) 
 int OrionDataReqPacketDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
+    return basedesc ? 4+basedesc->getFieldCount(object) : 4;
 }
 
 unsigned int OrionDataReqPacketDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -1029,8 +1043,9 @@ unsigned int OrionDataReqPacketDescriptor::getFieldTypeFlags(void *object, int f
         FD_ISEDITABLE,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<4) ? fieldTypeFlags[field] : 0;
 }
 
 const char *OrionDataReqPacketDescriptor::getFieldName(void *object, int field) const
@@ -1044,9 +1059,10 @@ const char *OrionDataReqPacketDescriptor::getFieldName(void *object, int field) 
     static const char *fieldNames[] = {
         "packetType",
         "retries",
-        "blockNum",
+        "block",
+        "bid",
     };
-    return (field>=0 && field<3) ? fieldNames[field] : NULL;
+    return (field>=0 && field<4) ? fieldNames[field] : NULL;
 }
 
 int OrionDataReqPacketDescriptor::findField(void *object, const char *fieldName) const
@@ -1055,7 +1071,8 @@ int OrionDataReqPacketDescriptor::findField(void *object, const char *fieldName)
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
     if (fieldName[0]=='p' && strcmp(fieldName, "packetType")==0) return base+0;
     if (fieldName[0]=='r' && strcmp(fieldName, "retries")==0) return base+1;
-    if (fieldName[0]=='b' && strcmp(fieldName, "blockNum")==0) return base+2;
+    if (fieldName[0]=='b' && strcmp(fieldName, "block")==0) return base+2;
+    if (fieldName[0]=='b' && strcmp(fieldName, "bid")==0) return base+3;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -1071,8 +1088,9 @@ const char *OrionDataReqPacketDescriptor::getFieldTypeString(void *object, int f
         "unsigned int",
         "unsigned int",
         "unsigned int",
+        "string",
     };
-    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<4) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *OrionDataReqPacketDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -1114,7 +1132,8 @@ std::string OrionDataReqPacketDescriptor::getFieldAsString(void *object, int fie
     switch (field) {
         case 0: return ulong2string(pp->getPacketType());
         case 1: return ulong2string(pp->getRetries());
-        case 2: return ulong2string(pp->getBlockNum());
+        case 2: return ulong2string(pp->getBlock());
+        case 3: return oppstring2string(pp->getBid());
         default: return "";
     }
 }
@@ -1131,7 +1150,8 @@ bool OrionDataReqPacketDescriptor::setFieldAsString(void *object, int field, int
     switch (field) {
         case 0: pp->setPacketType(string2ulong(value)); return true;
         case 1: pp->setRetries(string2ulong(value)); return true;
-        case 2: pp->setBlockNum(string2ulong(value)); return true;
+        case 2: pp->setBlock(string2ulong(value)); return true;
+        case 3: pp->setBid((value)); return true;
         default: return false;
     }
 }
@@ -1169,7 +1189,8 @@ OrionDataAckPacket::OrionDataAckPacket(const char *name) : ::OrionPacket(name)
 {
     this->packetType_var = DATA_REQUEST_ACK;
     this->retries_var = 0;
-    this->blockNum_var = 0;
+    this->block_var = 0;
+    this->bid_var = 0;
 }
 
 OrionDataAckPacket::OrionDataAckPacket(const OrionDataAckPacket& other) : ::OrionPacket(other)
@@ -1193,7 +1214,8 @@ void OrionDataAckPacket::copy(const OrionDataAckPacket& other)
 {
     this->packetType_var = other.packetType_var;
     this->retries_var = other.retries_var;
-    this->blockNum_var = other.blockNum_var;
+    this->block_var = other.block_var;
+    this->bid_var = other.bid_var;
 }
 
 void OrionDataAckPacket::parsimPack(cCommBuffer *b)
@@ -1201,7 +1223,8 @@ void OrionDataAckPacket::parsimPack(cCommBuffer *b)
     ::OrionPacket::parsimPack(b);
     doPacking(b,this->packetType_var);
     doPacking(b,this->retries_var);
-    doPacking(b,this->blockNum_var);
+    doPacking(b,this->block_var);
+    doPacking(b,this->bid_var);
 }
 
 void OrionDataAckPacket::parsimUnpack(cCommBuffer *b)
@@ -1209,7 +1232,8 @@ void OrionDataAckPacket::parsimUnpack(cCommBuffer *b)
     ::OrionPacket::parsimUnpack(b);
     doUnpacking(b,this->packetType_var);
     doUnpacking(b,this->retries_var);
-    doUnpacking(b,this->blockNum_var);
+    doUnpacking(b,this->block_var);
+    doUnpacking(b,this->bid_var);
 }
 
 unsigned int OrionDataAckPacket::getPacketType() const
@@ -1232,14 +1256,24 @@ void OrionDataAckPacket::setRetries(unsigned int retries)
     this->retries_var = retries;
 }
 
-unsigned int OrionDataAckPacket::getBlockNum() const
+unsigned int OrionDataAckPacket::getBlock() const
 {
-    return blockNum_var;
+    return block_var;
 }
 
-void OrionDataAckPacket::setBlockNum(unsigned int blockNum)
+void OrionDataAckPacket::setBlock(unsigned int block)
 {
-    this->blockNum_var = blockNum;
+    this->block_var = block;
+}
+
+const char * OrionDataAckPacket::getBid() const
+{
+    return bid_var.c_str();
+}
+
+void OrionDataAckPacket::setBid(const char * bid)
+{
+    this->bid_var = bid;
 }
 
 class OrionDataAckPacketDescriptor : public cClassDescriptor
@@ -1289,7 +1323,7 @@ const char *OrionDataAckPacketDescriptor::getProperty(const char *propertyname) 
 int OrionDataAckPacketDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
+    return basedesc ? 4+basedesc->getFieldCount(object) : 4;
 }
 
 unsigned int OrionDataAckPacketDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -1304,8 +1338,9 @@ unsigned int OrionDataAckPacketDescriptor::getFieldTypeFlags(void *object, int f
         FD_ISEDITABLE,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<4) ? fieldTypeFlags[field] : 0;
 }
 
 const char *OrionDataAckPacketDescriptor::getFieldName(void *object, int field) const
@@ -1319,9 +1354,10 @@ const char *OrionDataAckPacketDescriptor::getFieldName(void *object, int field) 
     static const char *fieldNames[] = {
         "packetType",
         "retries",
-        "blockNum",
+        "block",
+        "bid",
     };
-    return (field>=0 && field<3) ? fieldNames[field] : NULL;
+    return (field>=0 && field<4) ? fieldNames[field] : NULL;
 }
 
 int OrionDataAckPacketDescriptor::findField(void *object, const char *fieldName) const
@@ -1330,7 +1366,8 @@ int OrionDataAckPacketDescriptor::findField(void *object, const char *fieldName)
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
     if (fieldName[0]=='p' && strcmp(fieldName, "packetType")==0) return base+0;
     if (fieldName[0]=='r' && strcmp(fieldName, "retries")==0) return base+1;
-    if (fieldName[0]=='b' && strcmp(fieldName, "blockNum")==0) return base+2;
+    if (fieldName[0]=='b' && strcmp(fieldName, "block")==0) return base+2;
+    if (fieldName[0]=='b' && strcmp(fieldName, "bid")==0) return base+3;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -1346,8 +1383,9 @@ const char *OrionDataAckPacketDescriptor::getFieldTypeString(void *object, int f
         "unsigned int",
         "unsigned int",
         "unsigned int",
+        "string",
     };
-    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<4) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *OrionDataAckPacketDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -1389,7 +1427,8 @@ std::string OrionDataAckPacketDescriptor::getFieldAsString(void *object, int fie
     switch (field) {
         case 0: return ulong2string(pp->getPacketType());
         case 1: return ulong2string(pp->getRetries());
-        case 2: return ulong2string(pp->getBlockNum());
+        case 2: return ulong2string(pp->getBlock());
+        case 3: return oppstring2string(pp->getBid());
         default: return "";
     }
 }
@@ -1406,7 +1445,8 @@ bool OrionDataAckPacketDescriptor::setFieldAsString(void *object, int field, int
     switch (field) {
         case 0: pp->setPacketType(string2ulong(value)); return true;
         case 1: pp->setRetries(string2ulong(value)); return true;
-        case 2: pp->setBlockNum(string2ulong(value)); return true;
+        case 2: pp->setBlock(string2ulong(value)); return true;
+        case 3: pp->setBid((value)); return true;
         default: return false;
     }
 }
@@ -1443,7 +1483,8 @@ Register_Class(OrionDataRepPacket);
 OrionDataRepPacket::OrionDataRepPacket(const char *name) : ::OrionPacket(name)
 {
     this->packetType_var = DATA_REPLY;
-    this->blockNum_var = 0;
+    this->block_var = 0;
+    this->bid_var = 0;
 }
 
 OrionDataRepPacket::OrionDataRepPacket(const OrionDataRepPacket& other) : ::OrionPacket(other)
@@ -1466,21 +1507,24 @@ OrionDataRepPacket& OrionDataRepPacket::operator=(const OrionDataRepPacket& othe
 void OrionDataRepPacket::copy(const OrionDataRepPacket& other)
 {
     this->packetType_var = other.packetType_var;
-    this->blockNum_var = other.blockNum_var;
+    this->block_var = other.block_var;
+    this->bid_var = other.bid_var;
 }
 
 void OrionDataRepPacket::parsimPack(cCommBuffer *b)
 {
     ::OrionPacket::parsimPack(b);
     doPacking(b,this->packetType_var);
-    doPacking(b,this->blockNum_var);
+    doPacking(b,this->block_var);
+    doPacking(b,this->bid_var);
 }
 
 void OrionDataRepPacket::parsimUnpack(cCommBuffer *b)
 {
     ::OrionPacket::parsimUnpack(b);
     doUnpacking(b,this->packetType_var);
-    doUnpacking(b,this->blockNum_var);
+    doUnpacking(b,this->block_var);
+    doUnpacking(b,this->bid_var);
 }
 
 unsigned int OrionDataRepPacket::getPacketType() const
@@ -1493,14 +1537,24 @@ void OrionDataRepPacket::setPacketType(unsigned int packetType)
     this->packetType_var = packetType;
 }
 
-unsigned int OrionDataRepPacket::getBlockNum() const
+unsigned int OrionDataRepPacket::getBlock() const
 {
-    return blockNum_var;
+    return block_var;
 }
 
-void OrionDataRepPacket::setBlockNum(unsigned int blockNum)
+void OrionDataRepPacket::setBlock(unsigned int block)
 {
-    this->blockNum_var = blockNum;
+    this->block_var = block;
+}
+
+const char * OrionDataRepPacket::getBid() const
+{
+    return bid_var.c_str();
+}
+
+void OrionDataRepPacket::setBid(const char * bid)
+{
+    this->bid_var = bid;
 }
 
 class OrionDataRepPacketDescriptor : public cClassDescriptor
@@ -1550,7 +1604,7 @@ const char *OrionDataRepPacketDescriptor::getProperty(const char *propertyname) 
 int OrionDataRepPacketDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 2+basedesc->getFieldCount(object) : 2;
+    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
 }
 
 unsigned int OrionDataRepPacketDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -1564,8 +1618,9 @@ unsigned int OrionDataRepPacketDescriptor::getFieldTypeFlags(void *object, int f
     static unsigned int fieldTypeFlags[] = {
         FD_ISEDITABLE,
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<2) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
 }
 
 const char *OrionDataRepPacketDescriptor::getFieldName(void *object, int field) const
@@ -1578,9 +1633,10 @@ const char *OrionDataRepPacketDescriptor::getFieldName(void *object, int field) 
     }
     static const char *fieldNames[] = {
         "packetType",
-        "blockNum",
+        "block",
+        "bid",
     };
-    return (field>=0 && field<2) ? fieldNames[field] : NULL;
+    return (field>=0 && field<3) ? fieldNames[field] : NULL;
 }
 
 int OrionDataRepPacketDescriptor::findField(void *object, const char *fieldName) const
@@ -1588,7 +1644,8 @@ int OrionDataRepPacketDescriptor::findField(void *object, const char *fieldName)
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
     if (fieldName[0]=='p' && strcmp(fieldName, "packetType")==0) return base+0;
-    if (fieldName[0]=='b' && strcmp(fieldName, "blockNum")==0) return base+1;
+    if (fieldName[0]=='b' && strcmp(fieldName, "block")==0) return base+1;
+    if (fieldName[0]=='b' && strcmp(fieldName, "bid")==0) return base+2;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -1603,8 +1660,9 @@ const char *OrionDataRepPacketDescriptor::getFieldTypeString(void *object, int f
     static const char *fieldTypeStrings[] = {
         "unsigned int",
         "unsigned int",
+        "string",
     };
-    return (field>=0 && field<2) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *OrionDataRepPacketDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -1645,7 +1703,8 @@ std::string OrionDataRepPacketDescriptor::getFieldAsString(void *object, int fie
     OrionDataRepPacket *pp = (OrionDataRepPacket *)object; (void)pp;
     switch (field) {
         case 0: return ulong2string(pp->getPacketType());
-        case 1: return ulong2string(pp->getBlockNum());
+        case 1: return ulong2string(pp->getBlock());
+        case 2: return oppstring2string(pp->getBid());
         default: return "";
     }
 }
@@ -1661,7 +1720,8 @@ bool OrionDataRepPacketDescriptor::setFieldAsString(void *object, int field, int
     OrionDataRepPacket *pp = (OrionDataRepPacket *)object; (void)pp;
     switch (field) {
         case 0: pp->setPacketType(string2ulong(value)); return true;
-        case 1: pp->setBlockNum(string2ulong(value)); return true;
+        case 1: pp->setBlock(string2ulong(value)); return true;
+        case 2: pp->setBid((value)); return true;
         default: return false;
     }
 }
@@ -1698,6 +1758,8 @@ Register_Class(WaitForReq);
 WaitForReq::WaitForReq(const char *name, int kind) : ::cMessage(name,kind)
 {
     this->filename_var = 0;
+    this->bid_var = 0;
+    this->block_var = 0;
 }
 
 WaitForReq::WaitForReq(const WaitForReq& other) : ::cMessage(other)
@@ -1720,18 +1782,24 @@ WaitForReq& WaitForReq::operator=(const WaitForReq& other)
 void WaitForReq::copy(const WaitForReq& other)
 {
     this->filename_var = other.filename_var;
+    this->bid_var = other.bid_var;
+    this->block_var = other.block_var;
 }
 
 void WaitForReq::parsimPack(cCommBuffer *b)
 {
     ::cMessage::parsimPack(b);
     doPacking(b,this->filename_var);
+    doPacking(b,this->bid_var);
+    doPacking(b,this->block_var);
 }
 
 void WaitForReq::parsimUnpack(cCommBuffer *b)
 {
     ::cMessage::parsimUnpack(b);
     doUnpacking(b,this->filename_var);
+    doUnpacking(b,this->bid_var);
+    doUnpacking(b,this->block_var);
 }
 
 const char * WaitForReq::getFilename() const
@@ -1742,6 +1810,26 @@ const char * WaitForReq::getFilename() const
 void WaitForReq::setFilename(const char * filename)
 {
     this->filename_var = filename;
+}
+
+const char * WaitForReq::getBid() const
+{
+    return bid_var.c_str();
+}
+
+void WaitForReq::setBid(const char * bid)
+{
+    this->bid_var = bid;
+}
+
+unsigned int WaitForReq::getBlock() const
+{
+    return block_var;
+}
+
+void WaitForReq::setBlock(unsigned int block)
+{
+    this->block_var = block;
 }
 
 class WaitForReqDescriptor : public cClassDescriptor
@@ -1791,7 +1879,7 @@ const char *WaitForReqDescriptor::getProperty(const char *propertyname) const
 int WaitForReqDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
+    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
 }
 
 unsigned int WaitForReqDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -1804,8 +1892,10 @@ unsigned int WaitForReqDescriptor::getFieldTypeFlags(void *object, int field) co
     }
     static unsigned int fieldTypeFlags[] = {
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
 }
 
 const char *WaitForReqDescriptor::getFieldName(void *object, int field) const
@@ -1818,8 +1908,10 @@ const char *WaitForReqDescriptor::getFieldName(void *object, int field) const
     }
     static const char *fieldNames[] = {
         "filename",
+        "bid",
+        "block",
     };
-    return (field>=0 && field<1) ? fieldNames[field] : NULL;
+    return (field>=0 && field<3) ? fieldNames[field] : NULL;
 }
 
 int WaitForReqDescriptor::findField(void *object, const char *fieldName) const
@@ -1827,6 +1919,8 @@ int WaitForReqDescriptor::findField(void *object, const char *fieldName) const
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
     if (fieldName[0]=='f' && strcmp(fieldName, "filename")==0) return base+0;
+    if (fieldName[0]=='b' && strcmp(fieldName, "bid")==0) return base+1;
+    if (fieldName[0]=='b' && strcmp(fieldName, "block")==0) return base+2;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -1840,8 +1934,10 @@ const char *WaitForReqDescriptor::getFieldTypeString(void *object, int field) co
     }
     static const char *fieldTypeStrings[] = {
         "string",
+        "string",
+        "unsigned int",
     };
-    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *WaitForReqDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -1882,6 +1978,8 @@ std::string WaitForReqDescriptor::getFieldAsString(void *object, int field, int 
     WaitForReq *pp = (WaitForReq *)object; (void)pp;
     switch (field) {
         case 0: return oppstring2string(pp->getFilename());
+        case 1: return oppstring2string(pp->getBid());
+        case 2: return ulong2string(pp->getBlock());
         default: return "";
     }
 }
@@ -1897,6 +1995,8 @@ bool WaitForReqDescriptor::setFieldAsString(void *object, int field, int i, cons
     WaitForReq *pp = (WaitForReq *)object; (void)pp;
     switch (field) {
         case 0: pp->setFilename((value)); return true;
+        case 1: pp->setBid((value)); return true;
+        case 2: pp->setBlock(string2ulong(value)); return true;
         default: return false;
     }
 }
