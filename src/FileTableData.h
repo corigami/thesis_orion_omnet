@@ -43,6 +43,7 @@ public:
             blockStatus.insert(std::pair<int, bool>(i, false));
         }
         blockCounter = 0;
+        std::cout << "Size of BlockStatus = " << blockStatus.size() << std::endl;
     }
     virtual ~FileTableData(){
 
