@@ -677,9 +677,18 @@ void OrionApp::handleResponse(OrionResponsePacket *rPacket){
 
 }
 
+
 void OrionApp::sendRequest(std::string fileToRequest){
     debug("sendRequest", 0);
     //convert to char array to keep packets happy
+
+    //     debug("Here - 1");
+         if(blockTimers.count(fileToRequest) != 0){
+                 //delete our queued packets and cancel our timeout event
+                 cancelAndDelete(blockTimers[fileToRequest]);
+                 //delete table entries
+                 blockTimers.erase(fileToRequest);
+         }
 
     int block(queryResults[fileToRequest].getNextBlock());
     if(block >= 0){
@@ -699,17 +708,7 @@ void OrionApp::sendRequest(std::string fileToRequest){
         strncpy(ID, id.c_str(), sizeof(ID));
         ID[sizeof(ID)-1]=0;
 
-   //     debug("Here - 1");
-        if(blockTimers.count(id) != 0){
-            if(blockTimers[id]->isScheduled()){
-    //            debug("Here - 2");
-                cancelEvent(blockTimers[id]);
-                //delete our queued packets and cancel our timeout event
-                cancelAndDelete(blockTimers[id]);
-                //delete table entries
-                blockTimers.erase(id);
-            }
-        }
+
 
         if(queryResults[fileToRequest].hasSource()){
    //         debug("Here - 3");
@@ -739,7 +738,7 @@ void OrionApp::sendRequest(std::string fileToRequest){
                 //store eventTimer and packet for later lookup
                 std::pair<std::string, OrionDataReqPacket*> tempPacketPair(id, reqPacket);
                 std::pair<std::string, WaitForReq*> tempPacketPair2(id, reqTimeout);
-                std::pair<std::string, ReqBlockTimer*> blockTimerPair(id, blockTimer);
+                std::pair<std::string, ReqBlockTimer*> blockTimerPair(fileName, blockTimer);
 
                 //store timers and packet for later lookup
                 pendingPackets.insert(tempPacketPair);
