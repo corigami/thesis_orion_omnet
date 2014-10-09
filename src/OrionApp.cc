@@ -681,10 +681,6 @@ void OrionApp::sendRequest(std::string fileToRequest){
     debug("sendRequest", 0);
 
     if(blockTimers.count(fileToRequest) != 0){
-        if(blockTimers[fileToRequest]->isScheduled()){
-
-            cancelEvent(blockTimers[fileToRequest]);
-        }
         //delete our queued packets and cancel our timeout event
         cancelAndDelete(blockTimers[fileToRequest]);
         //delete table entries
@@ -739,7 +735,7 @@ void OrionApp::sendRequest(std::string fileToRequest){
             //store eventTimer and packet for later lookup
             std::pair<std::string, OrionDataReqPacket*> tempPacketPair(id, reqPacket);
             std::pair<std::string, WaitForReq*> tempPacketPair2(id, reqTimeout);
-            std::pair<std::string, ReqBlockTimer*> blockTimerPair(id, blockTimer);
+            std::pair<std::string, ReqBlockTimer*> blockTimerPair(fileToRequest, blockTimer);
 
             //store timers and packet for later lookup
             pendingPackets.insert(tempPacketPair);
