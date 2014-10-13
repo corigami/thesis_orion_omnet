@@ -43,7 +43,6 @@ public:
             blockStatus.insert(std::pair<int, bool>(i, false));
         }
         blockCounter = 0;
-        std::cout << "Size of BlockStatus = " << blockStatus.size() << std::endl;
     }
     virtual ~FileTableData(){
 
@@ -73,7 +72,6 @@ public:
 
     bool hasSource(){
         if(fileList.size() > 0)
-            std::cout << "Size of fileList: " << fileList.size() << std::endl;
            return true;
         return false;
     }
@@ -81,7 +79,6 @@ public:
     int getNextBlock(){
         int tempCounter = blockCounter;
         for(int i(blockCounter); i < blocks; i++){
-            std::cout << "Blockcounter: " << blockCounter <<std::endl;
             if(blockStatus[i]){
                i++;
                if(i == blocks){
@@ -183,6 +180,7 @@ public:
     void setTransferTime(double transferTime) {
         this->transferTime = transferTime;
     }
+
 
 protected:
     std::deque<IPvXAddress> fileList;

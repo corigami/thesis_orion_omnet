@@ -61,6 +61,9 @@ EXECUTE_ON_STARTUP(
     e->insert(DATA_REQUEST, "DATA_REQUEST");
     e->insert(DATA_REPLY, "DATA_REPLY");
     e->insert(DATA_REQUEST_ACK, "DATA_REQUEST_ACK");
+    e->insert(REP_REQUEST, "REP_REQUEST");
+    e->insert(REP_CONFIRM, "REP_CONFIRM");
+    e->insert(REP_CONFIRM_ACK, "REP_CONFIRM_ACK");
 );
 
 Register_Class(OrionPacket);
@@ -1748,6 +1751,731 @@ void *OrionDataRepPacketDescriptor::getFieldStructPointer(void *object, int fiel
         field -= basedesc->getFieldCount(object);
     }
     OrionDataRepPacket *pp = (OrionDataRepPacket *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+Register_Class(ReplicatePacket);
+
+ReplicatePacket::ReplicatePacket(const char *name) : ::OrionPacket(name)
+{
+    this->packetType_var = REP_REQUEST;
+}
+
+ReplicatePacket::ReplicatePacket(const ReplicatePacket& other) : ::OrionPacket(other)
+{
+    copy(other);
+}
+
+ReplicatePacket::~ReplicatePacket()
+{
+}
+
+ReplicatePacket& ReplicatePacket::operator=(const ReplicatePacket& other)
+{
+    if (this==&other) return *this;
+    ::OrionPacket::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void ReplicatePacket::copy(const ReplicatePacket& other)
+{
+    this->packetType_var = other.packetType_var;
+}
+
+void ReplicatePacket::parsimPack(cCommBuffer *b)
+{
+    ::OrionPacket::parsimPack(b);
+    doPacking(b,this->packetType_var);
+}
+
+void ReplicatePacket::parsimUnpack(cCommBuffer *b)
+{
+    ::OrionPacket::parsimUnpack(b);
+    doUnpacking(b,this->packetType_var);
+}
+
+unsigned int ReplicatePacket::getPacketType() const
+{
+    return packetType_var;
+}
+
+void ReplicatePacket::setPacketType(unsigned int packetType)
+{
+    this->packetType_var = packetType;
+}
+
+class ReplicatePacketDescriptor : public cClassDescriptor
+{
+  public:
+    ReplicatePacketDescriptor();
+    virtual ~ReplicatePacketDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(ReplicatePacketDescriptor);
+
+ReplicatePacketDescriptor::ReplicatePacketDescriptor() : cClassDescriptor("ReplicatePacket", "OrionPacket")
+{
+}
+
+ReplicatePacketDescriptor::~ReplicatePacketDescriptor()
+{
+}
+
+bool ReplicatePacketDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<ReplicatePacket *>(obj)!=NULL;
+}
+
+const char *ReplicatePacketDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int ReplicatePacketDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
+}
+
+unsigned int ReplicatePacketDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
+}
+
+const char *ReplicatePacketDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "packetType",
+    };
+    return (field>=0 && field<1) ? fieldNames[field] : NULL;
+}
+
+int ReplicatePacketDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='p' && strcmp(fieldName, "packetType")==0) return base+0;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *ReplicatePacketDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "unsigned int",
+    };
+    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *ReplicatePacketDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int ReplicatePacketDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    ReplicatePacket *pp = (ReplicatePacket *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string ReplicatePacketDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    ReplicatePacket *pp = (ReplicatePacket *)object; (void)pp;
+    switch (field) {
+        case 0: return ulong2string(pp->getPacketType());
+        default: return "";
+    }
+}
+
+bool ReplicatePacketDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    ReplicatePacket *pp = (ReplicatePacket *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setPacketType(string2ulong(value)); return true;
+        default: return false;
+    }
+}
+
+const char *ReplicatePacketDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    };
+}
+
+void *ReplicatePacketDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    ReplicatePacket *pp = (ReplicatePacket *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+Register_Class(ReplicateConfirmPacket);
+
+ReplicateConfirmPacket::ReplicateConfirmPacket(const char *name) : ::OrionPacket(name)
+{
+    this->packetType_var = REP_CONFIRM;
+}
+
+ReplicateConfirmPacket::ReplicateConfirmPacket(const ReplicateConfirmPacket& other) : ::OrionPacket(other)
+{
+    copy(other);
+}
+
+ReplicateConfirmPacket::~ReplicateConfirmPacket()
+{
+}
+
+ReplicateConfirmPacket& ReplicateConfirmPacket::operator=(const ReplicateConfirmPacket& other)
+{
+    if (this==&other) return *this;
+    ::OrionPacket::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void ReplicateConfirmPacket::copy(const ReplicateConfirmPacket& other)
+{
+    this->packetType_var = other.packetType_var;
+}
+
+void ReplicateConfirmPacket::parsimPack(cCommBuffer *b)
+{
+    ::OrionPacket::parsimPack(b);
+    doPacking(b,this->packetType_var);
+}
+
+void ReplicateConfirmPacket::parsimUnpack(cCommBuffer *b)
+{
+    ::OrionPacket::parsimUnpack(b);
+    doUnpacking(b,this->packetType_var);
+}
+
+unsigned int ReplicateConfirmPacket::getPacketType() const
+{
+    return packetType_var;
+}
+
+void ReplicateConfirmPacket::setPacketType(unsigned int packetType)
+{
+    this->packetType_var = packetType;
+}
+
+class ReplicateConfirmPacketDescriptor : public cClassDescriptor
+{
+  public:
+    ReplicateConfirmPacketDescriptor();
+    virtual ~ReplicateConfirmPacketDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(ReplicateConfirmPacketDescriptor);
+
+ReplicateConfirmPacketDescriptor::ReplicateConfirmPacketDescriptor() : cClassDescriptor("ReplicateConfirmPacket", "OrionPacket")
+{
+}
+
+ReplicateConfirmPacketDescriptor::~ReplicateConfirmPacketDescriptor()
+{
+}
+
+bool ReplicateConfirmPacketDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<ReplicateConfirmPacket *>(obj)!=NULL;
+}
+
+const char *ReplicateConfirmPacketDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int ReplicateConfirmPacketDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
+}
+
+unsigned int ReplicateConfirmPacketDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
+}
+
+const char *ReplicateConfirmPacketDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "packetType",
+    };
+    return (field>=0 && field<1) ? fieldNames[field] : NULL;
+}
+
+int ReplicateConfirmPacketDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='p' && strcmp(fieldName, "packetType")==0) return base+0;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *ReplicateConfirmPacketDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "unsigned int",
+    };
+    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *ReplicateConfirmPacketDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int ReplicateConfirmPacketDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    ReplicateConfirmPacket *pp = (ReplicateConfirmPacket *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string ReplicateConfirmPacketDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    ReplicateConfirmPacket *pp = (ReplicateConfirmPacket *)object; (void)pp;
+    switch (field) {
+        case 0: return ulong2string(pp->getPacketType());
+        default: return "";
+    }
+}
+
+bool ReplicateConfirmPacketDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    ReplicateConfirmPacket *pp = (ReplicateConfirmPacket *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setPacketType(string2ulong(value)); return true;
+        default: return false;
+    }
+}
+
+const char *ReplicateConfirmPacketDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    };
+}
+
+void *ReplicateConfirmPacketDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    ReplicateConfirmPacket *pp = (ReplicateConfirmPacket *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+Register_Class(ReplicateConfirmAckPacket);
+
+ReplicateConfirmAckPacket::ReplicateConfirmAckPacket(const char *name) : ::OrionPacket(name)
+{
+    this->packetType_var = REP_CONFIRM_ACK;
+    this->numCopiesRemaining_var = 0;
+}
+
+ReplicateConfirmAckPacket::ReplicateConfirmAckPacket(const ReplicateConfirmAckPacket& other) : ::OrionPacket(other)
+{
+    copy(other);
+}
+
+ReplicateConfirmAckPacket::~ReplicateConfirmAckPacket()
+{
+}
+
+ReplicateConfirmAckPacket& ReplicateConfirmAckPacket::operator=(const ReplicateConfirmAckPacket& other)
+{
+    if (this==&other) return *this;
+    ::OrionPacket::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void ReplicateConfirmAckPacket::copy(const ReplicateConfirmAckPacket& other)
+{
+    this->packetType_var = other.packetType_var;
+    this->numCopiesRemaining_var = other.numCopiesRemaining_var;
+}
+
+void ReplicateConfirmAckPacket::parsimPack(cCommBuffer *b)
+{
+    ::OrionPacket::parsimPack(b);
+    doPacking(b,this->packetType_var);
+    doPacking(b,this->numCopiesRemaining_var);
+}
+
+void ReplicateConfirmAckPacket::parsimUnpack(cCommBuffer *b)
+{
+    ::OrionPacket::parsimUnpack(b);
+    doUnpacking(b,this->packetType_var);
+    doUnpacking(b,this->numCopiesRemaining_var);
+}
+
+unsigned int ReplicateConfirmAckPacket::getPacketType() const
+{
+    return packetType_var;
+}
+
+void ReplicateConfirmAckPacket::setPacketType(unsigned int packetType)
+{
+    this->packetType_var = packetType;
+}
+
+unsigned int ReplicateConfirmAckPacket::getNumCopiesRemaining() const
+{
+    return numCopiesRemaining_var;
+}
+
+void ReplicateConfirmAckPacket::setNumCopiesRemaining(unsigned int numCopiesRemaining)
+{
+    this->numCopiesRemaining_var = numCopiesRemaining;
+}
+
+class ReplicateConfirmAckPacketDescriptor : public cClassDescriptor
+{
+  public:
+    ReplicateConfirmAckPacketDescriptor();
+    virtual ~ReplicateConfirmAckPacketDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(ReplicateConfirmAckPacketDescriptor);
+
+ReplicateConfirmAckPacketDescriptor::ReplicateConfirmAckPacketDescriptor() : cClassDescriptor("ReplicateConfirmAckPacket", "OrionPacket")
+{
+}
+
+ReplicateConfirmAckPacketDescriptor::~ReplicateConfirmAckPacketDescriptor()
+{
+}
+
+bool ReplicateConfirmAckPacketDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<ReplicateConfirmAckPacket *>(obj)!=NULL;
+}
+
+const char *ReplicateConfirmAckPacketDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int ReplicateConfirmAckPacketDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 2+basedesc->getFieldCount(object) : 2;
+}
+
+unsigned int ReplicateConfirmAckPacketDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<2) ? fieldTypeFlags[field] : 0;
+}
+
+const char *ReplicateConfirmAckPacketDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "packetType",
+        "numCopiesRemaining",
+    };
+    return (field>=0 && field<2) ? fieldNames[field] : NULL;
+}
+
+int ReplicateConfirmAckPacketDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='p' && strcmp(fieldName, "packetType")==0) return base+0;
+    if (fieldName[0]=='n' && strcmp(fieldName, "numCopiesRemaining")==0) return base+1;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *ReplicateConfirmAckPacketDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "unsigned int",
+        "unsigned int",
+    };
+    return (field>=0 && field<2) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *ReplicateConfirmAckPacketDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int ReplicateConfirmAckPacketDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    ReplicateConfirmAckPacket *pp = (ReplicateConfirmAckPacket *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string ReplicateConfirmAckPacketDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    ReplicateConfirmAckPacket *pp = (ReplicateConfirmAckPacket *)object; (void)pp;
+    switch (field) {
+        case 0: return ulong2string(pp->getPacketType());
+        case 1: return ulong2string(pp->getNumCopiesRemaining());
+        default: return "";
+    }
+}
+
+bool ReplicateConfirmAckPacketDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    ReplicateConfirmAckPacket *pp = (ReplicateConfirmAckPacket *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setPacketType(string2ulong(value)); return true;
+        case 1: pp->setNumCopiesRemaining(string2ulong(value)); return true;
+        default: return false;
+    }
+}
+
+const char *ReplicateConfirmAckPacketDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    };
+}
+
+void *ReplicateConfirmAckPacketDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    ReplicateConfirmAckPacket *pp = (ReplicateConfirmAckPacket *)object; (void)pp;
     switch (field) {
         default: return NULL;
     }

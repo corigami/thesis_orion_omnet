@@ -29,6 +29,9 @@ enum OrionPacketType
     DATA_REQUEST = 3;
     DATA_REPLY = 4;
     DATA_REQUEST_ACK = 5;
+    REP_REQUEST = 6;
+    REP_CONFIRM = 7;
+    REP_CONFIRM_ACK = 8;
 };
 
 //
@@ -89,7 +92,21 @@ class OrionDataRepPacket extends OrionPacket
     string bid;
 }
 
-
+ class ReplicatePacket extends OrionPacket
+{
+    unsigned int packetType = REP_REQUEST;
+ }
+ 
+  class ReplicateConfirmPacket extends OrionPacket
+{
+    unsigned int packetType = REP_CONFIRM;
+ }
+ 
+  class ReplicateConfirmAckPacket extends OrionPacket
+{
+    unsigned int packetType = REP_CONFIRM_ACK;
+    unsigned int numCopiesRemaining;
+ }
 
 //
 // Represents a timer for a Route Reply packet

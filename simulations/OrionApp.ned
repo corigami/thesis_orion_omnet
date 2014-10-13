@@ -63,6 +63,7 @@ simple OrionApp like IUDPApp
       	int fileSize = default(100);
       	int retries = default(5);
       	int numHosts= default(25);
+      	int replicationCount = default(3);
         int destPort = default(5000); // port used by remote Orion Application
         bool master = default(false); // is this application running as the master?
       	bool enableDebugLevel0 = default(false);

@@ -51,6 +51,7 @@ class /*INET_API */OrionApp : public ApplicationBase
 
     unsigned int querySeqNum;
     unsigned int reqSeqNum;
+    unsigned int replicateSeqNum;
     unsigned int retries;
 
     std::vector<int> outputInterfaceMulticastBroadcast;
@@ -59,6 +60,12 @@ class /*INET_API */OrionApp : public ApplicationBase
     std::map<std::string, OrionDataReqPacket*> pendingPackets;
     std::map<std::string, WaitForReq*> pendingTimeouts;
     std::map<std::string, ReqBlockTimer*> blockTimers;
+
+    std::map<std::string, int> fileList;  //!< files system abstraction (just a list of file names)
+    std::map<std::string, IPvXAddress> queryList;
+    std::map<std::string, IPvXAddress> replicateList;
+    std::map<std::string, IPvXAddress> requestList;
+    std::map<std::string, FileTableData> queryResults;
 
     std::string nodeID;
     simtime_t startTime;
@@ -74,16 +81,14 @@ class /*INET_API */OrionApp : public ApplicationBase
     cMessage *fileRequestMsg;
     cMessage *nextBlockMsg;
 
-    std::vector<std::string> fileList;  //!< files system abstraction (just a list of file names)
-    std::map<int, IPvXAddress> queryList;
-    std::map<std::string, IPvXAddress> requestList;
-    std::map<std::string, FileTableData> queryResults;
+
     // statistics
     int numSent;
     int numReceived;
     int xferFails;
     int xferCompletes;
     int fileSize;
+    int repCount;
     bool master;
 
     static simsignal_t sentPkSignal;
@@ -111,6 +116,11 @@ class /*INET_API */OrionApp : public ApplicationBase
     void requestNextBlock(std::string filename);
     void sendReply(std::string fileToRequest, unsigned int block, IPvXAddress dest);
 
+    //replication functions
+    void sendReplicateReq(std::string fileToRep, unsigned int seq, IPvXAddress src);
+    void sendReplicateConfirm(ReplicateConfirmPacket *replicateRes);
+    void sendReplicateResponseAck(ReplicateConfirmAckPacket *replicateAck);
+
     bool sendBroadcast(const IPvXAddress &dest, cPacket *pkt);
 
     //receive functions
@@ -120,6 +130,11 @@ class /*INET_API */OrionApp : public ApplicationBase
     void handleReqAckTimeout();
     void handleRequestAck(OrionDataAckPacket *ackPacket);
     void handleReply(OrionDataRepPacket *repPacket);
+
+
+    void handleReplicateReq(ReplicatePacket *replicate);
+    void handleReplicateConfirm(ReplicateConfirmPacket *replicateRes);
+    void handleReplicateConfirmAck(ReplicateConfirmAckPacket *replicateAck);
 
 
     //utility functions

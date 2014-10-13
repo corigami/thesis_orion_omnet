@@ -30,6 +30,9 @@
  *     DATA_REQUEST = 3;
  *     DATA_REPLY = 4;
  *     DATA_REQUEST_ACK = 5;
+ *     REP_REQUEST = 6;
+ *     REP_CONFIRM = 7;
+ *     REP_CONFIRM_ACK = 8;
  * };
  * </pre>
  */
@@ -38,7 +41,10 @@ enum OrionPacketType {
     RESPONSE = 2,
     DATA_REQUEST = 3,
     DATA_REPLY = 4,
-    DATA_REQUEST_ACK = 5
+    DATA_REQUEST_ACK = 5,
+    REP_REQUEST = 6,
+    REP_CONFIRM = 7,
+    REP_CONFIRM_ACK = 8
 };
 
 /**
@@ -329,6 +335,124 @@ class OrionDataRepPacket : public ::OrionPacket
 
 inline void doPacking(cCommBuffer *b, OrionDataRepPacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, OrionDataRepPacket& obj) {obj.parsimUnpack(b);}
+
+/**
+ * Class generated from <tt>OrionPackets.msg</tt> by opp_msgc.
+ * <pre>
+ * class ReplicatePacket extends OrionPacket
+ * {
+ *     unsigned int packetType = REP_REQUEST;
+ *  }
+ * </pre>
+ */
+class ReplicatePacket : public ::OrionPacket
+{
+  protected:
+    unsigned int packetType_var;
+
+  private:
+    void copy(const ReplicatePacket& other);
+
+  protected:
+    // protected and unimplemented operator==(), to prevent accidental usage
+    bool operator==(const ReplicatePacket&);
+
+  public:
+    ReplicatePacket(const char *name=NULL);
+    ReplicatePacket(const ReplicatePacket& other);
+    virtual ~ReplicatePacket();
+    ReplicatePacket& operator=(const ReplicatePacket& other);
+    virtual ReplicatePacket *dup() const {return new ReplicatePacket(*this);}
+    virtual void parsimPack(cCommBuffer *b);
+    virtual void parsimUnpack(cCommBuffer *b);
+
+    // field getter/setter methods
+    virtual unsigned int getPacketType() const;
+    virtual void setPacketType(unsigned int packetType);
+};
+
+inline void doPacking(cCommBuffer *b, ReplicatePacket& obj) {obj.parsimPack(b);}
+inline void doUnpacking(cCommBuffer *b, ReplicatePacket& obj) {obj.parsimUnpack(b);}
+
+/**
+ * Class generated from <tt>OrionPackets.msg</tt> by opp_msgc.
+ * <pre>
+ * class ReplicateConfirmPacket extends OrionPacket
+ * {
+ *     unsigned int packetType = REP_CONFIRM;
+ *  }
+ * </pre>
+ */
+class ReplicateConfirmPacket : public ::OrionPacket
+{
+  protected:
+    unsigned int packetType_var;
+
+  private:
+    void copy(const ReplicateConfirmPacket& other);
+
+  protected:
+    // protected and unimplemented operator==(), to prevent accidental usage
+    bool operator==(const ReplicateConfirmPacket&);
+
+  public:
+    ReplicateConfirmPacket(const char *name=NULL);
+    ReplicateConfirmPacket(const ReplicateConfirmPacket& other);
+    virtual ~ReplicateConfirmPacket();
+    ReplicateConfirmPacket& operator=(const ReplicateConfirmPacket& other);
+    virtual ReplicateConfirmPacket *dup() const {return new ReplicateConfirmPacket(*this);}
+    virtual void parsimPack(cCommBuffer *b);
+    virtual void parsimUnpack(cCommBuffer *b);
+
+    // field getter/setter methods
+    virtual unsigned int getPacketType() const;
+    virtual void setPacketType(unsigned int packetType);
+};
+
+inline void doPacking(cCommBuffer *b, ReplicateConfirmPacket& obj) {obj.parsimPack(b);}
+inline void doUnpacking(cCommBuffer *b, ReplicateConfirmPacket& obj) {obj.parsimUnpack(b);}
+
+/**
+ * Class generated from <tt>OrionPackets.msg</tt> by opp_msgc.
+ * <pre>
+ * class ReplicateConfirmAckPacket extends OrionPacket
+ * {
+ *     unsigned int packetType = REP_CONFIRM_ACK;
+ *     unsigned int numCopiesRemaining;
+ *  }
+ * </pre>
+ */
+class ReplicateConfirmAckPacket : public ::OrionPacket
+{
+  protected:
+    unsigned int packetType_var;
+    unsigned int numCopiesRemaining_var;
+
+  private:
+    void copy(const ReplicateConfirmAckPacket& other);
+
+  protected:
+    // protected and unimplemented operator==(), to prevent accidental usage
+    bool operator==(const ReplicateConfirmAckPacket&);
+
+  public:
+    ReplicateConfirmAckPacket(const char *name=NULL);
+    ReplicateConfirmAckPacket(const ReplicateConfirmAckPacket& other);
+    virtual ~ReplicateConfirmAckPacket();
+    ReplicateConfirmAckPacket& operator=(const ReplicateConfirmAckPacket& other);
+    virtual ReplicateConfirmAckPacket *dup() const {return new ReplicateConfirmAckPacket(*this);}
+    virtual void parsimPack(cCommBuffer *b);
+    virtual void parsimUnpack(cCommBuffer *b);
+
+    // field getter/setter methods
+    virtual unsigned int getPacketType() const;
+    virtual void setPacketType(unsigned int packetType);
+    virtual unsigned int getNumCopiesRemaining() const;
+    virtual void setNumCopiesRemaining(unsigned int numCopiesRemaining);
+};
+
+inline void doPacking(cCommBuffer *b, ReplicateConfirmAckPacket& obj) {obj.parsimPack(b);}
+inline void doUnpacking(cCommBuffer *b, ReplicateConfirmAckPacket& obj) {obj.parsimUnpack(b);}
 
 /**
  * Class generated from <tt>OrionPackets.msg</tt> by opp_msgc.
