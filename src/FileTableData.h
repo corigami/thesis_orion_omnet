@@ -17,6 +17,7 @@
 #define FILETABLEDATA_H_
 
 #include <string>
+#include <algorithm>
 #include <deque>
 #include <map>
 #include "IPv4Address.h"
@@ -53,13 +54,47 @@ public:
 
         }
     void removeSource(){
-        fileList.pop_front();
+// std::cout << "Removing Source" << std::endl;
+//std::cout << "count of sources: " << fileList.size() << std::endl;
+        if(fileList.size()>0)
+            fileList.pop_front();
+//  std::cout << "count of sources: " << fileList.size() << std::endl;
     }
 
+    void removeSource(IPvXAddress source){
+        if(hasSource(source)){
+            for (std::deque<IPvXAddress>::iterator it = fileList.begin(); it != fileList.end(); /*NOTE: no incrementation of the iterator here*/) {
+              if (*it==source){
+                it = fileList.erase(it); // erase returns the next iterator
+//std::cout << "Deleted: " << source.str() << std::endl;
+              }
+              else
+                ++it; // otherwise increment it by yourself
+            }
+
+        }
+
+    }
+
+    void printSources(){
+// std::cout << "count of sources: " << fileList.size() << std::endl;
+        for (std::deque<IPvXAddress>::iterator it = fileList.begin(); it!=fileList.end(); ++it){
+            std::cout << *it << std::endl;
+        }
+    }
 
     void addSource(IPvXAddress source){
-        if(!hasSource(source))
-        fileList.push_back(source);
+ //       std::cout << "Adding Source" << std::endl;
+        if(!hasSource(source)){
+           if(source.str().compare("<unspec>") == true){
+                std::cout << "BAD source!!!!!!" << std::endl;
+           }else{
+  //             std::cout << "count of sources: " << fileList.size() << std::endl;
+            fileList.push_back(source);
+   //         std::cout << "count of sources: " << fileList.size() << std::endl;
+           }
+        }
+   //     std::cout << "adding: "<< source.str();
     }
 
     bool hasSource(IPvXAddress source){
@@ -71,8 +106,11 @@ public:
     }
 
     bool hasSource(){
-        if(fileList.size() > 0)
+        if(fileList.size() > 0){
+            IPvXAddress source =fileList.front();
+          //  std::cout <<  "current source: " << source.str() <<std::endl;
            return true;
+        }
         return false;
     }
 
@@ -179,6 +217,10 @@ public:
 
     void setTransferTime(double transferTime) {
         this->transferTime = transferTime;
+    }
+
+    int getSourceCount(){
+        return fileList.size();
     }
 
 

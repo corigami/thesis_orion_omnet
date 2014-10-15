@@ -29,9 +29,10 @@ enum OrionPacketType
     DATA_REQUEST = 3;
     DATA_REPLY = 4;
     DATA_REQUEST_ACK = 5;
-    REP_REQUEST = 6;
-    REP_CONFIRM = 7;
-    REP_CONFIRM_ACK = 8;
+    DATA_ERR = 6
+    REP_REQUEST = 7;
+    REP_CONFIRM = 8;
+    REP_CONFIRM_ACK = 9;
 };
 
 //
@@ -61,6 +62,12 @@ class OrionQueryPacket extends OrionPacket
     unsigned int packetType = RESPONSE;
     unsigned int hopcount;
  }
+ 
+ class OrionErrorPacket extends OrionPacket
+{
+    unsigned int packetType = DATA_ERR;
+ }
+ 
 
 //
 // Represents an Orion Route Reply
@@ -90,6 +97,8 @@ class OrionDataRepPacket extends OrionPacket
     unsigned int packetType = DATA_REPLY;
     unsigned int block;
     string bid;
+    unsigned int numCopiesRemaining;
+    
 }
 
  class ReplicatePacket extends OrionPacket

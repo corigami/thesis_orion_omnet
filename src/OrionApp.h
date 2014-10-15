@@ -63,7 +63,7 @@ class /*INET_API */OrionApp : public ApplicationBase
 
     std::map<std::string, int> fileList;  //!< files system abstraction (just a list of file names)
     std::map<std::string, IPvXAddress> queryList;
-    std::map<std::string, IPvXAddress> replicateList;
+    std::map<std::string, unsigned int> replicateList;
     std::map<std::string, IPvXAddress> requestList;
     std::map<std::string, FileTableData> queryResults;
 
@@ -127,6 +127,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     void handleQuery(OrionQueryPacket *qPacket);
     void handleResponse(OrionResponsePacket *rPacket);
     void handleRequest(OrionDataReqPacket *reqPacket);
+    void handleRequestError(OrionErrorPacket *errPacket);
     void handleReqAckTimeout();
     void handleRequestAck(OrionDataAckPacket *ackPacket);
     void handleReply(OrionDataRepPacket *repPacket);

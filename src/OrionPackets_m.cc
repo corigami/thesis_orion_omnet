@@ -61,7 +61,7 @@ EXECUTE_ON_STARTUP(
     e->insert(DATA_REQUEST, "DATA_REQUEST");
     e->insert(DATA_REPLY, "DATA_REPLY");
     e->insert(DATA_REQUEST_ACK, "DATA_REQUEST_ACK");
-    e->insert(REP_REQUEST, "REP_REQUEST");
+    e->insert(DATA_ERR, "DATA_ERR");
     e->insert(REP_CONFIRM, "REP_CONFIRM");
     e->insert(REP_CONFIRM_ACK, "REP_CONFIRM_ACK");
 );
@@ -891,6 +891,241 @@ void *OrionResponsePacketDescriptor::getFieldStructPointer(void *object, int fie
     }
 }
 
+Register_Class(OrionErrorPacket);
+
+OrionErrorPacket::OrionErrorPacket(const char *name) : ::OrionPacket(name)
+{
+    this->packetType_var = DATA_ERR;
+}
+
+OrionErrorPacket::OrionErrorPacket(const OrionErrorPacket& other) : ::OrionPacket(other)
+{
+    copy(other);
+}
+
+OrionErrorPacket::~OrionErrorPacket()
+{
+}
+
+OrionErrorPacket& OrionErrorPacket::operator=(const OrionErrorPacket& other)
+{
+    if (this==&other) return *this;
+    ::OrionPacket::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void OrionErrorPacket::copy(const OrionErrorPacket& other)
+{
+    this->packetType_var = other.packetType_var;
+}
+
+void OrionErrorPacket::parsimPack(cCommBuffer *b)
+{
+    ::OrionPacket::parsimPack(b);
+    doPacking(b,this->packetType_var);
+}
+
+void OrionErrorPacket::parsimUnpack(cCommBuffer *b)
+{
+    ::OrionPacket::parsimUnpack(b);
+    doUnpacking(b,this->packetType_var);
+}
+
+unsigned int OrionErrorPacket::getPacketType() const
+{
+    return packetType_var;
+}
+
+void OrionErrorPacket::setPacketType(unsigned int packetType)
+{
+    this->packetType_var = packetType;
+}
+
+class OrionErrorPacketDescriptor : public cClassDescriptor
+{
+  public:
+    OrionErrorPacketDescriptor();
+    virtual ~OrionErrorPacketDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(OrionErrorPacketDescriptor);
+
+OrionErrorPacketDescriptor::OrionErrorPacketDescriptor() : cClassDescriptor("OrionErrorPacket", "OrionPacket")
+{
+}
+
+OrionErrorPacketDescriptor::~OrionErrorPacketDescriptor()
+{
+}
+
+bool OrionErrorPacketDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<OrionErrorPacket *>(obj)!=NULL;
+}
+
+const char *OrionErrorPacketDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int OrionErrorPacketDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
+}
+
+unsigned int OrionErrorPacketDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
+}
+
+const char *OrionErrorPacketDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "packetType",
+    };
+    return (field>=0 && field<1) ? fieldNames[field] : NULL;
+}
+
+int OrionErrorPacketDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='p' && strcmp(fieldName, "packetType")==0) return base+0;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *OrionErrorPacketDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "unsigned int",
+    };
+    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *OrionErrorPacketDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int OrionErrorPacketDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    OrionErrorPacket *pp = (OrionErrorPacket *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string OrionErrorPacketDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    OrionErrorPacket *pp = (OrionErrorPacket *)object; (void)pp;
+    switch (field) {
+        case 0: return ulong2string(pp->getPacketType());
+        default: return "";
+    }
+}
+
+bool OrionErrorPacketDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    OrionErrorPacket *pp = (OrionErrorPacket *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setPacketType(string2ulong(value)); return true;
+        default: return false;
+    }
+}
+
+const char *OrionErrorPacketDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    };
+}
+
+void *OrionErrorPacketDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    OrionErrorPacket *pp = (OrionErrorPacket *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
 Register_Class(OrionDataReqPacket);
 
 OrionDataReqPacket::OrionDataReqPacket(const char *name) : ::OrionPacket(name)
@@ -1488,6 +1723,7 @@ OrionDataRepPacket::OrionDataRepPacket(const char *name) : ::OrionPacket(name)
     this->packetType_var = DATA_REPLY;
     this->block_var = 0;
     this->bid_var = 0;
+    this->numCopiesRemaining_var = 0;
 }
 
 OrionDataRepPacket::OrionDataRepPacket(const OrionDataRepPacket& other) : ::OrionPacket(other)
@@ -1512,6 +1748,7 @@ void OrionDataRepPacket::copy(const OrionDataRepPacket& other)
     this->packetType_var = other.packetType_var;
     this->block_var = other.block_var;
     this->bid_var = other.bid_var;
+    this->numCopiesRemaining_var = other.numCopiesRemaining_var;
 }
 
 void OrionDataRepPacket::parsimPack(cCommBuffer *b)
@@ -1520,6 +1757,7 @@ void OrionDataRepPacket::parsimPack(cCommBuffer *b)
     doPacking(b,this->packetType_var);
     doPacking(b,this->block_var);
     doPacking(b,this->bid_var);
+    doPacking(b,this->numCopiesRemaining_var);
 }
 
 void OrionDataRepPacket::parsimUnpack(cCommBuffer *b)
@@ -1528,6 +1766,7 @@ void OrionDataRepPacket::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->packetType_var);
     doUnpacking(b,this->block_var);
     doUnpacking(b,this->bid_var);
+    doUnpacking(b,this->numCopiesRemaining_var);
 }
 
 unsigned int OrionDataRepPacket::getPacketType() const
@@ -1558,6 +1797,16 @@ const char * OrionDataRepPacket::getBid() const
 void OrionDataRepPacket::setBid(const char * bid)
 {
     this->bid_var = bid;
+}
+
+unsigned int OrionDataRepPacket::getNumCopiesRemaining() const
+{
+    return numCopiesRemaining_var;
+}
+
+void OrionDataRepPacket::setNumCopiesRemaining(unsigned int numCopiesRemaining)
+{
+    this->numCopiesRemaining_var = numCopiesRemaining;
 }
 
 class OrionDataRepPacketDescriptor : public cClassDescriptor
@@ -1607,7 +1856,7 @@ const char *OrionDataRepPacketDescriptor::getProperty(const char *propertyname) 
 int OrionDataRepPacketDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
+    return basedesc ? 4+basedesc->getFieldCount(object) : 4;
 }
 
 unsigned int OrionDataRepPacketDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -1622,8 +1871,9 @@ unsigned int OrionDataRepPacketDescriptor::getFieldTypeFlags(void *object, int f
         FD_ISEDITABLE,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<4) ? fieldTypeFlags[field] : 0;
 }
 
 const char *OrionDataRepPacketDescriptor::getFieldName(void *object, int field) const
@@ -1638,8 +1888,9 @@ const char *OrionDataRepPacketDescriptor::getFieldName(void *object, int field) 
         "packetType",
         "block",
         "bid",
+        "numCopiesRemaining",
     };
-    return (field>=0 && field<3) ? fieldNames[field] : NULL;
+    return (field>=0 && field<4) ? fieldNames[field] : NULL;
 }
 
 int OrionDataRepPacketDescriptor::findField(void *object, const char *fieldName) const
@@ -1649,6 +1900,7 @@ int OrionDataRepPacketDescriptor::findField(void *object, const char *fieldName)
     if (fieldName[0]=='p' && strcmp(fieldName, "packetType")==0) return base+0;
     if (fieldName[0]=='b' && strcmp(fieldName, "block")==0) return base+1;
     if (fieldName[0]=='b' && strcmp(fieldName, "bid")==0) return base+2;
+    if (fieldName[0]=='n' && strcmp(fieldName, "numCopiesRemaining")==0) return base+3;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -1664,8 +1916,9 @@ const char *OrionDataRepPacketDescriptor::getFieldTypeString(void *object, int f
         "unsigned int",
         "unsigned int",
         "string",
+        "unsigned int",
     };
-    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<4) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *OrionDataRepPacketDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -1708,6 +1961,7 @@ std::string OrionDataRepPacketDescriptor::getFieldAsString(void *object, int fie
         case 0: return ulong2string(pp->getPacketType());
         case 1: return ulong2string(pp->getBlock());
         case 2: return oppstring2string(pp->getBid());
+        case 3: return ulong2string(pp->getNumCopiesRemaining());
         default: return "";
     }
 }
@@ -1725,6 +1979,7 @@ bool OrionDataRepPacketDescriptor::setFieldAsString(void *object, int field, int
         case 0: pp->setPacketType(string2ulong(value)); return true;
         case 1: pp->setBlock(string2ulong(value)); return true;
         case 2: pp->setBid((value)); return true;
+        case 3: pp->setNumCopiesRemaining(string2ulong(value)); return true;
         default: return false;
     }
 }

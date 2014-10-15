@@ -30,9 +30,10 @@
  *     DATA_REQUEST = 3;
  *     DATA_REPLY = 4;
  *     DATA_REQUEST_ACK = 5;
- *     REP_REQUEST = 6;
- *     REP_CONFIRM = 7;
- *     REP_CONFIRM_ACK = 8;
+ *     DATA_ERR = 6
+ *     REP_REQUEST = 7;
+ *     REP_CONFIRM = 8;
+ *     REP_CONFIRM_ACK = 9;
  * };
  * </pre>
  */
@@ -42,9 +43,10 @@ enum OrionPacketType {
     DATA_REQUEST = 3,
     DATA_REPLY = 4,
     DATA_REQUEST_ACK = 5,
-    REP_REQUEST = 6,
-    REP_CONFIRM = 7,
-    REP_CONFIRM_ACK = 8
+    DATA_ERR = 6,
+    REP_REQUEST = 7,
+    REP_CONFIRM = 8,
+    REP_CONFIRM_ACK = 9
 };
 
 /**
@@ -192,6 +194,44 @@ inline void doUnpacking(cCommBuffer *b, OrionResponsePacket& obj) {obj.parsimUnp
 /**
  * Class generated from <tt>OrionPackets.msg</tt> by opp_msgc.
  * <pre>
+ * class OrionErrorPacket extends OrionPacket
+ * {
+ *     unsigned int packetType = DATA_ERR;
+ *  }
+ * </pre>
+ */
+class OrionErrorPacket : public ::OrionPacket
+{
+  protected:
+    unsigned int packetType_var;
+
+  private:
+    void copy(const OrionErrorPacket& other);
+
+  protected:
+    // protected and unimplemented operator==(), to prevent accidental usage
+    bool operator==(const OrionErrorPacket&);
+
+  public:
+    OrionErrorPacket(const char *name=NULL);
+    OrionErrorPacket(const OrionErrorPacket& other);
+    virtual ~OrionErrorPacket();
+    OrionErrorPacket& operator=(const OrionErrorPacket& other);
+    virtual OrionErrorPacket *dup() const {return new OrionErrorPacket(*this);}
+    virtual void parsimPack(cCommBuffer *b);
+    virtual void parsimUnpack(cCommBuffer *b);
+
+    // field getter/setter methods
+    virtual unsigned int getPacketType() const;
+    virtual void setPacketType(unsigned int packetType);
+};
+
+inline void doPacking(cCommBuffer *b, OrionErrorPacket& obj) {obj.parsimPack(b);}
+inline void doUnpacking(cCommBuffer *b, OrionErrorPacket& obj) {obj.parsimUnpack(b);}
+
+/**
+ * Class generated from <tt>OrionPackets.msg</tt> by opp_msgc.
+ * <pre>
  * class OrionDataReqPacket extends OrionPacket
  * {
  *     unsigned int packetType = DATA_REQUEST;
@@ -298,6 +338,8 @@ inline void doUnpacking(cCommBuffer *b, OrionDataAckPacket& obj) {obj.parsimUnpa
  *     unsigned int packetType = DATA_REPLY;
  *     unsigned int block;
  *     string bid;
+ *     unsigned int numCopiesRemaining;
+ *     
  * }
  * </pre>
  */
@@ -307,6 +349,7 @@ class OrionDataRepPacket : public ::OrionPacket
     unsigned int packetType_var;
     unsigned int block_var;
     opp_string bid_var;
+    unsigned int numCopiesRemaining_var;
 
   private:
     void copy(const OrionDataRepPacket& other);
@@ -331,6 +374,8 @@ class OrionDataRepPacket : public ::OrionPacket
     virtual void setBlock(unsigned int block);
     virtual const char * getBid() const;
     virtual void setBid(const char * bid);
+    virtual unsigned int getNumCopiesRemaining() const;
+    virtual void setNumCopiesRemaining(unsigned int numCopiesRemaining);
 };
 
 inline void doPacking(cCommBuffer *b, OrionDataRepPacket& obj) {obj.parsimPack(b);}
