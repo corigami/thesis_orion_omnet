@@ -32,6 +32,7 @@ public:
         fileName = _fileName;
         blocks = fileSize;
         remainBlocks = fileSize;
+        requeries = 5;
         queryTime = -1;
         queryStop = -1;
         queryStart =-1;
@@ -212,7 +213,7 @@ public:
     }
 
     double getTransferTime() const {
-        return transferTime;
+        return (transferStop - transferStart);
     }
 
     void setTransferTime(double transferTime) {
@@ -223,6 +224,13 @@ public:
         return fileList.size();
     }
 
+    int getRequeries() const {
+        return requeries;
+    }
+
+    void setRequeries(int requeries) {
+        this->requeries = requeries;
+    }
 
 protected:
     std::deque<IPvXAddress> fileList;
@@ -238,6 +246,7 @@ protected:
     int blocks;
     int remainBlocks;
     int blockCounter;
+    int requeries;
     bool transferComplete;
 
     std::map<int, bool> blockStatus;

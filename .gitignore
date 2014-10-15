@@ -6,6 +6,7 @@ src/Makefile.vc
 /doc/doxy/
 /doc/neddoc/
 */out
+/simulations/results/
 */results/
 */*/results/
 */*/*/results/

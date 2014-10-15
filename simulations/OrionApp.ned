@@ -61,7 +61,7 @@ simple OrionApp like IUDPApp
       	double fileQueryRate @unit(s) = default(5s);
       	int fileGenRate @unit(s) = default (3s);
       	int fileSize = default(100);
-      	int retries = default(5);
+      	int retries = default(2);
       	int numHosts= default(25);
       	int replicationCount = default(3);
         int destPort = default(5000); // port used by remote Orion Application
