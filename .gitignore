@@ -37,5 +37,4 @@ xxx
 /src/sta*
 .cproject
 simulations/.tkenvlog
-.project
 simulations/TestLayout2.anf
