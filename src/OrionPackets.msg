@@ -29,7 +29,7 @@ enum OrionPacketType
     DATA_REQUEST = 3;
     DATA_REPLY = 4;
     DATA_REQUEST_ACK = 5;
-    DATA_ERR = 6
+    DATA_ERR = 6;
     REP_REQUEST = 7;
     REP_CONFIRM = 8;
     REP_CONFIRM_ACK = 9;

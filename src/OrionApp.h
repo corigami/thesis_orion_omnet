@@ -25,7 +25,6 @@
 #include <deque>
 #include <map>
 #include <algorithm>
-
 #include "INETDefs.h"
 #include "ApplicationBase.h"
 #include "UDPSocket.h"
@@ -71,7 +70,6 @@ class /*INET_API */OrionApp : public ApplicationBase
     simtime_t startTime;
     simtime_t retryDelay;
     simtime_t stopTime;
-    simtime_t endBuffer;
     simtime_t avgQueryTime;
     simtime_t fileQueryRate;
     simtime_t fileGenRate;
@@ -79,12 +77,13 @@ class /*INET_API */OrionApp : public ApplicationBase
     cMessage *selfMsg;
     cMessage *fileGenMsg;
     cMessage *fileRequestMsg;
-    cMessage *nextBlockMsg;
+
 
 
     // statistics
     int numSent;
     int numReceived;
+    int xferReqs;
     int xferFails;
     int xferCompletes;
     int fileSize;

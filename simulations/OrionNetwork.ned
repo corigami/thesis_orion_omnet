@@ -24,7 +24,7 @@ import inet.networklayer.ipv4.RoutingTableRecorder;
 import inet.nodes.aodv.AODVRouter;
 import inet.nodes.inet.AdhocHost;
 import inet.world.radio.IdealChannelModel;
-import inet.world.scenario.ScenarioManager;
+//import inet.world.scenario.ScenarioManager;
 
 network OrionNetwork
 {
@@ -48,11 +48,11 @@ network OrionNetwork
             parameters:
                 @display("p=50,200");
         }
-        scenarioManager: ScenarioManager {
-            parameters:
-                script = default(xml("<scenario/>"));
-                @display("p=50,250");
-        }
+//        scenarioManager: ScenarioManager {
+//            parameters:
+//                script = default(xml("<scenario/>"));
+//                @display("p=50,250");
+//        }
    // host[numHosts]: AODVRouter {
     host[numHosts]: AdhocHost {
             parameters:

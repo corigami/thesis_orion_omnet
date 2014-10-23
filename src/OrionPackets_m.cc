@@ -62,6 +62,7 @@ EXECUTE_ON_STARTUP(
     e->insert(DATA_REPLY, "DATA_REPLY");
     e->insert(DATA_REQUEST_ACK, "DATA_REQUEST_ACK");
     e->insert(DATA_ERR, "DATA_ERR");
+    e->insert(REP_REQUEST, "REP_REQUEST");
     e->insert(REP_CONFIRM, "REP_CONFIRM");
     e->insert(REP_CONFIRM_ACK, "REP_CONFIRM_ACK");
 );
