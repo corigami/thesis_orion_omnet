@@ -44,9 +44,9 @@ simple OrionApp like IUDPApp
     parameters:
         int localPort = default(-1);  // local port (-1: use ephemeral port)
         string destAddresses = default(""); // list of IP addresses, separated by spaces ("": don't send)
-      
-      
-      	string outputInterfaceMulticastBroadcast = default("ALL"); // select the interface in which the broadcast packets will be sent
+
+
+        string outputInterfaceMulticastBroadcast = default("ALL"); // select the interface in which the broadcast packets will be sent
         volatile int messageLength @unit(B) = default(1024B); // length of messages to generate, in bytes
         double startTime @unit(s) = default(this.sendInterval); // application start time (start of the first packet)
         double stopTime @unit(s) = default(-1s);  // time of finishing sending, -1s means forever
@@ -56,20 +56,20 @@ simple OrionApp like IUDPApp
         string multicastInterface = default("");  // if not empty, set the multicast output interface option on the socket (interface name expected)
         bool receiveBroadcast = default(false); // if true, makes the socket receive broadcast packets
         bool joinLocalMulticastGroups = default(false); // if true, makes the socket receive packets from all multicast groups set on local interfaces
-      	
-      	//Parameters added for Orion Experiment
-      	double fileQueryRate @unit(s) = default(5s);
-      	int fileGenRate @unit(s) = default (3s);
-      	int fileSize = default(100);
-      	int retries = default(2);
-      	int numHosts= default(25);
-      	int replicationCount = default(3);
+
+        //Parameters added for Orion Experiment
+        double fileQueryRate @unit(s) = default(5s);
+        int fileGenRate @unit(s) = default(3s);
+        int fileSize = default(100);
+        int retries = default(2);
+        int numHosts = default(25);
+        int replicationCount = default(3);
         int destPort = default(5000); // port used by remote Orion Application
         bool master = default(false); // is this application running as the master?
-      	bool enableDebugLevel0 = default(false);
-      	bool enableDebugLevel1 = default(true);
-      	double retryDelay @unit(s) = default(.05s);
-      
+        bool enableDebugLevel0 = default(false);
+        bool enableDebugLevel1 = default(true);
+        double retryDelay @unit(s) = default(.05s);
+
         @display("i=block/app");
         @signal[sentPk](type=cPacket);
         @signal[rcvdPk](type=cPacket);
@@ -79,4 +79,6 @@ simple OrionApp like IUDPApp
     gates:
         input udpIn @labels(UDPControlInfo/up);
         output udpOut @labels(UDPControlInfo/down);
+	    inout command @directIn;
+
 }

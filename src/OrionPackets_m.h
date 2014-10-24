@@ -583,5 +583,43 @@ class ReqBlockTimer : public ::cMessage
 inline void doPacking(cCommBuffer *b, ReqBlockTimer& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, ReqBlockTimer& obj) {obj.parsimUnpack(b);}
 
+/**
+ * Class generated from <tt>OrionPackets.msg</tt> by opp_msgc.
+ * <pre>
+ * message commandMsg extends cMessage
+ * {
+ *     string command;
+ * }
+ * </pre>
+ */
+class commandMsg : public ::cMessage
+{
+  protected:
+    opp_string command_var;
+
+  private:
+    void copy(const commandMsg& other);
+
+  protected:
+    // protected and unimplemented operator==(), to prevent accidental usage
+    bool operator==(const commandMsg&);
+
+  public:
+    commandMsg(const char *name=NULL, int kind=0);
+    commandMsg(const commandMsg& other);
+    virtual ~commandMsg();
+    commandMsg& operator=(const commandMsg& other);
+    virtual commandMsg *dup() const {return new commandMsg(*this);}
+    virtual void parsimPack(cCommBuffer *b);
+    virtual void parsimUnpack(cCommBuffer *b);
+
+    // field getter/setter methods
+    virtual const char * getCommand() const;
+    virtual void setCommand(const char * command);
+};
+
+inline void doPacking(cCommBuffer *b, commandMsg& obj) {obj.parsimPack(b);}
+inline void doUnpacking(cCommBuffer *b, commandMsg& obj) {obj.parsimUnpack(b);}
+
 
 #endif // _ORIONPACKETS_M_H_

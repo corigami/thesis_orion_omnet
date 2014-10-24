@@ -30,6 +30,7 @@ network OrionNetwork
 {
     parameters:
         int numHosts;
+        
     submodules:
         channelControl: IdealChannelModel {
             parameters:
@@ -48,15 +49,12 @@ network OrionNetwork
             parameters:
                 @display("p=50,200");
         }
-//        scenarioManager: ScenarioManager {
-//            parameters:
-//                script = default(xml("<scenario/>"));
-//                @display("p=50,250");
-//        }
-   // host[numHosts]: AODVRouter {
-    host[numHosts]: AdhocHost {
+
+    host[numHosts]: AODVRouter {
+ //		  host[numHosts]: AdhocHost {
             parameters:
                 @display("i=device/pocketpc_s;r=,,#707070");
         }
     connections allowunconnected:
+
 }

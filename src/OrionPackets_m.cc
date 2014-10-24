@@ -3247,4 +3247,239 @@ void *ReqBlockTimerDescriptor::getFieldStructPointer(void *object, int field, in
     }
 }
 
+Register_Class(commandMsg);
+
+commandMsg::commandMsg(const char *name, int kind) : ::cMessage(name,kind)
+{
+    this->command_var = 0;
+}
+
+commandMsg::commandMsg(const commandMsg& other) : ::cMessage(other)
+{
+    copy(other);
+}
+
+commandMsg::~commandMsg()
+{
+}
+
+commandMsg& commandMsg::operator=(const commandMsg& other)
+{
+    if (this==&other) return *this;
+    ::cMessage::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void commandMsg::copy(const commandMsg& other)
+{
+    this->command_var = other.command_var;
+}
+
+void commandMsg::parsimPack(cCommBuffer *b)
+{
+    ::cMessage::parsimPack(b);
+    doPacking(b,this->command_var);
+}
+
+void commandMsg::parsimUnpack(cCommBuffer *b)
+{
+    ::cMessage::parsimUnpack(b);
+    doUnpacking(b,this->command_var);
+}
+
+const char * commandMsg::getCommand() const
+{
+    return command_var.c_str();
+}
+
+void commandMsg::setCommand(const char * command)
+{
+    this->command_var = command;
+}
+
+class commandMsgDescriptor : public cClassDescriptor
+{
+  public:
+    commandMsgDescriptor();
+    virtual ~commandMsgDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(commandMsgDescriptor);
+
+commandMsgDescriptor::commandMsgDescriptor() : cClassDescriptor("commandMsg", "cMessage")
+{
+}
+
+commandMsgDescriptor::~commandMsgDescriptor()
+{
+}
+
+bool commandMsgDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<commandMsg *>(obj)!=NULL;
+}
+
+const char *commandMsgDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int commandMsgDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
+}
+
+unsigned int commandMsgDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
+}
+
+const char *commandMsgDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "command",
+    };
+    return (field>=0 && field<1) ? fieldNames[field] : NULL;
+}
+
+int commandMsgDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='c' && strcmp(fieldName, "command")==0) return base+0;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *commandMsgDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "string",
+    };
+    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *commandMsgDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int commandMsgDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    commandMsg *pp = (commandMsg *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string commandMsgDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    commandMsg *pp = (commandMsg *)object; (void)pp;
+    switch (field) {
+        case 0: return oppstring2string(pp->getCommand());
+        default: return "";
+    }
+}
+
+bool commandMsgDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    commandMsg *pp = (commandMsg *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setCommand((value)); return true;
+        default: return false;
+    }
+}
+
+const char *commandMsgDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    };
+}
+
+void *commandMsgDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    commandMsg *pp = (commandMsg *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
 

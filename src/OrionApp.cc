@@ -38,7 +38,7 @@ OrionApp::OrionApp()
     selfMsg = NULL;
     fileGenMsg = NULL;
     fileRequestMsg = NULL;
-
+    testMsg = NULL;
 }
 
 OrionApp::~OrionApp()
@@ -108,7 +108,8 @@ void OrionApp::initialize(int stage)
         selfMsg = new cMessage("sendTimer");
         fileGenMsg = new cMessage("fileGenTimer");
         fileRequestMsg = new cMessage("fileRequestTimer");
-
+        testMsg = new cMessage("testMsg");
+        testMsg->setName("testMsg");
     }
 }
 
@@ -267,6 +268,16 @@ void OrionApp::processStart()
             selfMsg->setKind(STOP);
             scheduleAt(stopTime, selfMsg);
         }
+
+
+        debug("1");
+        std::cout << this->getFullPath()<<std::endl;
+        debug("2");
+        cModule *targetModule = getModuleByPath("OrionNetwork.host[4].udpApp[0]");
+        sendDirect(new commandMsg("testMsg"), targetModule, "command$i");
+
+
+
     }
     else{
 
@@ -351,8 +362,12 @@ void OrionApp::processStop()
 void OrionApp::handleMessageWhenUp(cMessage *msg)
 {
     debug("handleMessageWhenUp", 0);
+    debug("1a");
+    debug(msg->getName());
+
     if (msg->isSelfMessage())
     {
+            debug("2a");
         if(msg==fileGenMsg)  {
             //   debug("handling fileGen");
             generateFile();
@@ -371,49 +386,57 @@ void OrionApp::handleMessageWhenUp(cMessage *msg)
         }else if(msg == selfMsg)
             ASSERT(msg == selfMsg);
         switch (selfMsg->getKind()) {
-        case START: processStart(); break;
-        case SEND:
-            break;
-        case STOP:  processStop(); break;
-        default: throw cRuntimeError("Invalid kind %d in self message", (int)selfMsg->getKind());
+            case START: processStart(); break;
+            case SEND:
+                break;
+            case STOP:  processStop(); break;
+            default: throw cRuntimeError("Invalid kind %d in self message", (int)selfMsg->getKind());
         }
-    }
-    else if (msg->getKind() == UDP_I_DATA)
+    }else if (msg->getKind() == UDP_I_DATA)
     {
-        OrionPacket *oPacket = dynamic_cast<OrionPacket *>(PK(msg));
-        //handle different type of packets
-        switch (oPacket->getPacketType()) {
-        case QUERY:
-            handleQuery(dynamic_cast<OrionQueryPacket *>(oPacket));
-            break;
-        case RESPONSE:
-            handleResponse(dynamic_cast<OrionResponsePacket *>(oPacket));
-            break;
-        case DATA_REQUEST:
-            handleRequest(dynamic_cast<OrionDataReqPacket *>(oPacket));
-            break;
-        case DATA_REQUEST_ACK:
-            handleRequestAck(dynamic_cast<OrionDataAckPacket *>(oPacket));
-            break;
-        case DATA_REPLY:
-            handleReply(dynamic_cast<OrionDataRepPacket *>(oPacket));
-            break;
-        case DATA_ERR:
-            handleRequestError(dynamic_cast<OrionErrorPacket *>(oPacket));
-            break;
-        case REP_REQUEST:
-            handleReplicateReq(dynamic_cast<ReplicatePacket *>(oPacket));
-            break;
-        case REP_CONFIRM:
-            handleReplicateConfirm(dynamic_cast<ReplicateConfirmPacket *>(oPacket));
-            break;
-        case REP_CONFIRM_ACK:
-            handleReplicateConfirmAck(dynamic_cast<ReplicateConfirmAckPacket *>(oPacket));
-            break;
-        default:
-            throw cRuntimeError("AODV Control Packet arrived with undefined packet type: %d", oPacket->getPacketType());
+        debug("2b");
+        if(dynamic_cast<commandMsg *>(msg)){
+            debug("3a");
+            debug("I got the memo");
+            delete msg;
+        }else{
+            debug("3b");
+            OrionPacket *oPacket = dynamic_cast<OrionPacket *>(PK(msg));
+            //handle different type of packets
+            switch (oPacket->getPacketType()) {
+            case QUERY:
+                handleQuery(dynamic_cast<OrionQueryPacket *>(oPacket));
+                break;
+            case RESPONSE:
+                handleResponse(dynamic_cast<OrionResponsePacket *>(oPacket));
+                break;
+            case DATA_REQUEST:
+                handleRequest(dynamic_cast<OrionDataReqPacket *>(oPacket));
+                break;
+            case DATA_REQUEST_ACK:
+                handleRequestAck(dynamic_cast<OrionDataAckPacket *>(oPacket));
+                break;
+            case DATA_REPLY:
+                handleReply(dynamic_cast<OrionDataRepPacket *>(oPacket));
+                break;
+            case DATA_ERR:
+                handleRequestError(dynamic_cast<OrionErrorPacket *>(oPacket));
+                break;
+            case REP_REQUEST:
+                handleReplicateReq(dynamic_cast<ReplicatePacket *>(oPacket));
+                break;
+            case REP_CONFIRM:
+                handleReplicateConfirm(dynamic_cast<ReplicateConfirmPacket *>(oPacket));
+                break;
+            case REP_CONFIRM_ACK:
+                handleReplicateConfirmAck(dynamic_cast<ReplicateConfirmAckPacket *>(oPacket));
+                break;
+            default:
+                throw cRuntimeError("AODV Control Packet arrived with undefined packet type: %d", oPacket->getPacketType());
+            }
+            processPacket(PK(msg));
         }
-        processPacket(PK(msg));
+
     }
     else if (msg->getKind() == UDP_I_ERROR)
     {
@@ -926,13 +949,13 @@ void OrionApp::handleReply(OrionDataRepPacket *repPacket){
 
                 fileList.insert(std::pair<std::string, int>(repPacket->getFilename(), 0));
                 if(master){
-                std::ostringstream output;
-                output << "Xfer Comp - " <<  repPacket->getFilename() << " From: " << repPacket->getSRC() << std::endl;
-                output << " Time to Complete: " << queryResults[repPacket->getFilename()].getTransferTime();
-                debug(output.str());
+                    std::ostringstream output;
+                    output << "Xfer Comp - " <<  repPacket->getFilename() << " From: " << repPacket->getSRC() << std::endl;
+                    output << " Time to Complete: " << queryResults[repPacket->getFilename()].getTransferTime();
+                    debug(output.str());
 
-                debug("*********************Winning!*****************************");
-                xferCompletes++;
+                    debug("*********************Winning!*****************************");
+                    xferCompletes++;
                 }
 
                 if(!master){

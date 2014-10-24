@@ -77,7 +77,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     cMessage *selfMsg;
     cMessage *fileGenMsg;
     cMessage *fileRequestMsg;
-
+    cMessage *testMsg;
 
 
     // statistics
