@@ -3247,23 +3247,24 @@ void *ReqBlockTimerDescriptor::getFieldStructPointer(void *object, int field, in
     }
 }
 
-Register_Class(commandMsg);
+Register_Class(ChurnMsg);
 
-commandMsg::commandMsg(const char *name, int kind) : ::cMessage(name,kind)
+ChurnMsg::ChurnMsg(const char *name, int kind) : ::cMessage(name,kind)
 {
     this->command_var = 0;
+    this->fileName_var = 0;
 }
 
-commandMsg::commandMsg(const commandMsg& other) : ::cMessage(other)
+ChurnMsg::ChurnMsg(const ChurnMsg& other) : ::cMessage(other)
 {
     copy(other);
 }
 
-commandMsg::~commandMsg()
+ChurnMsg::~ChurnMsg()
 {
 }
 
-commandMsg& commandMsg::operator=(const commandMsg& other)
+ChurnMsg& ChurnMsg::operator=(const ChurnMsg& other)
 {
     if (this==&other) return *this;
     ::cMessage::operator=(other);
@@ -3271,38 +3272,51 @@ commandMsg& commandMsg::operator=(const commandMsg& other)
     return *this;
 }
 
-void commandMsg::copy(const commandMsg& other)
+void ChurnMsg::copy(const ChurnMsg& other)
 {
     this->command_var = other.command_var;
+    this->fileName_var = other.fileName_var;
 }
 
-void commandMsg::parsimPack(cCommBuffer *b)
+void ChurnMsg::parsimPack(cCommBuffer *b)
 {
     ::cMessage::parsimPack(b);
     doPacking(b,this->command_var);
+    doPacking(b,this->fileName_var);
 }
 
-void commandMsg::parsimUnpack(cCommBuffer *b)
+void ChurnMsg::parsimUnpack(cCommBuffer *b)
 {
     ::cMessage::parsimUnpack(b);
     doUnpacking(b,this->command_var);
+    doUnpacking(b,this->fileName_var);
 }
 
-const char * commandMsg::getCommand() const
+const char * ChurnMsg::getCommand() const
 {
     return command_var.c_str();
 }
 
-void commandMsg::setCommand(const char * command)
+void ChurnMsg::setCommand(const char * command)
 {
     this->command_var = command;
 }
 
-class commandMsgDescriptor : public cClassDescriptor
+const char * ChurnMsg::getFileName() const
+{
+    return fileName_var.c_str();
+}
+
+void ChurnMsg::setFileName(const char * fileName)
+{
+    this->fileName_var = fileName;
+}
+
+class ChurnMsgDescriptor : public cClassDescriptor
 {
   public:
-    commandMsgDescriptor();
-    virtual ~commandMsgDescriptor();
+    ChurnMsgDescriptor();
+    virtual ~ChurnMsgDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -3321,34 +3335,34 @@ class commandMsgDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(commandMsgDescriptor);
+Register_ClassDescriptor(ChurnMsgDescriptor);
 
-commandMsgDescriptor::commandMsgDescriptor() : cClassDescriptor("commandMsg", "cMessage")
+ChurnMsgDescriptor::ChurnMsgDescriptor() : cClassDescriptor("ChurnMsg", "cMessage")
 {
 }
 
-commandMsgDescriptor::~commandMsgDescriptor()
+ChurnMsgDescriptor::~ChurnMsgDescriptor()
 {
 }
 
-bool commandMsgDescriptor::doesSupport(cObject *obj) const
+bool ChurnMsgDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<commandMsg *>(obj)!=NULL;
+    return dynamic_cast<ChurnMsg *>(obj)!=NULL;
 }
 
-const char *commandMsgDescriptor::getProperty(const char *propertyname) const
+const char *ChurnMsgDescriptor::getProperty(const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int commandMsgDescriptor::getFieldCount(void *object) const
+int ChurnMsgDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
+    return basedesc ? 2+basedesc->getFieldCount(object) : 2;
 }
 
-unsigned int commandMsgDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int ChurnMsgDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -3358,11 +3372,12 @@ unsigned int commandMsgDescriptor::getFieldTypeFlags(void *object, int field) co
     }
     static unsigned int fieldTypeFlags[] = {
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<2) ? fieldTypeFlags[field] : 0;
 }
 
-const char *commandMsgDescriptor::getFieldName(void *object, int field) const
+const char *ChurnMsgDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -3372,19 +3387,21 @@ const char *commandMsgDescriptor::getFieldName(void *object, int field) const
     }
     static const char *fieldNames[] = {
         "command",
+        "fileName",
     };
-    return (field>=0 && field<1) ? fieldNames[field] : NULL;
+    return (field>=0 && field<2) ? fieldNames[field] : NULL;
 }
 
-int commandMsgDescriptor::findField(void *object, const char *fieldName) const
+int ChurnMsgDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
     if (fieldName[0]=='c' && strcmp(fieldName, "command")==0) return base+0;
+    if (fieldName[0]=='f' && strcmp(fieldName, "fileName")==0) return base+1;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *commandMsgDescriptor::getFieldTypeString(void *object, int field) const
+const char *ChurnMsgDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -3394,11 +3411,12 @@ const char *commandMsgDescriptor::getFieldTypeString(void *object, int field) co
     }
     static const char *fieldTypeStrings[] = {
         "string",
+        "string",
     };
-    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<2) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *commandMsgDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *ChurnMsgDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -3411,7 +3429,7 @@ const char *commandMsgDescriptor::getFieldProperty(void *object, int field, cons
     }
 }
 
-int commandMsgDescriptor::getArraySize(void *object, int field) const
+int ChurnMsgDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -3419,13 +3437,13 @@ int commandMsgDescriptor::getArraySize(void *object, int field) const
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    commandMsg *pp = (commandMsg *)object; (void)pp;
+    ChurnMsg *pp = (ChurnMsg *)object; (void)pp;
     switch (field) {
         default: return 0;
     }
 }
 
-std::string commandMsgDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string ChurnMsgDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -3433,14 +3451,15 @@ std::string commandMsgDescriptor::getFieldAsString(void *object, int field, int 
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    commandMsg *pp = (commandMsg *)object; (void)pp;
+    ChurnMsg *pp = (ChurnMsg *)object; (void)pp;
     switch (field) {
         case 0: return oppstring2string(pp->getCommand());
+        case 1: return oppstring2string(pp->getFileName());
         default: return "";
     }
 }
 
-bool commandMsgDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool ChurnMsgDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -3448,14 +3467,15 @@ bool commandMsgDescriptor::setFieldAsString(void *object, int field, int i, cons
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    commandMsg *pp = (commandMsg *)object; (void)pp;
+    ChurnMsg *pp = (ChurnMsg *)object; (void)pp;
     switch (field) {
         case 0: pp->setCommand((value)); return true;
+        case 1: pp->setFileName((value)); return true;
         default: return false;
     }
 }
 
-const char *commandMsgDescriptor::getFieldStructName(void *object, int field) const
+const char *ChurnMsgDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -3468,7 +3488,7 @@ const char *commandMsgDescriptor::getFieldStructName(void *object, int field) co
     };
 }
 
-void *commandMsgDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *ChurnMsgDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -3476,7 +3496,7 @@ void *commandMsgDescriptor::getFieldStructPointer(void *object, int field, int i
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    commandMsg *pp = (commandMsg *)object; (void)pp;
+    ChurnMsg *pp = (ChurnMsg *)object; (void)pp;
     switch (field) {
         default: return NULL;
     }

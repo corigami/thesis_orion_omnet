@@ -69,6 +69,8 @@ simple OrionApp like IUDPApp
         bool enableDebugLevel0 = default(false);
         bool enableDebugLevel1 = default(true);
         double retryDelay @unit(s) = default(.05s);
+        double churnRate  = default(0);
+        double churnDuration @unit(s) = default(10s);
 
         @display("i=block/app");
         @signal[sentPk](type=cPacket);

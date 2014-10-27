@@ -42,6 +42,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     UDPSocket socket;
     bool debugEnabled[2];
     bool socketOpen;
+    bool active;
     int localPort, destPort;
     int numberNodes;
     int fileNum;
@@ -65,6 +66,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     std::map<std::string, unsigned int> replicateList;
     std::map<std::string, IPvXAddress> requestList;
     std::map<std::string, FileTableData> queryResults;
+    std::list<std::string> tabooList;
 
     std::string nodeID;
     simtime_t startTime;
@@ -73,12 +75,13 @@ class /*INET_API */OrionApp : public ApplicationBase
     simtime_t avgQueryTime;
     simtime_t fileQueryRate;
     simtime_t fileGenRate;
+    simtime_t churnDuration;
+    double churnRate;
 
     cMessage *selfMsg;
     cMessage *fileGenMsg;
     cMessage *fileRequestMsg;
-    cMessage *testMsg;
-
+    ChurnMsg *churnTimerMsg;
 
     // statistics
     int numSent;
@@ -123,6 +126,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     bool sendBroadcast(const IPvXAddress &dest, cPacket *pkt);
 
     //receive functions
+    void handleChurnMsg(ChurnMsg *churnMsg);
     void handleQuery(OrionQueryPacket *qPacket);
     void handleResponse(OrionResponsePacket *rPacket);
     void handleRequest(OrionDataReqPacket *reqPacket);
@@ -130,15 +134,15 @@ class /*INET_API */OrionApp : public ApplicationBase
     void handleReqAckTimeout();
     void handleRequestAck(OrionDataAckPacket *ackPacket);
     void handleReply(OrionDataRepPacket *repPacket);
-
-
     void handleReplicateReq(ReplicatePacket *replicate);
     void handleReplicateConfirm(ReplicateConfirmPacket *replicateRes);
     void handleReplicateConfirmAck(ReplicateConfirmAckPacket *replicateAck);
 
 
     //utility functions
+    void clearTimersAndLists();
     void generateFile();
+    void churnNode();
 
     void queryFile();
     std::string selectFile();

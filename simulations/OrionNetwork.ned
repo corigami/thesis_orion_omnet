@@ -50,8 +50,8 @@ network OrionNetwork
                 @display("p=50,200");
         }
 
-    host[numHosts]: AODVRouter {
- //		  host[numHosts]: AdhocHost {
+ //   host[numHosts]: AODVRouter {
+ 		  host[numHosts]: AdhocHost {
             parameters:
                 @display("i=device/pocketpc_s;r=,,#707070");
         }

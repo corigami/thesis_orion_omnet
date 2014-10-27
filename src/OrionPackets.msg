@@ -132,8 +132,9 @@ message ReqBlockTimer extends cMessage
     string filename;
 }
 
-message commandMsg extends cMessage
+message ChurnMsg extends cMessage
 {
     string command;
+    string fileName;
 }
 

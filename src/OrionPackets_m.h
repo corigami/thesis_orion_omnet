@@ -586,40 +586,44 @@ inline void doUnpacking(cCommBuffer *b, ReqBlockTimer& obj) {obj.parsimUnpack(b)
 /**
  * Class generated from <tt>OrionPackets.msg</tt> by opp_msgc.
  * <pre>
- * message commandMsg extends cMessage
+ * message ChurnMsg extends cMessage
  * {
  *     string command;
+ *     string fileName;
  * }
  * </pre>
  */
-class commandMsg : public ::cMessage
+class ChurnMsg : public ::cMessage
 {
   protected:
     opp_string command_var;
+    opp_string fileName_var;
 
   private:
-    void copy(const commandMsg& other);
+    void copy(const ChurnMsg& other);
 
   protected:
     // protected and unimplemented operator==(), to prevent accidental usage
-    bool operator==(const commandMsg&);
+    bool operator==(const ChurnMsg&);
 
   public:
-    commandMsg(const char *name=NULL, int kind=0);
-    commandMsg(const commandMsg& other);
-    virtual ~commandMsg();
-    commandMsg& operator=(const commandMsg& other);
-    virtual commandMsg *dup() const {return new commandMsg(*this);}
+    ChurnMsg(const char *name=NULL, int kind=0);
+    ChurnMsg(const ChurnMsg& other);
+    virtual ~ChurnMsg();
+    ChurnMsg& operator=(const ChurnMsg& other);
+    virtual ChurnMsg *dup() const {return new ChurnMsg(*this);}
     virtual void parsimPack(cCommBuffer *b);
     virtual void parsimUnpack(cCommBuffer *b);
 
     // field getter/setter methods
     virtual const char * getCommand() const;
     virtual void setCommand(const char * command);
+    virtual const char * getFileName() const;
+    virtual void setFileName(const char * fileName);
 };
 
-inline void doPacking(cCommBuffer *b, commandMsg& obj) {obj.parsimPack(b);}
-inline void doUnpacking(cCommBuffer *b, commandMsg& obj) {obj.parsimUnpack(b);}
+inline void doPacking(cCommBuffer *b, ChurnMsg& obj) {obj.parsimPack(b);}
+inline void doUnpacking(cCommBuffer *b, ChurnMsg& obj) {obj.parsimUnpack(b);}
 
 
 #endif // _ORIONPACKETS_M_H_
