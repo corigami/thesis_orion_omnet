@@ -63,7 +63,7 @@ simple OrionApp like IUDPApp
         int fileSize = default(100);
         int retries = default(2);
         int numHosts = default(25);
-        int replicationCount = default(3);
+        double replicationRate = default(10);
         int destPort = default(5000); // port used by remote Orion Application
         bool master = default(false); // is this application running as the master?
         bool enableDebugLevel0 = default(false);
@@ -75,9 +75,15 @@ simple OrionApp like IUDPApp
         @display("i=block/app");
         @signal[sentPk](type=cPacket);
         @signal[rcvdPk](type=cPacket);
+        @signal[queryComplete](type = double);
+        @signal[transComplete](type = double);
+        @statistic[queryTime](title="query Time"; source="queryComplete"; record=vector,stats; interpolationmode=none);
+        @statistic[TransferTime](title="xfer Time"; source="transComplete"; record=vector,stats; interpolationmode=none);
+        
         @statistic[rcvdPk](title="packets received"; source=rcvdPk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
         @statistic[sentPk](title="packets sent"; source=sentPk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
         @statistic[rcvdPkLifetime](title="received packet lifetime"; source="messageAge(rcvdPk)"; unit=s; record=stats,vector; interpolationmode=none);
+
     gates:
         input udpIn @labels(UDPControlInfo/up);
         output udpOut @labels(UDPControlInfo/down);

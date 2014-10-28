@@ -77,6 +77,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     simtime_t fileGenRate;
     simtime_t churnDuration;
     double churnRate;
+    double replicateRate;
 
     cMessage *selfMsg;
     cMessage *fileGenMsg;
@@ -95,8 +96,9 @@ class /*INET_API */OrionApp : public ApplicationBase
 
     static simsignal_t sentPkSignal;
     static simsignal_t rcvdPkSignal;
-    static simsignal_t qTimeSignal;
-
+    simsignal_t qTimeSignal;
+    simsignal_t tranCompSignal;
+    simsignal_t queryCompSignal;
 
     // chooses random destination address
     virtual IPvXAddress chooseDestAddr();
