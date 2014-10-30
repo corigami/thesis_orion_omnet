@@ -60,6 +60,7 @@ enum OrionPacketType {
  *     IPvXAddress LastNode;
  *     unsigned int SEQ;
  *     string filename;
+ *     unsigned int hopCount;
  * }
  * </pre>
  */
@@ -72,6 +73,7 @@ class OrionPacket : public ::cPacket
     IPvXAddress LastNode_var;
     unsigned int SEQ_var;
     opp_string filename_var;
+    unsigned int hopCount_var;
 
   private:
     void copy(const OrionPacket& other);
@@ -105,6 +107,8 @@ class OrionPacket : public ::cPacket
     virtual void setSEQ(unsigned int SEQ);
     virtual const char * getFilename() const;
     virtual void setFilename(const char * filename);
+    virtual unsigned int getHopCount() const;
+    virtual void setHopCount(unsigned int hopCount);
 };
 
 inline void doPacking(cCommBuffer *b, OrionPacket& obj) {obj.parsimPack(b);}
@@ -155,7 +159,7 @@ inline void doUnpacking(cCommBuffer *b, OrionQueryPacket& obj) {obj.parsimUnpack
  * class OrionResponsePacket extends OrionPacket
  * {
  *     unsigned int packetType = RESPONSE;
- *     unsigned int hopcount;
+ * 
  *  }
  * </pre>
  */
@@ -163,7 +167,6 @@ class OrionResponsePacket : public ::OrionPacket
 {
   protected:
     unsigned int packetType_var;
-    unsigned int hopcount_var;
 
   private:
     void copy(const OrionResponsePacket& other);
@@ -184,8 +187,6 @@ class OrionResponsePacket : public ::OrionPacket
     // field getter/setter methods
     virtual unsigned int getPacketType() const;
     virtual void setPacketType(unsigned int packetType);
-    virtual unsigned int getHopcount() const;
-    virtual void setHopcount(unsigned int hopcount);
 };
 
 inline void doPacking(cCommBuffer *b, OrionResponsePacket& obj) {obj.parsimPack(b);}

@@ -181,6 +181,8 @@ public:
     }
 
     double getQueryTime() const {
+        if(queryStop == -1)
+            return queryStop;
         return queryTime;
     }
 
@@ -213,6 +215,8 @@ public:
     }
 
     double getTransferTime() const {
+        if(transferStop == -1)
+            return transferStop;
         return (transferStop - transferStart);
     }
 
@@ -230,6 +234,29 @@ public:
 
     void setRequeries(int requeries) {
         this->requeries = requeries;
+    }
+
+    int getBlocksRecieved() const {
+        return blocksRecieved;
+    }
+
+    void setBlocksRecieved(int blocksRecieved) {
+        this->blocksRecieved = blocksRecieved;
+    }
+    void incBlocksRecieved() {
+        blocksRecieved++;
+    }
+
+    int getTotalHops() const {
+        return totalHops;
+    }
+
+    void setTotalHops(int totalHops) {
+        this->totalHops = totalHops;
+    }
+
+    void addHops(int hops){
+        totalHops += hops;
     }
 
 protected:
@@ -250,6 +277,9 @@ protected:
     bool transferComplete;
 
     std::map<int, bool> blockStatus;
+    int blocksRecieved;
+    int totalHops;
+
 
 
 };

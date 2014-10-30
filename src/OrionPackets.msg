@@ -46,6 +46,7 @@ packet OrionPacket extends cPacket
     IPvXAddress LastNode;
     unsigned int SEQ;
     string filename;
+    unsigned int hopCount;
 }
 
 //
@@ -60,7 +61,7 @@ class OrionQueryPacket extends OrionPacket
  class OrionResponsePacket extends OrionPacket
 {
     unsigned int packetType = RESPONSE;
-    unsigned int hopcount;
+
  }
  
  class OrionErrorPacket extends OrionPacket

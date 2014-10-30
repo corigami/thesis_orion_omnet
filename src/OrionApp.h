@@ -78,6 +78,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     simtime_t churnDuration;
     double churnRate;
     double replicateRate;
+    double mobilityRate;
 
     cMessage *selfMsg;
     cMessage *fileGenMsg;
@@ -145,6 +146,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     void clearTimersAndLists();
     void generateFile();
     void churnNode();
+    void printResults();
 
     void queryFile();
     std::string selectFile();
