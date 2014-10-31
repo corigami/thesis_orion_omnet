@@ -1800,12 +1800,12 @@ void OrionDataRepPacket::setBid(const char * bid)
     this->bid_var = bid;
 }
 
-unsigned int OrionDataRepPacket::getNumCopiesRemaining() const
+int OrionDataRepPacket::getNumCopiesRemaining() const
 {
     return numCopiesRemaining_var;
 }
 
-void OrionDataRepPacket::setNumCopiesRemaining(unsigned int numCopiesRemaining)
+void OrionDataRepPacket::setNumCopiesRemaining(int numCopiesRemaining)
 {
     this->numCopiesRemaining_var = numCopiesRemaining;
 }
@@ -1917,7 +1917,7 @@ const char *OrionDataRepPacketDescriptor::getFieldTypeString(void *object, int f
         "unsigned int",
         "unsigned int",
         "string",
-        "unsigned int",
+        "int",
     };
     return (field>=0 && field<4) ? fieldTypeStrings[field] : NULL;
 }
@@ -1962,7 +1962,7 @@ std::string OrionDataRepPacketDescriptor::getFieldAsString(void *object, int fie
         case 0: return ulong2string(pp->getPacketType());
         case 1: return ulong2string(pp->getBlock());
         case 2: return oppstring2string(pp->getBid());
-        case 3: return ulong2string(pp->getNumCopiesRemaining());
+        case 3: return long2string(pp->getNumCopiesRemaining());
         default: return "";
     }
 }
@@ -1980,7 +1980,7 @@ bool OrionDataRepPacketDescriptor::setFieldAsString(void *object, int field, int
         case 0: pp->setPacketType(string2ulong(value)); return true;
         case 1: pp->setBlock(string2ulong(value)); return true;
         case 2: pp->setBid((value)); return true;
-        case 3: pp->setNumCopiesRemaining(string2ulong(value)); return true;
+        case 3: pp->setNumCopiesRemaining(string2long(value)); return true;
         default: return false;
     }
 }
@@ -3498,6 +3498,281 @@ void *ChurnMsgDescriptor::getFieldStructPointer(void *object, int field, int i) 
     }
     ChurnMsg *pp = (ChurnMsg *)object; (void)pp;
     switch (field) {
+        default: return NULL;
+    }
+}
+
+Register_Class(QueryMsg);
+
+QueryMsg::QueryMsg(const char *name, int kind) : ::cMessage(name,kind)
+{
+    this->fileName_var = 0;
+    this->seq_var = 0;
+}
+
+QueryMsg::QueryMsg(const QueryMsg& other) : ::cMessage(other)
+{
+    copy(other);
+}
+
+QueryMsg::~QueryMsg()
+{
+}
+
+QueryMsg& QueryMsg::operator=(const QueryMsg& other)
+{
+    if (this==&other) return *this;
+    ::cMessage::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void QueryMsg::copy(const QueryMsg& other)
+{
+    this->fileName_var = other.fileName_var;
+    this->seq_var = other.seq_var;
+    this->SRC_var = other.SRC_var;
+}
+
+void QueryMsg::parsimPack(cCommBuffer *b)
+{
+    ::cMessage::parsimPack(b);
+    doPacking(b,this->fileName_var);
+    doPacking(b,this->seq_var);
+    doPacking(b,this->SRC_var);
+}
+
+void QueryMsg::parsimUnpack(cCommBuffer *b)
+{
+    ::cMessage::parsimUnpack(b);
+    doUnpacking(b,this->fileName_var);
+    doUnpacking(b,this->seq_var);
+    doUnpacking(b,this->SRC_var);
+}
+
+const char * QueryMsg::getFileName() const
+{
+    return fileName_var.c_str();
+}
+
+void QueryMsg::setFileName(const char * fileName)
+{
+    this->fileName_var = fileName;
+}
+
+int QueryMsg::getSeq() const
+{
+    return seq_var;
+}
+
+void QueryMsg::setSeq(int seq)
+{
+    this->seq_var = seq;
+}
+
+IPvXAddress& QueryMsg::getSRC()
+{
+    return SRC_var;
+}
+
+void QueryMsg::setSRC(const IPvXAddress& SRC)
+{
+    this->SRC_var = SRC;
+}
+
+class QueryMsgDescriptor : public cClassDescriptor
+{
+  public:
+    QueryMsgDescriptor();
+    virtual ~QueryMsgDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(QueryMsgDescriptor);
+
+QueryMsgDescriptor::QueryMsgDescriptor() : cClassDescriptor("QueryMsg", "cMessage")
+{
+}
+
+QueryMsgDescriptor::~QueryMsgDescriptor()
+{
+}
+
+bool QueryMsgDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<QueryMsg *>(obj)!=NULL;
+}
+
+const char *QueryMsgDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int QueryMsgDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
+}
+
+unsigned int QueryMsgDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISCOMPOUND,
+    };
+    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
+}
+
+const char *QueryMsgDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "fileName",
+        "seq",
+        "SRC",
+    };
+    return (field>=0 && field<3) ? fieldNames[field] : NULL;
+}
+
+int QueryMsgDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='f' && strcmp(fieldName, "fileName")==0) return base+0;
+    if (fieldName[0]=='s' && strcmp(fieldName, "seq")==0) return base+1;
+    if (fieldName[0]=='S' && strcmp(fieldName, "SRC")==0) return base+2;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *QueryMsgDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "string",
+        "int",
+        "IPvXAddress",
+    };
+    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *QueryMsgDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int QueryMsgDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    QueryMsg *pp = (QueryMsg *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string QueryMsgDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    QueryMsg *pp = (QueryMsg *)object; (void)pp;
+    switch (field) {
+        case 0: return oppstring2string(pp->getFileName());
+        case 1: return long2string(pp->getSeq());
+        case 2: {std::stringstream out; out << pp->getSRC(); return out.str();}
+        default: return "";
+    }
+}
+
+bool QueryMsgDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    QueryMsg *pp = (QueryMsg *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setFileName((value)); return true;
+        case 1: pp->setSeq(string2long(value)); return true;
+        default: return false;
+    }
+}
+
+const char *QueryMsgDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        case 2: return opp_typename(typeid(IPvXAddress));
+        default: return NULL;
+    };
+}
+
+void *QueryMsgDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    QueryMsg *pp = (QueryMsg *)object; (void)pp;
+    switch (field) {
+        case 2: return (void *)(&pp->getSRC()); break;
         default: return NULL;
     }
 }

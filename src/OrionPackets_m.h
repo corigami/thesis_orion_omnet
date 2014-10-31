@@ -339,7 +339,7 @@ inline void doUnpacking(cCommBuffer *b, OrionDataAckPacket& obj) {obj.parsimUnpa
  *     unsigned int packetType = DATA_REPLY;
  *     unsigned int block;
  *     string bid;
- *     unsigned int numCopiesRemaining;
+ *     int numCopiesRemaining;
  *     
  * }
  * </pre>
@@ -350,7 +350,7 @@ class OrionDataRepPacket : public ::OrionPacket
     unsigned int packetType_var;
     unsigned int block_var;
     opp_string bid_var;
-    unsigned int numCopiesRemaining_var;
+    int numCopiesRemaining_var;
 
   private:
     void copy(const OrionDataRepPacket& other);
@@ -375,8 +375,8 @@ class OrionDataRepPacket : public ::OrionPacket
     virtual void setBlock(unsigned int block);
     virtual const char * getBid() const;
     virtual void setBid(const char * bid);
-    virtual unsigned int getNumCopiesRemaining() const;
-    virtual void setNumCopiesRemaining(unsigned int numCopiesRemaining);
+    virtual int getNumCopiesRemaining() const;
+    virtual void setNumCopiesRemaining(int numCopiesRemaining);
 };
 
 inline void doPacking(cCommBuffer *b, OrionDataRepPacket& obj) {obj.parsimPack(b);}
@@ -625,6 +625,53 @@ class ChurnMsg : public ::cMessage
 
 inline void doPacking(cCommBuffer *b, ChurnMsg& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, ChurnMsg& obj) {obj.parsimUnpack(b);}
+
+/**
+ * Class generated from <tt>OrionPackets.msg</tt> by opp_msgc.
+ * <pre>
+ * message QueryMsg extends cMessage
+ * {
+ *     string fileName;
+ *     int seq;
+ *     IPvXAddress SRC;
+ * }
+ * </pre>
+ */
+class QueryMsg : public ::cMessage
+{
+  protected:
+    opp_string fileName_var;
+    int seq_var;
+    IPvXAddress SRC_var;
+
+  private:
+    void copy(const QueryMsg& other);
+
+  protected:
+    // protected and unimplemented operator==(), to prevent accidental usage
+    bool operator==(const QueryMsg&);
+
+  public:
+    QueryMsg(const char *name=NULL, int kind=0);
+    QueryMsg(const QueryMsg& other);
+    virtual ~QueryMsg();
+    QueryMsg& operator=(const QueryMsg& other);
+    virtual QueryMsg *dup() const {return new QueryMsg(*this);}
+    virtual void parsimPack(cCommBuffer *b);
+    virtual void parsimUnpack(cCommBuffer *b);
+
+    // field getter/setter methods
+    virtual const char * getFileName() const;
+    virtual void setFileName(const char * fileName);
+    virtual int getSeq() const;
+    virtual void setSeq(int seq);
+    virtual IPvXAddress& getSRC();
+    virtual const IPvXAddress& getSRC() const {return const_cast<QueryMsg*>(this)->getSRC();}
+    virtual void setSRC(const IPvXAddress& SRC);
+};
+
+inline void doPacking(cCommBuffer *b, QueryMsg& obj) {obj.parsimPack(b);}
+inline void doUnpacking(cCommBuffer *b, QueryMsg& obj) {obj.parsimUnpack(b);}
 
 
 #endif // _ORIONPACKETS_M_H_

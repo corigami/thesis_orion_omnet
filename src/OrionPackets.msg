@@ -98,7 +98,7 @@ class OrionDataRepPacket extends OrionPacket
     unsigned int packetType = DATA_REPLY;
     unsigned int block;
     string bid;
-    unsigned int numCopiesRemaining;
+    int numCopiesRemaining;
     
 }
 
@@ -139,3 +139,10 @@ message ChurnMsg extends cMessage
     string fileName;
 }
 
+
+message QueryMsg extends cMessage
+{
+    string fileName;
+    int seq;
+    IPvXAddress SRC;
+}

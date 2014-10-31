@@ -40,6 +40,8 @@ public:
         transferStop = -1;
         transferTime = -1;
         transferComplete = false;
+        blocksRecieved = 0;
+        totalHops = 0;
 
         for( int i(0); i < fileSize; i++){
             blockStatus.insert(std::pair<int, bool>(i, false));

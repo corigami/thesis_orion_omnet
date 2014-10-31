@@ -22,6 +22,7 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
 #include <deque>
 #include <map>
 #include <algorithm>
@@ -40,7 +41,7 @@ class /*INET_API */OrionApp : public ApplicationBase
   protected:
     enum SelfMsgKinds { START = 1, SEND, STOP};
     UDPSocket socket;
-    bool debugEnabled[2];
+    bool debugEnabled[3];
     bool socketOpen;
     bool active;
     int localPort, destPort;
@@ -58,13 +59,14 @@ class /*INET_API */OrionApp : public ApplicationBase
     std::vector<IPvXAddress> destAddresses;
 
     std::map<std::string, OrionDataReqPacket*> pendingPackets;
+    std::map<std::string, QueryMsg*> pendingQueries;
     std::map<std::string, WaitForReq*> pendingTimeouts;
     std::map<std::string, ReqBlockTimer*> blockTimers;
 
     std::map<std::string, int> fileList;  //!< files system abstraction (just a list of file names)
     std::map<std::string, IPvXAddress> queryList;
     std::map<std::string, unsigned int> replicateList;
-    std::map<std::string, IPvXAddress> requestList;
+    std::map<std::string, std::pair<IPvXAddress,simtime_t> > requestList;
     std::map<std::string, FileTableData> queryResults;
     std::list<std::string> tabooList;
 
@@ -147,6 +149,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     void generateFile();
     void churnNode();
     void printResults();
+    void printFileTable();
 
     void queryFile();
     std::string selectFile();
