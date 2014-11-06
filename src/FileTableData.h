@@ -42,6 +42,7 @@ public:
         transferComplete = false;
         blocksRecieved = 0;
         totalHops = 0;
+        masterQuery = false;
 
         for( int i(0); i < fileSize; i++){
             blockStatus.insert(std::pair<int, bool>(i, false));
@@ -57,11 +58,8 @@ public:
 
         }
     void removeSource(){
-// std::cout << "Removing Source" << std::endl;
-//std::cout << "count of sources: " << fileList.size() << std::endl;
         if(fileList.size()>0)
             fileList.pop_front();
-//  std::cout << "count of sources: " << fileList.size() << std::endl;
     }
 
     void removeSource(IPvXAddress source){
@@ -69,7 +67,6 @@ public:
             for (std::deque<IPvXAddress>::iterator it = fileList.begin(); it != fileList.end(); /*NOTE: no incrementation of the iterator here*/) {
               if (*it==source){
                 it = fileList.erase(it); // erase returns the next iterator
-//std::cout << "Deleted: " << source.str() << std::endl;
               }
               else
                 ++it; // otherwise increment it by yourself
@@ -87,17 +84,13 @@ public:
     }
 
     void addSource(IPvXAddress source){
- //       std::cout << "Adding Source" << std::endl;
         if(!hasSource(source)){
            if(source.str().compare("<unspec>") == true){
                 std::cout << "BAD source!!!!!!" << std::endl;
            }else{
-  //             std::cout << "count of sources: " << fileList.size() << std::endl;
             fileList.push_back(source);
-   //         std::cout << "count of sources: " << fileList.size() << std::endl;
            }
         }
-   //     std::cout << "adding: "<< source.str();
     }
 
     bool hasSource(IPvXAddress source){
@@ -261,8 +254,25 @@ public:
         totalHops += hops;
     }
 
+    const IPvXAddress& getOrigin() const {
+        return origin;
+    }
+
+    void setOrigin(const IPvXAddress& origin) {
+        this->origin = origin;
+    }
+
+    bool isMasterQuery() const {
+        return masterQuery;
+    }
+
+    void setMasterQuery(bool masterQuery) {
+        this->masterQuery = masterQuery;
+    }
+
 protected:
     std::deque<IPvXAddress> fileList;
+    IPvXAddress origin;
     std::string fileName;
     double queryStart;
     double queryStop;
@@ -277,6 +287,7 @@ protected:
     int blockCounter;
     int requeries;
     bool transferComplete;
+    bool masterQuery;
 
     std::map<int, bool> blockStatus;
     int blocksRecieved;

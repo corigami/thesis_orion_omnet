@@ -43,10 +43,15 @@ packet OrionPacket extends cPacket
     unsigned int packetType;
     IPvXAddress DST;
     IPvXAddress SRC;
+    string sourceId;
     IPvXAddress LastNode;
+    string LastNodeId;
+    IPvXAddress origin;
     unsigned int SEQ;
     string filename;
     unsigned int hopCount;
+    string bid;
+
 }
 
 //
@@ -55,6 +60,7 @@ packet OrionPacket extends cPacket
 class OrionQueryPacket extends OrionPacket
 {
     unsigned int packetType = QUERY;
+   
 
  }
  
@@ -78,7 +84,7 @@ class OrionDataReqPacket extends OrionPacket
     unsigned int packetType = DATA_REQUEST;
     unsigned int retries;
    	unsigned int block;
-   	 string bid;
+   	
 }
 
 class OrionDataAckPacket extends OrionPacket
@@ -86,7 +92,6 @@ class OrionDataAckPacket extends OrionPacket
     unsigned int packetType = DATA_REQUEST_ACK;
     unsigned int retries;
    	unsigned int block;
-   	string bid;
 }
 
 //
@@ -97,7 +102,6 @@ class OrionDataRepPacket extends OrionPacket
    
     unsigned int packetType = DATA_REPLY;
     unsigned int block;
-    string bid;
     int numCopiesRemaining;
     
 }
@@ -128,6 +132,12 @@ message WaitForReq extends cMessage
     unsigned int block;
 }
 
+message DelayMsg extends cMessage
+{
+    string bid;
+    bool broadcast;
+}
+
 message ReqBlockTimer extends cMessage
 {
     string filename;
@@ -145,4 +155,6 @@ message QueryMsg extends cMessage
     string fileName;
     int seq;
     IPvXAddress SRC;
+    string sourceId;
+
 }

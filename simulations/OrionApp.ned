@@ -47,11 +47,11 @@ simple OrionApp like IUDPApp
 
 
         string outputInterfaceMulticastBroadcast = default("ALL"); // select the interface in which the broadcast packets will be sent
-        volatile int messageLength @unit(B) = default(1024B); // length of messages to generate, in bytes
+        volatile int messageLength @unit(B) = default(20B); // length of messages to generate, in bytes
         double startTime @unit(s) = default(this.sendInterval); // application start time (start of the first packet)
         double stopTime @unit(s) = default(-1s);  // time of finishing sending, -1s means forever
         volatile double sendInterval @unit(s); // should usually be a random value, e.g. exponential(1)
-        int timeToLive = default(-1); // if not -1, set the TTL (IPv4) or Hop Limit (IPv6) field of sent packets to this value
+        int timeToLive = default(16); // if not -1, set the TTL (IPv4) or Hop Limit (IPv6) field of sent packets to this value
         int typeOfService = default(-1); // if not -1, set the ToS (IPv4) or Traffic Class (IPv6) field of sent packets to this value
         string multicastInterface = default("");  // if not empty, set the multicast output interface option on the socket (interface name expected)
         bool receiveBroadcast = default(false); // if true, makes the socket receive broadcast packets
@@ -61,30 +61,32 @@ simple OrionApp like IUDPApp
         double fileQueryRate @unit(s) = default(5s);
         int fileGenRate @unit(s) = default(3s);
         int fileSize = default(100);
-        int retries = default(2);
+        int retries = default(5);
         int numHosts = default(25);
-        double replicationRate = default(10);
+        double replicationRate = default(0);
         int destPort = default(5000); // port used by remote Orion Application
         bool master = default(false); // is this application running as the master?
         bool enableDebugLevel0 = default(false);
         bool enableDebugLevel1 = default(false);
         bool enableDebugLevel2 = default(false);
+        bool packetTrace = default(false);
+        bool printContainers = default(false);
         double retryDelay @unit(s) = default(.05s);
         double churnRate  = default(0);
         double churnDuration @unit(s) = default(10s);
         double speed @unit(mps) = default(0mps);
 
         @display("i=block/app");
-        @signal[sentPk](type=cPacket);
-        @signal[rcvdPk](type=cPacket);
-        @signal[queryComplete](type = double);
-        @signal[transComplete](type = double);
-        @statistic[queryTime](title="query Time"; source="queryComplete"; record=vector,stats; interpolationmode=none);
-        @statistic[TransferTime](title="xfer Time"; source="transComplete"; record=vector,stats; interpolationmode=none);
+     //   @signal[sentPk](type=cPacket);
+     //   @signal[rcvdPk](type=cPacket);
+     //   @signal[queryComplete](type = double);
+    //    @signal[transComplete](type = double);
+     //   @statistic[queryTime](title="query Time"; source="queryComplete"; record=vector,stats; interpolationmode=none);
+     //   @statistic[TransferTime](title="xfer Time"; source="transComplete"; record=vector,stats; interpolationmode=none);
         
-        @statistic[rcvdPk](title="packets received"; source=rcvdPk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[sentPk](title="packets sent"; source=sentPk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[rcvdPkLifetime](title="received packet lifetime"; source="messageAge(rcvdPk)"; unit=s; record=stats,vector; interpolationmode=none);
+      //  @statistic[rcvdPk](title="packets received"; source=rcvdPk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+      //  @statistic[sentPk](title="packets sent"; source=sentPk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+      //  @statistic[rcvdPkLifetime](title="received packet lifetime"; source="messageAge(rcvdPk)"; unit=s; record=stats,vector; interpolationmode=none);
 
     gates:
         input udpIn @labels(UDPControlInfo/up);
