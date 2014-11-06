@@ -766,7 +766,8 @@ void OrionApp::generateFile(){
         std::ostringstream requestID;
         requestID << fileName << "-" << myAddr.str();
         replicateList.insert(std::pair<std::string, unsigned int >(requestID.str(), replicateSeqNum));
-        sendReplicateReq(fileName, replicateSeqNum, myAddr);
+        if(repCount >0)
+            sendReplicateReq(fileName, replicateSeqNum, myAddr);
         replicateSeqNum++;
     }else{
 
