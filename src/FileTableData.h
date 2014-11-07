@@ -89,7 +89,7 @@ public:
 
     void addSource(IPvXAddress source){
         if(!hasSource(source)){
-           if(source.str().compare("<unspec>") == true){
+           if(source.str().compare("<unspec>") == 0){
                 std::cout << "BAD source!!!!!!" << std::endl;
            }else{
             fileList.push_back(source);
@@ -117,19 +117,21 @@ public:
 
     int getNextBlock(){
         int tempCounter = blockCounter;
-        for(int i(blockCounter); i < blocks; i++){
+        for(int i(blockCounter); i < blocks; ){
+           // std::cout << "tempC:" << tempCounter << "  status of [" << i << "]" << blockStatus[i] << std::endl;
             if(blockStatus[i]){
-               i++;
+                i++;
                if(i == blocks){
                    i = 0;
-               } else if(i==(tempCounter-1))
+               }
+               if(i==(tempCounter))
                 return -1;
             }else{
                 if(i==blocks-1){
                 blockCounter=0;
-            }else{
-                blockCounter=i+1;
-            }
+                }else{
+                    blockCounter=i+1;
+                }
                 return i;
             }
         }
@@ -279,6 +281,14 @@ public:
         this->masterQuery = masterQuery;
     }
 
+    double getTimeOfLastBlock() const {
+        return timeOfLastBlock;
+    }
+
+    void setTimeOfLastBlock(double timeOfLastBlock) {
+        this->timeOfLastBlock = timeOfLastBlock;
+    }
+
 protected:
     std::deque<IPvXAddress> fileList;
     IPvXAddress origin;
@@ -290,6 +300,8 @@ protected:
     double transferStart;
     double transferStop;
     double transferTime;
+
+    double timeOfLastBlock;
 
     int blocks;
     int remainBlocks;

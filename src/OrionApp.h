@@ -45,6 +45,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     bool socketOpen;
     bool active;
     bool packetTrace;
+    bool printBroadcast;
     bool printContainers;
     int localPort, destPort;
     int numberNodes;
@@ -148,6 +149,7 @@ class /*INET_API */OrionApp : public ApplicationBase
 
     //utility functions
     void delaySend(DelayMsg *message);
+    void sendPacket(OrionPacket * pkt);
     void clearTimersAndLists();
     void generateFile();
     void churnNode();

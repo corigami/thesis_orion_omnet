@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from OrionPackets.msg.
+// Generated file, do not edit! Created by opp_msgc 4.5 from OrionPackets.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:
@@ -997,6 +997,7 @@ Register_Class(OrionErrorPacket);
 OrionErrorPacket::OrionErrorPacket(const char *name) : ::OrionPacket(name)
 {
     this->packetType_var = DATA_ERR;
+    this->requestId_var = 0;
 }
 
 OrionErrorPacket::OrionErrorPacket(const OrionErrorPacket& other) : ::OrionPacket(other)
@@ -1019,18 +1020,21 @@ OrionErrorPacket& OrionErrorPacket::operator=(const OrionErrorPacket& other)
 void OrionErrorPacket::copy(const OrionErrorPacket& other)
 {
     this->packetType_var = other.packetType_var;
+    this->requestId_var = other.requestId_var;
 }
 
 void OrionErrorPacket::parsimPack(cCommBuffer *b)
 {
     ::OrionPacket::parsimPack(b);
     doPacking(b,this->packetType_var);
+    doPacking(b,this->requestId_var);
 }
 
 void OrionErrorPacket::parsimUnpack(cCommBuffer *b)
 {
     ::OrionPacket::parsimUnpack(b);
     doUnpacking(b,this->packetType_var);
+    doUnpacking(b,this->requestId_var);
 }
 
 unsigned int OrionErrorPacket::getPacketType() const
@@ -1041,6 +1045,16 @@ unsigned int OrionErrorPacket::getPacketType() const
 void OrionErrorPacket::setPacketType(unsigned int packetType)
 {
     this->packetType_var = packetType;
+}
+
+const char * OrionErrorPacket::getRequestId() const
+{
+    return requestId_var.c_str();
+}
+
+void OrionErrorPacket::setRequestId(const char * requestId)
+{
+    this->requestId_var = requestId;
 }
 
 class OrionErrorPacketDescriptor : public cClassDescriptor
@@ -1090,7 +1104,7 @@ const char *OrionErrorPacketDescriptor::getProperty(const char *propertyname) co
 int OrionErrorPacketDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
+    return basedesc ? 2+basedesc->getFieldCount(object) : 2;
 }
 
 unsigned int OrionErrorPacketDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -1103,8 +1117,9 @@ unsigned int OrionErrorPacketDescriptor::getFieldTypeFlags(void *object, int fie
     }
     static unsigned int fieldTypeFlags[] = {
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<2) ? fieldTypeFlags[field] : 0;
 }
 
 const char *OrionErrorPacketDescriptor::getFieldName(void *object, int field) const
@@ -1117,8 +1132,9 @@ const char *OrionErrorPacketDescriptor::getFieldName(void *object, int field) co
     }
     static const char *fieldNames[] = {
         "packetType",
+        "requestId",
     };
-    return (field>=0 && field<1) ? fieldNames[field] : NULL;
+    return (field>=0 && field<2) ? fieldNames[field] : NULL;
 }
 
 int OrionErrorPacketDescriptor::findField(void *object, const char *fieldName) const
@@ -1126,6 +1142,7 @@ int OrionErrorPacketDescriptor::findField(void *object, const char *fieldName) c
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
     if (fieldName[0]=='p' && strcmp(fieldName, "packetType")==0) return base+0;
+    if (fieldName[0]=='r' && strcmp(fieldName, "requestId")==0) return base+1;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -1139,8 +1156,9 @@ const char *OrionErrorPacketDescriptor::getFieldTypeString(void *object, int fie
     }
     static const char *fieldTypeStrings[] = {
         "unsigned int",
+        "string",
     };
-    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<2) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *OrionErrorPacketDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -1181,6 +1199,7 @@ std::string OrionErrorPacketDescriptor::getFieldAsString(void *object, int field
     OrionErrorPacket *pp = (OrionErrorPacket *)object; (void)pp;
     switch (field) {
         case 0: return ulong2string(pp->getPacketType());
+        case 1: return oppstring2string(pp->getRequestId());
         default: return "";
     }
 }
@@ -1196,6 +1215,7 @@ bool OrionErrorPacketDescriptor::setFieldAsString(void *object, int field, int i
     OrionErrorPacket *pp = (OrionErrorPacket *)object; (void)pp;
     switch (field) {
         case 0: pp->setPacketType(string2ulong(value)); return true;
+        case 1: pp->setRequestId((value)); return true;
         default: return false;
     }
 }

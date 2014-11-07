@@ -74,6 +74,7 @@ class OrionQueryPacket extends OrionPacket
  class OrionErrorPacket extends OrionPacket
 {
     unsigned int packetType = DATA_ERR;
+    string requestId;
  }
  
 
