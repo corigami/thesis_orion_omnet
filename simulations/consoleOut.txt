@@ -1,0 +1,4113 @@
+OMNeT++ Discrete Event Simulation  (C) 1992-2014 Andras Varga, OpenSim Ltd.
+Version: 4.6, build: 141027-371bb07, edition: Academic Public License -- NOT FOR COMMERCIAL USE
+See the license for distribution terms and warranty disclaimer
+Setting up Cmdenv...
+Loading NED files from ../src: 1
+Loading NED files from .: 3
+Loading NED files from ../../inet/examples: 139
+Loading NED files from ../../inet/src: 274
+
+Preparing for running configuration AODVUU, run #10...
+Scenario: $0=20, $1=10, $2=0, $3=10mps, $repetition=0
+Assigned runID=AODVUU-10-20141106-22:14:29-142172
+Setting up network `OrionNetwork'...
+Initializing...
+
+Running simulation...
+** Event #1   T=0   Elapsed: 0.000s (0m 00s)  0% completed
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 220   present: 220   in FES: 140
+3.006235589771 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 1
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 0
+size of replicateList = 1
+size of requestList = 0
+size of queryResults = 0
+size of fileList = 0
+
+3.006966212186 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 1
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 1
+size of replicateList = 1
+size of requestList = 0
+size of queryResults = 0
+size of fileList = 0
+
+3.007788985197 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 1
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 2
+size of replicateList = 1
+size of requestList = 0
+size of queryResults = 0
+size of fileList = 0
+
+3.009949219863 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 2
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 3
+size of replicateList = 2
+size of requestList = 0
+size of queryResults = 0
+size of fileList = 0
+
+3.010616772495 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 2
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 4
+size of replicateList = 2
+size of requestList = 0
+size of queryResults = 0
+size of fileList = 0
+
+3.012527892813 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 2
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 5
+size of replicateList = 2
+size of requestList = 0
+size of queryResults = 0
+size of fileList = 0
+
+3.014074600125 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 3
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 6
+size of replicateList = 3
+size of requestList = 0
+size of queryResults = 0
+size of fileList = 0
+
+3.017741953853 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 3
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 8
+size of replicateList = 3
+size of requestList = 1
+size of queryResults = 1
+size of fileList = 0
+
+3.017768419695 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 3
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 9
+size of replicateList = 3
+size of requestList = 1
+size of queryResults = 1
+size of fileList = 0
+
+3.019618229103 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 3
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 10
+size of replicateList = 3
+size of requestList = 1
+size of queryResults = 1
+size of fileList = 0
+
+3.019637250227 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 3
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 11
+size of replicateList = 3
+size of requestList = 1
+size of queryResults = 1
+size of fileList = 0
+
+3.023189224574 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 4
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 12
+size of replicateList = 4
+size of requestList = 1
+size of queryResults = 1
+size of fileList = 0
+
+3.023198871644 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 4
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 13
+size of replicateList = 4
+size of requestList = 1
+size of queryResults = 1
+size of fileList = 0
+
+3.023558174351 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 4
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 14
+size of replicateList = 4
+size of requestList = 1
+size of queryResults = 1
+size of fileList = 0
+
+3.024965715894 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 5
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 15
+size of replicateList = 5
+size of requestList = 1
+size of queryResults = 1
+size of fileList = 0
+
+3.024977395238 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 5
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 16
+size of replicateList = 5
+size of requestList = 1
+size of queryResults = 1
+size of fileList = 0
+
+3.025188512304 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 5
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 17
+size of replicateList = 5
+size of requestList = 1
+size of queryResults = 2
+size of fileList = 0
+
+3.029187798543 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 5
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 18
+size of replicateList = 5
+size of requestList = 1
+size of queryResults = 2
+size of fileList = 0
+
+3.029195348574 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 5
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 19
+size of replicateList = 5
+size of requestList = 1
+size of queryResults = 2
+size of fileList = 0
+
+3.029942107509 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 5
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 20
+size of replicateList = 5
+size of requestList = 1
+size of queryResults = 2
+size of fileList = 0
+
+3.038153691027 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 5
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 21
+size of replicateList = 5
+size of requestList = 1
+size of queryResults = 2
+size of fileList = 0
+
+3.044873665021 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 5
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 22
+size of replicateList = 5
+size of requestList = 1
+size of queryResults = 2
+size of fileList = 0
+
+3.050187857384 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 5
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 23
+size of replicateList = 5
+size of requestList = 1
+size of queryResults = 2
+size of fileList = 0
+
+3.050354438708 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 5
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 24
+size of replicateList = 5
+size of requestList = 1
+size of queryResults = 2
+size of fileList = 0
+
+3.051864841611 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 5
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 25
+size of replicateList = 6
+size of requestList = 1
+size of queryResults = 2
+size of fileList = 1
+
+3.051868368376 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 5
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 26
+size of replicateList = 6
+size of requestList = 1
+size of queryResults = 2
+size of fileList = 1
+
+3.052914917927 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 6
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 27
+size of replicateList = 7
+size of requestList = 3
+size of queryResults = 2
+size of fileList = 1
+
+3.05292133521 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 7
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 28
+size of replicateList = 7
+size of requestList = 3
+size of queryResults = 2
+size of fileList = 1
+
+3.054479921176 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 6
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 29
+size of replicateList = 7
+size of requestList = 3
+size of queryResults = 2
+size of fileList = 1
+
+3.054483252277 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 7
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 30
+size of replicateList = 7
+size of requestList = 3
+size of queryResults = 2
+size of fileList = 1
+
+3.074171711068 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 6
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 31
+size of replicateList = 7
+size of requestList = 24
+size of queryResults = 2
+size of fileList = 1
+
+3.076743502958 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 6
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 32
+size of replicateList = 7
+size of requestList = 33
+size of queryResults = 2
+size of fileList = 1
+
+3.07675247792 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 6
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 33
+size of replicateList = 7
+size of requestList = 33
+size of queryResults = 2
+size of fileList = 1
+
+3.093447783268 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 6
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 34
+size of replicateList = 7
+size of requestList = 122
+size of queryResults = 2
+size of fileList = 2
+
+3.093512354253 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 6
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 35
+size of replicateList = 7
+size of requestList = 122
+size of queryResults = 2
+size of fileList = 2
+
+3.097499010628 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 6
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 36
+size of replicateList = 7
+size of requestList = 143
+size of queryResults = 2
+size of fileList = 2
+
+3.097513738439 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 6
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 37
+size of replicateList = 7
+size of requestList = 143
+size of queryResults = 2
+size of fileList = 2
+
+3.099467521818 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 7
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 38
+size of replicateList = 8
+size of requestList = 151
+size of queryResults = 2
+size of fileList = 2
+
+3.099468463251 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 8
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 39
+size of replicateList = 8
+size of requestList = 151
+size of queryResults = 2
+size of fileList = 2
+
+6.000015492236 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 7
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 40
+size of replicateList = 8
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.018578938124 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 8
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 41
+size of replicateList = 9
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.018597266222 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 8
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 42
+size of replicateList = 9
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.029926429408 - 10.0.0.1 - host[10]: Query Timed out...starting new one....
+6.030145891494 - 10.0.0.15 - host[6]: Query Timed out...starting new one....
+6.030183907179 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 8
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 43
+size of replicateList = 9
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.038135034363 - 10.0.0.10 - host[11]: Query Timed out...starting new one....
+6.039616491374 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 8
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 44
+size of replicateList = 9
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.044331865867 - 10.0.0.4 - host[17]: Query Timed out...starting new one....
+6.067852415913 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 8
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 45
+size of replicateList = 9
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.067854150833 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 9
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 46
+size of replicateList = 9
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.074142882724 - 10.0.0.6 - host[15]: Query Timed out...starting new one....
+6.07659204498 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 8
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 47
+size of replicateList = 9
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.07659830391 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 9
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 48
+size of replicateList = 9
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.114840764678 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 9
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 49
+size of replicateList = 10
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.11484903201 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 9
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 50
+size of replicateList = 10
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.13837099408 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 10
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 51
+size of replicateList = 11
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.138382990919 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 10
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 52
+size of replicateList = 11
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.147257397044 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 10
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 53
+size of replicateList = 11
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.14726174894 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 11
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 54
+size of replicateList = 11
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.155927614281 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 10
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 55
+size of replicateList = 11
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.155930215729 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 11
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 56
+size of replicateList = 11
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.158955740182 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 10
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 57
+size of replicateList = 11
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.158964332774 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 10
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 58
+size of replicateList = 11
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.163475462432 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 11
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 59
+size of replicateList = 12
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.163860059259 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 11
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 60
+size of replicateList = 12
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.166467026354 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 11
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 61
+size of replicateList = 12
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.166468939574 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 62
+size of replicateList = 12
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.179069585857 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 63
+size of replicateList = 13
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.179092790772 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 64
+size of replicateList = 13
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.186942130269 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 65
+size of replicateList = 13
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.18744321567 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 66
+size of replicateList = 13
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.203756163384 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 67
+size of replicateList = 13
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.204337476169 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 68
+size of replicateList = 13
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.204866929346 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 69
+size of replicateList = 13
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.204902618357 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 70
+size of replicateList = 13
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.207142435268 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 71
+size of replicateList = 13
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.207153512365 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 72
+size of replicateList = 13
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 2
+
+6.210106438206 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 73
+size of replicateList = 14
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 3
+
+6.210116120021 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 74
+size of replicateList = 14
+size of requestList = 201
+size of queryResults = 2
+size of fileList = 3
+
+6.22045466728 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 75
+size of replicateList = 14
+size of requestList = 203
+size of queryResults = 2
+size of fileList = 3
+
+6.220462020506 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 76
+size of replicateList = 14
+size of requestList = 203
+size of queryResults = 2
+size of fileList = 3
+
+6.224224595963 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 77
+size of replicateList = 14
+size of requestList = 203
+size of queryResults = 2
+size of fileList = 3
+
+6.225767834823 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 78
+size of replicateList = 14
+size of requestList = 203
+size of queryResults = 2
+size of fileList = 3
+
+6.24250993671 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 79
+size of replicateList = 14
+size of requestList = 276
+size of queryResults = 2
+size of fileList = 3
+
+6.242518627685 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 12
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 80
+size of replicateList = 14
+size of requestList = 276
+size of queryResults = 2
+size of fileList = 3
+
+6.294759180025 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 13
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 81
+size of replicateList = 15
+size of requestList = 402
+size of queryResults = 2
+size of fileList = 3
+
+6.294774376759 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 13
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 82
+size of replicateList = 15
+size of requestList = 402
+size of queryResults = 2
+size of fileList = 3
+
+6.315793951726 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 13
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 83
+size of replicateList = 15
+size of requestList = 402
+size of queryResults = 2
+size of fileList = 3
+
+** Event #1721600   T=8.315058329277   Elapsed: 2.001s (0m 02s)  6% completed
+     Speed:     ev/sec=860370   simsec/sec=4.15545   ev/simsec=207046
+     Messages:  created: 1734566   present: 3724   in FES: 80
+9.02188092053 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 14
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 85
+size of replicateList = 16
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 3
+
+9.029926429408 - 10.0.0.1 - host[10]: Query Timed out...starting new one....
+9.030145891494 - 10.0.0.15 - host[6]: Query Timed out...starting new one....
+9.038135034363 - 10.0.0.10 - host[11]: Query Timed out...starting new one....
+9.039446659961 - 10.0.0.1 - host[10]: Query Timed out...starting new one....
+9.044331865867 - 10.0.0.4 - host[17]: Query Timed out...starting new one....
+9.074142882724 - 10.0.0.6 - host[15]: Query Timed out...starting new one....
+9.10201078093 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 14
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 86
+size of replicateList = 16
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.102033292424 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 14
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 87
+size of replicateList = 16
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.175316973519 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 14
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 88
+size of replicateList = 16
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.175361205651 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 14
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 89
+size of replicateList = 16
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.188024846557 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 15
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 90
+size of replicateList = 17
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.18807300245 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 15
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 91
+size of replicateList = 17
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.223865602933 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 15
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 92
+size of replicateList = 17
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.223871732245 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 93
+size of replicateList = 17
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.224077825386 - 10.0.0.15 - host[6]: Query Timed out...starting new one....
+9.224973241915 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 15
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 94
+size of replicateList = 17
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.224998777421 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 15
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 95
+size of replicateList = 17
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.225726857307 - 10.0.0.13 - host[8]: Query Timed out...starting new one....
+9.226511954167 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 96
+size of replicateList = 18
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.226523630482 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 97
+size of replicateList = 18
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.257716716034 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 98
+size of replicateList = 18
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.257725308626 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 99
+size of replicateList = 18
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.258614906611 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 100
+size of replicateList = 18
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.258628573579 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 101
+size of replicateList = 18
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.270522692401 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 102
+size of replicateList = 18
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.27055343776 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 103
+size of replicateList = 18
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.273084888597 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 104
+size of replicateList = 18
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.27417731594 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 105
+size of replicateList = 18
+size of requestList = 403
+size of queryResults = 3
+size of fileList = 4
+
+9.286461175892 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 69
+size of replicateList = 19
+size of requestList = 203
+size of queryResults = 4
+size of fileList = 5
+
+9.286466951754 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 70
+size of replicateList = 19
+size of requestList = 203
+size of queryResults = 4
+size of fileList = 5
+
+9.302805819954 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 71
+size of replicateList = 19
+size of requestList = 205
+size of queryResults = 4
+size of fileList = 5
+
+9.302824457686 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 72
+size of replicateList = 19
+size of requestList = 205
+size of queryResults = 4
+size of fileList = 5
+
+9.315624743438 - 10.0.0.1 - host[10]: Query Timed out...starting new one....
+9.319837525138 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 73
+size of replicateList = 19
+size of requestList = 281
+size of queryResults = 4
+size of fileList = 5
+
+9.319848833055 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 16
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 74
+size of replicateList = 19
+size of requestList = 281
+size of queryResults = 4
+size of fileList = 5
+
+9.324958716444 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 18
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 75
+size of replicateList = 20
+size of requestList = 312
+size of queryResults = 4
+size of fileList = 5
+
+9.324984514968 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 17
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 76
+size of replicateList = 20
+size of requestList = 312
+size of queryResults = 4
+size of fileList = 5
+
+9.333803290986 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 17
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 77
+size of replicateList = 20
+size of requestList = 359
+size of queryResults = 4
+size of fileList = 5
+
+9.333829747519 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 17
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 78
+size of replicateList = 20
+size of requestList = 359
+size of queryResults = 4
+size of fileList = 5
+
+9.346266634472 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 17
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 79
+size of replicateList = 20
+size of requestList = 367
+size of queryResults = 4
+size of fileList = 5
+
+9.346276660393 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 17
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 80
+size of replicateList = 20
+size of requestList = 367
+size of queryResults = 4
+size of fileList = 5
+
+9.3887887441 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 17
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 81
+size of replicateList = 20
+size of requestList = 403
+size of queryResults = 4
+size of fileList = 5
+
+9.388799185822 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 17
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 82
+size of replicateList = 20
+size of requestList = 403
+size of queryResults = 4
+size of fileList = 5
+
+9.440376404815 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 18
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 83
+size of replicateList = 21
+size of requestList = 403
+size of queryResults = 4
+size of fileList = 5
+
+9.440402240219 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 18
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 84
+size of replicateList = 21
+size of requestList = 403
+size of queryResults = 4
+size of fileList = 5
+
+11.000017470236 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 18
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 85
+size of replicateList = 21
+size of requestList = 403
+size of queryResults = 4
+size of fileList = 5
+
+** Event #3392512   T=11.742580261157   Elapsed: 4.002s (0m 04s)  9% completed
+     Speed:     ev/sec=835038   simsec/sec=1.7129   ev/simsec=487499
+     Messages:  created: 3423806   present: 19681   in FES: 72
+12.029926429408 - 10.0.0.1 - host[10]: Query Timed out...starting new one....
+12.029940757018 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 18
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 86
+size of replicateList = 21
+size of requestList = 406
+size of queryResults = 4
+size of fileList = 5
+
+12.030145891494 - 10.0.0.15 - host[6]: Query Timed out...starting new one....
+12.038135034363 - 10.0.0.10 - host[11]: Query Timed out...starting new one....
+12.038149799735 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 18
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 87
+size of replicateList = 21
+size of requestList = 406
+size of queryResults = 4
+size of fileList = 5
+
+12.039446659961 - 10.0.0.1 - host[10]: Query Timed out...starting new one....
+12.044331865867 - 10.0.0.4 - host[17]: Query Timed out...starting new one....
+12.074142882724 - 10.0.0.6 - host[15]: Query Timed out...starting new one....
+12.152231786352 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 18
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 88
+size of replicateList = 21
+size of requestList = 406
+size of queryResults = 4
+size of fileList = 5
+
+12.152239136583 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 18
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 89
+size of replicateList = 21
+size of requestList = 406
+size of queryResults = 4
+size of fileList = 5
+
+12.173514355935 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 19
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 91
+size of replicateList = 22
+size of requestList = 407
+size of queryResults = 5
+size of fileList = 5
+
+12.224077825386 - 10.0.0.15 - host[6]: Query Timed out...starting new one....
+12.225726857307 - 10.0.0.13 - host[8]: Query Timed out...starting new one....
+12.250396466749 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 20
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 94
+size of replicateList = 23
+size of requestList = 525
+size of queryResults = 6
+size of fileList = 5
+
+12.256012630058 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 20
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 95
+size of replicateList = 23
+size of requestList = 537
+size of queryResults = 6
+size of fileList = 5
+
+12.256016800512 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 20
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 96
+size of replicateList = 23
+size of requestList = 537
+size of queryResults = 6
+size of fileList = 5
+
+12.284147864428 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 21
+size of pendingQueries = 1
+size of pendingTimeouts = 1
+---------other lists--------------
+size of queryList = 97
+size of replicateList = 23
+size of requestList = 596
+size of queryResults = 6
+size of fileList = 5
+
+12.284156806676 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 21
+size of pendingQueries = 1
+size of pendingTimeouts = 1
+---------other lists--------------
+size of queryList = 98
+size of replicateList = 23
+size of requestList = 596
+size of queryResults = 6
+size of fileList = 5
+
+12.315624743438 - 10.0.0.1 - host[10]: Query Timed out...starting new one....
+12.325658074442 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 20
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 99
+size of replicateList = 23
+size of requestList = 682
+size of queryResults = 6
+size of fileList = 6
+
+12.325666667034 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 20
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 100
+size of replicateList = 23
+size of requestList = 682
+size of queryResults = 6
+size of fileList = 6
+
+12.333935836517 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 20
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 101
+size of replicateList = 23
+size of requestList = 699
+size of queryResults = 6
+size of fileList = 6
+
+12.333961040668 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 20
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 102
+size of replicateList = 23
+size of requestList = 699
+size of queryResults = 6
+size of fileList = 6
+
+12.346377131166 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 20
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 103
+size of replicateList = 23
+size of requestList = 725
+size of queryResults = 6
+size of fileList = 6
+
+12.346385723758 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 20
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 104
+size of replicateList = 23
+size of requestList = 725
+size of queryResults = 6
+size of fileList = 6
+
+12.354831257375 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 20
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 105
+size of replicateList = 23
+size of requestList = 743
+size of queryResults = 6
+size of fileList = 6
+
+12.355099845983 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 20
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 106
+size of replicateList = 23
+size of requestList = 743
+size of queryResults = 6
+size of fileList = 6
+
+12.371570254889 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 20
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 107
+size of replicateList = 23
+size of requestList = 778
+size of queryResults = 6
+size of fileList = 6
+
+12.371577731018 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 20
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 108
+size of replicateList = 23
+size of requestList = 778
+size of queryResults = 6
+size of fileList = 6
+
+12.377101085268 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 20
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 109
+size of replicateList = 23
+size of requestList = 789
+size of queryResults = 6
+size of fileList = 6
+
+12.379408672595 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 21
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 110
+size of replicateList = 24
+size of requestList = 794
+size of queryResults = 6
+size of fileList = 6
+
+12.379419767409 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 21
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 111
+size of replicateList = 24
+size of requestList = 794
+size of queryResults = 6
+size of fileList = 6
+
+12.380729538841 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 21
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 112
+size of replicateList = 24
+size of requestList = 797
+size of queryResults = 6
+size of fileList = 6
+
+12.396118953016 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 22
+size of pendingQueries = 2
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 114
+size of replicateList = 25
+size of requestList = 829
+size of queryResults = 7
+size of fileList = 6
+
+12.410336143567 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 23
+size of pendingQueries = 2
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 116
+size of replicateList = 26
+size of requestList = 860
+size of queryResults = 8
+size of fileList = 6
+
+12.425391621747 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 23
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 77
+size of replicateList = 27
+size of requestList = 748
+size of queryResults = 8
+size of fileList = 7
+
+12.425398277609 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 23
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 78
+size of replicateList = 27
+size of requestList = 748
+size of queryResults = 8
+size of fileList = 7
+
+12.452369490974 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 40
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 79
+size of replicateList = 27
+size of requestList = 808
+size of queryResults = 8
+size of fileList = 8
+
+12.452626071837 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 41
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 80
+size of replicateList = 27
+size of requestList = 811
+size of queryResults = 8
+size of fileList = 8
+
+12.470343455181 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 55
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 81
+size of replicateList = 27
+size of requestList = 920
+size of queryResults = 8
+size of fileList = 9
+
+12.47035055736 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 56
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 82
+size of replicateList = 27
+size of requestList = 920
+size of queryResults = 8
+size of fileList = 9
+
+12.473075979592 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 55
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 83
+size of replicateList = 27
+size of requestList = 931
+size of queryResults = 8
+size of fileList = 9
+
+12.509381729553 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 55
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 84
+size of replicateList = 27
+size of requestList = 981
+size of queryResults = 8
+size of fileList = 9
+
+12.544088903456 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 56
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 85
+size of replicateList = 28
+size of requestList = 981
+size of queryResults = 8
+size of fileList = 9
+
+12.544095943116 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 57
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 86
+size of replicateList = 28
+size of requestList = 981
+size of queryResults = 8
+size of fileList = 9
+
+12.570524119496 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 56
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 87
+size of replicateList = 28
+size of requestList = 981
+size of queryResults = 9
+size of fileList = 9
+
+12.570536993945 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 56
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 88
+size of replicateList = 28
+size of requestList = 981
+size of queryResults = 9
+size of fileList = 9
+
+15.039446659961 - 10.0.0.1 - host[10]: Query Timed out...starting new one....
+15.039461328414 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 56
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 89
+size of replicateList = 28
+size of requestList = 981
+size of queryResults = 9
+size of fileList = 9
+
+15.194365516292 - 10.0.0.16 - host[5]: Query Timed out...starting new one....
+15.22382286578 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 56
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 90
+size of replicateList = 28
+size of requestList = 981
+size of queryResults = 10
+size of fileList = 9
+
+15.2238432689 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 56
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 91
+size of replicateList = 28
+size of requestList = 981
+size of queryResults = 10
+size of fileList = 9
+
+15.224077825386 - 10.0.0.15 - host[6]: Query Timed out...starting new one....
+15.224133306977 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 56
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 92
+size of replicateList = 28
+size of requestList = 981
+size of queryResults = 10
+size of fileList = 9
+
+15.225726857307 - 10.0.0.13 - host[8]: Query Timed out...starting new one....
+15.293476916174 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 57
+size of pendingQueries = 2
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 94
+size of replicateList = 29
+size of requestList = 981
+size of queryResults = 11
+size of fileList = 9
+
+15.315624743438 - 10.0.0.1 - host[10]: Query Timed out...starting new one....
+15.328713296107 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 57
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 95
+size of replicateList = 29
+size of requestList = 982
+size of queryResults = 11
+size of fileList = 9
+
+15.342813409078 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 58
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 96
+size of replicateList = 30
+size of requestList = 982
+size of queryResults = 11
+size of fileList = 9
+
+15.350967270951 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 58
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 97
+size of replicateList = 30
+size of requestList = 982
+size of queryResults = 11
+size of fileList = 10
+
+15.350975863543 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 58
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 98
+size of replicateList = 30
+size of requestList = 982
+size of queryResults = 11
+size of fileList = 10
+
+15.355610369182 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 58
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 99
+size of replicateList = 30
+size of requestList = 982
+size of queryResults = 11
+size of fileList = 10
+
+15.355626654704 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 58
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 100
+size of replicateList = 30
+size of requestList = 982
+size of queryResults = 11
+size of fileList = 10
+
+15.377034666012 - 10.0.0.7 - host[14]: Query Timed out...starting new one....
+15.380662611358 - 10.0.0.4 - host[17]: Query Timed out...starting new one....
+15.425473189986 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 60
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 101
+size of replicateList = 31
+size of requestList = 983
+size of queryResults = 11
+size of fileList = 10
+
+15.425477901972 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 60
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 102
+size of replicateList = 31
+size of requestList = 983
+size of queryResults = 11
+size of fileList = 10
+
+15.425744575102 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 60
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 103
+size of replicateList = 31
+size of requestList = 983
+size of queryResults = 11
+size of fileList = 10
+
+15.425753167694 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 60
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 104
+size of replicateList = 31
+size of requestList = 983
+size of queryResults = 11
+size of fileList = 10
+
+15.442278663484 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 60
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 105
+size of replicateList = 31
+size of requestList = 983
+size of queryResults = 11
+size of fileList = 10
+
+15.454449865142 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 60
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 106
+size of replicateList = 31
+size of requestList = 983
+size of queryResults = 11
+size of fileList = 10
+
+15.45447648523 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 60
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 107
+size of replicateList = 31
+size of requestList = 983
+size of queryResults = 11
+size of fileList = 10
+
+15.473031263825 - 10.0.0.2 - host[19]: Query Timed out...starting new one....
+15.475481495223 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 60
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 108
+size of replicateList = 31
+size of requestList = 983
+size of queryResults = 11
+size of fileList = 10
+
+15.484912451412 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 60
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 109
+size of replicateList = 31
+size of requestList = 983
+size of queryResults = 11
+size of fileList = 10
+
+15.498152576498 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 60
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 110
+size of replicateList = 31
+size of requestList = 983
+size of queryResults = 11
+size of fileList = 10
+
+15.49816656903 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 60
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 111
+size of replicateList = 31
+size of requestList = 983
+size of queryResults = 11
+size of fileList = 10
+
+15.505954508447 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 60
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 112
+size of replicateList = 31
+size of requestList = 983
+size of queryResults = 11
+size of fileList = 10
+
+15.505965322835 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 60
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 113
+size of replicateList = 31
+size of requestList = 983
+size of queryResults = 11
+size of fileList = 10
+
+15.539587889843 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 60
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 74
+size of replicateList = 32
+size of requestList = 782
+size of queryResults = 11
+size of fileList = 11
+
+15.539597128191 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 60
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 75
+size of replicateList = 32
+size of requestList = 782
+size of queryResults = 11
+size of fileList = 11
+
+15.559388725719 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 60
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 76
+size of replicateList = 32
+size of requestList = 784
+size of queryResults = 11
+size of fileList = 11
+
+15.571215609151 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 61
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 77
+size of replicateList = 33
+size of requestList = 850
+size of queryResults = 11
+size of fileList = 11
+
+15.571222738457 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 62
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 78
+size of replicateList = 33
+size of requestList = 851
+size of queryResults = 11
+size of fileList = 11
+
+15.592894185634 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 61
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 79
+size of replicateList = 33
+size of requestList = 924
+size of queryResults = 11
+size of fileList = 11
+
+15.592902778226 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 61
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 80
+size of replicateList = 33
+size of requestList = 924
+size of queryResults = 11
+size of fileList = 11
+
+** Event #5004544   T=15.607693352329   Elapsed: 6.003s (0m 06s)  13% completed
+     Speed:     ev/sec=805613   simsec/sec=1.93159   ev/simsec=417072
+     Messages:  created: 5021556   present: 33704   in FES: 157
+15.61444751251 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 62
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 81
+size of replicateList = 34
+size of requestList = 977
+size of queryResults = 11
+size of fileList = 11
+
+15.614462579779 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 62
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 82
+size of replicateList = 34
+size of requestList = 977
+size of queryResults = 11
+size of fileList = 11
+
+16.000015309822 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 62
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 83
+size of replicateList = 34
+size of requestList = 982
+size of queryResults = 11
+size of fileList = 11
+
+18.194365516292 - 10.0.0.16 - host[5]: Query Timed out...starting new one....
+18.24787873747 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 62
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 84
+size of replicateList = 34
+size of requestList = 982
+size of queryResults = 11
+size of fileList = 11
+
+18.247905022572 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 62
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 85
+size of replicateList = 34
+size of requestList = 982
+size of queryResults = 11
+size of fileList = 11
+
+18.377034666012 - 10.0.0.7 - host[14]: Query Timed out...starting new one....
+18.380662611358 - 10.0.0.4 - host[17]: Query Timed out...starting new one....
+18.402471831762 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 62
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 86
+size of replicateList = 34
+size of requestList = 982
+size of queryResults = 11
+size of fileList = 11
+
+18.402493499946 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 62
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 87
+size of replicateList = 34
+size of requestList = 982
+size of queryResults = 11
+size of fileList = 11
+
+18.423182610523 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 62
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 88
+size of replicateList = 34
+size of requestList = 982
+size of queryResults = 11
+size of fileList = 11
+
+18.467273444507 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 63
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 90
+size of replicateList = 35
+size of requestList = 983
+size of queryResults = 12
+size of fileList = 11
+
+18.471535567409 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 63
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 91
+size of replicateList = 35
+size of requestList = 983
+size of queryResults = 12
+size of fileList = 11
+
+18.471555809837 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 63
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 92
+size of replicateList = 35
+size of requestList = 983
+size of queryResults = 12
+size of fileList = 11
+
+18.473031263825 - 10.0.0.2 - host[19]: Query Timed out...starting new one....
+18.475299923947 - 10.0.0.20 - host[1]: Query Timed out...starting new one....
+18.486062411463 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 64
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 93
+size of replicateList = 36
+size of requestList = 983
+size of queryResults = 12
+size of fileList = 11
+
+18.486082810131 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 64
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 94
+size of replicateList = 36
+size of requestList = 983
+size of queryResults = 12
+size of fileList = 11
+
+18.507597849009 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 65
+size of pendingQueries = 2
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 96
+size of replicateList = 37
+size of requestList = 983
+size of queryResults = 13
+size of fileList = 11
+
+18.507853365548 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 65
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 97
+size of replicateList = 37
+size of requestList = 984
+size of queryResults = 13
+size of fileList = 11
+
+18.50786195814 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 65
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 98
+size of replicateList = 37
+size of requestList = 984
+size of queryResults = 13
+size of fileList = 11
+
+18.53060467341 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 66
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 99
+size of replicateList = 38
+size of requestList = 984
+size of queryResults = 13
+size of fileList = 11
+
+18.530613900249 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 66
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 100
+size of replicateList = 38
+size of requestList = 984
+size of queryResults = 13
+size of fileList = 11
+
+18.60566770055 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 66
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 101
+size of replicateList = 38
+size of requestList = 984
+size of queryResults = 13
+size of fileList = 13
+
+18.605687177105 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 66
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 102
+size of replicateList = 38
+size of requestList = 984
+size of queryResults = 13
+size of fileList = 13
+
+18.608158473813 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 66
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 103
+size of replicateList = 38
+size of requestList = 984
+size of queryResults = 13
+size of fileList = 13
+
+18.608168977068 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 66
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 104
+size of replicateList = 38
+size of requestList = 984
+size of queryResults = 13
+size of fileList = 13
+
+18.621710786017 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 66
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 105
+size of replicateList = 38
+size of requestList = 984
+size of queryResults = 13
+size of fileList = 13
+
+18.683855752123 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 66
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 106
+size of replicateList = 38
+size of requestList = 984
+size of queryResults = 13
+size of fileList = 13
+
+18.683881816596 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 66
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 107
+size of replicateList = 38
+size of requestList = 984
+size of queryResults = 13
+size of fileList = 13
+
+** Event #6627584   T=18.711745266454   Elapsed: 8.004s (0m 08s)  15% completed
+     Speed:     ev/sec=811114   simsec/sec=1.55125   ev/simsec=522878
+     Messages:  created: 6607658   present: 52941   in FES: 85
+18.723627385712 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 66
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 67
+size of replicateList = 39
+size of requestList = 204
+size of queryResults = 13
+size of fileList = 14
+
+18.723637052876 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 66
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 68
+size of replicateList = 39
+size of requestList = 204
+size of queryResults = 13
+size of fileList = 14
+
+18.741216030765 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 66
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 69
+size of replicateList = 39
+size of requestList = 206
+size of queryResults = 13
+size of fileList = 14
+
+18.741224623357 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 66
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 70
+size of replicateList = 39
+size of requestList = 206
+size of queryResults = 13
+size of fileList = 14
+
+18.745698184338 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 66
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 71
+size of replicateList = 39
+size of requestList = 221
+size of queryResults = 13
+size of fileList = 14
+
+18.766403226718 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 67
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 72
+size of replicateList = 40
+size of requestList = 334
+size of queryResults = 13
+size of fileList = 14
+
+18.766416569809 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 67
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 73
+size of replicateList = 40
+size of requestList = 334
+size of queryResults = 13
+size of fileList = 14
+
+18.774425634656 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 68
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 74
+size of replicateList = 41
+size of requestList = 368
+size of queryResults = 13
+size of fileList = 14
+
+18.774452786187 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 68
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 75
+size of replicateList = 41
+size of requestList = 368
+size of queryResults = 13
+size of fileList = 14
+
+21.000010792308 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 68
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 76
+size of replicateList = 41
+size of requestList = 404
+size of queryResults = 13
+size of fileList = 14
+
+21.194365516292 - 10.0.0.16 - host[5]: Query Timed out...starting new one....
+21.350713672015 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 85
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 78
+size of replicateList = 41
+size of requestList = 422
+size of queryResults = 14
+size of fileList = 14
+
+21.350726815934 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 85
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 79
+size of replicateList = 41
+size of requestList = 422
+size of queryResults = 14
+size of fileList = 14
+
+21.377034666012 - 10.0.0.7 - host[14]: Query Timed out...starting new one....
+21.380662611358 - 10.0.0.4 - host[17]: Query Timed out...starting new one....
+21.380694443133 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 86
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 80
+size of replicateList = 41
+size of requestList = 423
+size of queryResults = 14
+size of fileList = 14
+
+21.423152122155 - 10.0.0.7 - host[14]: Query Timed out...starting new one....
+21.442922188941 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 90
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 81
+size of replicateList = 41
+size of requestList = 427
+size of queryResults = 14
+size of fileList = 14
+
+21.442932423159 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 90
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 82
+size of replicateList = 41
+size of requestList = 427
+size of queryResults = 14
+size of fileList = 14
+
+21.472668997124 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 91
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 83
+size of replicateList = 41
+size of requestList = 428
+size of queryResults = 14
+size of fileList = 14
+
+21.472692964348 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 91
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 84
+size of replicateList = 41
+size of requestList = 428
+size of queryResults = 14
+size of fileList = 14
+
+21.473031263825 - 10.0.0.2 - host[19]: Query Timed out...starting new one....
+21.473053024456 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 91
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 85
+size of replicateList = 41
+size of requestList = 428
+size of queryResults = 14
+size of fileList = 14
+
+21.475299923947 - 10.0.0.20 - host[1]: Query Timed out...starting new one....
+21.514837066764 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 93
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 86
+size of replicateList = 41
+size of requestList = 430
+size of queryResults = 14
+size of fileList = 14
+
+21.514846772434 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 93
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 87
+size of replicateList = 41
+size of requestList = 430
+size of queryResults = 14
+size of fileList = 14
+
+** Event #8223232   T=21.520920982819   Elapsed: 10.005s (0m 10s)  17% completed
+     Speed:     ev/sec=797425   simsec/sec=1.40389   ev/simsec=568013
+     Messages:  created: 8218606   present: 73127   in FES: 79
+21.522111696499 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 95
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 88
+size of replicateList = 42
+size of requestList = 431
+size of queryResults = 14
+size of fileList = 14
+
+21.555349621506 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 96
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 89
+size of replicateList = 42
+size of requestList = 432
+size of queryResults = 14
+size of fileList = 14
+
+21.618568330061 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 100
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 91
+size of replicateList = 43
+size of requestList = 436
+size of queryResults = 15
+size of fileList = 14
+
+21.657267778626 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 102
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 92
+size of replicateList = 43
+size of requestList = 438
+size of queryResults = 15
+size of fileList = 14
+
+21.657284411492 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 102
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 93
+size of replicateList = 43
+size of requestList = 438
+size of queryResults = 15
+size of fileList = 14
+
+21.685027209661 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 105
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 95
+size of replicateList = 44
+size of requestList = 440
+size of queryResults = 16
+size of fileList = 15
+
+21.696038590838 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 105
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 96
+size of replicateList = 44
+size of requestList = 441
+size of queryResults = 16
+size of fileList = 15
+
+21.709526014994 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 106
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 97
+size of replicateList = 44
+size of requestList = 442
+size of queryResults = 16
+size of fileList = 15
+
+21.709541337511 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 106
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 98
+size of replicateList = 44
+size of requestList = 442
+size of queryResults = 16
+size of fileList = 15
+
+21.768710314136 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 109
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 99
+size of replicateList = 44
+size of requestList = 445
+size of queryResults = 16
+size of fileList = 16
+
+21.768720457651 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 109
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 100
+size of replicateList = 44
+size of requestList = 445
+size of queryResults = 16
+size of fileList = 16
+
+21.769644216425 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 109
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 69
+size of replicateList = 45
+size of requestList = 244
+size of queryResults = 16
+size of fileList = 17
+
+21.769649082323 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 109
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 70
+size of replicateList = 45
+size of requestList = 244
+size of queryResults = 16
+size of fileList = 17
+
+21.770052579121 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 109
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 71
+size of replicateList = 45
+size of requestList = 246
+size of queryResults = 16
+size of fileList = 17
+
+21.770063088198 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 109
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 72
+size of replicateList = 45
+size of requestList = 246
+size of queryResults = 16
+size of fileList = 17
+
+21.780359722153 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 109
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 73
+size of replicateList = 45
+size of requestList = 246
+size of queryResults = 16
+size of fileList = 17
+
+21.834553251122 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 113
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 75
+size of replicateList = 46
+size of requestList = 448
+size of queryResults = 17
+size of fileList = 17
+
+21.845975366836 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 114
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 76
+size of replicateList = 46
+size of requestList = 449
+size of queryResults = 17
+size of fileList = 17
+
+21.846024213905 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 114
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 77
+size of replicateList = 46
+size of requestList = 449
+size of queryResults = 17
+size of fileList = 17
+
+21.971130287306 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 121
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 79
+size of replicateList = 47
+size of requestList = 456
+size of queryResults = 18
+size of fileList = 18
+
+** Event #9743360   T=23.352890956441   Elapsed: 12.006s (0m 12s)  19% completed
+     Speed:     ev/sec=759684   simsec/sec=0.915527   ev/simsec=829778
+     Messages:  created: 9757070   present: 91603   in FES: 68
+24.423152122155 - 10.0.0.7 - host[14]: Query Timed out...starting new one....
+24.461865009944 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 245
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 80
+size of replicateList = 47
+size of requestList = 580
+size of queryResults = 18
+size of fileList = 19
+
+24.461878140505 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 245
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 81
+size of replicateList = 47
+size of requestList = 580
+size of queryResults = 18
+size of fileList = 19
+
+24.475299923947 - 10.0.0.20 - host[1]: Query Timed out...starting new one....
+24.555602528691 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 251
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 83
+size of replicateList = 48
+size of requestList = 585
+size of queryResults = 19
+size of fileList = 19
+
+24.575181108384 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 252
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 84
+size of replicateList = 48
+size of requestList = 587
+size of queryResults = 19
+size of fileList = 19
+
+24.57519863259 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 252
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 85
+size of replicateList = 48
+size of requestList = 587
+size of queryResults = 19
+size of fileList = 19
+
+24.582884370665 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 252
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 86
+size of replicateList = 48
+size of requestList = 587
+size of queryResults = 19
+size of fileList = 19
+
+24.583202762608 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 252
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 87
+size of replicateList = 48
+size of requestList = 587
+size of queryResults = 19
+size of fileList = 19
+
+24.635167296994 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 255
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 88
+size of replicateList = 48
+size of requestList = 590
+size of queryResults = 19
+size of fileList = 20
+
+24.635168259208 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 255
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 89
+size of replicateList = 48
+size of requestList = 590
+size of queryResults = 19
+size of fileList = 20
+
+24.688521760502 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 258
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 90
+size of replicateList = 48
+size of requestList = 593
+size of queryResults = 19
+size of fileList = 20
+
+24.688547283621 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 258
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 91
+size of replicateList = 48
+size of requestList = 593
+size of queryResults = 19
+size of fileList = 20
+
+24.712220004576 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 259
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 92
+size of replicateList = 48
+size of requestList = 594
+size of queryResults = 19
+size of fileList = 20
+
+24.712225616671 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 259
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 93
+size of replicateList = 48
+size of requestList = 594
+size of queryResults = 19
+size of fileList = 20
+
+24.731604654147 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 261
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 95
+size of replicateList = 49
+size of requestList = 596
+size of queryResults = 20
+size of fileList = 20
+
+24.733740548626 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 262
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 96
+size of replicateList = 50
+size of requestList = 596
+size of queryResults = 20
+size of fileList = 20
+
+24.758585707062 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 263
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 97
+size of replicateList = 50
+size of requestList = 597
+size of queryResults = 20
+size of fileList = 20
+
+24.828052549242 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 267
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 98
+size of replicateList = 50
+size of requestList = 601
+size of queryResults = 20
+size of fileList = 21
+
+24.8280849422 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 267
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 99
+size of replicateList = 50
+size of requestList = 601
+size of queryResults = 20
+size of fileList = 21
+
+24.832377888676 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 267
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 100
+size of replicateList = 50
+size of requestList = 601
+size of queryResults = 20
+size of fileList = 21
+
+24.832387307351 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 267
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 101
+size of replicateList = 50
+size of requestList = 601
+size of queryResults = 20
+size of fileList = 21
+
+24.849978658418 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 268
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 64
+size of replicateList = 51
+size of requestList = 400
+size of queryResults = 20
+size of fileList = 22
+
+24.849995082939 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 269
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 65
+size of replicateList = 51
+size of requestList = 401
+size of queryResults = 20
+size of fileList = 22
+
+24.854838483497 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 268
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 66
+size of replicateList = 51
+size of requestList = 402
+size of queryResults = 20
+size of fileList = 22
+
+24.854852514848 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 268
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 67
+size of replicateList = 51
+size of requestList = 402
+size of queryResults = 20
+size of fileList = 22
+
+24.8589531351 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 268
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 68
+size of replicateList = 51
+size of requestList = 402
+size of queryResults = 20
+size of fileList = 22
+
+24.858964037762 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 268
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 69
+size of replicateList = 51
+size of requestList = 402
+size of queryResults = 20
+size of fileList = 22
+
+24.884550520766 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 269
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 70
+size of replicateList = 51
+size of requestList = 488
+size of queryResults = 20
+size of fileList = 22
+
+24.961769193063 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 273
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 71
+size of replicateList = 51
+size of requestList = 606
+size of queryResults = 20
+size of fileList = 22
+
+24.961790565422 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 273
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 72
+size of replicateList = 51
+size of requestList = 606
+size of queryResults = 20
+size of fileList = 22
+
+25.031376441587 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 278
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 74
+size of replicateList = 52
+size of requestList = 610
+size of queryResults = 21
+size of fileList = 22
+
+25.038475062587 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 279
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 76
+size of replicateList = 53
+size of requestList = 611
+size of queryResults = 22
+size of fileList = 22
+
+** Event #11247104   T=25.243880903025   Elapsed: 14.007s (0m 14s)  21% completed
+     Speed:     ev/sec=751496   simsec/sec=0.945022   ev/simsec=795215
+     Messages:  created: 11275293   present: 111294   in FES: 70
+26.000010143874 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 327
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 77
+size of replicateList = 53
+size of requestList = 660
+size of queryResults = 22
+size of fileList = 24
+
+27.423152122155 - 10.0.0.7 - host[14]: Query Timed out...starting new one....
+27.423188142999 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 398
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 78
+size of replicateList = 53
+size of requestList = 802
+size of queryResults = 23
+size of fileList = 24
+
+** Event #12735488   T=27.593143921792   Elapsed: 16.008s (0m 16s)  22% completed
+     Speed:     ev/sec=743820   simsec/sec=1.17404   ev/simsec=633554
+     Messages:  created: 12788440   present: 134081   in FES: 72
+27.619858400299 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 408
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 79
+size of replicateList = 53
+size of requestList = 822
+size of queryResults = 23
+size of fileList = 24
+
+27.619866992891 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 408
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 80
+size of replicateList = 53
+size of requestList = 822
+size of queryResults = 23
+size of fileList = 24
+
+27.636189464633 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 409
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 81
+size of replicateList = 53
+size of requestList = 824
+size of queryResults = 23
+size of fileList = 24
+
+27.713124799426 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 413
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 82
+size of replicateList = 54
+size of requestList = 831
+size of queryResults = 23
+size of fileList = 24
+
+27.713132832932 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 413
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 83
+size of replicateList = 54
+size of requestList = 831
+size of queryResults = 23
+size of fileList = 24
+
+27.722311996488 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 414
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 84
+size of replicateList = 54
+size of requestList = 832
+size of queryResults = 23
+size of fileList = 24
+
+27.722323328184 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 414
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 85
+size of replicateList = 54
+size of requestList = 832
+size of queryResults = 23
+size of fileList = 24
+
+27.772612489918 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 418
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 86
+size of replicateList = 55
+size of requestList = 836
+size of queryResults = 24
+size of fileList = 24
+
+27.77262108251 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 419
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 87
+size of replicateList = 55
+size of requestList = 836
+size of queryResults = 24
+size of fileList = 24
+
+27.777327796823 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 419
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 88
+size of replicateList = 55
+size of requestList = 837
+size of queryResults = 24
+size of fileList = 24
+
+27.777330075205 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 420
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 89
+size of replicateList = 55
+size of requestList = 837
+size of queryResults = 24
+size of fileList = 24
+
+27.794955812729 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 421
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 90
+size of replicateList = 55
+size of requestList = 839
+size of queryResults = 24
+size of fileList = 24
+
+27.794999710777 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 421
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 91
+size of replicateList = 55
+size of requestList = 839
+size of queryResults = 24
+size of fileList = 24
+
+27.82721426652 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 425
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 93
+size of replicateList = 56
+size of requestList = 842
+size of queryResults = 25
+size of fileList = 24
+
+27.860745085585 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 427
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 94
+size of replicateList = 56
+size of requestList = 845
+size of queryResults = 25
+size of fileList = 24
+
+27.860762579834 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 427
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 95
+size of replicateList = 56
+size of requestList = 845
+size of queryResults = 25
+size of fileList = 24
+
+27.888752307271 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 427
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 96
+size of replicateList = 56
+size of requestList = 845
+size of queryResults = 26
+size of fileList = 25
+
+27.888791582586 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 427
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 97
+size of replicateList = 56
+size of requestList = 845
+size of queryResults = 26
+size of fileList = 25
+
+27.910324491019 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 427
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 98
+size of replicateList = 56
+size of requestList = 845
+size of queryResults = 26
+size of fileList = 25
+
+27.910336004013 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 427
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 99
+size of replicateList = 56
+size of requestList = 845
+size of queryResults = 26
+size of fileList = 25
+
+27.92200238937 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 427
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 100
+size of replicateList = 56
+size of requestList = 845
+size of queryResults = 26
+size of fileList = 25
+
+27.922014179227 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 427
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 101
+size of replicateList = 56
+size of requestList = 845
+size of queryResults = 26
+size of fileList = 25
+
+28.022776668864 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 429
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 102
+size of replicateList = 56
+size of requestList = 847
+size of queryResults = 26
+size of fileList = 25
+
+28.022786140177 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 429
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 103
+size of replicateList = 56
+size of requestList = 847
+size of queryResults = 26
+size of fileList = 25
+
+28.025109479487 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 429
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 68
+size of replicateList = 57
+size of requestList = 591
+size of queryResults = 26
+size of fileList = 26
+
+28.025121291588 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 429
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 69
+size of replicateList = 57
+size of requestList = 591
+size of queryResults = 26
+size of fileList = 26
+
+28.041790594179 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 430
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 70
+size of replicateList = 57
+size of requestList = 594
+size of queryResults = 26
+size of fileList = 26
+
+28.046769241082 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 432
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 71
+size of replicateList = 58
+size of requestList = 607
+size of queryResults = 26
+size of fileList = 26
+
+28.068490375773 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 432
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 73
+size of replicateList = 58
+size of requestList = 726
+size of queryResults = 27
+size of fileList = 26
+
+28.07385030595 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 432
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 74
+size of replicateList = 58
+size of requestList = 760
+size of queryResults = 27
+size of fileList = 26
+
+28.073859552196 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 432
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 75
+size of replicateList = 58
+size of requestList = 760
+size of queryResults = 27
+size of fileList = 26
+
+28.122379283176 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 432
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 76
+size of replicateList = 58
+size of requestList = 797
+size of queryResults = 27
+size of fileList = 26
+
+28.184116325101 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 435
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 78
+size of replicateList = 59
+size of requestList = 800
+size of queryResults = 28
+size of fileList = 26
+
+30.679303607726 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 485
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 79
+size of replicateList = 59
+size of requestList = 850
+size of queryResults = 28
+size of fileList = 27
+
+30.679309198462 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 486
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 80
+size of replicateList = 59
+size of requestList = 850
+size of queryResults = 28
+size of fileList = 27
+
+30.761178215995 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 485
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 81
+size of replicateList = 59
+size of requestList = 850
+size of queryResults = 28
+size of fileList = 27
+
+30.780010302137 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 488
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 83
+size of replicateList = 60
+size of requestList = 852
+size of queryResults = 29
+size of fileList = 27
+
+30.789884262339 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 488
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 84
+size of replicateList = 60
+size of requestList = 853
+size of queryResults = 29
+size of fileList = 27
+
+30.789908532799 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 488
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 85
+size of replicateList = 60
+size of requestList = 853
+size of queryResults = 29
+size of fileList = 27
+
+30.800217364411 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 488
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 86
+size of replicateList = 60
+size of requestList = 853
+size of queryResults = 29
+size of fileList = 27
+
+30.800220846266 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 488
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 87
+size of replicateList = 60
+size of requestList = 853
+size of queryResults = 29
+size of fileList = 27
+
+30.821569911834 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 489
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 88
+size of replicateList = 61
+size of requestList = 853
+size of queryResults = 29
+size of fileList = 27
+
+30.821581677872 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 489
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 89
+size of replicateList = 61
+size of requestList = 853
+size of queryResults = 29
+size of fileList = 27
+
+30.823347580904 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 489
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 90
+size of replicateList = 61
+size of requestList = 853
+size of queryResults = 30
+size of fileList = 27
+
+30.823366437222 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 489
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 91
+size of replicateList = 61
+size of requestList = 853
+size of queryResults = 30
+size of fileList = 27
+
+30.864407663864 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 490
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 92
+size of replicateList = 61
+size of requestList = 854
+size of queryResults = 30
+size of fileList = 28
+
+30.864421634964 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 490
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 93
+size of replicateList = 61
+size of requestList = 854
+size of queryResults = 30
+size of fileList = 28
+
+30.885445678083 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 491
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 94
+size of replicateList = 61
+size of requestList = 855
+size of queryResults = 30
+size of fileList = 28
+
+30.901125487875 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 492
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 96
+size of replicateList = 62
+size of requestList = 856
+size of queryResults = 31
+size of fileList = 28
+
+30.914625422268 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 492
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 97
+size of replicateList = 62
+size of requestList = 856
+size of queryResults = 31
+size of fileList = 28
+
+** Event #14250752   T=30.917458907471   Elapsed: 18.009s (0m 18s)  25% completed
+     Speed:     ev/sec=757253   simsec/sec=1.66133   ev/simsec=455812
+     Messages:  created: 14308922   present: 148417   in FES: 82
+30.922606189938 - 10.0.0.4 - host[17]: Query Timed out...starting new one....
+30.940453966105 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 492
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 98
+size of replicateList = 62
+size of requestList = 856
+size of queryResults = 31
+size of fileList = 28
+
+30.940493482003 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 492
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 99
+size of replicateList = 62
+size of requestList = 856
+size of queryResults = 31
+size of fileList = 28
+
+31.000015921993 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 494
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 100
+size of replicateList = 62
+size of requestList = 858
+size of queryResults = 31
+size of fileList = 29
+
+31.005674351533 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 494
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 101
+size of replicateList = 62
+size of requestList = 858
+size of queryResults = 31
+size of fileList = 29
+
+31.005682598218 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 494
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 102
+size of replicateList = 62
+size of requestList = 858
+size of queryResults = 31
+size of fileList = 29
+
+** Event #14361971   T=31.036029910054   Elapsed: 18.146s (0m 18s)  25% completed
+     Speed:     ev/sec=811818   simsec/sec=0.865482   ev/simsec=937995
+     Messages:  created: 14420475   present: 148831   in FES: 90
+
+<!> Error in module (UDP) OrionNetwork.host[11].udp (id=254) at event #14361971, t=31.036029910054: Model error: send: missing destination address or port when sending over unconnected port.
+
+31.036029910054 - 10.0.0.11 - host[0]: ----Packets and event timers-----
+size of pending Packets = 0
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 352
+size of replicateList = 0
+size of requestList = 6
+size of queryResults = 9
+size of fileList = 2
+
+Clear all sockets
+31.036029910054 - 10.0.0.20 - host[1]: ----Packets and event timers-----
+size of pending Packets = 61
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 81
+size of replicateList = 70
+size of requestList = 544
+size of queryResults = 26
+size of fileList = 24
+
+Clear all sockets
+31.036029910054 - 10.0.0.19 - host[2]: ----Packets and event timers-----
+size of pending Packets = 36
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 70
+size of replicateList = 45
+size of requestList = 408
+size of queryResults = 19
+size of fileList = 25
+
+Clear all sockets
+31.036029910054 - 10.0.0.18 - host[3]: ----Packets and event timers-----
+size of pending Packets = 58
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 102
+size of replicateList = 67
+size of requestList = 424
+size of queryResults = 23
+size of fileList = 30
+
+Clear all sockets
+31.036029910054 - 10.0.0.17 - host[4]: ----Packets and event timers-----
+size of pending Packets = 39
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 81
+size of replicateList = 49
+size of requestList = 412
+size of queryResults = 19
+size of fileList = 26
+
+Clear all sockets
+31.036029910054 - 10.0.0.16 - host[5]: ----Packets and event timers-----
+size of pending Packets = 494
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 103
+size of replicateList = 62
+size of requestList = 858
+size of queryResults = 31
+size of fileList = 29
+
+Clear all sockets
+31.036029910054 - 10.0.0.15 - host[6]: ----Packets and event timers-----
+size of pending Packets = 37
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 103
+size of replicateList = 47
+size of requestList = 410
+size of queryResults = 20
+size of fileList = 25
+
+Clear all sockets
+31.036029910054 - 10.0.0.14 - host[7]: ----Packets and event timers-----
+size of pending Packets = 53
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 99
+size of replicateList = 63
+size of requestList = 442
+size of queryResults = 29
+size of fileList = 33
+
+Clear all sockets
+31.036029910054 - 10.0.0.13 - host[8]: ----Packets and event timers-----
+size of pending Packets = 48
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 90
+size of replicateList = 58
+size of requestList = 1082
+size of queryResults = 18
+size of fileList = 24
+
+Clear all sockets
+31.036029910054 - 10.0.0.12 - host[9]: ----Packets and event timers-----
+size of pending Packets = 38
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 99
+size of replicateList = 47
+size of requestList = 312
+size of queryResults = 15
+size of fileList = 23
+
+Clear all sockets
+31.036029910054 - 10.0.0.1 - host[10]: ----Packets and event timers-----
+size of pending Packets = 10047
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 69
+size of replicateList = 54
+size of requestList = 1077
+size of queryResults = 25
+size of fileList = 26
+
+Clear all sockets
+31.036029910054 - 10.0.0.10 - host[11]: ----Packets and event timers-----
+size of pending Packets = 37
+size of pendingQueries = 0
+size of pendingTimeouts = 1
+---------other lists--------------
+size of queryList = 85
+size of replicateList = 46
+size of requestList = 409
+size of queryResults = 18
+size of fileList = 23
+
+Clear all sockets
+31.036029910054 - 10.0.0.9 - host[12]: ----Packets and event timers-----
+size of pending Packets = 30
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 81
+size of replicateList = 40
+size of requestList = 403
+size of queryResults = 15
+size of fileList = 24
+
+Clear all sockets
+31.036029910054 - 10.0.0.8 - host[13]: ----Packets and event timers-----
+size of pending Packets = 71
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 70
+size of replicateList = 80
+size of requestList = 512
+size of queryResults = 34
+size of fileList = 35
+
+Clear all sockets
+31.036029910054 - 10.0.0.7 - host[14]: ----Packets and event timers-----
+size of pending Packets = 10060
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 81
+size of replicateList = 68
+size of requestList = 13694
+size of queryResults = 24
+size of fileList = 29
+
+Clear all sockets
+31.036029910054 - 10.0.0.6 - host[15]: ----Packets and event timers-----
+size of pending Packets = 49
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 103
+size of replicateList = 58
+size of requestList = 0
+size of queryResults = 26
+size of fileList = 27
+
+Clear all sockets
+31.036029910054 - 10.0.0.5 - host[16]: ----Packets and event timers-----
+size of pending Packets = 25
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 82
+size of replicateList = 35
+size of requestList = 202
+size of queryResults = 14
+size of fileList = 24
+
+Clear all sockets
+31.036029910054 - 10.0.0.4 - host[17]: ----Packets and event timers-----
+size of pending Packets = 70
+size of pendingQueries = 1
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 68
+size of replicateList = 79
+size of requestList = 1282
+size of queryResults = 25
+size of fileList = 27
+
+Clear all sockets
+31.036029910054 - 10.0.0.3 - host[18]: ----Packets and event timers-----
+size of pending Packets = 37
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 68
+size of replicateList = 47
+size of requestList = 268
+size of queryResults = 28
+size of fileList = 36
+
+Clear all sockets
+31.036029910054 - 10.0.0.2 - host[19]: ----Packets and event timers-----
+size of pending Packets = 10057
+size of pendingQueries = 0
+size of pendingTimeouts = 0
+---------other lists--------------
+size of queryList = 101
+size of replicateList = 60
+size of requestList = 46271
+size of queryResults = 16
+size of fileList = 20
+
+Clear all sockets
+
+End.

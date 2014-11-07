@@ -120,7 +120,11 @@ public:
                } else if(i==(tempCounter-1))
                 return -1;
             }else{
+                if(i==blocks-1){
+                blockCounter=0;
+            }else{
                 blockCounter=i+1;
+            }
                 return i;
             }
         }

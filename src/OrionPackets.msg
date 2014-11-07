@@ -51,6 +51,7 @@ packet OrionPacket extends cPacket
     string filename;
     unsigned int hopCount;
     string bid;
+    simtime_t start;
 
 }
 
@@ -104,6 +105,7 @@ class OrionDataRepPacket extends OrionPacket
     unsigned int block;
     int numCopiesRemaining;
     
+    
 }
 
  class ReplicatePacket extends OrionPacket
@@ -136,6 +138,8 @@ message DelayMsg extends cMessage
 {
     string bid;
     bool broadcast;
+    bool deleteMe;
+
 }
 
 message ReqBlockTimer extends cMessage

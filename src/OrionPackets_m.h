@@ -69,6 +69,7 @@ enum OrionPacketType {
  *     string filename;
  *     unsigned int hopCount;
  *     string bid;
+ *     simtime_t start;
  * 
  * }
  * </pre>
@@ -87,6 +88,7 @@ class OrionPacket : public ::cPacket
     opp_string filename_var;
     unsigned int hopCount_var;
     opp_string bid_var;
+    simtime_t start_var;
 
   private:
     void copy(const OrionPacket& other);
@@ -131,13 +133,15 @@ class OrionPacket : public ::cPacket
     virtual void setHopCount(unsigned int hopCount);
     virtual const char * getBid() const;
     virtual void setBid(const char * bid);
+    virtual simtime_t getStart() const;
+    virtual void setStart(simtime_t start);
 };
 
 inline void doPacking(cCommBuffer *b, OrionPacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, OrionPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:61</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:62</tt> by nedtool.
  * <pre>
  * //
  * // Represents an Orion Route Request
@@ -180,7 +184,7 @@ inline void doPacking(cCommBuffer *b, OrionQueryPacket& obj) {obj.parsimPack(b);
 inline void doUnpacking(cCommBuffer *b, OrionQueryPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:68</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:69</tt> by nedtool.
  * <pre>
  * class OrionResponsePacket extends OrionPacket
  * {
@@ -219,7 +223,7 @@ inline void doPacking(cCommBuffer *b, OrionResponsePacket& obj) {obj.parsimPack(
 inline void doUnpacking(cCommBuffer *b, OrionResponsePacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:74</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:75</tt> by nedtool.
  * <pre>
  * class OrionErrorPacket extends OrionPacket
  * {
@@ -257,7 +261,7 @@ inline void doPacking(cCommBuffer *b, OrionErrorPacket& obj) {obj.parsimPack(b);
 inline void doUnpacking(cCommBuffer *b, OrionErrorPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:83</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:84</tt> by nedtool.
  * <pre>
  * //
  * // Represents an Orion Route Reply
@@ -307,7 +311,7 @@ inline void doPacking(cCommBuffer *b, OrionDataReqPacket& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, OrionDataReqPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:91</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:92</tt> by nedtool.
  * <pre>
  * class OrionDataAckPacket extends OrionPacket
  * {
@@ -353,7 +357,7 @@ inline void doPacking(cCommBuffer *b, OrionDataAckPacket& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, OrionDataAckPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:101</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:102</tt> by nedtool.
  * <pre>
  * //
  * // Represents an Orion Route Error
@@ -363,6 +367,7 @@ inline void doUnpacking(cCommBuffer *b, OrionDataAckPacket& obj) {obj.parsimUnpa
  *     unsigned int packetType = DATA_REPLY;
  *     unsigned int block;
  *     int numCopiesRemaining;
+ * 
  * 
  * }
  * </pre>
@@ -403,7 +408,7 @@ inline void doPacking(cCommBuffer *b, OrionDataRepPacket& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, OrionDataRepPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:110</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:112</tt> by nedtool.
  * <pre>
  * class ReplicatePacket extends OrionPacket
  * {
@@ -441,7 +446,7 @@ inline void doPacking(cCommBuffer *b, ReplicatePacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, ReplicatePacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:115</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:117</tt> by nedtool.
  * <pre>
  * class ReplicateConfirmPacket extends OrionPacket
  * {
@@ -479,7 +484,7 @@ inline void doPacking(cCommBuffer *b, ReplicateConfirmPacket& obj) {obj.parsimPa
 inline void doUnpacking(cCommBuffer *b, ReplicateConfirmPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:120</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:122</tt> by nedtool.
  * <pre>
  * class ReplicateConfirmAckPacket extends OrionPacket
  * {
@@ -521,7 +526,7 @@ inline void doPacking(cCommBuffer *b, ReplicateConfirmAckPacket& obj) {obj.parsi
 inline void doUnpacking(cCommBuffer *b, ReplicateConfirmAckPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:129</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:131</tt> by nedtool.
  * <pre>
  * //
  * // Represents a timer for a Route Reply packet
@@ -570,12 +575,14 @@ inline void doPacking(cCommBuffer *b, WaitForReq& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, WaitForReq& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:136</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:138</tt> by nedtool.
  * <pre>
  * message DelayMsg extends cMessage
  * {
  *     string bid;
  *     bool broadcast;
+ *     bool deleteMe;
+ * 
  * }
  * </pre>
  */
@@ -584,6 +591,7 @@ class DelayMsg : public ::cMessage
   protected:
     opp_string bid_var;
     bool broadcast_var;
+    bool deleteMe_var;
 
   private:
     void copy(const DelayMsg& other);
@@ -606,13 +614,15 @@ class DelayMsg : public ::cMessage
     virtual void setBid(const char * bid);
     virtual bool getBroadcast() const;
     virtual void setBroadcast(bool broadcast);
+    virtual bool getDeleteMe() const;
+    virtual void setDeleteMe(bool deleteMe);
 };
 
 inline void doPacking(cCommBuffer *b, DelayMsg& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, DelayMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:142</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:146</tt> by nedtool.
  * <pre>
  * message ReqBlockTimer extends cMessage
  * {
@@ -650,7 +660,7 @@ inline void doPacking(cCommBuffer *b, ReqBlockTimer& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, ReqBlockTimer& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:147</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:151</tt> by nedtool.
  * <pre>
  * message ChurnMsg extends cMessage
  * {
@@ -692,7 +702,7 @@ inline void doPacking(cCommBuffer *b, ChurnMsg& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, ChurnMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:154</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:158</tt> by nedtool.
  * <pre>
  * message QueryMsg extends cMessage
  * {

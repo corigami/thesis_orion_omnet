@@ -78,6 +78,7 @@ OrionPacket::OrionPacket(const char *name, int kind) : ::cPacket(name,kind)
     this->filename_var = 0;
     this->hopCount_var = 0;
     this->bid_var = 0;
+    this->start_var = 0;
 }
 
 OrionPacket::OrionPacket(const OrionPacket& other) : ::cPacket(other)
@@ -110,6 +111,7 @@ void OrionPacket::copy(const OrionPacket& other)
     this->filename_var = other.filename_var;
     this->hopCount_var = other.hopCount_var;
     this->bid_var = other.bid_var;
+    this->start_var = other.start_var;
 }
 
 void OrionPacket::parsimPack(cCommBuffer *b)
@@ -126,6 +128,7 @@ void OrionPacket::parsimPack(cCommBuffer *b)
     doPacking(b,this->filename_var);
     doPacking(b,this->hopCount_var);
     doPacking(b,this->bid_var);
+    doPacking(b,this->start_var);
 }
 
 void OrionPacket::parsimUnpack(cCommBuffer *b)
@@ -142,6 +145,7 @@ void OrionPacket::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->filename_var);
     doUnpacking(b,this->hopCount_var);
     doUnpacking(b,this->bid_var);
+    doUnpacking(b,this->start_var);
 }
 
 unsigned int OrionPacket::getPacketType() const
@@ -254,6 +258,16 @@ void OrionPacket::setBid(const char * bid)
     this->bid_var = bid;
 }
 
+simtime_t OrionPacket::getStart() const
+{
+    return start_var;
+}
+
+void OrionPacket::setStart(simtime_t start)
+{
+    this->start_var = start;
+}
+
 class OrionPacketDescriptor : public cClassDescriptor
 {
   public:
@@ -301,7 +315,7 @@ const char *OrionPacketDescriptor::getProperty(const char *propertyname) const
 int OrionPacketDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 11+basedesc->getFieldCount(object) : 11;
+    return basedesc ? 12+basedesc->getFieldCount(object) : 12;
 }
 
 unsigned int OrionPacketDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -324,8 +338,9 @@ unsigned int OrionPacketDescriptor::getFieldTypeFlags(void *object, int field) c
         FD_ISEDITABLE,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<11) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<12) ? fieldTypeFlags[field] : 0;
 }
 
 const char *OrionPacketDescriptor::getFieldName(void *object, int field) const
@@ -348,8 +363,9 @@ const char *OrionPacketDescriptor::getFieldName(void *object, int field) const
         "filename",
         "hopCount",
         "bid",
+        "start",
     };
-    return (field>=0 && field<11) ? fieldNames[field] : NULL;
+    return (field>=0 && field<12) ? fieldNames[field] : NULL;
 }
 
 int OrionPacketDescriptor::findField(void *object, const char *fieldName) const
@@ -367,6 +383,7 @@ int OrionPacketDescriptor::findField(void *object, const char *fieldName) const
     if (fieldName[0]=='f' && strcmp(fieldName, "filename")==0) return base+8;
     if (fieldName[0]=='h' && strcmp(fieldName, "hopCount")==0) return base+9;
     if (fieldName[0]=='b' && strcmp(fieldName, "bid")==0) return base+10;
+    if (fieldName[0]=='s' && strcmp(fieldName, "start")==0) return base+11;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -390,8 +407,9 @@ const char *OrionPacketDescriptor::getFieldTypeString(void *object, int field) c
         "string",
         "unsigned int",
         "string",
+        "simtime_t",
     };
-    return (field>=0 && field<11) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<12) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *OrionPacketDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -442,6 +460,7 @@ std::string OrionPacketDescriptor::getFieldAsString(void *object, int field, int
         case 8: return oppstring2string(pp->getFilename());
         case 9: return ulong2string(pp->getHopCount());
         case 10: return oppstring2string(pp->getBid());
+        case 11: return double2string(pp->getStart());
         default: return "";
     }
 }
@@ -463,6 +482,7 @@ bool OrionPacketDescriptor::setFieldAsString(void *object, int field, int i, con
         case 8: pp->setFilename((value)); return true;
         case 9: pp->setHopCount(string2ulong(value)); return true;
         case 10: pp->setBid((value)); return true;
+        case 11: pp->setStart(string2double(value)); return true;
         default: return false;
     }
 }
@@ -3038,6 +3058,7 @@ DelayMsg::DelayMsg(const char *name, int kind) : ::cMessage(name,kind)
 {
     this->bid_var = 0;
     this->broadcast_var = 0;
+    this->deleteMe_var = 0;
 }
 
 DelayMsg::DelayMsg(const DelayMsg& other) : ::cMessage(other)
@@ -3061,6 +3082,7 @@ void DelayMsg::copy(const DelayMsg& other)
 {
     this->bid_var = other.bid_var;
     this->broadcast_var = other.broadcast_var;
+    this->deleteMe_var = other.deleteMe_var;
 }
 
 void DelayMsg::parsimPack(cCommBuffer *b)
@@ -3068,6 +3090,7 @@ void DelayMsg::parsimPack(cCommBuffer *b)
     ::cMessage::parsimPack(b);
     doPacking(b,this->bid_var);
     doPacking(b,this->broadcast_var);
+    doPacking(b,this->deleteMe_var);
 }
 
 void DelayMsg::parsimUnpack(cCommBuffer *b)
@@ -3075,6 +3098,7 @@ void DelayMsg::parsimUnpack(cCommBuffer *b)
     ::cMessage::parsimUnpack(b);
     doUnpacking(b,this->bid_var);
     doUnpacking(b,this->broadcast_var);
+    doUnpacking(b,this->deleteMe_var);
 }
 
 const char * DelayMsg::getBid() const
@@ -3095,6 +3119,16 @@ bool DelayMsg::getBroadcast() const
 void DelayMsg::setBroadcast(bool broadcast)
 {
     this->broadcast_var = broadcast;
+}
+
+bool DelayMsg::getDeleteMe() const
+{
+    return deleteMe_var;
+}
+
+void DelayMsg::setDeleteMe(bool deleteMe)
+{
+    this->deleteMe_var = deleteMe;
 }
 
 class DelayMsgDescriptor : public cClassDescriptor
@@ -3144,7 +3178,7 @@ const char *DelayMsgDescriptor::getProperty(const char *propertyname) const
 int DelayMsgDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 2+basedesc->getFieldCount(object) : 2;
+    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
 }
 
 unsigned int DelayMsgDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -3158,8 +3192,9 @@ unsigned int DelayMsgDescriptor::getFieldTypeFlags(void *object, int field) cons
     static unsigned int fieldTypeFlags[] = {
         FD_ISEDITABLE,
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<2) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
 }
 
 const char *DelayMsgDescriptor::getFieldName(void *object, int field) const
@@ -3173,8 +3208,9 @@ const char *DelayMsgDescriptor::getFieldName(void *object, int field) const
     static const char *fieldNames[] = {
         "bid",
         "broadcast",
+        "deleteMe",
     };
-    return (field>=0 && field<2) ? fieldNames[field] : NULL;
+    return (field>=0 && field<3) ? fieldNames[field] : NULL;
 }
 
 int DelayMsgDescriptor::findField(void *object, const char *fieldName) const
@@ -3183,6 +3219,7 @@ int DelayMsgDescriptor::findField(void *object, const char *fieldName) const
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
     if (fieldName[0]=='b' && strcmp(fieldName, "bid")==0) return base+0;
     if (fieldName[0]=='b' && strcmp(fieldName, "broadcast")==0) return base+1;
+    if (fieldName[0]=='d' && strcmp(fieldName, "deleteMe")==0) return base+2;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -3197,8 +3234,9 @@ const char *DelayMsgDescriptor::getFieldTypeString(void *object, int field) cons
     static const char *fieldTypeStrings[] = {
         "string",
         "bool",
+        "bool",
     };
-    return (field>=0 && field<2) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *DelayMsgDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -3240,6 +3278,7 @@ std::string DelayMsgDescriptor::getFieldAsString(void *object, int field, int i)
     switch (field) {
         case 0: return oppstring2string(pp->getBid());
         case 1: return bool2string(pp->getBroadcast());
+        case 2: return bool2string(pp->getDeleteMe());
         default: return "";
     }
 }
@@ -3256,6 +3295,7 @@ bool DelayMsgDescriptor::setFieldAsString(void *object, int field, int i, const 
     switch (field) {
         case 0: pp->setBid((value)); return true;
         case 1: pp->setBroadcast(string2bool(value)); return true;
+        case 2: pp->setDeleteMe(string2bool(value)); return true;
         default: return false;
     }
 }
