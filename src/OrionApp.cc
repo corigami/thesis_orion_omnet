@@ -1172,7 +1172,7 @@ void OrionApp::handleRequest(OrionDataReqPacket *reqPacket){
                 reqTimeout->setFilename(reqPacket->getFilename());
                 reqTimeout->setBid(reqPacket->getBid());
                 std::pair<std::string, WaitForReq*> tempPacketPair2(reqPacket->getBid(), reqTimeout);
-                  scheduleAt(simTime()+retryDelay, reqTimeout);
+                  scheduleAt(simTime()+.2, reqTimeout);
 
                 //store eventTimer and packet for later lookup
                 pendingTimeouts.insert(tempPacketPair2);
@@ -1247,7 +1247,7 @@ void OrionApp::handleRequestAck(OrionDataAckPacket *ackPacket){
 }
 
 void OrionApp::handleRequestError(OrionErrorPacket *errPacket){
-    debug("Got the error memo");
+    debug("Got the error memo",3);
     queryResults[errPacket->getFilename()].removeSource(errPacket->getSRC());
 }
 
@@ -1323,30 +1323,34 @@ void OrionApp::handleReply(OrionDataRepPacket *repPacket){
 
 void OrionApp::resendRequest(OrionDataReqPacket* reqPacket){
     debug("resendRequest", 0);
-//    if(reqPacket->getRetries() >0){
-//        //duplicate message and save original.
-//        //emit(sentPkSignal, reqPacket);
-//        reqPacket->setRetries(reqPacket->getRetries()-1);
-//        queryResults[reqPacket->getFilename()].setRequeries(reqPacket->getRetries());
-//
-//        if(pendingTimeouts.count(reqPacket->getBid())> 0){
-//            if(!pendingTimeouts[reqPacket->getBid()]->isScheduled()){
-//                scheduleAt(simTime()+retryDelay, pendingTimeouts[reqPacket->getBid()]);
-//         //       printPacketSend(reqPacket);
-//          //      socket.sendTo(reqPacket->dup(), reqPacket->getDST(), destPort);
-//                numSent++;
-//            }
-//
-//        }
-//    }else{
+    if(reqPacket->getRetries() >0){
+        //duplicate message and save original.
+        //emit(sentPkSignal, reqPacket);
+        reqPacket->setRetries(reqPacket->getRetries()-1);
+        queryResults[reqPacket->getFilename()].setRequeries(reqPacket->getRetries());
 
-        queryResults[reqPacket->getFilename()].removeSource();
+        if(pendingTimeouts.count(reqPacket->getBid())> 0){
+            if(!pendingTimeouts[reqPacket->getBid()]->isScheduled()){
+                scheduleAt(simTime()+.2, pendingTimeouts[reqPacket->getBid()]);
+                printPacketSend(reqPacket);
+                socket.sendTo(reqPacket->dup(), reqPacket->getDST(), destPort);
+                numSent++;
+            }
+
+        }
+    }else{
+        debug("Didn't get ack in time...",3);
+        if(queryResults[reqPacket->getFilename()].hasSource(reqPacket->getDST())){
+        queryResults[reqPacket->getFilename()].removeSource(reqPacket->getDST());
+        }
+
         //if we have another source for the file, perform local correction
-
         if(queryResults[reqPacket->getFilename()].hasSource()){
          //   queryResults[reqPacket->getFilename()].setRequeries(retries);
           //  reqPacket->setRetries(retries);
             reqPacket->setDST(queryResults[reqPacket->getFilename()].getSource());
+            debug("Has source",3);
+            debug(reqPacket->getDST().str(),3);
 
             //duplicate message and save original.
             printPacketSend(reqPacket);
@@ -1356,6 +1360,7 @@ void OrionApp::resendRequest(OrionDataReqPacket* reqPacket){
             scheduleAt(simTime()+retryDelay,pendingTimeouts[reqPacket->getBid()]);
 
         }else{
+            debug("Out of sources...sending error back",3);
             IPvXAddress dest = reqPacket->getLastNode();
 
             //send error back...
@@ -1381,7 +1386,7 @@ void OrionApp::resendRequest(OrionDataReqPacket* reqPacket){
                 debug(info.str());
                 std::string output("Sending Response to -> ");
                 output.append(dest.str());
-                debug(output);
+                debug(output,3);
 
                 //emit(sentPkSignal, errPacket);
                 printPacketSend(errPacket);
@@ -1395,7 +1400,7 @@ void OrionApp::resendRequest(OrionDataReqPacket* reqPacket){
             pendingTimeouts.erase(bid);
         }
 
- //   }
+    }
 }
 
 

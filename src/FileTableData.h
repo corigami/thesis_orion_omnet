@@ -43,6 +43,8 @@ public:
         blocksRecieved = 0;
         totalHops = 0;
         masterQuery = false;
+        fileList.clear();
+        fileList.resize(0);
 
         for( int i(0); i < fileSize; i++){
             blockStatus.insert(std::pair<int, bool>(i, false));
@@ -58,7 +60,9 @@ public:
 
         }
     void removeSource(){
+        //printSources();
         if(fileList.size()>0)
+            std::cout << "Removing : " << fileList.front().str() <<std::endl;
             fileList.pop_front();
     }
 
@@ -77,9 +81,9 @@ public:
     }
 
     void printSources(){
-// std::cout << "count of sources: " << fileList.size() << std::endl;
+        //std::cout << "count of sources: " << fileList.size() << std::endl;
         for (std::deque<IPvXAddress>::iterator it = fileList.begin(); it!=fileList.end(); ++it){
-            std::cout << *it << std::endl;
+            std::cout << it->str() << std::endl;
         }
     }
 
@@ -104,7 +108,8 @@ public:
     bool hasSource(){
         if(fileList.size() > 0){
             IPvXAddress source =fileList.front();
-          //  std::cout <<  "current source: " << source.str() <<std::endl;
+           // std::cout <<  "current source: " << source.str() <<std::endl;
+           // printSources();
            return true;
         }
         return false;
