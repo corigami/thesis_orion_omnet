@@ -43,8 +43,10 @@ public:
         blocksRecieved = 0;
         totalHops = 0;
         masterQuery = false;
-        fileList.clear();
-        fileList.resize(0);
+        systemPacketsStart=0;
+        systemPacketsStop=0;
+        //fileList.clear();
+        //fileList.resize(0);
 
         for( int i(0); i < fileSize; i++){
             blockStatus.insert(std::pair<int, bool>(i, false));
@@ -289,6 +291,18 @@ public:
         this->timeOfLastBlock = timeOfLastBlock;
     }
 
+    void setSystemPacketsStart(int systemPacketsStart) {
+        this->systemPacketsStart = systemPacketsStart;
+    }
+
+    void setSystemPacketsStop(int systemPacketsStop) {
+        this->systemPacketsStop = systemPacketsStop;
+    }
+
+    int getTotalPackets(){
+       return( systemPacketsStop - systemPacketsStart);
+    }
+
 protected:
     std::deque<IPvXAddress> fileList;
     IPvXAddress origin;
@@ -313,6 +327,9 @@ protected:
     std::map<int, bool> blockStatus;
     int blocksRecieved;
     int totalHops;
+
+    unsigned int systemPacketsStart;
+    unsigned int systemPacketsStop;
 
 
 

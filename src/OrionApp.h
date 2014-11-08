@@ -91,8 +91,9 @@ class /*INET_API */OrionApp : public ApplicationBase
     ChurnMsg *churnTimerMsg;
 
     // statistics
-    int numSent;
-    int numReceived;
+    static unsigned int sentOPackets;
+    static unsigned int recOPackets;
+
     int xferReqs;
     int xferFails;
     int xferCompletes;
@@ -153,6 +154,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     void clearTimersAndLists();
     void generateFile();
     void churnNode();
+    void printTransfer(std::string fileName);
     void printResults();
     void printContainerContents();
     void printFileTable();
