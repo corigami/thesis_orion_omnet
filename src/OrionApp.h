@@ -20,6 +20,7 @@
 #ifndef ORIONAPP_H
 #define ORIONAPP_H
 
+#include <time.h>
 #include <vector>
 #include <string>
 #include <iostream>
@@ -93,6 +94,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     // statistics
     static unsigned int sentOPackets;
     static unsigned int recOPackets;
+    static clock_t functionTime[20];
 
     int xferReqs;
     int xferFails;
@@ -122,6 +124,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     void sendQuery(std::string fileToRequest, unsigned int seq, IPvXAddress src, std::string sourceId);
     void sendResponse(OrionPacket *oPacket);
     void sendRequest(std::string fileToRequest);
+    void sendError(std::string fileName, IPvXAddress dst, int seq, std::string id,bool delay);
     void sendRequestAck(OrionDataReqPacket* reqPacket);
     void resendRequest(OrionDataReqPacket* reqPacket);
     void requestNextBlock(std::string filename);

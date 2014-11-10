@@ -29,7 +29,7 @@ enum OrionPacketType
     DATA_REQUEST = 3;
     DATA_REPLY = 4;
     DATA_REQUEST_ACK = 5;
-    DATA_ERR = 6;
+    DATA_ERROR = 6;
     REP_REQUEST = 7;
     REP_CONFIRM = 8;
     REP_CONFIRM_ACK = 9;
@@ -73,7 +73,7 @@ class OrionQueryPacket extends OrionPacket
  
  class OrionErrorPacket extends OrionPacket
 {
-    unsigned int packetType = DATA_ERR;
+    unsigned int packetType = DATA_ERROR;
     string requestId;
  }
  

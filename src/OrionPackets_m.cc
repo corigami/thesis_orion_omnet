@@ -61,7 +61,7 @@ EXECUTE_ON_STARTUP(
     e->insert(DATA_REQUEST, "DATA_REQUEST");
     e->insert(DATA_REPLY, "DATA_REPLY");
     e->insert(DATA_REQUEST_ACK, "DATA_REQUEST_ACK");
-    e->insert(DATA_ERR, "DATA_ERR");
+    e->insert(DATA_ERROR, "DATA_ERROR");
     e->insert(REP_REQUEST, "REP_REQUEST");
     e->insert(REP_CONFIRM, "REP_CONFIRM");
     e->insert(REP_CONFIRM_ACK, "REP_CONFIRM_ACK");
@@ -996,7 +996,7 @@ Register_Class(OrionErrorPacket);
 
 OrionErrorPacket::OrionErrorPacket(const char *name) : ::OrionPacket(name)
 {
-    this->packetType_var = DATA_ERR;
+    this->packetType_var = DATA_ERROR;
     this->requestId_var = 0;
 }
 

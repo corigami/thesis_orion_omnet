@@ -32,8 +32,9 @@ Define_Module(OrionApp);
 
 //simsignal_t OrionApp::sentPkSignal = registerSignal("sentPk");
 //simsignal_t OrionApp::rcvdPkSignal = registerSignal("rcvdPk");
-unsigned int OrionApp::sentOPackets = 0;
-unsigned int OrionApp::recOPackets = 0;
+unsigned int OrionApp::sentOPackets;
+unsigned int OrionApp::recOPackets;
+clock_t  OrionApp::functionTime[20];
 
 OrionApp::OrionApp()
 {
@@ -70,6 +71,13 @@ void OrionApp::initialize(int stage)
 
     if (stage == 0)
     {
+        if(master){
+            sentOPackets=0;
+            recOPackets=0;
+            for(int i(0); i <20; i++){
+                functionTime[i] = 0;
+            }
+        }
         //various counters and other settings not specified in .ned file
         xferFails = 0;
         xferReqs = 0;
@@ -446,7 +454,7 @@ void OrionApp::handleMessageWhenUp(cMessage *msg)
             std::string file = dynamic_cast<WaitForReq *>(msg)->getBid();
             if(pendingPackets.count(file)>0){
                 resendRequest(dynamic_cast<OrionDataReqPacket*>(pendingPackets[file]));
-            }el
+            }
         }else if(dynamic_cast<QueryMsg *>(msg)){ //Self msg to initiate another query (will be canceled if query completes)
             //deletion of QueryMsg is handled elsewhere
             std::string file = dynamic_cast<QueryMsg *>(msg)->getFileName();
@@ -497,22 +505,22 @@ void OrionApp::handleMessageWhenUp(cMessage *msg)
                 recOPackets++;
                 OrionPacket *oPacket = dynamic_cast<OrionPacket *>(PK(msg));
                 switch (oPacket->getPacketType()) {
-                case QUERY:
+                case QUERY: //implemented Orion QUERY message
                     handleQuery(dynamic_cast<OrionQueryPacket *>(oPacket));
                     break;
-                case RESPONSE:
+                case RESPONSE: //implemented Orion RESPONSE message
                     handleResponse(dynamic_cast<OrionResponsePacket *>(oPacket));
                     break;
-                case DATA_REQUEST:
+                case DATA_REQUEST:  //implemented Orion DATA_REQUEST message
                     handleRequest(dynamic_cast<OrionDataReqPacket *>(oPacket));
                     break;
-                case DATA_REQUEST_ACK:
+                case DATA_REQUEST_ACK: //application layer acknowledgment
                     handleRequestAck(dynamic_cast<OrionDataAckPacket *>(oPacket));
                     break;
-                case DATA_REPLY:
+                case DATA_REPLY:  //implemented Orion DATA_REPLY message
                     handleReply(dynamic_cast<OrionDataRepPacket *>(oPacket));
                     break;
-                case DATA_ERR:
+                case DATA_ERROR: //implemented Orion QUERY message
                     handleRequestError(dynamic_cast<OrionErrorPacket *>(oPacket));
                     break;
                 case REP_REQUEST:
@@ -737,6 +745,40 @@ void OrionApp::printResults() {
         }
 
     }while(!check);
+
+}
+
+void OrionApp::sendError(std::string fileName, IPvXAddress dst, int seq, std::string requestId, bool delay) {
+
+    OrionErrorPacket *errorPacket = new OrionErrorPacket("DATA_ERR");
+    errorPacket->setFilename(fileName.c_str());
+    errorPacket->setSRC(myAddr);
+    errorPacket->setDST(dst);
+    errorPacket->setLastNode(myAddr);
+    errorPacket->setLastNodeId(myNameStr.c_str());
+    errorPacket->setSEQ(seq);
+    errorPacket->setRequestId(requestId.c_str());
+
+    //emit(sentPkSignal, errPacket);
+    if(!delay){
+    sendPacket(errorPacket);
+    }else{
+        std::ostringstream ID;
+        ID << myAddr.str() << "-e" << seq;
+        errorPacket->setBid(ID.str().c_str());
+        //send packet
+        //emit(sentPkSignal, errorPacket);
+
+        pendingPackets.insert(std::pair<std::string, OrionErrorPacket* >(errorPacket->getBid(), errorPacket));
+
+        //create  request timeoutEvent
+        DelayMsg *delayMsg =  new DelayMsg();
+        delayMsg->setBid(errorPacket->getBid());
+        delayMsg->setBroadcast(false);
+        delayMsg->setDeleteMe(true);
+        delaySend(delayMsg);
+
+    }
 
 }
 
@@ -1333,34 +1375,36 @@ void OrionApp::handleRequest(OrionDataReqPacket *reqPacket){
                 //schedule timeout event;
 
             }else{//we don't have this in our table...
-                OrionErrorPacket *errPacket = new OrionErrorPacket("DATA_ERR");
-                errPacket->setFilename(reqPacket->getFilename());
-                errPacket->setSRC(myAddr);
-                errPacket->setLastNode(myAddr);
-                errPacket->setSEQ(reqPacket->getSEQ());
-                errPacket->setRequestId(reqPacket->getBid());
-
+//                OrionErrorPacket *errorPacket = new OrionErrorPacket("DATA_ERROR");
+//                errorPacket->setFilename(reqPacket->getFilename());
+//                errorPacket->setSRC(myAddr);
+//                errorPacket->setLastNode(myAddr);
+//                errorPacket->setSEQ(reqPacket->getSEQ());
+//                errorPacket->setRequestId(reqPacket->getBid());
+//                errorPacket->setDST(reqPacket->getLastNode());
                 std::ostringstream ID;
                 ID << reqPacket->getSRC().str() << "-e" << reqPacket->getSEQ();
-                errPacket->setBid(ID.str().c_str());
+               // errorPacket->setBid(ID.str().c_str());
 
-                errPacket->setDST(reqPacket->getLastNode());
+                sendError(reqPacket->getFilename(), reqPacket->getLastNode(),reqPacket->getSEQ(),reqPacket->getBid(),true);
 
-                //send packet
-                //emit(sentPkSignal, errPacket);
+//
+//
+//                //send packet
+//                //emit(sentPkSignal, errorPacket);
+//
+//                pendingPackets.insert(std::pair<std::string, OrionErrorPacket* >(errorPacket->getBid(),errorPacket));
+//
+//                //create  request timeoutEvent
+//                DelayMsg *delayMsg =  new DelayMsg();
+//                delayMsg->setBid(errorPacket->getBid());
+//                delayMsg->setBroadcast(true);
+//                delayMsg->setDeleteMe(true);
+//                delaySend(delayMsg);
 
-                pendingPackets.insert(std::pair<std::string, OrionErrorPacket* >(errPacket->getBid(),errPacket));
 
-                //create  request timeoutEvent
-                DelayMsg *delayMsg =  new DelayMsg();
-                delayMsg->setBid(errPacket->getBid());
-                delayMsg->setBroadcast(true);
-                delayMsg->setDeleteMe(true);
-                delaySend(delayMsg);
-
-
-                // printPacketSend(errPacket);
-                // socket.sendTo(errPacket, dest, destPort);
+                // printPacketSend(errorPacket);
+                // socket.sendTo(errorPacket, dest, destPort);
             }
         }
     }
@@ -1379,19 +1423,21 @@ void OrionApp::handleRequestAck(OrionDataAckPacket *ackPacket){
     pendingPackets.erase(bid);
 }
 
-void OrionApp::handleRequestError(OrionErrorPacket *errPacket){
+void OrionApp::handleRequestError(OrionErrorPacket *errorPacket){
     debug("handleRequestError",0);
-    queryResults[errPacket->getFilename()].removeSource(errPacket->getSRC());
-    if(!queryResults[errPacket->getFilename()].hasSource()){
+    queryResults[errorPacket->getFilename()].removeSource(errorPacket->getSRC());
+    if(!queryResults[errorPacket->getFilename()].hasSource()){
 
-        if(requestList.count(errPacket->getRequestId())> 0){
-            errPacket->setSRC(myAddr);
-            errPacket->setLastNode(myAddr);
-            errPacket->setDST(requestList[errPacket->getRequestId()].first);
+        if(requestList.count(errorPacket->getRequestId())> 0){
 
-            //   printPacketSend(errPacket);
-            sendPacket(errPacket->dup());
-            //  socket.sendTo(errPacket->dup(), errPacket->getDST(), destPort);
+            errorPacket->setSRC(myAddr);
+            errorPacket->setLastNode(myAddr);
+            errorPacket->setDST(requestList[errorPacket->getRequestId()].first);
+
+            //   printPacketSend(errorPacket);
+            sendPacket(errorPacket->dup());
+            //  socket.sendTo(errorPacket->dup(), errorPacket->getDST(), destPort);
+            sendError(errorPacket->getFilename(), requestList[errorPacket->getRequestId()].first, errorPacket->getSEQ(),errorPacket->getRequestId() ,false );
         }
     }
 }
@@ -1506,19 +1552,20 @@ void OrionApp::resendRequest(OrionDataReqPacket* reqPacket){
             // debug("Out of sources...sending error back",3);
             //send error back...
             if(reqPacket->getLastNode() != myAddr){
-                OrionErrorPacket *errPacket = new OrionErrorPacket("DATA_ERR");
-                errPacket->setFilename(reqPacket->getFilename());
-                errPacket->setSRC(myAddr);
-                errPacket->setDST(reqPacket->getLastNode());
-                errPacket->setLastNode(myAddr);
-                errPacket->setLastNodeId(myNameStr.c_str());
-                errPacket->setSEQ(reqPacket->getSEQ());
-                errPacket->setRequestId(reqPacket->getBid());
-
-                //emit(sentPkSignal, errPacket);
-                // printPacketSend(errPacket);
-                sendPacket(errPacket);
-                // socket.sendTo(errPacket, dest, destPort);
+                sendError(reqPacket->getFilename(),reqPacket->getLastNode(),reqPacket->getSEQ(),reqPacket->getBid(),false);
+//                OrionErrorPacket *errorPacket = new OrionErrorPacket("DATA_ERR");
+//                errorPacket->setFilename(reqPacket->getFilename());
+//                errorPacket->setSRC(myAddr);
+//                errorPacket->setDST(reqPacket->getLastNode());
+//                errorPacket->setLastNode(myAddr);
+//                errorPacket->setLastNodeId(myNameStr.c_str());
+//                errorPacket->setSEQ(reqPacket->getSEQ());
+//                errorPacket->setRequestId(reqPacket->getBid());
+//
+//                //emit(sentPkSignal, errPacket);
+//                // printPacketSend(errPacket);
+//                sendPacket(errPacket);
+//                // socket.sendTo(errPacket, dest, destPort);
             }
             std::string bid = reqPacket->getBid();
 
