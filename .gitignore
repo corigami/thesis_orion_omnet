@@ -36,5 +36,6 @@ xxx
 /src/.tmp*
 /src/sta*
 .cproject
+.project
 simulations/.tkenvlog
 simulations/TestLayout2.anf
