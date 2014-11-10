@@ -10,6 +10,8 @@ src/Makefile.vc
 */results/
 */*/results/
 */*/*/results/
+*/data/
+*/*/data/
 /.settings/*
 # ignore binary files
 out/
