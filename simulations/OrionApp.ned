@@ -78,6 +78,7 @@ simple OrionApp like IUDPApp
         double speed @unit(mps) = default(0mps);
 
         @display("i=block/app");
+
      //   @signal[sentPk](type=cPacket);
      //   @signal[rcvdPk](type=cPacket);
      //   @signal[queryComplete](type = double);

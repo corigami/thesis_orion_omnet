@@ -57,21 +57,29 @@ OrionApp::~OrionApp()
 
 }
 
+/*
+ * Function: initialize()
+ * -Param: void
+ * -Returns: void
+ * -Description: used in place of a constructor to ensure node is set up in proper
+ *  order. Initialize has 4 states available to use.
+ */
 void OrionApp::initialize(int stage)
 {
     ApplicationBase::initialize(stage);
 
     if (stage == 0)
     {
-
+        //various counters and other settings not specified in .ned file
         xferFails = 0;
         xferReqs = 0;
         xferCompletes= 0;
-
         fileNum = 1;
         querySeqNum = 0;
         replicateSeqNum=0;
         reqSeqNum=0;
+        myNameStr = this->getOwner()->getFullName();
+
 
         //load parameters from .ned file
         localPort = par("localPort");
@@ -92,30 +100,30 @@ void OrionApp::initialize(int stage)
         numberNodes = par("numHosts");
         replicateRate = par("replicationRate");
         mobilityRate = par("speed").doubleValue();
-
-        if(replicateRate == 0){
-            repCount = 0;
-        }else{
-            repCount =(int)(numberNodes * replicateRate / 100);
-        }
         retryDelay = par("retryDelay").doubleValue();
         churnDuration = par("churnDuration").doubleValue();
         churnRate= par("churnRate").doubleValue();
         active = true;
 
+        //avoid divide by zero error...
+        if(replicateRate == 0){
+            repCount = 0;
+        }else{
+            repCount =(int)(numberNodes * replicateRate / 100);
+        }
 
         if (stopTime >= SIMTIME_ZERO && stopTime < startTime)
             error("Invalid startTime/stopTime parameters");
 
-        //self Msg
+        //initialize self timers
         selfMsg = new cMessage("sendTimer");
         fileGenMsg = new cMessage("fileGenTimer");
         fileRequestMsg = new cMessage("fileRequestTimer");
         churnTimerMsg = new ChurnMsg("churnTimerMsg");
 
-        myNameStr = this->getOwner()->getFullName();
 
-        //register signals
+
+        //register
         //    tranCompSignal = registerSignal("transComplete");
         //    queryCompSignal = registerSignal("queryComplete");
 
