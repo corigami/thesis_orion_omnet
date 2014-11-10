@@ -1030,7 +1030,7 @@ void OrionApp::sendQuery(std::string _fileToRequest, unsigned int seq,
 
     //if I am originating this query, start loop for retries in the event the query doesn't complete.
     if (src == myAddr) {
-        FileTableData *entry = queryResults[_fileToRequest];
+        FileTableData *entry = &queryResults[_fileToRequest];
         if (entry->getRequeries() > 0) {
             //if(queryResults[_fileToRequest].getRequeries() > 0){
             entry->setRequeries(entry->getRequeries() - 1);
@@ -1145,7 +1145,7 @@ void OrionApp::sendResponse(OrionPacket *oPacket) {
     // socket.sendTo(rPacket, rPacket->getDST(), destPort);
 }
 
-FileTableData *entry = queryResults[tempFile];
+
 //check to see if I'm the final destination, if so, initiate file request phase.
 //if not, update hopcount and forward request on....
 void OrionApp::handleResponse(OrionResponsePacket *rPacket) {
@@ -1153,9 +1153,8 @@ void OrionApp::handleResponse(OrionResponsePacket *rPacket) {
 
     printPacketRec(rPacket);
     std::string tempFile(rPacket->getFilename());
-    if (queryResults.count(tempFile) > 0) {
+    FileTableData *entry = &queryResults[tempFile];
 
-    }
 
     //we are the source of the inital query, so start the process of requesting the file
     if (myAddr == rPacket->getSRC()) {
@@ -1229,7 +1228,7 @@ void OrionApp::handleResponse(OrionResponsePacket *rPacket) {
 void OrionApp::sendRequest(std::string fileToRequest) {
     debug("sendRequest", 0);
 
-    FileTableData *entry = queryResults[tempFile];
+    FileTableData *entry = &queryResults[fileToRequest];
 
     // if(queryResults[fileToRequest].getTimeOfLastBlock() > simTime().dbl()-1){
     //    int block(queryResults[fileToRequest].getNextBlock());
@@ -1471,7 +1470,7 @@ void OrionApp::handleReply(OrionDataRepPacket *repPacket) {
     debug("handleReply", 0);
     repPacket->setHopCount(repPacket->getHopCount() + 1);
     //If we are the source Node
-    FileTableData *entry = queryResults[repPacket->getFilename()];
+    FileTableData *entry = &queryResults[repPacket->getFilename()];
     if (myAddr == repPacket->getSRC()) {
         retryDelay = (simTime() - repPacket->getStart()) * 2;
         entry->setTimeOfLastBlock(simTime().dbl());
@@ -1554,7 +1553,7 @@ void OrionApp::handleReply(OrionDataRepPacket *repPacket) {
 void OrionApp::resendRequest(OrionDataReqPacket* reqPacket) {
     debug("resendRequest", 0);
 
-    FileTableData *entry = queryResults[reqPacket->getFilename()];
+    FileTableData *entry = &queryResults[reqPacket->getFilename()];
 
     if (reqPacket->getRetries() > 0) {
         //duplicate message and save original.
