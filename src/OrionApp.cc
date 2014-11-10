@@ -123,21 +123,30 @@ void OrionApp::initialize(int stage)
 
 
 
-        //register
+        // register
         //    tranCompSignal = registerSignal("transComplete");
         //    queryCompSignal = registerSignal("queryComplete");
 
     }
 }
-
+/*
+ * Function: finish()
+ * -Param: void
+ * -Returns: void
+ * -Description: Called when simulation ends.  It will still be called if there is
+ * 	problem with the model, but not a runtime error.
+ */
 void OrionApp::finish()
 {
     if(master){
-        printResults();
+        printResults(); // prints information collected in queryResults.
+
+        //Uncomment if using OMNet statistics
         //    recordScalar("transfers Complete", xferCompletes);
         //    recordScalar("transfers Requested", xferReqs);
         //    recordScalar("transfers failed", xferReqs - xferCompletes);
     }else{
+
         //printFileTable();
     }
 
@@ -146,6 +155,14 @@ void OrionApp::finish()
     ApplicationBase::finish();
 }
 
+
+/*
+ * Function: setSocketOptions()
+ * -Param: void
+ * -Returns: void
+ * -Description: Establishes socket parameters to be used by application.
+ * 	Copied from Basic UDP application
+ */
 void OrionApp::setSocketOptions()
 {
     int timeToLive = par("timeToLive");
@@ -175,29 +192,30 @@ void OrionApp::setSocketOptions()
         socket.joinLocalMulticastGroups();
 }
 
-IPvXAddress OrionApp::chooseDestAddr()
-{
-    int k = intrand(destAddresses.size());
-    if (destAddresses[k].isIPv6() && destAddresses[k].get6().isLinkLocal()) // KLUDGE for IPv6
-    {
-        const char *destAddrs = par("destAddresses");
-        cStringTokenizer tokenizer(destAddrs);
-        const char *token;
-
-        for (int i = 0; i <= k; ++i)
-            token = tokenizer.nextToken();
-        destAddresses[k] = IPvXAddressResolver().resolve(token);
-    }
-    return destAddresses[k];
-}
+//IPvXAddress OrionApp::chooseDestAddr()
+//{
+//    int k = intrand(destAddresses.size());
+//    if (destAddresses[k].isIPv6() && destAddresses[k].get6().isLinkLocal()) // KLUDGE for IPv6
+//    {
+//        const char *destAddrs = par("destAddresses");
+//        cStringTokenizer tokenizer(destAddrs);
+//        const char *token;
+//
+//        for (int i = 0; i <= k; ++i)
+//            token = tokenizer.nextToken();
+//        destAddresses[k] = IPvXAddressResolver().resolve(token);
+//    }
+//    return destAddresses[k];
+//}
 
 
 /*
  * Function: sendBroadcast()
- * Description: prints out string messages to the console
- *  - Param:    *pkt:
- *              &dest:
- * Returns: void
+ * -Param:    *pkt:
+ *             &dest:
+ * -Returns: bool
+ * -Description: Allows broadcasting of packets instead of unicast.  Implemented from
+ * 	code posted on Google Groups
  */
 bool OrionApp::sendBroadcast(const IPvXAddress &dest, OrionPacket *pkt)
 {
@@ -214,13 +232,10 @@ bool OrionApp::sendBroadcast(const IPvXAddress &dest, OrionPacket *pkt)
             options.outInterfaceId = outputInterfaceMulticastBroadcast[i];
 
             if (outputInterfaceMulticastBroadcast.size() - i > 1){
-
-                //  debug("here",3);
                 //emit(sentPkSignal, pkt);
                 socket.sendTo(pkt->dup(), dest, destPort, &options);
             }
             else{
-                //debug("here2",3);
                 //emit(sentPkSignal, pkt);
                 socket.sendTo(pkt, dest, destPort, &options);
             }
@@ -232,6 +247,15 @@ bool OrionApp::sendBroadcast(const IPvXAddress &dest, OrionPacket *pkt)
     return false;
 }
 
+
+/*
+ * Function: processStart()
+ * -Param:   void
+ * -Returns: void
+ * -Description: Starts node operation in the simulation.  Called by selfTimer event in
+ * 	initialize().  Sets up simulation gates, and port bindings. Originally taken from
+ * 	Basic UDP App, but tailored to support OrionApp
+ */
 void OrionApp::processStart()
 {
     debug("processStart", 0);
@@ -253,7 +277,7 @@ void OrionApp::processStart()
             destAddresses.push_back(result);
     }
 
-    //starts sending packets (not part of orion... )
+    //starts sending packets (not part of orion but required for proper operation)
     if (!destAddresses.empty())
     {
         selfMsg->setKind(SEND);
@@ -282,6 +306,7 @@ void OrionApp::processStart()
             scheduleAt(stopTime, selfMsg);
         }
 
+        //schedule selfMsg to call churnNode().
         simtime_t e = simTime() + churnDuration;
         if (stopTime < SIMTIME_ZERO || e < (stopTime) )
         {
@@ -289,7 +314,7 @@ void OrionApp::processStart()
         }
 
     }
-    else{
+    else{//if we aren't the master node, start generating files
 
         simtime_t d = simTime() + par("fileGenRate").doubleValue();
         if (stopTime < SIMTIME_ZERO || d < stopTime){
@@ -303,6 +328,7 @@ void OrionApp::processStart()
     }
 
     //-------------------Configuration for enabling broadcasts--------------------------
+
     outputInterfaceMulticastBroadcast.clear();
     if (strcmp(par("outputInterfaceMulticastBroadcast").stringValue(),"") != 0)
     {
@@ -333,17 +359,26 @@ void OrionApp::processStart()
             }
         }
     }
-    myAddr = IPvXAddressResolver().resolve(this->getParentModule()->getFullPath().c_str());
-    myId = this->getParentModule()->getId();
+
 
     //----------------------end broadcast options---------------------------------------------
 
 
+    //stores simulation naming parameters for easier lookup.
+    myAddr = IPvXAddressResolver().resolve(this->getParentModule()->getFullPath().c_str());
+    myId = this->getParentModule()->getId();
 }
 
-void OrionApp::processSend()
-{
 
+
+/*
+ * Function: processSend()
+ * -Param: void
+ * -Returns: void
+ * -Description: Original call to generate packets in Basic UDP App.  Still required for
+ * 	operation, but doesn't generate packets.
+ * 	*/
+void OrionApp::processSend(){
     debug("processSend", 3);
     //  sendPacket();
     simtime_t d = simTime() + par("sendInterval").doubleValue();
@@ -360,6 +395,14 @@ void OrionApp::processSend()
     }
 }
 
+/*
+ * Function: processStop()
+ * -Param: void
+ * -Returns: void
+ * -Description: Called when simulation timer expires.
+ *
+ * Need to look into using this to complete shut off node from receiving packets.
+ * 	*/
 void OrionApp::processStop()
 {
     debug("processStop", 0);
@@ -369,49 +412,52 @@ void OrionApp::processStop()
     }
 }
 
+/*
+ * Function: handleMessageWhenUp()
+ * -Param: cMessage *msg
+ * -Returns: void
+ * -Description: Handles all messages coming into the node including self generated messages, directSend messages
+ *  and Orion Packets generated by the application.  This is specified by OMNet as to how to handle messages and packets.
+ * 	*/
 void OrionApp::handleMessageWhenUp(cMessage *msg)
 {
     debug("handleMessageWhenUp", 0);
+    //if the message came from ourself, handle it
     if (msg->isSelfMessage())
     {
-        if(msg==fileGenMsg)  {
+        if(msg==fileGenMsg)  { //Self msg to generate file (basic node)
             generateFile();
-        }else if(msg == fileRequestMsg){
+        }else if(msg == fileRequestMsg){ //Self msg to request file (master node)
             queryFile();
-        }else if(msg == churnTimerMsg){
-            //debug("got churnMsg",3);
+        }else if(msg == churnTimerMsg){ //Self msg to select nodes to turn off (master node) and on (basic node)
             if(master){
                 churnNode();
-            //   }
             }else{
-                //debug("turning on",3);
                 active = true;
-               // cancelAndDelete(msg);
             }
 
         }
-        else if(dynamic_cast<ReqBlockTimer *>(msg)){
+        else if(dynamic_cast<ReqBlockTimer *>(msg)){ //Self msg to request next block for file transfer
             std::string file = dynamic_cast<ReqBlockTimer *>(msg)->getFilename();
             sendRequest(file);
             cancelAndDelete(msg);
-        }else if(dynamic_cast<WaitForReq *>(msg)){
+        }else if(dynamic_cast<WaitForReq *>(msg)){ //Self msg to check to see if we received request acknowledgment
             //deletion of WaitForReq is handled elsewhere
             std::string file = dynamic_cast<WaitForReq *>(msg)->getBid();
             if(pendingPackets.count(file)>0){
                 resendRequest(dynamic_cast<OrionDataReqPacket*>(pendingPackets[file]));
-            }
-        }else if(dynamic_cast<QueryMsg *>(msg)){
+            }el
+        }else if(dynamic_cast<QueryMsg *>(msg)){ //Self msg to initiate another query (will be canceled if query completes)
             //deletion of QueryMsg is handled elsewhere
             std::string file = dynamic_cast<QueryMsg *>(msg)->getFileName();
             int seq = dynamic_cast<QueryMsg *>(msg)->getSeq();
             std::string sourceId = dynamic_cast<QueryMsg *>(msg)->getSourceId();
             IPvXAddress src = dynamic_cast<QueryMsg *>(msg)->getSRC();
-          //  debug("Query Timed out...starting new one....",3);
             sendQuery(file,seq, src, sourceId);
-        }else if(dynamic_cast<DelayMsg *>(msg)){
+        }else if(dynamic_cast<DelayMsg *>(msg)){//Self Msg used to send msg after a random delay has been added
             std::string bid = dynamic_cast<DelayMsg *>(msg)->getBid();
             if(pendingPackets.count(bid)>0 && active){
-                if(dynamic_cast<DelayMsg *>(msg)->getBroadcast()){
+                if(dynamic_cast<DelayMsg *>(msg)->getBroadcast()){//if msg to send is a broadcast type
                     //broadcast query to all neighbor nodes
                     std::ostringstream output;
                     IPvXAddress destAddr(IPv4Address::ALLONES_ADDRESS);
@@ -419,10 +465,7 @@ void OrionApp::handleMessageWhenUp(cMessage *msg)
 
                 }else{
                     //we are sending a regular packet
-                    //printPacketSend(pendingPackets[bid]);
                     sendPacket(pendingPackets[bid]->dup());
-                    //socket.sendTo(pendingPackets[bid]->dup(), pendingPackets[bid]->getDST(), destPort);
-                    //numSent++;
                 }
             }
             //cleanup our packets
@@ -431,7 +474,7 @@ void OrionApp::handleMessageWhenUp(cMessage *msg)
                 pendingPackets.erase(bid);
             }
             cancelAndDelete(msg);
-        }else if(msg == selfMsg)
+        }else if(msg == selfMsg) //specific kind of msg used by UDP app, required for proper operation
             ASSERT(msg == selfMsg);
         switch (selfMsg->getKind()) {
         case START: processStart(); break;
@@ -440,13 +483,15 @@ void OrionApp::handleMessageWhenUp(cMessage *msg)
         case STOP:  processStop(); break;
         default: throw cRuntimeError("Invalid kind %d in self message", (int)selfMsg->getKind());
         }
-    }else if (msg->getKind() == UDP_I_DATA)
+    }
+    //Packet did not originate from this node, so it is either an Orion Packet or a directSend msg.
+    else if (msg->getKind() == UDP_I_DATA)
     {
-        if(dynamic_cast<ChurnMsg *>(msg)){
+        if(dynamic_cast<ChurnMsg *>(msg)){//directSend churnMsg, used by simulation to shut off nodes
             handleChurnMsg(dynamic_cast<ChurnMsg *>(msg));
             cancelAndDelete(msg);
         }else{
-            //handle different type of packets if node is active
+            //handle different types of Orion Packets (only if node is active)
 
             if(active){
                 recOPackets++;

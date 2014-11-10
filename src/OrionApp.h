@@ -108,7 +108,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     simsignal_t queryCompSignal;
 
     // chooses random destination address
-    virtual IPvXAddress chooseDestAddr();
+    //virtual IPvXAddress chooseDestAddr();
 
 
   //  virtual void sendPacket();
