@@ -511,7 +511,7 @@ void OrionApp::handleMessageWhenUp(cMessage *msg) {
                 msg->getName());
     }
   }
-}
+
 
 //handle application level packets
 void OrionApp::processPacket(cPacket *pk) {

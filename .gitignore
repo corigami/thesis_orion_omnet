@@ -30,6 +30,7 @@ out/
 *.idb
 *.manifest
 .tkenvrc
+*.csv
 
 # ignore backup and temp files
 *.bak
