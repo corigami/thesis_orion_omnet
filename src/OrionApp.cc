@@ -189,22 +189,6 @@ void OrionApp::setSocketOptions() {
         socket.joinLocalMulticastGroups();
 }
 
-//IPvXAddress OrionApp::chooseDestAddr()
-//{
-//    int k = intrand(destAddresses.size());
-//    if (destAddresses[k].isIPv6() && destAddresses[k].get6().isLinkLocal()) // KLUDGE for IPv6
-//    {
-//        const char *destAddrs = par("destAddresses");
-//        cStringTokenizer tokenizer(destAddrs);
-//        const char *token;
-//
-//        for (int i = 0; i <= k; ++i)
-//            token = tokenizer.nextToken();
-//        destAddresses[k] = IPvXAddressResolver().resolve(token);
-//    }
-//    return destAddresses[k];
-//}
-
 /*
  * Function: sendBroadcast()
  * -Param:    *pkt:
@@ -516,7 +500,7 @@ void OrionApp::handleMessageWhenUp(cMessage *msg) {
                 }
             }
             cancelAndDelete(msg);
-            // processPacket(PK(msg));
+
         }
 
     } else if (msg->getKind() == UDP_I_ERROR) {
@@ -526,13 +510,7 @@ void OrionApp::handleMessageWhenUp(cMessage *msg) {
         error("Unrecognized message (%s)%s", msg->getClassName(),
                 msg->getName());
     }
-
-    //    if (ev.isGUI())
-    //    {
-    //        char buf[40];
-    //        sprintf(buf, "rcvd: %d pks\nsent: %d pks", numReceived, sentOPackets);
-    //        getDisplayString().setTagArg("t", 0, buf);
-    //    }
+  }
 }
 
 //handle application level packets
@@ -782,9 +760,6 @@ void OrionApp::handleNodeCrash() {
  */
 bool OrionApp::hasFile(std::string reqFile) {
     debug("hasFile", 0);
-    //   std::string debugMsg("Searching for file: ");
-    //  debugMsg.append(reqFile);
-    //   debug(debugMsg);
     if (fileList.count(reqFile) > 0)
         return true;
     return false;
@@ -823,7 +798,6 @@ void OrionApp::churnNode() {
     }
 
     simtime_t d = simTime() + churnDuration.dbl();
-    //std::cout << "churn count: " << offCount << "churnDuration: " << churnDuration.dbl() << std::endl;
     if (stopTime < SIMTIME_ZERO || d < (stopTime)) {
         scheduleAt(d, churnTimerMsg);
     }
@@ -945,30 +919,18 @@ void OrionApp::generateFile() {
 
 /*
  * Function: requestFile()
- * Description: Initiates request for file transfer.
- *              Implements Orion file transfer algorithm by performing a round robin
- *              request of each file block (each block size is less than 1 MTU - I use
- *              1024 as a convenience factor). The function loops through all the blocks
- *              are successfully transferred or function exceeds file-transfer timeout.
- *  - Param: void
- * Returns: void
+ * -Param: void
+ * -Returns: void
+ * -Description: Initiates request for file transfer.
+ *  Implements Orion file transfer algorithm by performing a round robin
+ *  request of each file block (each block size is less than 1 MTU - I use
+ *  1024 as a convenience factor). The function loops through all the blocks
+ *  are successfully transferred or function exceeds file-transfer timeout.
  */
 void OrionApp::queryFile() {
     debug("queryFile", 0);
 
     std::string fileToRequest(selectFile());
-    std::ostringstream debugMessage;
-    debugMessage << "Requesting file: " << fileToRequest << std::endl;
-    debug(debugMessage.str());
-
-    debug("Initiating Query");
-    //std::ostringstream queryID;
-    //queryID << myAddr.str() << "-" << querySeqNum;
-
-    //store query lookup based on node and seq number
-    //std::pair<std::string, IPvXAddress> tempPair(queryID.str(),myAddr);
-    //queryList.insert(tempPair);
-
     //create new entry and add it to our table
     FileTableData entry(fileToRequest, fileSize);
     entry.setQueryStart(simTime().dbl());
@@ -988,8 +950,6 @@ void OrionApp::queryFile() {
 
     } else {
         debug("Req File Stopping");
-        //      selfMsg->setKind(STOP);
-        //     scheduleAt(stopTime, selfMsg);
     }
 }
 
@@ -1001,7 +961,6 @@ void OrionApp::queryFile() {
  *  - Param: _fileToRequest: string value of requested file name
  * Returns: void
  */
-//TODO add packet Param and logic to create new packet if null
 void OrionApp::sendQuery(std::string _fileToRequest, unsigned int seq,
         IPvXAddress src, std::string sourceId) {
     debug("sendQuery", 0);
