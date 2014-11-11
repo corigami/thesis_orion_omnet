@@ -55,9 +55,12 @@ network OrionNetwork
                 @display("p=50,200");
         }
 
-   // host[numHosts]: AODVRouter {
- 		  host[numHosts]: AdhocHost {
-            parameters:
+//    host[numHosts]: AODVRouter{
+//            parameters:
+//                @display("i=device/pocketpc_s;r=,,#707070");
+//        }
+   host[numHosts]: AdhocHost{
+                   parameters:
                 @display("i=device/pocketpc_s;r=,,#707070");
         }
     connections allowunconnected:

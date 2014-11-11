@@ -134,9 +134,9 @@ class /*INET_API */OrionApp : public ApplicationBase
     void sendReplicateReq(std::string fileToRep, unsigned int seq, IPvXAddress origin);
     void sendReplicateConfirm(ReplicateConfirmPacket *replicateRes);
     void sendReplicateResponseAck(ReplicateConfirmAckPacket *replicateAck);
-
+    void sendPacket(OrionPacket * pkt);
     bool sendBroadcast(const IPvXAddress &dest, OrionPacket *pkt);
-
+    void delaySend(DelayMsg *message);
     //receive functions
     void handleChurnMsg(ChurnMsg *churnMsg);
     void handleQuery(OrionQueryPacket *qPacket);
@@ -152,23 +152,23 @@ class /*INET_API */OrionApp : public ApplicationBase
 
 
     //utility functions
-    void delaySend(DelayMsg *message);
-    void sendPacket(OrionPacket * pkt);
     void clearTimersAndLists();
     void generateFile();
     void churnNode();
-    void printTransfer(std::string fileName);
-    void printResults();
-    void printContainerContents();
-    void printFileTable();
-
-    void printPacketRec(OrionPacket *oPacket);
-    void printPacketSend(OrionPacket *oPacket);
-
     void queryFile();
     std::string selectFile();
     bool hasFile(std::string reqFile);
     void deleteFileTable();
+
+    //print functions
+    void printTransfer(std::string fileName);
+    void printResults();
+    void printContainerContents();
+    void printFileTable();
+    void printPacketRec(OrionPacket *oPacket);
+    void printPacketSend(OrionPacket *oPacket);
+
+
 
 
 
