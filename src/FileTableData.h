@@ -42,6 +42,11 @@ public:
         transferComplete = false;
         blocksRecieved = 0;
         totalHops = 0;
+        masterQuery = false;
+        systemPacketsStart=0;
+        systemPacketsStop=0;
+        //fileList.clear();
+        //fileList.resize(0);
 
         for( int i(0); i < fileSize; i++){
             blockStatus.insert(std::pair<int, bool>(i, false));
@@ -57,11 +62,10 @@ public:
 
         }
     void removeSource(){
-// std::cout << "Removing Source" << std::endl;
-//std::cout << "count of sources: " << fileList.size() << std::endl;
+        //printSources();
         if(fileList.size()>0)
+            std::cout << "Removing : " << fileList.front().str() <<std::endl;
             fileList.pop_front();
-//  std::cout << "count of sources: " << fileList.size() << std::endl;
     }
 
     void removeSource(IPvXAddress source){
@@ -69,7 +73,6 @@ public:
             for (std::deque<IPvXAddress>::iterator it = fileList.begin(); it != fileList.end(); /*NOTE: no incrementation of the iterator here*/) {
               if (*it==source){
                 it = fileList.erase(it); // erase returns the next iterator
-//std::cout << "Deleted: " << source.str() << std::endl;
               }
               else
                 ++it; // otherwise increment it by yourself
@@ -80,24 +83,20 @@ public:
     }
 
     void printSources(){
-// std::cout << "count of sources: " << fileList.size() << std::endl;
+        //std::cout << "count of sources: " << fileList.size() << std::endl;
         for (std::deque<IPvXAddress>::iterator it = fileList.begin(); it!=fileList.end(); ++it){
-            std::cout << *it << std::endl;
+            std::cout << it->str() << std::endl;
         }
     }
 
     void addSource(IPvXAddress source){
- //       std::cout << "Adding Source" << std::endl;
         if(!hasSource(source)){
-           if(source.str().compare("<unspec>") == true){
+           if(source.str().compare("<unspec>") == 0){
                 std::cout << "BAD source!!!!!!" << std::endl;
            }else{
-  //             std::cout << "count of sources: " << fileList.size() << std::endl;
             fileList.push_back(source);
-   //         std::cout << "count of sources: " << fileList.size() << std::endl;
            }
         }
-   //     std::cout << "adding: "<< source.str();
     }
 
     bool hasSource(IPvXAddress source){
@@ -111,7 +110,8 @@ public:
     bool hasSource(){
         if(fileList.size() > 0){
             IPvXAddress source =fileList.front();
-          //  std::cout <<  "current source: " << source.str() <<std::endl;
+           // std::cout <<  "current source: " << source.str() <<std::endl;
+           // printSources();
            return true;
         }
         return false;
@@ -119,15 +119,21 @@ public:
 
     int getNextBlock(){
         int tempCounter = blockCounter;
-        for(int i(blockCounter); i < blocks; i++){
+        for(int i(blockCounter); i < blocks; ){
+           // std::cout << "tempC:" << tempCounter << "  status of [" << i << "]" << blockStatus[i] << std::endl;
             if(blockStatus[i]){
-               i++;
+                i++;
                if(i == blocks){
                    i = 0;
-               } else if(i==(tempCounter-1))
+               }
+               if(i==(tempCounter))
                 return -1;
             }else{
-                blockCounter=i+1;
+                if(i==blocks-1){
+                blockCounter=0;
+                }else{
+                    blockCounter=i+1;
+                }
                 return i;
             }
         }
@@ -261,8 +267,45 @@ public:
         totalHops += hops;
     }
 
+    const IPvXAddress& getOrigin() const {
+        return origin;
+    }
+
+    void setOrigin(const IPvXAddress& origin) {
+        this->origin = origin;
+    }
+
+    bool isMasterQuery() const {
+        return masterQuery;
+    }
+
+    void setMasterQuery(bool masterQuery) {
+        this->masterQuery = masterQuery;
+    }
+
+    double getTimeOfLastBlock() const {
+        return timeOfLastBlock;
+    }
+
+    void setTimeOfLastBlock(double timeOfLastBlock) {
+        this->timeOfLastBlock = timeOfLastBlock;
+    }
+
+    void setSystemPacketsStart(int systemPacketsStart) {
+        this->systemPacketsStart = systemPacketsStart;
+    }
+
+    void setSystemPacketsStop(int systemPacketsStop) {
+        this->systemPacketsStop = systemPacketsStop;
+    }
+
+    int getTotalPackets(){
+       return( systemPacketsStop - systemPacketsStart);
+    }
+
 protected:
     std::deque<IPvXAddress> fileList;
+    IPvXAddress origin;
     std::string fileName;
     double queryStart;
     double queryStop;
@@ -272,15 +315,21 @@ protected:
     double transferStop;
     double transferTime;
 
+    double timeOfLastBlock;
+
     int blocks;
     int remainBlocks;
     int blockCounter;
     int requeries;
     bool transferComplete;
+    bool masterQuery;
 
     std::map<int, bool> blockStatus;
     int blocksRecieved;
     int totalHops;
+
+    unsigned int systemPacketsStart;
+    unsigned int systemPacketsStop;
 
 
 

@@ -24,6 +24,7 @@ import inet.networklayer.ipv4.RoutingTableRecorder;
 import inet.nodes.aodv.AODVRouter;
 import inet.nodes.inet.AdhocHost;
 import inet.world.radio.IdealChannelModel;
+import inet.world.radio.ChannelControl;
 //import inet.world.scenario.ScenarioManager;
 
 network OrionNetwork
@@ -33,11 +34,15 @@ network OrionNetwork
         
     submodules:
         channelControl: IdealChannelModel {
+       //   channelControl: ChannelControl {
             parameters:
                 @display("p=50,50");
         }
         configurator: IPv4NetworkConfigurator {
             parameters:
+               	addDefaultRoutes = false;
+                addStaticRoutes = false;
+                addSubnetRoutes = false;
                 config = xml("<config><interface hosts='*' address='10.0.x.x' netmask='255.255.0.0'/></config>");
                 @display("p=50,100");
         }
@@ -50,7 +55,7 @@ network OrionNetwork
                 @display("p=50,200");
         }
 
- //   host[numHosts]: AODVRouter {
+   // host[numHosts]: AODVRouter {
  		  host[numHosts]: AdhocHost {
             parameters:
                 @display("i=device/pocketpc_s;r=,,#707070");

@@ -20,6 +20,7 @@
 #ifndef ORIONAPP_H
 #define ORIONAPP_H
 
+#include <time.h>
 #include <vector>
 #include <string>
 #include <iostream>
@@ -44,11 +45,15 @@ class /*INET_API */OrionApp : public ApplicationBase
     bool debugEnabled[3];
     bool socketOpen;
     bool active;
+    bool packetTrace;
+    bool printBroadcast;
+    bool printContainers;
     int localPort, destPort;
     int numberNodes;
     int fileNum;
     int myId;
     IPvXAddress myAddr ;
+    std::string myNameStr;
 
     unsigned int querySeqNum;
     unsigned int reqSeqNum;
@@ -58,13 +63,12 @@ class /*INET_API */OrionApp : public ApplicationBase
     std::vector<int> outputInterfaceMulticastBroadcast;
     std::vector<IPvXAddress> destAddresses;
 
-    std::map<std::string, OrionDataReqPacket*> pendingPackets;
+    std::map<std::string, OrionPacket*> pendingPackets;
     std::map<std::string, QueryMsg*> pendingQueries;
     std::map<std::string, WaitForReq*> pendingTimeouts;
-    std::map<std::string, ReqBlockTimer*> blockTimers;
 
-    std::map<std::string, int> fileList;  //!< files system abstraction (just a list of file names)
-    std::map<std::string, IPvXAddress> queryList;
+    std::map<std::string, std::pair<IPvXAddress, int> > fileList;  //!< files system abstraction (just a list of file names)
+    std::map<std::string, std::pair<IPvXAddress, simtime_t> > queryList;
     std::map<std::string, unsigned int> replicateList;
     std::map<std::string, std::pair<IPvXAddress,simtime_t> > requestList;
     std::map<std::string, FileTableData> queryResults;
@@ -88,8 +92,10 @@ class /*INET_API */OrionApp : public ApplicationBase
     ChurnMsg *churnTimerMsg;
 
     // statistics
-    int numSent;
-    int numReceived;
+    static unsigned int sentOPackets;
+    static unsigned int recOPackets;
+    static clock_t functionTime[20];
+
     int xferReqs;
     int xferFails;
     int xferCompletes;
@@ -104,7 +110,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     simsignal_t queryCompSignal;
 
     // chooses random destination address
-    virtual IPvXAddress chooseDestAddr();
+    //virtual IPvXAddress chooseDestAddr();
 
 
   //  virtual void sendPacket();
@@ -115,20 +121,21 @@ class /*INET_API */OrionApp : public ApplicationBase
     //-----------Orion Operations-----------------
 
     //- send functions
-    void sendQuery(std::string fileToRequest, unsigned int seq, IPvXAddress src);
+    void sendQuery(std::string fileToRequest, unsigned int seq, IPvXAddress src, std::string sourceId);
     void sendResponse(OrionPacket *oPacket);
     void sendRequest(std::string fileToRequest);
+    void sendError(std::string fileName, IPvXAddress dst, int seq, std::string id,bool delay);
     void sendRequestAck(OrionDataReqPacket* reqPacket);
     void resendRequest(OrionDataReqPacket* reqPacket);
     void requestNextBlock(std::string filename);
     void sendReply(std::string fileToRequest, unsigned int block, IPvXAddress dest);
 
     //replication functions
-    void sendReplicateReq(std::string fileToRep, unsigned int seq, IPvXAddress src);
+    void sendReplicateReq(std::string fileToRep, unsigned int seq, IPvXAddress origin);
     void sendReplicateConfirm(ReplicateConfirmPacket *replicateRes);
     void sendReplicateResponseAck(ReplicateConfirmAckPacket *replicateAck);
 
-    bool sendBroadcast(const IPvXAddress &dest, cPacket *pkt);
+    bool sendBroadcast(const IPvXAddress &dest, OrionPacket *pkt);
 
     //receive functions
     void handleChurnMsg(ChurnMsg *churnMsg);
@@ -145,11 +152,18 @@ class /*INET_API */OrionApp : public ApplicationBase
 
 
     //utility functions
+    void delaySend(DelayMsg *message);
+    void sendPacket(OrionPacket * pkt);
     void clearTimersAndLists();
     void generateFile();
     void churnNode();
+    void printTransfer(std::string fileName);
     void printResults();
+    void printContainerContents();
     void printFileTable();
+
+    void printPacketRec(OrionPacket *oPacket);
+    void printPacketSend(OrionPacket *oPacket);
 
     void queryFile();
     std::string selectFile();

@@ -31,7 +31,7 @@
  *     DATA_REQUEST = 3;
  *     DATA_REPLY = 4;
  *     DATA_REQUEST_ACK = 5;
- *     DATA_ERR = 6;
+ *     DATA_ERROR = 6;
  *     REP_REQUEST = 7;
  *     REP_CONFIRM = 8;
  *     REP_CONFIRM_ACK = 9;
@@ -44,7 +44,7 @@ enum OrionPacketType {
     DATA_REQUEST = 3,
     DATA_REPLY = 4,
     DATA_REQUEST_ACK = 5,
-    DATA_ERR = 6,
+    DATA_ERROR = 6,
     REP_REQUEST = 7,
     REP_CONFIRM = 8,
     REP_CONFIRM_ACK = 9
@@ -61,10 +61,16 @@ enum OrionPacketType {
  *     unsigned int packetType;
  *     IPvXAddress DST;
  *     IPvXAddress SRC;
+ *     string sourceId;
  *     IPvXAddress LastNode;
+ *     string LastNodeId;
+ *     IPvXAddress origin;
  *     unsigned int SEQ;
  *     string filename;
  *     unsigned int hopCount;
+ *     string bid;
+ *     simtime_t start;
+ * 
  * }
  * </pre>
  */
@@ -74,10 +80,15 @@ class OrionPacket : public ::cPacket
     unsigned int packetType_var;
     IPvXAddress DST_var;
     IPvXAddress SRC_var;
+    opp_string sourceId_var;
     IPvXAddress LastNode_var;
+    opp_string LastNodeId_var;
+    IPvXAddress origin_var;
     unsigned int SEQ_var;
     opp_string filename_var;
     unsigned int hopCount_var;
+    opp_string bid_var;
+    simtime_t start_var;
 
   private:
     void copy(const OrionPacket& other);
@@ -104,22 +115,33 @@ class OrionPacket : public ::cPacket
     virtual IPvXAddress& getSRC();
     virtual const IPvXAddress& getSRC() const {return const_cast<OrionPacket*>(this)->getSRC();}
     virtual void setSRC(const IPvXAddress& SRC);
+    virtual const char * getSourceId() const;
+    virtual void setSourceId(const char * sourceId);
     virtual IPvXAddress& getLastNode();
     virtual const IPvXAddress& getLastNode() const {return const_cast<OrionPacket*>(this)->getLastNode();}
     virtual void setLastNode(const IPvXAddress& LastNode);
+    virtual const char * getLastNodeId() const;
+    virtual void setLastNodeId(const char * LastNodeId);
+    virtual IPvXAddress& getOrigin();
+    virtual const IPvXAddress& getOrigin() const {return const_cast<OrionPacket*>(this)->getOrigin();}
+    virtual void setOrigin(const IPvXAddress& origin);
     virtual unsigned int getSEQ() const;
     virtual void setSEQ(unsigned int SEQ);
     virtual const char * getFilename() const;
     virtual void setFilename(const char * filename);
     virtual unsigned int getHopCount() const;
     virtual void setHopCount(unsigned int hopCount);
+    virtual const char * getBid() const;
+    virtual void setBid(const char * bid);
+    virtual simtime_t getStart() const;
+    virtual void setStart(simtime_t start);
 };
 
 inline void doPacking(cCommBuffer *b, OrionPacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, OrionPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:56</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:62</tt> by nedtool.
  * <pre>
  * //
  * // Represents an Orion Route Request
@@ -127,6 +149,7 @@ inline void doUnpacking(cCommBuffer *b, OrionPacket& obj) {obj.parsimUnpack(b);}
  * class OrionQueryPacket extends OrionPacket
  * {
  *     unsigned int packetType = QUERY;
+ * 
  * 
  * }
  * </pre>
@@ -161,7 +184,7 @@ inline void doPacking(cCommBuffer *b, OrionQueryPacket& obj) {obj.parsimPack(b);
 inline void doUnpacking(cCommBuffer *b, OrionQueryPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:62</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:69</tt> by nedtool.
  * <pre>
  * class OrionResponsePacket extends OrionPacket
  * {
@@ -200,11 +223,12 @@ inline void doPacking(cCommBuffer *b, OrionResponsePacket& obj) {obj.parsimPack(
 inline void doUnpacking(cCommBuffer *b, OrionResponsePacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:68</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:75</tt> by nedtool.
  * <pre>
  * class OrionErrorPacket extends OrionPacket
  * {
- *     unsigned int packetType = DATA_ERR;
+ *     unsigned int packetType = DATA_ERROR;
+ *     string requestId;
  * }
  * </pre>
  */
@@ -212,6 +236,7 @@ class OrionErrorPacket : public ::OrionPacket
 {
   protected:
     unsigned int packetType_var;
+    opp_string requestId_var;
 
   private:
     void copy(const OrionErrorPacket& other);
@@ -232,13 +257,15 @@ class OrionErrorPacket : public ::OrionPacket
     // field getter/setter methods
     virtual unsigned int getPacketType() const;
     virtual void setPacketType(unsigned int packetType);
+    virtual const char * getRequestId() const;
+    virtual void setRequestId(const char * requestId);
 };
 
 inline void doPacking(cCommBuffer *b, OrionErrorPacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, OrionErrorPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:77</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:85</tt> by nedtool.
  * <pre>
  * //
  * // Represents an Orion Route Reply
@@ -248,7 +275,7 @@ inline void doUnpacking(cCommBuffer *b, OrionErrorPacket& obj) {obj.parsimUnpack
  *     unsigned int packetType = DATA_REQUEST;
  *     unsigned int retries;
  *     unsigned int block;
- *     string bid;
+ * 
  * }
  * </pre>
  */
@@ -258,7 +285,6 @@ class OrionDataReqPacket : public ::OrionPacket
     unsigned int packetType_var;
     unsigned int retries_var;
     unsigned int block_var;
-    opp_string bid_var;
 
   private:
     void copy(const OrionDataReqPacket& other);
@@ -283,22 +309,19 @@ class OrionDataReqPacket : public ::OrionPacket
     virtual void setRetries(unsigned int retries);
     virtual unsigned int getBlock() const;
     virtual void setBlock(unsigned int block);
-    virtual const char * getBid() const;
-    virtual void setBid(const char * bid);
 };
 
 inline void doPacking(cCommBuffer *b, OrionDataReqPacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, OrionDataReqPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:85</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:93</tt> by nedtool.
  * <pre>
  * class OrionDataAckPacket extends OrionPacket
  * {
  *     unsigned int packetType = DATA_REQUEST_ACK;
  *     unsigned int retries;
  *     unsigned int block;
- *     string bid;
  * }
  * </pre>
  */
@@ -308,7 +331,6 @@ class OrionDataAckPacket : public ::OrionPacket
     unsigned int packetType_var;
     unsigned int retries_var;
     unsigned int block_var;
-    opp_string bid_var;
 
   private:
     void copy(const OrionDataAckPacket& other);
@@ -333,15 +355,13 @@ class OrionDataAckPacket : public ::OrionPacket
     virtual void setRetries(unsigned int retries);
     virtual unsigned int getBlock() const;
     virtual void setBlock(unsigned int block);
-    virtual const char * getBid() const;
-    virtual void setBid(const char * bid);
 };
 
 inline void doPacking(cCommBuffer *b, OrionDataAckPacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, OrionDataAckPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:96</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:103</tt> by nedtool.
  * <pre>
  * //
  * // Represents an Orion Route Error
@@ -350,8 +370,8 @@ inline void doUnpacking(cCommBuffer *b, OrionDataAckPacket& obj) {obj.parsimUnpa
  * {
  *     unsigned int packetType = DATA_REPLY;
  *     unsigned int block;
- *     string bid;
  *     int numCopiesRemaining;
+ * 
  * 
  * }
  * </pre>
@@ -361,7 +381,6 @@ class OrionDataRepPacket : public ::OrionPacket
   protected:
     unsigned int packetType_var;
     unsigned int block_var;
-    opp_string bid_var;
     int numCopiesRemaining_var;
 
   private:
@@ -385,8 +404,6 @@ class OrionDataRepPacket : public ::OrionPacket
     virtual void setPacketType(unsigned int packetType);
     virtual unsigned int getBlock() const;
     virtual void setBlock(unsigned int block);
-    virtual const char * getBid() const;
-    virtual void setBid(const char * bid);
     virtual int getNumCopiesRemaining() const;
     virtual void setNumCopiesRemaining(int numCopiesRemaining);
 };
@@ -395,7 +412,7 @@ inline void doPacking(cCommBuffer *b, OrionDataRepPacket& obj) {obj.parsimPack(b
 inline void doUnpacking(cCommBuffer *b, OrionDataRepPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:106</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:113</tt> by nedtool.
  * <pre>
  * class ReplicatePacket extends OrionPacket
  * {
@@ -433,7 +450,7 @@ inline void doPacking(cCommBuffer *b, ReplicatePacket& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, ReplicatePacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:111</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:118</tt> by nedtool.
  * <pre>
  * class ReplicateConfirmPacket extends OrionPacket
  * {
@@ -471,7 +488,7 @@ inline void doPacking(cCommBuffer *b, ReplicateConfirmPacket& obj) {obj.parsimPa
 inline void doUnpacking(cCommBuffer *b, ReplicateConfirmPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:116</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:123</tt> by nedtool.
  * <pre>
  * class ReplicateConfirmAckPacket extends OrionPacket
  * {
@@ -513,7 +530,7 @@ inline void doPacking(cCommBuffer *b, ReplicateConfirmAckPacket& obj) {obj.parsi
 inline void doUnpacking(cCommBuffer *b, ReplicateConfirmAckPacket& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:125</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:132</tt> by nedtool.
  * <pre>
  * //
  * // Represents a timer for a Route Reply packet
@@ -562,7 +579,54 @@ inline void doPacking(cCommBuffer *b, WaitForReq& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, WaitForReq& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:132</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:139</tt> by nedtool.
+ * <pre>
+ * message DelayMsg extends cMessage
+ * {
+ *     string bid;
+ *     bool broadcast;
+ *     bool deleteMe;
+ * 
+ * }
+ * </pre>
+ */
+class DelayMsg : public ::cMessage
+{
+  protected:
+    opp_string bid_var;
+    bool broadcast_var;
+    bool deleteMe_var;
+
+  private:
+    void copy(const DelayMsg& other);
+
+  protected:
+    // protected and unimplemented operator==(), to prevent accidental usage
+    bool operator==(const DelayMsg&);
+
+  public:
+    DelayMsg(const char *name=NULL, int kind=0);
+    DelayMsg(const DelayMsg& other);
+    virtual ~DelayMsg();
+    DelayMsg& operator=(const DelayMsg& other);
+    virtual DelayMsg *dup() const {return new DelayMsg(*this);}
+    virtual void parsimPack(cCommBuffer *b);
+    virtual void parsimUnpack(cCommBuffer *b);
+
+    // field getter/setter methods
+    virtual const char * getBid() const;
+    virtual void setBid(const char * bid);
+    virtual bool getBroadcast() const;
+    virtual void setBroadcast(bool broadcast);
+    virtual bool getDeleteMe() const;
+    virtual void setDeleteMe(bool deleteMe);
+};
+
+inline void doPacking(cCommBuffer *b, DelayMsg& obj) {obj.parsimPack(b);}
+inline void doUnpacking(cCommBuffer *b, DelayMsg& obj) {obj.parsimUnpack(b);}
+
+/**
+ * Class generated from <tt>OrionPackets.msg:147</tt> by nedtool.
  * <pre>
  * message ReqBlockTimer extends cMessage
  * {
@@ -600,7 +664,7 @@ inline void doPacking(cCommBuffer *b, ReqBlockTimer& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, ReqBlockTimer& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:137</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:152</tt> by nedtool.
  * <pre>
  * message ChurnMsg extends cMessage
  * {
@@ -642,13 +706,15 @@ inline void doPacking(cCommBuffer *b, ChurnMsg& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, ChurnMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:144</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:159</tt> by nedtool.
  * <pre>
  * message QueryMsg extends cMessage
  * {
  *     string fileName;
  *     int seq;
  *     IPvXAddress SRC;
+ *     string sourceId;
+ * 
  * }
  * </pre>
  */
@@ -658,6 +724,7 @@ class QueryMsg : public ::cMessage
     opp_string fileName_var;
     int seq_var;
     IPvXAddress SRC_var;
+    opp_string sourceId_var;
 
   private:
     void copy(const QueryMsg& other);
@@ -683,6 +750,8 @@ class QueryMsg : public ::cMessage
     virtual IPvXAddress& getSRC();
     virtual const IPvXAddress& getSRC() const {return const_cast<QueryMsg*>(this)->getSRC();}
     virtual void setSRC(const IPvXAddress& SRC);
+    virtual const char * getSourceId() const;
+    virtual void setSourceId(const char * sourceId);
 };
 
 inline void doPacking(cCommBuffer *b, QueryMsg& obj) {obj.parsimPack(b);}

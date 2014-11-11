@@ -7,7 +7,10 @@ src/Makefile.vc
 /doc/neddoc/
 */out
 /simulations/results/
+*/simulations/data
+/*/data
 */results/
+
 */*/results/
 */*/*/results/
 */data/
@@ -38,5 +41,6 @@ xxx
 /src/.tmp*
 /src/sta*
 .cproject
+.project
 simulations/.tkenvlog
 simulations/TestLayout2.anf
