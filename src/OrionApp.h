@@ -71,6 +71,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     std::map<std::string, std::pair<IPvXAddress, simtime_t> > queryList;
     std::map<std::string, unsigned int> replicateList;
     std::map<std::string, std::pair<IPvXAddress,simtime_t> > requestList;
+    std::map<std::string, FileTableData> myQueryResults;
     std::map<std::string, FileTableData> queryResults;
     std::list<std::string> tabooList;
 
@@ -94,7 +95,6 @@ class /*INET_API */OrionApp : public ApplicationBase
     // statistics
     static unsigned int sentOPackets;
     static unsigned int recOPackets;
-    static clock_t functionTime[20];
 
     int xferReqs;
     int xferFails;

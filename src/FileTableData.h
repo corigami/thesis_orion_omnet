@@ -45,8 +45,6 @@ public:
         masterQuery = false;
         systemPacketsStart=0;
         systemPacketsStop=0;
-        //fileList.clear();
-        //fileList.resize(0);
 
         for( int i(0); i < fileSize; i++){
             blockStatus.insert(std::pair<int, bool>(i, false));
@@ -54,10 +52,9 @@ public:
         blockCounter = 0;
     }
     virtual ~FileTableData(){
-
     }
     IPvXAddress getSource(){
-        IPvXAddress source =fileList.front();
+        IPvXAddress source = fileList.front();
         return source;
 
         }
@@ -206,7 +203,7 @@ public:
         this->transferComplete = transferComplete;
     }
 
-    double getTransferStart() const {
+    double getTransferStart()  {
         return transferStart;
     }
 
@@ -214,7 +211,7 @@ public:
         this->transferStart = transferStart;
     }
 
-    double getTransferStop() const {
+    double getTransferStop()  {
         return transferStop;
     }
 
@@ -222,7 +219,7 @@ public:
         this->transferStop = transferStop;
     }
 
-    double getTransferTime() const {
+    double getTransferTime()  {
         if(transferStop == -1)
             return transferStop;
         return (transferStop - transferStart);
@@ -236,11 +233,11 @@ public:
         return fileList.size();
     }
 
-    int getRequeries() const {
+    int getRequeries() {
         return requeries;
     }
 
-    void setRequeries(int requeries) {
+    void setRequeries(unsigned int requeries) {
         this->requeries = requeries;
     }
 
@@ -320,7 +317,7 @@ protected:
     int blocks;
     int remainBlocks;
     int blockCounter;
-    int requeries;
+    unsigned int requeries;
     bool transferComplete;
     bool masterQuery;
 

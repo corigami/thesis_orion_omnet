@@ -16,6 +16,7 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
+
 #include <fstream>
 #include "OrionApp.h"
 #include "FileTableData.h"
@@ -32,7 +33,7 @@ Define_Module(OrionApp);
 //simsignal_t OrionApp::rcvdPkSignal = registerSignal("rcvdPk");
 unsigned int OrionApp::sentOPackets;
 unsigned int OrionApp::recOPackets;
-clock_t OrionApp::functionTime[20];
+
 
 OrionApp::OrionApp() {
     selfMsg = NULL;
@@ -68,9 +69,6 @@ void OrionApp::initialize(int stage) {
         if (master) {
             sentOPackets = 0;
             recOPackets = 0;
-            for (int i(0); i < 20; i++) {
-                functionTime[i] = 0;
-            }
         }
         //various counters and other settings not specified in .ned file
         xferFails = 0;
@@ -81,6 +79,8 @@ void OrionApp::initialize(int stage) {
         replicateSeqNum = 0;
         reqSeqNum = 0;
         myNameStr = this->getOwner()->getFullName();
+        queryResults.clear();
+        myQueryResults.clear();
 
         //load parameters from .ned file
         localPort = par("localPort");
@@ -549,7 +549,7 @@ bool OrionApp::handleNodeShutdown(IDoneCallback *doneCallback) {
     debug("handleNodeShutdown", 0);
     if (selfMsg)
         cancelEvent(selfMsg);
-    //TODO if(socket.isOpened()) socket.close();
+
     fileList.clear();
     return true;
 }
@@ -656,8 +656,8 @@ void OrionApp::printTransfer(std::string fileName) {
         if (outputFile.is_open()) {
             std::ostringstream output;
             output
-                    << queryResults[fileName].getQueryStart()
-                            - (4 - queryResults[fileName].getRequeries()) * 3
+                    << myQueryResults[fileName].getQueryStart()
+                            - (4 - myQueryResults[fileName].getRequeries()) * 3
                     << ",";
             output << numberNodes << ",";
             output << mobilityRate << ",";
@@ -711,12 +711,12 @@ void OrionApp::printResults() {
         outputFile.open(file.c_str(), std::ios::out | std::ios::app);
         if (outputFile.is_open()) {
             for (std::map<std::string, FileTableData>::iterator it =
-                    queryResults.begin(); it != queryResults.end(); it++) {
+                    myQueryResults.begin(); it != myQueryResults.end(); it++) {
                 if (it->second.isMasterQuery()) {
                     std::ostringstream output;
                     output
                             << it->second.getQueryStart()
-                                    - (4 - it->second.getRequeries()) * 3
+                                   // - (4 - it->second.getRequeries()) * 3
                             << ",";
                     output << numberNodes << ",";
                     output << mobilityRate << ",";
@@ -879,6 +879,7 @@ void OrionApp::handleChurnMsg(ChurnMsg* churnMsg) {
             tabooList.push_back(churnMsg->getFileName());
         }
     } else {
+        debug("turning off",3);
         active = false;
         socket.close();
         clearTimersAndLists();
@@ -926,6 +927,7 @@ void OrionApp::clearTimersAndLists() {
     replicateList.clear();
     requestList.clear();
     queryResults.clear();
+    myQueryResults.clear();
     tabooList.clear();
 }
 
@@ -1009,12 +1011,16 @@ void OrionApp::queryFile() {
     std::string fileToRequest(selectFile());
     //create new entry and add it to our table
     FileTableData entry(fileToRequest, fileSize);
+   // FileTableData entry = *new FileTableData(fileToRequest, fileSize);
     entry.setQueryStart(simTime().dbl());
     entry.setMasterQuery(true);
     entry.setSystemPacketsStart(sentOPackets);
-    queryResults.insert(
-            std::pair<std::string, FileTableData>(fileToRequest, entry));
+    std::ostringstream output2;
+    output2 << "Creating Entry for  " <<  fileToRequest;
+    debug(output2.str(),3);
 
+    std::pair<std::string, FileTableData> tempPair = std::pair<std::string, FileTableData>(fileToRequest, entry);
+    myQueryResults.insert(tempPair);
     xferReqs++;
     sendQuery(fileToRequest, querySeqNum, myAddr, myNameStr);
     querySeqNum++;
@@ -1042,7 +1048,6 @@ void OrionApp::queryFile() {
 void OrionApp::sendQuery(std::string _fileToRequest, unsigned int seq,
         IPvXAddress src, std::string sourceId) {
     debug("sendQuery", 0);
-    //convert to char array to keep packets happy
 
     OrionQueryPacket *qPacket = new OrionQueryPacket("QUERY");
     std::ostringstream bid;
@@ -1060,18 +1065,27 @@ void OrionApp::sendQuery(std::string _fileToRequest, unsigned int seq,
     qPacket->setByteLength(par("messageLength").longValue());
 
     //store query lookup based on node and seq number
+    if(queryList.count(bid.str())==0){
     std::pair<IPvXAddress, simtime_t> tempPair(myAddr, simTime());
     queryList.insert(
             std::pair<std::string, std::pair<IPvXAddress, simtime_t> >(
                     bid.str(), tempPair));
+    }
+
+
 
     //if I am originating this query, start loop for retries in the event the query doesn't complete.
     if (src == myAddr) {
-        FileTableData *entry = &queryResults[_fileToRequest];
+        FileTableData *entry = &myQueryResults[_fileToRequest];
+        if(entry->getRequeries() < 0 ||entry->getRequeries() >5){
+        std::ostringstream output;
+        output << "file: "<< _fileToRequest << " - sendQuery: getRequeries =  " <<  entry->getRequeries();
+        debug(output.str(),3);
+        }
+
         if (entry->getRequeries() > 0) {
-            //if(queryResults[_fileToRequest].getRequeries() > 0){
             entry->setRequeries(entry->getRequeries() - 1);
-            entry->setQueryStart(simTime().dbl());
+           // entry->setQueryStart(simTime().dbl());
             entry->setQueryStop(-1);
             if (pendingQueries.count(bid.str()) == 0) {
                 QueryMsg *queryMsg = new QueryMsg("QueryMsg");
@@ -1097,9 +1111,11 @@ void OrionApp::sendQuery(std::string _fileToRequest, unsigned int seq,
 
     }
 
+    if(pendingPackets.count(bid.str())==0){
     pendingPackets.insert(
             std::pair<std::string, OrionQueryPacket*>(qPacket->getBid(),
                     qPacket));
+    }
 
     //create  request timeoutEvent
     DelayMsg *delayMsg = new DelayMsg();
@@ -1180,14 +1196,12 @@ void OrionApp::sendResponse(OrionPacket *oPacket) {
 //if not, update hopcount and forward request on....
 void OrionApp::handleResponse(OrionResponsePacket *rPacket) {
     debug("handleResponse", 0);
-
     printPacketRec(rPacket);
     std::string tempFile(rPacket->getFilename());
-    FileTableData *entry = &queryResults[tempFile];
 
     //we are the source of the inital query, so start the process of requesting the file
     if (myAddr == rPacket->getSRC()) {
-
+        FileTableData *entry = &myQueryResults[tempFile];
         if (entry->getQueryStop() < 0) {
            entry->setQueryStop(simTime().dbl());
            //we can delete this from our pending queries since we got a response back
@@ -1205,22 +1219,23 @@ void OrionApp::handleResponse(OrionResponsePacket *rPacket) {
             entry->setTransferStart(simTime().dbl());
             entry->setTimeOfLastBlock(simTime().dbl());
             sendRequest(tempFile);
-
         } else {
             //we already have an entry for this, so we just need to add additional sources
             if (!entry->hasSource(rPacket->getLastNode()))
                 entry->addSource(rPacket->getLastNode());
         }
-
     } else {
 
         // haven't replied to the source yet, so add this to our file list and forward it on
-        if (queryResults.count(tempFile) == 0) {
 
+        if (queryResults.count(tempFile) == 0) {
             FileTableData newEntry(tempFile, fileSize);
             newEntry.addSource(rPacket->getLastNode());
-            queryResults.insert(
-                    std::pair<std::string, FileTableData>(tempFile, newEntry));
+            std::ostringstream output2;
+            output2 << "Creating Entry for  " <<  tempFile;
+            debug(output2.str(),3);
+            std::pair<std::string, FileTableData>tempPair = std::pair<std::string, FileTableData>(tempFile, newEntry);
+            queryResults.insert(tempPair);
 
             std::ostringstream queryID;
             queryID << rPacket->getBid();
@@ -1234,11 +1249,10 @@ void OrionApp::handleResponse(OrionResponsePacket *rPacket) {
             sendPacket(rPacket->dup());
             // socket.sendTo(rPacket->dup(), rPacket->getDST(), destPort);
         } else {
-
+            FileTableData *entry = &queryResults[tempFile];
             //we've replied to this file already, so we don't need to send any other updates
             //but we'll still update our list for local repair
             entry->addSource(rPacket->getLastNode());
-            //queryResults[tempFile].addSource(rPacket->getLastNode());
             debug("updating queryResults with new src");
         }
     }
@@ -1248,7 +1262,7 @@ void OrionApp::handleResponse(OrionResponsePacket *rPacket) {
 void OrionApp::sendRequest(std::string fileToRequest) {
     debug("sendRequest", 0);
 
-    FileTableData *entry = &queryResults[fileToRequest];
+    FileTableData *entry = &myQueryResults[fileToRequest];
 
     if (entry->getTimeOfLastBlock() > simTime().dbl() - 1) {
         int block(entry->getNextBlock());
@@ -1290,9 +1304,12 @@ void OrionApp::sendRequest(std::string fileToRequest) {
 
             } else {
                 //  debug("Error....out of sources");
-                int retries = entry->getRequeries();
-                if (retries > 0) {
-                    entry->setRequeries(retries - 1);
+                unsigned int requeries = entry->getRequeries();
+                std::ostringstream output;
+                output << "sendRequest-OOS: getRequeries =  " << requeries;
+                debug(output.str(),3);
+                if (requeries > 0) {
+                    entry->setRequeries(requeries - 1);
                     sendQuery(fileToRequest, querySeqNum, myAddr, myNameStr);
                     querySeqNum++;
 
@@ -1307,9 +1324,12 @@ void OrionApp::sendRequest(std::string fileToRequest) {
         }
     } else {
         //  debug("Error....took too long to get lastblock");
-        int retries = entry->getRequeries();
-        if (retries > 0) {
-            entry->setRequeries(retries - 1);
+        unsigned int requeries = entry->getRequeries();
+        std::ostringstream output;
+        output << "sendRequest-Timeout: getRequeries =  " <<  requeries;
+        debug(output.str(),3);
+        if (requeries > 0) {
+            entry->setRequeries(requeries - 1);
             sendQuery(fileToRequest, querySeqNum, myAddr, myNameStr);
             querySeqNum++;
 
@@ -1452,7 +1472,7 @@ void OrionApp::handleReply(OrionDataRepPacket *repPacket) {
     debug("handleReply", 0);
     repPacket->setHopCount(repPacket->getHopCount() + 1);
     //If we are the source Node
-    FileTableData *entry = &queryResults[repPacket->getFilename()];
+    FileTableData *entry = &myQueryResults[repPacket->getFilename()];
     if (myAddr == repPacket->getSRC()) {
         retryDelay = (simTime() - repPacket->getStart()) * 2;
         entry->setTimeOfLastBlock(simTime().dbl());
@@ -1524,11 +1544,14 @@ void OrionApp::resendRequest(OrionDataReqPacket* reqPacket) {
     debug("resendRequest", 0);
 
     FileTableData *entry = &queryResults[reqPacket->getFilename()];
+    std::ostringstream output;
+    output << "resendRequest: getRequeries =  " <<  entry->getRequeries();
+    debug(output.str(),3);
 
     if (reqPacket->getRetries() > 0) {
         //duplicate message and save original.
         reqPacket->setRetries(reqPacket->getRetries() - 1);
-        entry->setRequeries(reqPacket->getRetries());
+        //entry->setRequeries(reqPacket->getRetries());
 
         if (pendingTimeouts.count(reqPacket->getBid()) > 0) {
             if (!pendingTimeouts[reqPacket->getBid()]->isScheduled()) {
@@ -1624,7 +1647,7 @@ void OrionApp::sendReplicateReq(std::string fileToRep, unsigned int seq,
 void OrionApp::handleReplicateReq(ReplicatePacket* replicate) {
     debug("handleReplicateReq", 0);
 
-    if (!master) {
+    if (!master  && queryResults.count(replicate->getFilename())==0) {
 
         //check replicateList to see if we've seen this request yet
         if (replicateList.count(replicate->getBid()) == 0
@@ -1671,11 +1694,11 @@ void OrionApp::handleReplicateConfirm(ReplicateConfirmPacket* replicateRes) {
     printPacketRec(replicateRes);
     int remain = fileList[replicateRes->getFilename()].second;
 
-    //if we have achieved the desired amount of replication, send back a confirmation
+    //if we haven't achieved the desired amount of replication, send back a confirmation
     if (remain > 0) {
-        std::pair<IPvXAddress, int> pair = std::pair<IPvXAddress, int>(
-                fileList[replicateRes->getFilename()].first, remain - 1);
-        fileList[replicateRes->getFilename()] = pair;
+//        std::pair<IPvXAddress, int> pair = std::pair<IPvXAddress, int>(
+//                fileList[replicateRes->getFilename()].first, remain - 1);
+        fileList[replicateRes->getFilename()].second = remain - 1;
         ReplicateConfirmAckPacket *confirmPacketACK =
                 new ReplicateConfirmAckPacket("REP_CONFIRM_ACK");
         confirmPacketACK->setPacketType(REP_CONFIRM_ACK);
@@ -1698,13 +1721,13 @@ void OrionApp::handleReplicateConfirmAck(
         ReplicateConfirmAckPacket* replicateAck) {
     debug("handleReplicateAck", 0);
     printPacketRec(replicateAck);
-    if (replicateAck->getNumCopiesRemaining() > 0) {
+    if (replicateAck->getNumCopiesRemaining() > 0 && !master) {
         //create new entry and add it to our table
         FileTableData entry(replicateAck->getFilename(), fileSize);
         entry.setQueryStart(simTime().dbl());
-        queryResults.insert(
-                std::pair<std::string, FileTableData>(
-                        replicateAck->getFilename(), entry));
+        std::pair<std::string, FileTableData>tempPair = std::pair<std::string, FileTableData>(
+                replicateAck->getFilename(), entry);
+        myQueryResults.insert(tempPair);
         sendQuery(replicateAck->getFilename(), querySeqNum, myAddr, myNameStr);
         querySeqNum++;
 
