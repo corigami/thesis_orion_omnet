@@ -879,7 +879,6 @@ void OrionApp::handleChurnMsg(ChurnMsg* churnMsg) {
             tabooList.push_back(churnMsg->getFileName());
         }
     } else {
-        debug("turning off",3);
         active = false;
         socket.close();
         clearTimersAndLists();
@@ -903,7 +902,6 @@ void OrionApp::handleChurnMsg(ChurnMsg* churnMsg) {
 void OrionApp::clearTimersAndLists() {
 
     debug("clearTimersAndLists", 0);
-    //  debug("Clearing Lists",3);
     for (std::map<std::string, OrionPacket*>::iterator it =
             pendingPackets.begin(); it != pendingPackets.end(); it++) {
         if (pendingPackets.count(it->first) > 0)
@@ -969,7 +967,6 @@ void OrionApp::generateFile() {
         ChurnMsg *churnMsg = new ChurnMsg("ChurnMsg");
         churnMsg->setCommand("exclude");
         churnMsg->setFileName(fileName.c_str());
-        // debug("sending Churn to home",3);
         sendDirect(churnMsg, targetModule, "command$i");
     }
 
@@ -983,6 +980,13 @@ void OrionApp::generateFile() {
     for (std::map<std::string, std::pair<IPvXAddress, simtime_t> >::iterator it =
             queryList.begin(); it != queryList.end(); it++) {
         if (it->second.second < (simTime() - fileGenRate * 2)) {
+            queryList.erase(it->first);
+        }
+    }
+
+    for (std::map<std::string, FileTableData>::iterator it =
+            queryResults.begin(); it != queryResults.end(); it++) {
+        if (it->second.getQueryStart() < (simTime().dbl() - 10)) {
             queryList.erase(it->first);
         }
     }
@@ -1015,10 +1019,6 @@ void OrionApp::queryFile() {
     entry.setQueryStart(simTime().dbl());
     entry.setMasterQuery(true);
     entry.setSystemPacketsStart(sentOPackets);
-    std::ostringstream output2;
-    output2 << "Creating Entry for  " <<  fileToRequest;
-    debug(output2.str(),3);
-
     std::pair<std::string, FileTableData> tempPair = std::pair<std::string, FileTableData>(fileToRequest, entry);
     myQueryResults.insert(tempPair);
     xferReqs++;
@@ -1076,12 +1076,8 @@ void OrionApp::sendQuery(std::string _fileToRequest, unsigned int seq,
 
     //if I am originating this query, start loop for retries in the event the query doesn't complete.
     if (src == myAddr) {
+
         FileTableData *entry = &myQueryResults[_fileToRequest];
-        if(entry->getRequeries() < 0 ||entry->getRequeries() >5){
-        std::ostringstream output;
-        output << "file: "<< _fileToRequest << " - sendQuery: getRequeries =  " <<  entry->getRequeries();
-        debug(output.str(),3);
-        }
 
         if (entry->getRequeries() > 0) {
             entry->setRequeries(entry->getRequeries() - 1);
@@ -1109,7 +1105,7 @@ void OrionApp::sendQuery(std::string _fileToRequest, unsigned int seq,
 
         }
 
-    }
+}
 
     if(pendingPackets.count(bid.str())==0){
     pendingPackets.insert(
@@ -1231,9 +1227,7 @@ void OrionApp::handleResponse(OrionResponsePacket *rPacket) {
         if (queryResults.count(tempFile) == 0) {
             FileTableData newEntry(tempFile, fileSize);
             newEntry.addSource(rPacket->getLastNode());
-            std::ostringstream output2;
-            output2 << "Creating Entry for  " <<  tempFile;
-            debug(output2.str(),3);
+            newEntry.setQueryStart(simTime().dbl());
             std::pair<std::string, FileTableData>tempPair = std::pair<std::string, FileTableData>(tempFile, newEntry);
             queryResults.insert(tempPair);
 
@@ -1253,6 +1247,7 @@ void OrionApp::handleResponse(OrionResponsePacket *rPacket) {
             //we've replied to this file already, so we don't need to send any other updates
             //but we'll still update our list for local repair
             entry->addSource(rPacket->getLastNode());
+            entry->setQueryStart(simTime().dbl());
             debug("updating queryResults with new src");
         }
     }
@@ -1276,7 +1271,7 @@ void OrionApp::sendRequest(std::string fileToRequest) {
             }
             blockString << block << "-s" << reqSeqNum;
             id.append(blockString.str());
-            //debug(id,3);
+
             if (entry->hasSource()) {
                 OrionDataReqPacket *reqPacket = new OrionDataReqPacket(
                         "DATA_REQUEST");
@@ -1305,9 +1300,6 @@ void OrionApp::sendRequest(std::string fileToRequest) {
             } else {
                 //  debug("Error....out of sources");
                 unsigned int requeries = entry->getRequeries();
-                std::ostringstream output;
-                output << "sendRequest-OOS: getRequeries =  " << requeries;
-                debug(output.str(),3);
                 if (requeries > 0) {
                     entry->setRequeries(requeries - 1);
                     sendQuery(fileToRequest, querySeqNum, myAddr, myNameStr);
@@ -1325,9 +1317,6 @@ void OrionApp::sendRequest(std::string fileToRequest) {
     } else {
         //  debug("Error....took too long to get lastblock");
         unsigned int requeries = entry->getRequeries();
-        std::ostringstream output;
-        output << "sendRequest-Timeout: getRequeries =  " <<  requeries;
-        debug(output.str(),3);
         if (requeries > 0) {
             entry->setRequeries(requeries - 1);
             sendQuery(fileToRequest, querySeqNum, myAddr, myNameStr);
@@ -1544,14 +1533,10 @@ void OrionApp::resendRequest(OrionDataReqPacket* reqPacket) {
     debug("resendRequest", 0);
 
     FileTableData *entry = &queryResults[reqPacket->getFilename()];
-    std::ostringstream output;
-    output << "resendRequest: getRequeries =  " <<  entry->getRequeries();
-    debug(output.str(),3);
 
     if (reqPacket->getRetries() > 0) {
         //duplicate message and save original.
         reqPacket->setRetries(reqPacket->getRetries() - 1);
-        //entry->setRequeries(reqPacket->getRetries());
 
         if (pendingTimeouts.count(reqPacket->getBid()) > 0) {
             if (!pendingTimeouts[reqPacket->getBid()]->isScheduled()) {
@@ -1561,13 +1546,11 @@ void OrionApp::resendRequest(OrionDataReqPacket* reqPacket) {
 
         }
     } else {
-        //debug("Didn't get ack in time...",3);
         if (entry->hasSource(reqPacket->getDST())) {
             entry->removeSource(reqPacket->getDST());
         }
 
         //if we have another source for the file, perform local correction
-        // if (queryResults[reqPacket->getFilename()].hasSource()) {
         if (entry->hasSource()) {
             reqPacket->setDST(entry->getSource());
             //duplicate message and save original.
@@ -1577,7 +1560,6 @@ void OrionApp::resendRequest(OrionDataReqPacket* reqPacket) {
             scheduleAt(simTime() + .02, pendingTimeouts[reqPacket->getBid()]);
 
         } else {
-            // debug("Out of sources...sending error back",3);
             //send error back...
             if (reqPacket->getLastNode() != myAddr) {
                 sendError(reqPacket->getFilename(), reqPacket->getLastNode(),
