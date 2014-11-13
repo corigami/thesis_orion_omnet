@@ -137,7 +137,7 @@ void OrionApp::initialize(int stage) {
  */
 void OrionApp::finish() {
     if (master) {
-        printResults(); // prints information collected in queryResults.
+       // printResults(); // prints information collected in queryResults.
 
         //Uncomment if using OMNet statistics
         //    recordScalar("transfers Complete", xferCompletes);
@@ -270,7 +270,7 @@ void OrionApp::processStart() {
 
     //orion processes to start
     if (master) { // schedules first file request from system
-        simtime_t d = simTime() + par("fileGenRate").doubleValue() * 3;
+        simtime_t d = simTime() + par("fileGenRate").doubleValue() * 2;
         if (stopTime < SIMTIME_ZERO || d < stopTime) {
             scheduleAt(d, fileRequestMsg);
         } else {
@@ -384,9 +384,6 @@ void OrionApp::processStop() {
  *  and off.
  * 	*/
 void OrionApp::handleMessageWhenUp(cMessage *msg) {
-    if (!active) {
-        std::cout << "Received: " << msg->getName() << std::endl;
-    }
     debug("handleMessageWhenUp", 0);
     //if the message came from ourself, handle it
     if (msg->isSelfMessage()) {
@@ -664,13 +661,13 @@ void OrionApp::printTransfer(std::string fileName) {
             output << replicateRate << ",";
             output << churnRate << ",";
             output << fileName << ",";
-            output << queryResults[fileName].getQueryTime() << ",";
-            output << queryResults[fileName].getTransferTime() << ",";
-            output << queryResults[fileName].getRequeries() << ",";
+            output << myQueryResults[fileName].getQueryTime() << ",";
+            output << myQueryResults[fileName].getTransferTime() << ",";
+            output << myQueryResults[fileName].getRequeries() << ",";
             double avgHops(0);
             if (queryResults[fileName].getBlocksRecieved() > 0) {
-                avgHops = (queryResults[fileName].getTotalHops()
-                        / queryResults[fileName].getBlocksRecieved());
+                avgHops = (myQueryResults[fileName].getTotalHops()
+                        / myQueryResults[fileName].getBlocksRecieved());
             }
             output << avgHops << ",";
             output << queryResults[fileName].getTotalPackets();
@@ -987,7 +984,14 @@ void OrionApp::generateFile() {
     for (std::map<std::string, FileTableData>::iterator it =
             queryResults.begin(); it != queryResults.end(); it++) {
         if (it->second.getQueryStart() < (simTime().dbl() - 10)) {
-            queryList.erase(it->first);
+            queryResults.erase(it->first);
+        }
+    }
+
+    for (std::map<std::string, FileTableData>::iterator it =
+            myQueryResults.begin(); it != myQueryResults.end(); it++) {
+        if (it->second.isTransferComplete()) {
+            myQueryResults.erase(it->first);
         }
     }
 
@@ -1488,12 +1492,9 @@ void OrionApp::handleReply(OrionDataRepPacket *repPacket) {
                     xferCompletes++;
                 }
 
+                //we've completed a replicate request
                 if (!master) {
-                    std::ostringstream output;
-                    output << "Copied file: " << repPacket->getFilename();
-                    output << " Copies remaining: "
-                            << repPacket->getNumCopiesRemaining();
-                    debug(output.str(), 1);
+                    entry->setTransferComplete(true);
                     if (repPacket->getNumCopiesRemaining() > 0) {
                         std::ostringstream requestID;
                         requestID << repPacket->getFilename() << "-"
