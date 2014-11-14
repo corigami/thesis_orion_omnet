@@ -146,6 +146,7 @@ message DelayMsg extends cMessage
 message ReqBlockTimer extends cMessage
 {
     string filename;
+    string bid;
 }
 
 message ChurnMsg extends cMessage

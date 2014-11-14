@@ -66,6 +66,7 @@ class /*INET_API */OrionApp : public ApplicationBase
     std::map<std::string, OrionPacket*> pendingPackets;
     std::map<std::string, QueryMsg*> pendingQueries;
     std::map<std::string, WaitForReq*> pendingTimeouts;
+    std::map<std::string, ReqBlockTimer*> pendingBlockTimers;
 
     std::map<std::string, std::pair<IPvXAddress, int> > fileList;  //!< files system abstraction (just a list of file names)
     std::map<std::string, std::pair<IPvXAddress, simtime_t> > queryList;
