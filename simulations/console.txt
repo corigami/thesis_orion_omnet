@@ -7,27 +7,27 @@ Loading NED files from .: 3
 Loading NED files from ../../inet/examples: 139
 Loading NED files from ../../inet/src: 274
 
-Preparing for running configuration AODVUU, run #18...
-Scenario: $0=25, $1=10, $2=0, $3=2mps, $repetition=0
-Assigned runID=AODVUU-18-20141115-13:04:06-89828
+Preparing for running configuration AODVUU, run #0...
+Scenario: $0=25, $1=0, $2=0, $3=2mps, $repetition=0
+Assigned runID=AODVUU-0-20141115-13:33:06-95524
 Setting up network `OrionNetwork'...
 Initializing...
 
 Running simulation...
 ** Event #1   T=0   Elapsed: 0.000s (0m 00s)  0% completed
      Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
-     Messages:  created: 275   present: 275   in FES: 175
-** Event #8404736   T=18.894332794783   Elapsed: 10.001s (0m 10s)  62% completed
-     Speed:     ev/sec=840390   simsec/sec=1.88924   ev/simsec=444828
-     Messages:  created: 8391147   present: 409   in FES: 177
-** Event #14286445   T=30   Elapsed: 16.888s (0m 16s)  100% completed
-     Speed:     ev/sec=854030   simsec/sec=1.61256   ev/simsec=529613
-     Messages:  created: 14271344   present: 177   in FES: 50
+     Messages:  created: 450   present: 450   in FES: 175
+** Event #3401984   T=114.045277884524   Elapsed: 10.001s (0m 10s)  95% completed
+     Speed:     ev/sec=340164   simsec/sec=11.4034   ev/simsec=29830.1
+     Messages:  created: 2980966   present: 413   in FES: 89
+** Event #3414261   T=120   Elapsed: 10.035s (0m 10s)  100% completed
+     Speed:     ev/sec=361059   simsec/sec=175.139   ev/simsec=2061.56
+     Messages:  created: 2990390   present: 370   in FES: 57
 
-<!> Simulation time limit reached -- simulation stopped at event #14286445, t=30.
+<!> Simulation time limit reached -- simulation stopped at event #3414261, t=120.
 
 
-Calling finish() at end of Run #18...
+Calling finish() at end of Run #0...
 Clear all sockets
 Clear all sockets
 Clear all sockets
