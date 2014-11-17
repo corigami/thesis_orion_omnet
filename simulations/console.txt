@@ -7,9 +7,9 @@ Loading NED files from .: 3
 Loading NED files from ../../inet/examples: 139
 Loading NED files from ../../inet/src: 274
 
-Preparing for running configuration AODVUU, run #210...
-Scenario: $0=25, $1=10, $2=5, $3=2mps, $repetition=0
-Assigned runID=AODVUU-210-20141117-11:39:47-138356
+Preparing for running configuration AODVUU, run #25...
+Scenario: $0=25, $1=10, $2=10, $3=8mps, $repetition=0
+Assigned runID=AODVUU-25-20141117-14:40:27-165140
 Setting up network `OrionNetwork'...
 Initializing...
 
@@ -17,9 +17,41 @@ Running simulation...
 ** Event #1   T=0   Elapsed: 0.000s (0m 00s)  0% completed
      Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
      Messages:  created: 275   present: 275   in FES: 175
-** Event #6844160   T=37.10549979453   Elapsed: 10.001s (0m 10s)  6% completed
-     Speed:     ev/sec=684348   simsec/sec=3.71018   ev/simsec=184451
-     Messages:  created: 6670634   present: 384   in FES: 172
-** Event #14074368   T=74.622477326863   Elapsed: 20.002s (0m 20s)  12% completed
-     Speed:     ev/sec=722949   simsec/sec=3.75132   ev/simsec=192718
-     Messages:  created: 13740219   present: 378   in FES: 173
+** Event #6334720   T=31.902624029615   Elapsed: 10.001s (0m 10s)  53% completed
+     Speed:     ev/sec=633409   simsec/sec=3.18994   ev/simsec=198564
+     Messages:  created: 6272216   present: 321   in FES: 151
+** Event #11829992   T=60   Elapsed: 18.084s (0m 18s)  100% completed
+     Speed:     ev/sec=679855   simsec/sec=3.47611   ev/simsec=195580
+     Messages:  created: 11699466   present: 818   in FES: 66
+
+<!> Simulation time limit reached -- simulation stopped at event #11829992, t=60.
+
+
+Calling finish() at end of Run #25...
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+Clear all sockets
+
+End.

@@ -137,7 +137,7 @@ void OrionApp::initialize(int stage) {
  */
 void OrionApp::finish() {
     if (master) {
-       // printResults(); // prints information collected in queryResults.
+        printResults(); // prints information collected in queryResults.
 
         //Uncomment if using OMNet statistics
         //    recordScalar("transfers Complete", xferCompletes);
@@ -1332,8 +1332,10 @@ void OrionApp::sendRequest(std::string fileToRequest) {
 
                 } else { //no more queries left..
                     debug("Transfer failed");
+                    if(master){
                     entry->setSystemPacketsStop(sentOPackets);
-                   // printTransfer(fileToRequest);
+                    printTransfer(fileToRequest);
+                    }
                     xferFails++;
                 }
             }
@@ -1348,8 +1350,10 @@ void OrionApp::sendRequest(std::string fileToRequest) {
 
         } else {
             debug("Transfer failed");
+            if(master){
             entry->setSystemPacketsStop(sentOPackets);
             printTransfer(fileToRequest);
+            }
             xferFails++;
         }
     }
@@ -1565,7 +1569,19 @@ void OrionApp::handleReply(OrionDataRepPacket *repPacket) {
 
     }
 }
-
+/*
+ * Function: resendRequest()
+ *  - Param: OrionDataReqPacket *reqPacket: reqPacket received from handleMessagesWhenUp()
+ *  - Returns: void
+ * Description: resends request for packet when requestACk has not been received.
+ *              loop is started in sendRequest().  If the file has any more retries,
+ *              it attempts to send again.  If it is out of retries, it performs a local
+ *              correction using its source table and resets the retry counter.
+ *              If it is out of sources, it sends an error back informing the previous node
+ *              that is is out of sources and that node will remove it from it's source list.
+ *              If it is out of sources, it removes the packet and timer for their respective
+ *              lists.
+ */
 void OrionApp::resendRequest(OrionDataReqPacket* reqPacket) {
     debug("resendRequest", 0);
 
@@ -1612,7 +1628,12 @@ void OrionApp::resendRequest(OrionDataReqPacket* reqPacket) {
 
     }
 }
-
+/*
+ * Function: sendRequestAck()
+ *  - Param: OrionDataReqPacket *reqPacket: reqPacket received from handleRequest()
+ *  - Returns: void
+ * Description: Builds an acknowledgement packet and sends it to previous node.
+ */
 void OrionApp::sendRequestAck(OrionDataReqPacket *reqPacket) {
     debug("sendRequestAck", 0);
     OrionDataAckPacket *reqAck = new OrionDataAckPacket("DATA_REQUEST_ACK");
@@ -1630,6 +1651,16 @@ void OrionApp::sendRequestAck(OrionDataReqPacket *reqPacket) {
     sendPacket(reqAck);
 }
 
+/*
+ * Function: sendReplicateReq()
+ *  - Param: string fileToRep: file to replicate
+ *           uint seq: current replicate sequence number
+ *           IPvXAddres _origin: source node requesting replication
+ *  - Called by: generateFile()
+ *  - Returns: void
+ * Description: When a file is generated, if the repCount is >0, this method is called
+ *              to broadcast the request to replicate the file.
+ */
 void OrionApp::sendReplicateReq(std::string fileToRep, unsigned int seq,
         IPvXAddress _origin) {
     debug("sendReplicateReq", 0);
@@ -1645,13 +1676,6 @@ void OrionApp::sendReplicateReq(std::string fileToRep, unsigned int seq,
     IPvXAddress origin = IPvXAddress(_origin);
     replicatePacket->setOrigin(origin);
     replicatePacket->setBid(requestID.str().c_str());
-
-    if (debugEnabled[2]) {
-        std::ostringstream output;
-        output << "   Origin = " << replicatePacket->getOrigin().str();
-        debug(output.str(), 2);
-    }
-
     replicatePacket->setLastNode(myAddr);
     replicatePacket->setLastNodeId(myNameStr.c_str());
     replicatePacket->setFilename(fileToRep.c_str());
@@ -1663,6 +1687,19 @@ void OrionApp::sendReplicateReq(std::string fileToRep, unsigned int seq,
     sendBroadcast(destAddr, replicatePacket);
 }
 
+/*
+ * Function: handleReplicateReq()
+ *  - Param: ReplicatePacket* replicate: replicate packet sent from other node.
+ *  - Called by: handleMesssageWhenUp()
+ *  - Returns: void
+ * Description: Handles reception of a replication request.  If it hasn't seen the
+ *              the request and is not the source or the origin of the request,
+ *              it builds a confirmation packet to send back to the
+ *              origin of the file.  This is done to ensure the right amount of
+ *              replication is performed.  A slight delay jitter is added to ensure
+ *              the confirmation is not sent at the same time as another receiving
+ *              node.
+ */
 void OrionApp::handleReplicateReq(ReplicatePacket* replicate) {
     debug("handleReplicateReq", 0);
 
@@ -1708,6 +1745,15 @@ void OrionApp::handleReplicateReq(ReplicatePacket* replicate) {
     }
 }
 
+/*
+ * Function: handleReplicateConfirm()
+ *  - Param: ReplicateConfirmPacket* replicateRes: replicate confirmation packet sent from other node.
+ *  - Called by: handleMesssageWhenUp()
+ *  - Returns: void
+ * Description: Handles reception of a replication confirmation.  Checks to see if file still
+ *              needs to be replicated further, and if so, sends an acknowledgment back to
+ *              requesting node.
+ */
 void OrionApp::handleReplicateConfirm(ReplicateConfirmPacket* replicateRes) {
 
     printPacketRec(replicateRes);
@@ -1715,8 +1761,7 @@ void OrionApp::handleReplicateConfirm(ReplicateConfirmPacket* replicateRes) {
 
     //if we haven't achieved the desired amount of replication, send back a confirmation
     if (remain > 0) {
-//        std::pair<IPvXAddress, int> pair = std::pair<IPvXAddress, int>(
-//                fileList[replicateRes->getFilename()].first, remain - 1);
+
         fileList[replicateRes->getFilename()].second = remain - 1;
         ReplicateConfirmAckPacket *confirmPacketACK =
                 new ReplicateConfirmAckPacket("REP_CONFIRM_ACK");
@@ -1732,10 +1777,18 @@ void OrionApp::handleReplicateConfirm(ReplicateConfirmPacket* replicateRes) {
         confirmPacketACK->setByteLength(par("messageLength").longValue());
 
         sendPacket(confirmPacketACK);
-
     }
 }
 
+/*
+ * Function: handleReplicateConfirmAck()
+ *  - Param: ReplicateConfirmAckPacket* replicateAck: replicate acknowledgement packet sent from origin node.
+ *  - Called by: handleMesssageWhenUp()
+ *  - Returns: void
+ * Description: Handles reception of a replication acknowledgement.  If it needs to
+ *              copy the file, it initiates a query to find all possible sources of
+ *              the file, setting of the transfer process.
+ */
 void OrionApp::handleReplicateConfirmAck(
         ReplicateConfirmAckPacket* replicateAck) {
     debug("handleReplicateAck", 0);
@@ -1750,8 +1803,6 @@ void OrionApp::handleReplicateConfirmAck(
         sendQuery(replicateAck->getFilename(), querySeqNum, myAddr, myNameStr);
         querySeqNum++;
 
-    } else {
-        //do nothing, source doesn't need us to copy
     }
 }
 
