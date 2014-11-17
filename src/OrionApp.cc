@@ -1102,9 +1102,10 @@ void OrionApp::sendQuery(std::string _fileToRequest, unsigned int seq,
             }
         } else {
             //we are out of retries...give up
-            if(master)
+            if(master){
                 entry->setSystemPacketsStop(sentOPackets);
                 printTransfer(_fileToRequest);
+            }
             cancelAndDelete(pendingQueries[bid.str()]);
             pendingQueries.erase(bid.str());
 

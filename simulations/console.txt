@@ -1,14 +1,25 @@
 OMNeT++ Discrete Event Simulation  (C) 1992-2014 Andras Varga, OpenSim Ltd.
 Version: 4.6, build: 141027-371bb07, edition: Academic Public License -- NOT FOR COMMERCIAL USE
 See the license for distribution terms and warranty disclaimer
-Setting up Tkenv...
+Setting up Cmdenv...
 Loading NED files from ../src: 1
 Loading NED files from .: 3
 Loading NED files from ../../inet/examples: 139
 Loading NED files from ../../inet/src: 274
 
-Loading images from C:\omnetpp-4.6\images: *: 0  abstract/*: 90  background/*: 4  block/*: 320  device/*: 195  logo/*: 1  maps/*: 9  misc/*: 70  msg/*: 55  old/*: 111  status/*: 28  
+Preparing for running configuration AODVUU, run #210...
+Scenario: $0=25, $1=10, $2=5, $3=2mps, $repetition=0
+Assigned runID=AODVUU-210-20141117-11:39:47-138356
+Setting up network `OrionNetwork'...
+Initializing...
 
-Plugin path: C:\omnetpp-4.6\etc\plugins;./plugins
-
-End.
+Running simulation...
+** Event #1   T=0   Elapsed: 0.000s (0m 00s)  0% completed
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 275   present: 275   in FES: 175
+** Event #6844160   T=37.10549979453   Elapsed: 10.001s (0m 10s)  6% completed
+     Speed:     ev/sec=684348   simsec/sec=3.71018   ev/simsec=184451
+     Messages:  created: 6670634   present: 384   in FES: 172
+** Event #14074368   T=74.622477326863   Elapsed: 20.002s (0m 20s)  12% completed
+     Speed:     ev/sec=722949   simsec/sec=3.75132   ev/simsec=192718
+     Messages:  created: 13740219   present: 378   in FES: 173
