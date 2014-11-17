@@ -32,7 +32,7 @@ public:
         fileName = _fileName;
         blocks = fileSize;
         remainBlocks = fileSize;
-        requeries = 5;
+        requeries = 4;
         queryTime = -1;
         queryStop = -1;
         queryStart =-1;
