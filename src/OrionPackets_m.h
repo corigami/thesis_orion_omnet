@@ -631,6 +631,7 @@ inline void doUnpacking(cCommBuffer *b, DelayMsg& obj) {obj.parsimUnpack(b);}
  * message ReqBlockTimer extends cMessage
  * {
  *     string filename;
+ *     string bid;
  * }
  * </pre>
  */
@@ -638,6 +639,7 @@ class ReqBlockTimer : public ::cMessage
 {
   protected:
     opp_string filename_var;
+    opp_string bid_var;
 
   private:
     void copy(const ReqBlockTimer& other);
@@ -658,13 +660,15 @@ class ReqBlockTimer : public ::cMessage
     // field getter/setter methods
     virtual const char * getFilename() const;
     virtual void setFilename(const char * filename);
+    virtual const char * getBid() const;
+    virtual void setBid(const char * bid);
 };
 
 inline void doPacking(cCommBuffer *b, ReqBlockTimer& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, ReqBlockTimer& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:152</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:153</tt> by nedtool.
  * <pre>
  * message ChurnMsg extends cMessage
  * {
@@ -706,7 +710,7 @@ inline void doPacking(cCommBuffer *b, ChurnMsg& obj) {obj.parsimPack(b);}
 inline void doUnpacking(cCommBuffer *b, ChurnMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>OrionPackets.msg:159</tt> by nedtool.
+ * Class generated from <tt>OrionPackets.msg:160</tt> by nedtool.
  * <pre>
  * message QueryMsg extends cMessage
  * {

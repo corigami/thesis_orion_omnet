@@ -58,7 +58,7 @@ simple OrionApp like IUDPApp
         bool joinLocalMulticastGroups = default(false); // if true, makes the socket receive packets from all multicast groups set on local interfaces
 
         //Parameters added for Orion Experiment
-        double fileQueryRate @unit(s) = default(1s);
+        double fileQueryRate @unit(s) = default(2s);
         int fileGenRate @unit(s) = default(2s);
         int fileSize = default(100);
         int retries = default(5);

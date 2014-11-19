@@ -16,7 +16,6 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-
 #include <fstream>
 #include "OrionApp.h"
 #include "FileTableData.h"
@@ -33,7 +32,6 @@ Define_Module(OrionApp);
 //simsignal_t OrionApp::rcvdPkSignal = registerSignal("rcvdPk");
 unsigned int OrionApp::sentOPackets;
 unsigned int OrionApp::recOPackets;
-
 
 OrionApp::OrionApp() {
     selfMsg = NULL;
@@ -137,7 +135,7 @@ void OrionApp::initialize(int stage) {
  */
 void OrionApp::finish() {
     if (master) {
-        printResults(); // prints information collected in queryResults.
+        // printResults(); // prints information collected in queryResults.
 
         //Uncomment if using OMNet statistics
         //    recordScalar("transfers Complete", xferCompletes);
@@ -270,7 +268,7 @@ void OrionApp::processStart() {
 
     //orion processes to start
     if (master) { // schedules first file request from system
-        simtime_t d = simTime() + par("fileGenRate").doubleValue() * 2;
+        simtime_t d = simTime() + par("fileGenRate").doubleValue() + 1;
         if (stopTime < SIMTIME_ZERO || d < stopTime) {
             scheduleAt(d, fileRequestMsg);
         } else {
@@ -652,8 +650,7 @@ void OrionApp::printTransfer(std::string fileName) {
         outputFile.open(file.c_str(), std::ios::out | std::ios::app);
         if (outputFile.is_open()) {
             std::ostringstream output;
-            output
-                    << myQueryResults[fileName].getQueryStart() << ",";
+            output << myQueryResults[fileName].getQueryStart() << ",";
             output << numberNodes << ",";
             output << mobilityRate << ",";
             output << replicateRate << ",";
@@ -663,9 +660,9 @@ void OrionApp::printTransfer(std::string fileName) {
             output << myQueryResults[fileName].getTransferTime() << ",";
             output << myQueryResults[fileName].getRequeries() << ",";
             double avgHops(0);
-            if (myQueryResults[fileName].getBlocksRecieved() > 0) {
+            if (myQueryResults[fileName].getBlocksReceived() > 0) {
                 avgHops = (myQueryResults[fileName].getTotalHops()
-                        / myQueryResults[fileName].getBlocksRecieved());
+                        / myQueryResults[fileName].getBlocksReceived());
             }
             output << avgHops << ",";
             output << myQueryResults[fileName].getTotalPackets();
@@ -709,9 +706,8 @@ void OrionApp::printResults() {
                     myQueryResults.begin(); it != myQueryResults.end(); it++) {
                 if (it->second.isMasterQuery()) {
                     std::ostringstream output;
-                    output
-                            << it->second.getQueryStart()
-                                   // - (4 - it->second.getRequeries()) * 3
+                    output << it->second.getQueryStart()
+                    // - (4 - it->second.getRequeries()) * 3
                             << ",";
                     output << numberNodes << ",";
                     output << mobilityRate << ",";
@@ -722,9 +718,9 @@ void OrionApp::printResults() {
                     output << it->second.getTransferTime() << ",";
                     output << it->second.getRequeries() << ",";
                     double avgHops(0);
-                    if (it->second.getBlocksRecieved() > 0) {
+                    if (it->second.getBlocksReceived() > 0) {
                         avgHops = (it->second.getTotalHops()
-                                / it->second.getBlocksRecieved());
+                                / it->second.getBlocksReceived());
                     }
                     output << avgHops << ",";
                     output << it->second.getTotalPackets();
@@ -1017,11 +1013,12 @@ void OrionApp::queryFile() {
     std::string fileToRequest(selectFile());
     //create new entry and add it to our table
     FileTableData entry(fileToRequest, fileSize);
-   // FileTableData entry = *new FileTableData(fileToRequest, fileSize);
+    // FileTableData entry = *new FileTableData(fileToRequest, fileSize);
     entry.setQueryStart(simTime().dbl());
     entry.setMasterQuery(true);
     entry.setSystemPacketsStart(sentOPackets);
-    std::pair<std::string, FileTableData> tempPair = std::pair<std::string, FileTableData>(fileToRequest, entry);
+    std::pair<std::string, FileTableData> tempPair = std::pair<std::string,
+            FileTableData>(fileToRequest, entry);
     myQueryResults.insert(tempPair);
     xferReqs++;
     sendQuery(fileToRequest, querySeqNum, myAddr, myNameStr);
@@ -1030,7 +1027,7 @@ void OrionApp::queryFile() {
 
     if (stopTime < SIMTIME_ZERO || d < (stopTime)) //
             {
-        scheduleAt(d, fileRequestMsg);
+    //    scheduleAt(d, fileRequestMsg);
 
     } else {
         debug("Req File Stopping");
@@ -1067,14 +1064,12 @@ void OrionApp::sendQuery(std::string _fileToRequest, unsigned int seq,
     qPacket->setByteLength(par("messageLength").longValue());
 
     //store query lookup based on node and seq number
-    if(queryList.count(bid.str())==0){
-    std::pair<IPvXAddress, simtime_t> tempPair(myAddr, simTime());
-    queryList.insert(
-            std::pair<std::string, std::pair<IPvXAddress, simtime_t> >(
-                    bid.str(), tempPair));
+    if (queryList.count(bid.str()) == 0) {
+        std::pair<IPvXAddress, simtime_t> tempPair(myAddr, simTime());
+        queryList.insert(
+                std::pair<std::string, std::pair<IPvXAddress, simtime_t> >(
+                        bid.str(), tempPair));
     }
-
-
 
     //if I am originating this query, start loop for retries in the event the query doesn't complete.
     if (src == myAddr) {
@@ -1083,8 +1078,10 @@ void OrionApp::sendQuery(std::string _fileToRequest, unsigned int seq,
 
         if (entry->getRequeries() > 0) {
             entry->setRequeries(entry->getRequeries() - 1);
-           // entry->setQueryStart(simTime().dbl());
+            entry->setQueryStart(simTime().dbl());
             entry->setQueryStop(-1);
+            entry->setBlocksRecieved(0);
+            entry->setAverageBlockTime(0.0);
             if (pendingQueries.count(bid.str()) == 0) {
                 QueryMsg *queryMsg = new QueryMsg("QueryMsg");
                 queryMsg->setFileName(_fileToRequest.c_str());
@@ -1102,21 +1099,18 @@ void OrionApp::sendQuery(std::string _fileToRequest, unsigned int seq,
             }
         } else {
             //we are out of retries...give up
-            if(master){
-                entry->setSystemPacketsStop(sentOPackets);
-                printTransfer(_fileToRequest);
-            }
             cancelAndDelete(pendingQueries[bid.str()]);
             pendingQueries.erase(bid.str());
-
+            if(master)
+                queryFile();
         }
 
-}
+    }
 
-    if(pendingPackets.count(bid.str())==0){
-    pendingPackets.insert(
-            std::pair<std::string, OrionQueryPacket*>(qPacket->getBid(),
-                    qPacket));
+    if (pendingPackets.count(bid.str()) == 0) {
+        pendingPackets.insert(
+                std::pair<std::string, OrionQueryPacket*>(qPacket->getBid(),
+                        qPacket));
     }
 
     //create  request timeoutEvent
@@ -1127,7 +1121,6 @@ void OrionApp::sendQuery(std::string _fileToRequest, unsigned int seq,
     delaySend(delayMsg);
 
 }
-
 
 /*
  * Function: handleQuery()
@@ -1215,11 +1208,11 @@ void OrionApp::handleResponse(OrionResponsePacket *rPacket) {
     if (myAddr == rPacket->getSRC()) {
         FileTableData *entry = &myQueryResults[tempFile];
         if (entry->getQueryStop() < 0) {
-           entry->setQueryStop(simTime().dbl());
-           //we can delete this from our pending queries since we got a response back
+            entry->setQueryStop(simTime().dbl());
+            //we can delete this from our pending queries since we got a response back
             cancelAndDelete(pendingQueries[rPacket->getBid()]);
             pendingQueries.erase(rPacket->getBid());
-            retryDelay = entry->getQueryTime() + .02; //set retry delay to time it took to execute query
+            entry->setAverageBlockTime(entry->getQueryTime()); //set retry delay to time it took to execute query
             entry->addSource(rPacket->getLastNode());
             //since we are the source node, we can start the transfer process...
             std::pair<IPvXAddress, simtime_t> tempPair(myAddr, simTime());
@@ -1244,7 +1237,8 @@ void OrionApp::handleResponse(OrionResponsePacket *rPacket) {
             FileTableData newEntry(tempFile, fileSize);
             newEntry.addSource(rPacket->getLastNode());
             newEntry.setQueryStart(simTime().dbl());
-            std::pair<std::string, FileTableData>tempPair = std::pair<std::string, FileTableData>(tempFile, newEntry);
+            std::pair<std::string, FileTableData> tempPair = std::pair<
+                    std::string, FileTableData>(tempFile, newEntry);
             queryResults.insert(tempPair);
 
             if(queryList.count(rPacket->getBid())>0){
@@ -1267,6 +1261,7 @@ void OrionApp::handleResponse(OrionResponsePacket *rPacket) {
     }
 
 }
+
 /*
  * Function: sendRequest()
  *  - Param: std::string fileToRequest: file that we are requesting.
@@ -1288,10 +1283,11 @@ void OrionApp::sendRequest(std::string fileToRequest) {
 
     FileTableData *entry = &myQueryResults[fileToRequest];
 
-    if (entry->getTimeOfLastBlock() > simTime().dbl() - 2) {
+ //   if (entry->getTimeOfLastBlock() > simTime().dbl() - (entry->getQueryTime()+1)) { //did we get the last block back in less than a second?
         int block(entry->getNextBlock());
-        if (block >= 0) {
+        if (block >= 0) { //do we have any more blocks we need (FileTableData returns -1 if no)
 
+            //build new Id for packet used for unique identification of file/block request
             std::string id(fileToRequest);
             id.append("-b");
             std::ostringstream blockString;
@@ -1301,9 +1297,10 @@ void OrionApp::sendRequest(std::string fileToRequest) {
             blockString << block << "-s" << reqSeqNum;
             id.append(blockString.str());
 
-            if (entry->hasSource()) {
+            if (entry->hasSource()) {    //do we have a source for this request?
                 OrionDataReqPacket *reqPacket = new OrionDataReqPacket(
                         "DATA_REQUEST");
+                //test of setting packet type...
                 reqPacket->setPacketType(DATA_REQUEST);
                 reqPacket->setDST(entry->getSource());
                 reqPacket->setSEQ(reqSeqNum++);
@@ -1315,49 +1312,71 @@ void OrionApp::sendRequest(std::string fileToRequest) {
                 reqPacket->setBid(id.c_str());
                 reqPacket->setBlock(block);
                 reqPacket->setByteLength(par("messageLength").longValue());
-                sendPacket(reqPacket);
 
-                //create block request loop timeoutEvent
+                //schedule event for next block request and store for lookup
                 ReqBlockTimer *blockTimer = new ReqBlockTimer();
                 blockTimer->setFilename(fileToRequest.c_str());
+                blockTimer->setBid(reqPacket->getBid());
+                scheduleAt(simTime() + entry->getAverageBlockTime(), blockTimer);
 
-                scheduleAt(simTime() + retryDelay, blockTimer);
+                //store blockTimer and packet for later lookup
+                std::pair<std::string, ReqBlockTimer*> tempPacketPair(
+                        reqPacket->getBid(), blockTimer);
+                pendingBlockTimers.insert(tempPacketPair);
 
-            } else {//requery...out of sources
+
+                //build and schedule timer to wait for REQUEST_ACK.
+                 WaitForReq *reqTimeout = new WaitForReq();
+                 reqTimeout->setFilename(reqPacket->getFilename());
+                 reqTimeout->setBid(reqPacket->getBid());
+                 scheduleAt(simTime() + entry->getAverageBlockTime()/2, reqTimeout);
+
+
+                 std::pair<std::string, WaitForReq*> tempPacketPair2(
+                         reqPacket->getBid(), reqTimeout);
+                 pendingTimeouts.insert(tempPacketPair2);
+
+                 //update packet with new information and store a copy for when we are ready to send
+                 reqPacket->setDST(
+                         queryResults[reqPacket->getFilename()].getSource());
+                 pendingPackets.insert(
+                         std::pair<std::string, OrionDataReqPacket*>(
+                                 reqPacket->getBid(), reqPacket->dup()));
+                 entry->setBlockStart(block,simTime().dbl());
+                 sendPacket(reqPacket);
+
+
+            } else { //requery
                 unsigned int requeries = entry->getRequeries();
-                if (requeries > 0) {
+                if (requeries > 0) { //requery remaining?
                     entry->setRequeries(requeries - 1);
                     sendQuery(fileToRequest, querySeqNum, myAddr, myNameStr);
                     querySeqNum++;
 
                 } else { //no more queries left..
                     debug("Transfer failed");
-                    if(master){
                     entry->setSystemPacketsStop(sentOPackets);
                     printTransfer(fileToRequest);
-                    }
                     xferFails++;
                 }
             }
         }
-    } else {
-        //  debug("Error....took too long to get lastblock");
-        unsigned int requeries = entry->getRequeries();
-        if (requeries > 0) {
-            entry->setRequeries(requeries - 1);
-            sendQuery(fileToRequest, querySeqNum, myAddr, myNameStr);
-            querySeqNum++;
-
-        } else {
-            debug("Transfer failed");
-            if(master){
-            entry->setSystemPacketsStop(sentOPackets);
-            printTransfer(fileToRequest);
-            }
-            xferFails++;
-        }
-    }
+//    } else { //  Error....took too long to get last block
+//        unsigned int requeries = entry->getRequeries();
+//        if (requeries > 0) {
+//            entry->setRequeries(requeries - 1);
+//            sendQuery(fileToRequest, querySeqNum, myAddr, myNameStr);
+//            querySeqNum++;
+//
+//        } else { //no more queries left..
+//            debug("Transfer failed");
+//            entry->setSystemPacketsStop(sentOPackets);
+//            printTransfer(fileToRequest);
+//            xferFails++;
+//        }
+//    }
 }
+
 /*
  * Function: handleRequest()
  *  - Param: OrionDataReqPacket *reqPacket: DATA_REQUEST packet received from handleMessagesWhenUp()
@@ -1371,12 +1390,9 @@ void OrionApp::sendRequest(std::string fileToRequest) {
  */
 void OrionApp::handleRequest(OrionDataReqPacket *reqPacket) {
     debug("handleRequest", 0);
-    sendRequestAck(reqPacket);
+    sendRequestAck(reqPacket); //I moved this up to reply no matter what.
     if (requestList.count(reqPacket->getBid()) == 0) {
         printPacketRec(reqPacket);
-
-        std::pair<IPvXAddress, simtime_t> tempPair(reqPacket->getLastNode(),
-                simTime());
 
         if (hasFile(reqPacket->getFilename())) {
             // debug("I have the file, need to send messages with payload back");
@@ -1388,7 +1404,7 @@ void OrionApp::handleRequest(OrionDataReqPacket *reqPacket) {
             payload->setLastNode(myAddr);
             payload->setLastNodeId(myNameStr.c_str());
             payload->setFilename(reqPacket->getFilename());
-            payload->setByteLength(1280);
+            payload->setByteLength(1048);
             payload->setBid(reqPacket->getBid());
             payload->setNumCopiesRemaining(
                     fileList[reqPacket->getFilename()].second);
@@ -1402,38 +1418,40 @@ void OrionApp::handleRequest(OrionDataReqPacket *reqPacket) {
                     std::pair<std::string, OrionDataRepPacket*>(
                             payload->getBid(), payload));
 
-            //create  request timeoutEvent
+            //add slight delay to response so it doesn't interfere with RequestAck...
             DelayMsg *delayMsg = new DelayMsg();
             delayMsg->setBid(payload->getBid());
             delayMsg->setBroadcast(false);
             delayMsg->setDeleteMe(true);
             delaySend(delayMsg);
 
-        } else //forward on
+        } else { //forward on
 
             if (queryResults[reqPacket->getFilename()].hasSource()) {
 
-                //record this since we have a source
-                requestList.insert(std::pair<std::string, std::pair<IPvXAddress, simtime_t> >(
+                //record this request since we have a source
+                std::pair<IPvXAddress, simtime_t> tempPair(
+                        reqPacket->getLastNode(), simTime());
+                requestList.insert(
+                        std::pair<std::string, std::pair<IPvXAddress, simtime_t> >(
                                 reqPacket->getBid(), tempPair));
 
-                //build timer to wait for REQUEST_ACK
+                //build and schedule timer to wait for REQUEST_ACK.
                 WaitForReq *reqTimeout = new WaitForReq();
                 reqTimeout->setFilename(reqPacket->getFilename());
                 reqTimeout->setBid(reqPacket->getBid());
-                std::pair<std::string, WaitForReq*> tempPacketPair2(
-                        reqPacket->getBid(), reqTimeout);
                 scheduleAt(simTime() + .2, reqTimeout);
 
                 //store eventTimer and packet for later lookup
+                std::pair<std::string, WaitForReq*> tempPacketPair2(
+                        reqPacket->getBid(), reqTimeout);
                 pendingTimeouts.insert(tempPacketPair2);
-                //update packet with new information and store a copy for when we are ready to send
 
+                //update packet with new information and store a copy for when we are ready to send
                 reqPacket->setDST(
                         queryResults[reqPacket->getFilename()].getSource());
                 reqPacket->setLastNode(myAddr);
                 reqPacket->setLastNodeId(myNameStr.c_str());
-                std::ostringstream output;
                 pendingPackets.insert(
                         std::pair<std::string, OrionDataReqPacket*>(
                                 reqPacket->getBid(), reqPacket->dup()));
@@ -1445,16 +1463,15 @@ void OrionApp::handleRequest(OrionDataReqPacket *reqPacket) {
                 delayMsg->setDeleteMe(false);
                 delaySend(delayMsg);
 
-
-
-            } else {//we don't have a source for this anymore...send back an error
+            } else { //we don't have a source for this anymore...send back an error
                 sendError(reqPacket->getFilename(), reqPacket->getLastNode(),
                         reqPacket->getSEQ(), reqPacket->getBid(), true);
             }
         }
-
+    }
 
 }
+
 /*
  * Function: handleRequestAck()
  *  - Param: OrionDataAckPacket *ackPacket: ACK packet received from handleMessagesWhenUp()
@@ -1492,9 +1509,14 @@ void OrionApp::handleRequestError(OrionErrorPacket *errorPacket) {
             errorPacket->setLastNode(myAddr);
             errorPacket->setDST(requestList[errorPacket->getRequestId()].first);
             sendPacket(errorPacket->dup());
+
+//            sendError(errorPacket->getFilename(),
+//                    requestList[errorPacket->getRequestId()].first,
+//                    errorPacket->getSEQ(), errorPacket->getRequestId(), false);
         }
     }
 }
+
 /*
  * Function: handleReply()
  *  - Param: OrionDataRepPacket *repPacket: errorPacket OrionDataRepPacket from handleMessagesWhenUp()
@@ -1504,16 +1526,18 @@ void OrionApp::handleRequestError(OrionErrorPacket *errorPacket) {
 void OrionApp::handleReply(OrionDataRepPacket *repPacket) {
     debug("handleReply", 0);
     repPacket->setHopCount(repPacket->getHopCount() + 1);
+
     //If we are the source Node
     FileTableData *entry = &myQueryResults[repPacket->getFilename()];
     if (myAddr == repPacket->getSRC()) {
         retryDelay = (simTime() - repPacket->getStart()) * 2;
         entry->setTimeOfLastBlock(simTime().dbl());
+        entry->incBlocksReceived();
+        entry->addHops(repPacket->getHopCount());
+        entry->setBlockStop(repPacket->getBlock(),simTime().dbl());
 
         if (!entry->getBlockStatus(repPacket->getBlock())) {
             entry->setBlockComplete(repPacket->getBlock());
-            entry->addHops(repPacket->getHopCount());
-            entry->incBlocksRecieved();
 
             int blocks = entry->getRemainBlocks();
             entry->setRemainBlocks(blocks - 1);
@@ -1529,6 +1553,7 @@ void OrionApp::handleReply(OrionDataRepPacket *repPacket) {
                                 file, pair));
                 if (master) {
                     printTransfer(repPacket->getFilename());
+                    queryFile();
                     xferCompletes++;
                 }
 
@@ -1544,7 +1569,6 @@ void OrionApp::handleReply(OrionDataRepPacket *repPacket) {
                                 fileList[repPacket->getFilename()].first);
                     }
                 }
-
             }
 
         } else {
@@ -1553,35 +1577,24 @@ void OrionApp::handleReply(OrionDataRepPacket *repPacket) {
 
         //If we are an intermediate node
     } else {
-        std::ostringstream temp;
-        temp << " Id for packet: " << repPacket->getBid();
-        std::pair<IPvXAddress, simtime_t> pair(
-                requestList[repPacket->getBid()]);
-        repPacket->setDST(pair.first);
-        repPacket->setLastNode(myAddr);
-        repPacket->setLastNodeId(myNameStr.c_str());
 
-        // printPacketSend(repPacket);
-        sendPacket(repPacket->dup());
-        requestList.erase(repPacket->getBid());
-        delete pendingPackets[repPacket->getBid()];
-        pendingPackets.erase(repPacket->getBid());
+        if(requestList.count(repPacket->getBid())>0){
+            std::pair<IPvXAddress, simtime_t> pair(
+                    requestList[repPacket->getBid()]);
+            repPacket->setDST(pair.first);
+            repPacket->setLastNode(myAddr);
+            repPacket->setLastNodeId(myNameStr.c_str());
+
+            // printPacketSend(repPacket);
+            sendPacket(repPacket->dup());
+            requestList.erase(repPacket->getBid());
+            delete pendingPackets[repPacket->getBid()];
+            pendingPackets.erase(repPacket->getBid());
+        }
 
     }
 }
-/*
- * Function: resendRequest()
- *  - Param: OrionDataReqPacket *reqPacket: reqPacket received from handleMessagesWhenUp()
- *  - Returns: void
- * Description: resends request for packet when requestACk has not been received.
- *              loop is started in sendRequest().  If the file has any more retries,
- *              it attempts to send again.  If it is out of retries, it performs a local
- *              correction using its source table and resets the retry counter.
- *              If it is out of sources, it sends an error back informing the previous node
- *              that is is out of sources and that node will remove it from it's source list.
- *              If it is out of sources, it removes the packet and timer for their respective
- *              lists.
- */
+
 void OrionApp::resendRequest(OrionDataReqPacket* reqPacket) {
     debug("resendRequest", 0);
 
@@ -1593,7 +1606,8 @@ void OrionApp::resendRequest(OrionDataReqPacket* reqPacket) {
 
         if (pendingTimeouts.count(reqPacket->getBid()) > 0) {
             if (!pendingTimeouts[reqPacket->getBid()]->isScheduled()) {
-                scheduleAt(simTime() + .02, pendingTimeouts[reqPacket->getBid()]);
+                scheduleAt(simTime() + .02,
+                        pendingTimeouts[reqPacket->getBid()]);
                 sendPacket(reqPacket->dup());
             }
 
@@ -1609,7 +1623,7 @@ void OrionApp::resendRequest(OrionDataReqPacket* reqPacket) {
             //duplicate message and save original.
             sendPacket(reqPacket->dup());
 
-            //schedule timout event;
+            //schedule timeout event;
             scheduleAt(simTime() + .02, pendingTimeouts[reqPacket->getBid()]);
 
         } else {
@@ -1628,12 +1642,7 @@ void OrionApp::resendRequest(OrionDataReqPacket* reqPacket) {
 
     }
 }
-/*
- * Function: sendRequestAck()
- *  - Param: OrionDataReqPacket *reqPacket: reqPacket received from handleRequest()
- *  - Returns: void
- * Description: Builds an acknowledgement packet and sends it to previous node.
- */
+
 void OrionApp::sendRequestAck(OrionDataReqPacket *reqPacket) {
     debug("sendRequestAck", 0);
     OrionDataAckPacket *reqAck = new OrionDataAckPacket("DATA_REQUEST_ACK");
@@ -1651,16 +1660,6 @@ void OrionApp::sendRequestAck(OrionDataReqPacket *reqPacket) {
     sendPacket(reqAck);
 }
 
-/*
- * Function: sendReplicateReq()
- *  - Param: string fileToRep: file to replicate
- *           uint seq: current replicate sequence number
- *           IPvXAddres _origin: source node requesting replication
- *  - Called by: generateFile()
- *  - Returns: void
- * Description: When a file is generated, if the repCount is >0, this method is called
- *              to broadcast the request to replicate the file.
- */
 void OrionApp::sendReplicateReq(std::string fileToRep, unsigned int seq,
         IPvXAddress _origin) {
     debug("sendReplicateReq", 0);
@@ -1676,6 +1675,13 @@ void OrionApp::sendReplicateReq(std::string fileToRep, unsigned int seq,
     IPvXAddress origin = IPvXAddress(_origin);
     replicatePacket->setOrigin(origin);
     replicatePacket->setBid(requestID.str().c_str());
+
+    if (debugEnabled[2]) {
+        std::ostringstream output;
+        output << "   Origin = " << replicatePacket->getOrigin().str();
+        debug(output.str(), 2);
+    }
+
     replicatePacket->setLastNode(myAddr);
     replicatePacket->setLastNodeId(myNameStr.c_str());
     replicatePacket->setFilename(fileToRep.c_str());
@@ -1687,23 +1693,10 @@ void OrionApp::sendReplicateReq(std::string fileToRep, unsigned int seq,
     sendBroadcast(destAddr, replicatePacket);
 }
 
-/*
- * Function: handleReplicateReq()
- *  - Param: ReplicatePacket* replicate: replicate packet sent from other node.
- *  - Called by: handleMesssageWhenUp()
- *  - Returns: void
- * Description: Handles reception of a replication request.  If it hasn't seen the
- *              the request and is not the source or the origin of the request,
- *              it builds a confirmation packet to send back to the
- *              origin of the file.  This is done to ensure the right amount of
- *              replication is performed.  A slight delay jitter is added to ensure
- *              the confirmation is not sent at the same time as another receiving
- *              node.
- */
 void OrionApp::handleReplicateReq(ReplicatePacket* replicate) {
     debug("handleReplicateReq", 0);
 
-    if (!master  && queryResults.count(replicate->getFilename())==0) {
+    if (!master && queryResults.count(replicate->getFilename()) == 0) {
 
         //check replicateList to see if we've seen this request yet
         if (replicateList.count(replicate->getBid()) == 0
@@ -1745,15 +1738,6 @@ void OrionApp::handleReplicateReq(ReplicatePacket* replicate) {
     }
 }
 
-/*
- * Function: handleReplicateConfirm()
- *  - Param: ReplicateConfirmPacket* replicateRes: replicate confirmation packet sent from other node.
- *  - Called by: handleMesssageWhenUp()
- *  - Returns: void
- * Description: Handles reception of a replication confirmation.  Checks to see if file still
- *              needs to be replicated further, and if so, sends an acknowledgment back to
- *              requesting node.
- */
 void OrionApp::handleReplicateConfirm(ReplicateConfirmPacket* replicateRes) {
 
     printPacketRec(replicateRes);
@@ -1761,7 +1745,8 @@ void OrionApp::handleReplicateConfirm(ReplicateConfirmPacket* replicateRes) {
 
     //if we haven't achieved the desired amount of replication, send back a confirmation
     if (remain > 0) {
-
+//        std::pair<IPvXAddress, int> pair = std::pair<IPvXAddress, int>(
+//                fileList[replicateRes->getFilename()].first, remain - 1);
         fileList[replicateRes->getFilename()].second = remain - 1;
         ReplicateConfirmAckPacket *confirmPacketACK =
                 new ReplicateConfirmAckPacket("REP_CONFIRM_ACK");
@@ -1777,18 +1762,10 @@ void OrionApp::handleReplicateConfirm(ReplicateConfirmPacket* replicateRes) {
         confirmPacketACK->setByteLength(par("messageLength").longValue());
 
         sendPacket(confirmPacketACK);
+
     }
 }
 
-/*
- * Function: handleReplicateConfirmAck()
- *  - Param: ReplicateConfirmAckPacket* replicateAck: replicate acknowledgement packet sent from origin node.
- *  - Called by: handleMesssageWhenUp()
- *  - Returns: void
- * Description: Handles reception of a replication acknowledgement.  If it needs to
- *              copy the file, it initiates a query to find all possible sources of
- *              the file, setting of the transfer process.
- */
 void OrionApp::handleReplicateConfirmAck(
         ReplicateConfirmAckPacket* replicateAck) {
     debug("handleReplicateAck", 0);
@@ -1797,12 +1774,14 @@ void OrionApp::handleReplicateConfirmAck(
         //create new entry and add it to our table
         FileTableData entry(replicateAck->getFilename(), fileSize);
         entry.setQueryStart(simTime().dbl());
-        std::pair<std::string, FileTableData>tempPair = std::pair<std::string, FileTableData>(
-                replicateAck->getFilename(), entry);
+        std::pair<std::string, FileTableData> tempPair = std::pair<std::string,
+                FileTableData>(replicateAck->getFilename(), entry);
         myQueryResults.insert(tempPair);
         sendQuery(replicateAck->getFilename(), querySeqNum, myAddr, myNameStr);
         querySeqNum++;
 
+    } else {
+        //do nothing, source doesn't need us to copy
     }
 }
 
@@ -1897,6 +1876,11 @@ void OrionApp::sendPacket(OrionPacket * oPacket) {
         //emit(sentPkSignal, oPacket);
         socket.sendTo(oPacket, oPacket->getDST(), destPort);
         sentOPackets++;
+    } else {
+        std::ostringstream output;
+        output << " Error Sending " << oPacket->getName() << " to "
+                << oPacket->getDST().str() << " -ID: " << oPacket->getBid();
+        debug(output.str(), 3);
     }
 }
 

@@ -32,7 +32,7 @@ public:
         fileName = _fileName;
         blocks = fileSize;
         remainBlocks = fileSize;
-        requeries = 4;
+        requeries = 5;
         queryTime = -1;
         queryStop = -1;
         queryStart =-1;
@@ -40,14 +40,17 @@ public:
         transferStop = -1;
         transferTime = -1;
         transferComplete = false;
-        blocksRecieved = 0;
+        blocksReceived = 0;
         totalHops = 0;
         masterQuery = false;
         systemPacketsStart=0;
         systemPacketsStop=0;
+        averageBlockTime = 0;
 
         for( int i(0); i < fileSize; i++){
             blockStatus.insert(std::pair<int, bool>(i, false));
+            blockStart.insert(std::pair<int,double>(i,0));
+            blockStop.insert(std::pair<int,double>(i,0));
         }
         blockCounter = 0;
     }
@@ -241,15 +244,15 @@ public:
         this->requeries = requeries;
     }
 
-    int getBlocksRecieved() const {
-        return blocksRecieved;
+    int getBlocksReceived() const {
+        return blocksReceived;
     }
 
-    void setBlocksRecieved(int blocksRecieved) {
-        this->blocksRecieved = blocksRecieved;
+    void setBlocksRecieved(int blocksReceived) {
+        this->blocksReceived = blocksReceived;
     }
-    void incBlocksRecieved() {
-        blocksRecieved++;
+    void incBlocksReceived() {
+        blocksReceived++;
     }
 
     int getTotalHops() const {
@@ -300,6 +303,24 @@ public:
        return( systemPacketsStop - systemPacketsStart);
     }
 
+    double getAverageBlockTime() const {
+        return averageBlockTime;
+    }
+
+    void setBlockStart(const unsigned int block, const double start) {
+        blockStart[block] = start;
+    }
+
+    void setBlockStop(const unsigned int block, const double stop) {
+        blockStart[block] = stop;
+        totalBlockTime += (blockStop[block] - blockStart[block]);
+        averageBlockTime = totalBlockTime / blocksReceived;
+    }
+
+    void setAverageBlockTime(double averageBlockTime) {
+        this->averageBlockTime = averageBlockTime;
+    }
+
 protected:
     std::deque<IPvXAddress> fileList;
     IPvXAddress origin;
@@ -322,7 +343,11 @@ protected:
     bool masterQuery;
 
     std::map<int, bool> blockStatus;
-    int blocksRecieved;
+    std::map<unsigned int, double> blockStart;
+    std::map<unsigned int, double> blockStop;
+    double averageBlockTime;
+    double totalBlockTime;
+    int blocksReceived;
     int totalHops;
 
     unsigned int systemPacketsStart;

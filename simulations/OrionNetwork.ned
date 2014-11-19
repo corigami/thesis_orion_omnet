@@ -33,8 +33,8 @@ network OrionNetwork
         int numHosts;
         
     submodules:
-        channelControl: IdealChannelModel {
-      //	  channelControl: ChannelControl {
+      //  channelControl: IdealChannelModel {
+         channelControl: ChannelControl {
             parameters:
                 @display("p=50,50");
         }

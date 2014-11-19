@@ -3352,6 +3352,7 @@ Register_Class(ReqBlockTimer);
 ReqBlockTimer::ReqBlockTimer(const char *name, int kind) : ::cMessage(name,kind)
 {
     this->filename_var = 0;
+    this->bid_var = 0;
 }
 
 ReqBlockTimer::ReqBlockTimer(const ReqBlockTimer& other) : ::cMessage(other)
@@ -3374,18 +3375,21 @@ ReqBlockTimer& ReqBlockTimer::operator=(const ReqBlockTimer& other)
 void ReqBlockTimer::copy(const ReqBlockTimer& other)
 {
     this->filename_var = other.filename_var;
+    this->bid_var = other.bid_var;
 }
 
 void ReqBlockTimer::parsimPack(cCommBuffer *b)
 {
     ::cMessage::parsimPack(b);
     doPacking(b,this->filename_var);
+    doPacking(b,this->bid_var);
 }
 
 void ReqBlockTimer::parsimUnpack(cCommBuffer *b)
 {
     ::cMessage::parsimUnpack(b);
     doUnpacking(b,this->filename_var);
+    doUnpacking(b,this->bid_var);
 }
 
 const char * ReqBlockTimer::getFilename() const
@@ -3396,6 +3400,16 @@ const char * ReqBlockTimer::getFilename() const
 void ReqBlockTimer::setFilename(const char * filename)
 {
     this->filename_var = filename;
+}
+
+const char * ReqBlockTimer::getBid() const
+{
+    return bid_var.c_str();
+}
+
+void ReqBlockTimer::setBid(const char * bid)
+{
+    this->bid_var = bid;
 }
 
 class ReqBlockTimerDescriptor : public cClassDescriptor
@@ -3445,7 +3459,7 @@ const char *ReqBlockTimerDescriptor::getProperty(const char *propertyname) const
 int ReqBlockTimerDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
+    return basedesc ? 2+basedesc->getFieldCount(object) : 2;
 }
 
 unsigned int ReqBlockTimerDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -3458,8 +3472,9 @@ unsigned int ReqBlockTimerDescriptor::getFieldTypeFlags(void *object, int field)
     }
     static unsigned int fieldTypeFlags[] = {
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<2) ? fieldTypeFlags[field] : 0;
 }
 
 const char *ReqBlockTimerDescriptor::getFieldName(void *object, int field) const
@@ -3472,8 +3487,9 @@ const char *ReqBlockTimerDescriptor::getFieldName(void *object, int field) const
     }
     static const char *fieldNames[] = {
         "filename",
+        "bid",
     };
-    return (field>=0 && field<1) ? fieldNames[field] : NULL;
+    return (field>=0 && field<2) ? fieldNames[field] : NULL;
 }
 
 int ReqBlockTimerDescriptor::findField(void *object, const char *fieldName) const
@@ -3481,6 +3497,7 @@ int ReqBlockTimerDescriptor::findField(void *object, const char *fieldName) cons
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
     if (fieldName[0]=='f' && strcmp(fieldName, "filename")==0) return base+0;
+    if (fieldName[0]=='b' && strcmp(fieldName, "bid")==0) return base+1;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -3494,8 +3511,9 @@ const char *ReqBlockTimerDescriptor::getFieldTypeString(void *object, int field)
     }
     static const char *fieldTypeStrings[] = {
         "string",
+        "string",
     };
-    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<2) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *ReqBlockTimerDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -3536,6 +3554,7 @@ std::string ReqBlockTimerDescriptor::getFieldAsString(void *object, int field, i
     ReqBlockTimer *pp = (ReqBlockTimer *)object; (void)pp;
     switch (field) {
         case 0: return oppstring2string(pp->getFilename());
+        case 1: return oppstring2string(pp->getBid());
         default: return "";
     }
 }
@@ -3551,6 +3570,7 @@ bool ReqBlockTimerDescriptor::setFieldAsString(void *object, int field, int i, c
     ReqBlockTimer *pp = (ReqBlockTimer *)object; (void)pp;
     switch (field) {
         case 0: pp->setFilename((value)); return true;
+        case 1: pp->setBid((value)); return true;
         default: return false;
     }
 }
